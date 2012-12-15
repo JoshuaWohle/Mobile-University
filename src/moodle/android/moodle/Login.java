@@ -50,6 +50,7 @@ import android.widget.Toast;
 
 
 public class Login extends Activity implements OnClickListener {
+	//
     Button login;
 	EditText siteUrl, username, password;
 	User user;
