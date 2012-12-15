@@ -113,7 +113,6 @@ public class CourseForumView extends Activity implements OnClickListener {
 	    
 	    public static final int COURSE_SELECT_REQUEST_CODE = 1;
 
-		@Override
 		public void onClick(View v) {
 			Intent nextPage;
 
@@ -181,7 +180,6 @@ public class CourseForumView extends Activity implements OnClickListener {
 	    		
 	    		listView.setOnItemClickListener(new OnItemClickListener() {
 
-	    			@Override
 	    			public void onItemClick(AdapterView<?> parent, View view,
 	    					int position, long id) {
 	    							

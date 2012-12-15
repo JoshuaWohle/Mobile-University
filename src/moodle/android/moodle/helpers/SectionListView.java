@@ -76,7 +76,6 @@ public class SectionListView extends ListView implements OnScrollListener {
 		}
 	}
 	
-	@Override 
 	public void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount, final int totalItemCount) {
 		final SectionListAdapter adapter = (SectionListAdapter)getAdapter();
 		if (adapter != null) {
@@ -84,7 +83,6 @@ public class SectionListView extends ListView implements OnScrollListener {
 		}
 	}
 	
-	@Override 
 	public void onScrollStateChanged(final AbsListView view, final int scrollState) {
 		// do nothing
 	}

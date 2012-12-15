@@ -104,7 +104,6 @@ public class CourseDetail extends Activity implements OnClickListener {
     
     public static final int COURSE_SELECT_REQUEST_CODE = 1;
 
-	@Override
 	public void onClick(View v) {
 		
 		switch(v.getId()) {		
@@ -166,7 +165,6 @@ public class CourseDetail extends Activity implements OnClickListener {
      // Click event for single list row
         list.setOnItemClickListener(new OnItemClickListener() {
 
-			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 							

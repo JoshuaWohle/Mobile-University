@@ -97,12 +97,10 @@ public class SectionListAdapter extends BaseAdapter implements ListAdapter, OnIt
 		}
 	}
 	
-	 @Override 
 	 public synchronized int getCount() {
 		return sectionPositions.size() + itemPositions.size();
 	}
 	 
-	 @Override 
 	 public synchronized Object getItem(final int position) {
 		if (isSection(position)) {
 			return sectionPositions.get(position);
@@ -124,7 +122,6 @@ public class SectionListAdapter extends BaseAdapter implements ListAdapter, OnIt
 		}
 	}
 	
-	@Override 
 	public long getItemId(final int position) {
 		if (isSection(position)) {
 			return sectionPositions.get(position).hashCode();
@@ -171,7 +168,6 @@ public class SectionListAdapter extends BaseAdapter implements ListAdapter, OnIt
 		return inflater.inflate(R.layout.section_view, null);
 	}
 	
-	@Override 
 	public View getView(final int position, final View convertView, final ViewGroup parent) {
 		if (isSection(position)) {
 			return getSectionView(convertView, sectionPositions.get(position));
@@ -250,7 +246,6 @@ public class SectionListAdapter extends BaseAdapter implements ListAdapter, OnIt
 		// do nothing
 	}
 	
-	@Override 
 	public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
 		if (isSection(position)) {
 			sectionClicked(getSectionName(position));

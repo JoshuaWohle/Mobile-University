@@ -143,7 +143,6 @@ public class FileUpload extends Activity implements OnClickListener {
 	    
 	    public static final int COURSE_SELECT_REQUEST_CODE = 1;
 
-		@Override
 		public void onClick(View v) {
 			Intent nextPage;
 
@@ -218,7 +217,6 @@ public class FileUpload extends Activity implements OnClickListener {
 	        		
 	        		//Sort the files alphabetically.
 	        		Collections.sort(availableFileList, new Comparator<File>() { 
-	        	        @Override 
 	        	        public int compare(File s1, File s2) { 
 	        	            return s1.getName().compareToIgnoreCase(s2.getName()); 
 	        	        } 
@@ -257,20 +255,17 @@ public class FileUpload extends Activity implements OnClickListener {
 		         * */
 		        inputSearch.addTextChangedListener(new TextWatcher() { 
 		  
-		            @Override
 		            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) { 
 		                // When user changed the Text 
 		            	FileUpload.this.adapter.getFilter().filter(cs); 
 		            } 
 		  
-		            @Override
 		            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, 
 		                    int arg3) { 
 		                // TODO Auto-generated method stub 
 		  
 		            } 
 		  
-		            @Override
 		            public void afterTextChanged(Editable arg0) { 
 		                // TODO Auto-generated method stub 
 		            } 
@@ -281,7 +276,6 @@ public class FileUpload extends Activity implements OnClickListener {
 		        list.setOnItemClickListener(new OnItemClickListener() {
 
 					@SuppressWarnings("unchecked")
-					@Override
 					public void onItemClick(AdapterView<?> parent, View view,
 							int position, long id) {
 						
@@ -319,7 +313,6 @@ public class FileUpload extends Activity implements OnClickListener {
 		}
 		
 		DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() { 
-		    @Override 
 		    public void onClick(DialogInterface dialog, int which) { 
 		        switch (which){ 
 		        case DialogInterface.BUTTON_POSITIVE: 
