@@ -13,6 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class TokenRequestTask extends AsyncTask {
 
@@ -30,8 +31,9 @@ public class TokenRequestTask extends AsyncTask {
 			ResponseHandler<String> responseHandler = new BasicResponseHandler();
 			responseBody = httpClient.execute(httpPost, responseHandler);
 
-			JSONObject jObject = new JSONObject(responseBody);
-			token = jObject.getString("token");
+			JSONObject json = new JSONObject(responseBody);
+			token = json.getString("token");
+			Log.d("authentication", "Got a new token");
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

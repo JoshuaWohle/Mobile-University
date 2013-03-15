@@ -22,6 +22,7 @@ package moodle.android.moodle;
 
 import java.util.ArrayList;
 
+import moodle.android.moodle.config.Config;
 import moodle.android.moodle.config.UserSettings;
 import moodle.android.moodle.helpers.AppStatus;
 import moodle.android.moodle.helpers.MoodleWebService;
@@ -30,18 +31,17 @@ import moodle.android.moodle.model.Course;
 import moodle.android.moodle.model.CourseContent;
 import moodle.android.moodle.model.SiteInfo;
 import moodle.android.moodle.model.User;
+import moodle.android.moodle.other.Constants;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Html;
-import android.text.Spanned;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -50,9 +50,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainApp extends Activity implements OnClickListener {
+	
+	public static Context context;
 	//
 	Button login;
-	EditText siteUrl, username, password;
+	EditText serverUrl, username, password;
 	User user;
 	SharedPreferences saved;
 	String loginDetails;
@@ -62,18 +64,19 @@ public class MainApp extends Activity implements OnClickListener {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		context = this;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 
 		try {
-			siteUrl = (EditText) findViewById(R.id.moodle_url);
+			serverUrl = (EditText) findViewById(R.id.moodle_url);
 			username = (EditText) findViewById(R.id.username);
 			password = (EditText) findViewById(R.id.password);
 			login = (Button) findViewById(R.id.login_button);
 
 			try {
-				//
-				siteUrl.setHint(R.string.login_url_hint);
+				
+				serverUrl.setHint(R.string.login_url_hint);
 				username.setHint(R.string.login_username_hint);
 				password.setHint(R.string.login_password_hint);
 
@@ -82,9 +85,9 @@ public class MainApp extends Activity implements OnClickListener {
 				// username.setText(saved.getString("usr", "guest@guest"));
 				// password.setText(saved.getString("pwd","Gu3$t%000"));
 
-				siteUrl.setText("http://moodletest.shaftedartist.com");
-				username.setText("guest@guest");
-				password.setText("Gu3$t%000");
+				serverUrl.setText(Constants.testURL);
+				username.setText(Constants.testUser);
+				password.setText(Constants.testPassword);
 
 			} catch (Exception e) {
 				Log.e("NoPreferences", e.toString());
@@ -129,7 +132,8 @@ public class MainApp extends Activity implements OnClickListener {
 				// database.
 
 			}
-			String siteUrlVal = siteUrl.getText().toString();
+			Config.serverUrl = serverUrl.getText().toString();
+			String siteUrlVal = Config.serverUrl;
 
 			// checks for http:// entry
 			/*
@@ -173,7 +177,7 @@ public class MainApp extends Activity implements OnClickListener {
 				user.setTokenCreateDate();
 				user.setUrl(url);
 
-				MoodleWebService webService = new MoodleWebService(MainApp.this);
+				MoodleWebService webService = new MoodleWebService();
 				SiteInfo siteInfo = new SiteInfo();
 				webService.getSiteinfo(serverurl, siteInfo);
 				user.setSiteInfo(siteInfo);
@@ -206,7 +210,7 @@ public class MainApp extends Activity implements OnClickListener {
 					Log.e("Course Error", "User is not enrolled in any courses");
 					Toast.makeText(
 							getApplicationContext(),
-							"This User is not Enrolled in any Courses, please contact your Lecturer",
+							R.string.user_no_courses,
 							Toast.LENGTH_LONG).show();
 
 				}
@@ -216,11 +220,7 @@ public class MainApp extends Activity implements OnClickListener {
 
 				Toast.makeText(
 						getApplicationContext(),
-						"The username and password are incorrect. Please try again!",
-						Toast.LENGTH_LONG).show();
-				Toast.makeText(
-						getApplicationContext(),
-						"If details are correct contact Site Admin to enable REST protocol",
+						R.string.login_incorrect,
 						Toast.LENGTH_LONG).show();
 			}
 

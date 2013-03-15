@@ -424,6 +424,7 @@ containing a value of this type.
         public static final int grades_view=0x7f06001c;
         public static final int hello=0x7f060000;
         public static final int login_button=0x7f06000b;
+        public static final int login_incorrect=0x7f060034;
         public static final int login_moodle_desc=0x7f060006;
         public static final int login_moodle_hdr=0x7f060005;
         public static final int login_moodle_hint=0x7f060007;
@@ -442,18 +443,19 @@ containing a value of this type.
         public static final int upload_btn_view=0x7f060015;
         public static final int upload_search_hint=0x7f060012;
         public static final int upload_view=0x7f060011;
+        public static final int user_no_courses=0x7f060035;
         public static final int week_one_desc_view=0x7f060025;
         public static final int week_one_view=0x7f060024;
     }
     public static final class style {
-        public static final int ButtonText=0x7f080000;
-        public static final int FooterText=0x7f080002;
-        public static final int HeadingText=0x7f080001;
-        public static final int MyColorDialogTheme=0x7f080003;
-        public static final int SectionItemStyle=0x7f080007;
+        public static final int ButtonText=0x7f080002;
+        public static final int FooterText=0x7f080004;
+        public static final int HeadingText=0x7f080003;
+        public static final int MyColorDialogTheme=0x7f080005;
+        public static final int SectionItemStyle=0x7f080001;
         public static final int SectionListViewTheme=0x7f080008;
-        public static final int SectionTextViewStyle=0x7f080006;
-        public static final int Theme_Transparent=0x7f080004;
-        public static final int full_screen_dialog=0x7f080005;
+        public static final int SectionTextViewStyle=0x7f080000;
+        public static final int Theme_Transparent=0x7f080006;
+        public static final int full_screen_dialog=0x7f080007;
     }
 }

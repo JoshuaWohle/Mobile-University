@@ -1,12 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="SectionTextViewStyle" parent="@android:style/Widget.TextView">
-		<item name="android:padding">?sectionListView.sectionTextViewPadding</item>
-		<item name="android:textColor">?sectionListView.sectionTextViewTextColor</item>
-		<item name="android:textSize">?sectionListView.sectionTextViewTextSize</item>
-	</style>
-	<style name="SectionItemStyle">
-		<item name="android:padding">?sectionListView.sectionItemPadding</item>
-		<item name="android:background">?sectionListView.sectionItemBackground</item>
-	</style>
+        <item name="android:padding">?sectionListView.sectionTextViewPadding</item>
+        <item name="android:textColor">?sectionListView.sectionTextViewTextColor</item>
+        <item name="android:textSize">?sectionListView.sectionTextViewTextSize</item>
+    </style>
+
+    <style name="SectionItemStyle">
+        <item name="android:padding">?sectionListView.sectionItemPadding</item>
+        <item name="android:background">?sectionListView.sectionItemBackground</item>
+    </style>
+
+    <style name="ButtonText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="android:textSize">17dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
+
+    <style name="HeadingText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:textSize">17dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+    </style>
+
+    <style name="FooterText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:textSize">11dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">2</item>
+        <item name="android:paddingLeft">0dp</item>
+        <item name="android:paddingRight">0dp</item>
+    </style>
+
+    <style name="MyColorDialogTheme" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@drawable/color_panel_background</item>
+    </style>
+
+    <style name="Theme.Transparent" parent="android:Theme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/Transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="full_screen_dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
 </resources>
