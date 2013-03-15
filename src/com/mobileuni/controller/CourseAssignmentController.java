@@ -18,19 +18,25 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package moodle.android.moodle;
+package com.mobileuni.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import moodle.android.moodle.helpers.CourseContentsListHelper;
-import moodle.android.moodle.helpers.SectionListAdapter;
-import moodle.android.moodle.helpers.SectionListItem;
-import moodle.android.moodle.helpers.SectionListView;
-import moodle.android.moodle.helpers.StandardArrayAdapter;
-import moodle.android.moodle.model.Course;
-import moodle.android.moodle.model.CourseContent;
-import moodle.android.moodle.model.User;
+import com.mobileuni.CourseDetail;
+import com.mobileuni.CourseSelect;
+import com.mobileuni.FileUpload;
+import com.mobileuni.Setting;
+import com.mobileuni.helpers.CourseContentsListHelper;
+import com.mobileuni.helpers.SectionListAdapter;
+import com.mobileuni.helpers.SectionListItem;
+import com.mobileuni.helpers.SectionListView;
+import com.mobileuni.helpers.StandardArrayAdapter;
+import com.mobileuni.model.Course;
+import com.mobileuni.model.CourseContent;
+import com.mobileuni.model.User;
+
+import moodle.android.moodle.R;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -48,7 +54,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class CourseAssignmentView extends Activity implements OnClickListener {
+public class CourseAssignmentController extends Activity implements OnClickListener {
 
 	Button home, courseSelect, upload, setting;
 	TextView footerCourseHdr;

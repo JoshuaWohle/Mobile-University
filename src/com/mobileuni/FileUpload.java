@@ -18,7 +18,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package moodle.android.moodle;
+package com.mobileuni;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -28,11 +28,13 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
-import moodle.android.moodle.helpers.FileManager;
-import moodle.android.moodle.helpers.FileUploadsListHelper;
-import moodle.android.moodle.helpers.LazyAdapter;
-import moodle.android.moodle.model.Course;
-import moodle.android.moodle.model.User;
+import com.mobileuni.helpers.FileManager;
+import com.mobileuni.helpers.FileUploadsListHelper;
+import com.mobileuni.helpers.LazyAdapter;
+import com.mobileuni.model.Course;
+import com.mobileuni.model.User;
+
+import moodle.android.moodle.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;

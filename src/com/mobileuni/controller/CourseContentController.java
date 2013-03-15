@@ -18,21 +18,27 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package moodle.android.moodle;
+package com.mobileuni.controller;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import moodle.android.moodle.helpers.CourseContentsListHelper;
-import moodle.android.moodle.helpers.FileManager;
-import moodle.android.moodle.helpers.SectionListAdapter;
-import moodle.android.moodle.helpers.SectionListItem;
-import moodle.android.moodle.helpers.SectionListView;
-import moodle.android.moodle.helpers.StandardArrayAdapter;
-import moodle.android.moodle.model.Course;
-import moodle.android.moodle.model.CourseContent;
-import moodle.android.moodle.model.User;
+import com.mobileuni.CourseDetail;
+import com.mobileuni.CourseSelect;
+import com.mobileuni.FileUpload;
+import com.mobileuni.Setting;
+import com.mobileuni.helpers.CourseContentsListHelper;
+import com.mobileuni.helpers.FileManager;
+import com.mobileuni.helpers.SectionListAdapter;
+import com.mobileuni.helpers.SectionListItem;
+import com.mobileuni.helpers.SectionListView;
+import com.mobileuni.helpers.StandardArrayAdapter;
+import com.mobileuni.model.Course;
+import com.mobileuni.model.CourseContent;
+import com.mobileuni.model.User;
+
+import moodle.android.moodle.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -51,7 +57,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class CourseContentView extends Activity implements OnClickListener {
+public class CourseContentController extends Activity implements OnClickListener {
 
 	Button home, courseSelect, upload, setting;
 	TextView footerCourseHdr;
@@ -205,7 +211,7 @@ public class CourseContentView extends Activity implements OnClickListener {
 								+ "/Documents/";
 
 						File file = FileManager.getInstance(
-								CourseContentView.this).DownloadFromUrl(
+								CourseContentController.this).DownloadFromUrl(
 								fileURL + "&token=" + user.getToken(),
 								fileName, courseDirectoryAndType);
 
@@ -224,21 +230,21 @@ public class CourseContentView extends Activity implements OnClickListener {
 							newIntent
 									.setFlags(newIntent.FLAG_ACTIVITY_NEW_TASK);
 							try {
-								CourseContentView.this.startActivity(newIntent);
+								CourseContentController.this.startActivity(newIntent);
 							} catch (android.content.ActivityNotFoundException e) {
 								Log.e("MIME Error",
 										e.toString()
 												+ " default program for this filetype not found");
 								// Raise on activity not found
 								Toast.makeText(
-										CourseContentView.this,
+										CourseContentController.this,
 										"A suitable Application to access the file "
 												+ mimeType + " not found.",
 										4000).show();
 							}
 						} else {
 							Toast.makeText(
-									CourseContentView.this,
+									CourseContentController.this,
 									"There is no SD Card installed to save the file to. Please insert to view the file.",
 									4000).show();
 						}

@@ -18,16 +18,22 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package moodle.android.moodle;
+package com.mobileuni;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import moodle.android.moodle.helpers.CourseDetailsListHelper;
-import moodle.android.moodle.helpers.LazyAdapter;
-import moodle.android.moodle.model.Course;
-import moodle.android.moodle.model.CourseContent;
-import moodle.android.moodle.model.User;
+import com.mobileuni.controller.CourseAssignmentController;
+import com.mobileuni.controller.CourseContentController;
+import com.mobileuni.controller.CourseForumController;
+import com.mobileuni.controller.CourseGradeController;
+import com.mobileuni.helpers.CourseDetailsListHelper;
+import com.mobileuni.helpers.LazyAdapter;
+import com.mobileuni.model.Course;
+import com.mobileuni.model.CourseContent;
+import com.mobileuni.model.User;
+
+import moodle.android.moodle.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -175,25 +181,25 @@ public class CourseDetail extends Activity implements OnClickListener {
 				switch (selectedId) {
 				case 0: // DOCUMENTS
 					nextPage = new Intent(parent.getContext(),
-							CourseContentView.class);
+							CourseContentController.class);
 					nextPage.putExtra("userObject", user);
 					startActivity(nextPage);
 					break;
 				case 1: // ASSIGNMENTS
 					nextPage = new Intent(parent.getContext(),
-							CourseAssignmentView.class);
+							CourseAssignmentController.class);
 					nextPage.putExtra("userObject", user);
 					startActivity(nextPage);
 					break;
 				case 2: // GRADES
 					nextPage = new Intent(parent.getContext(),
-							CourseGradeView.class);
+							CourseGradeController.class);
 					nextPage.putExtra("userObject", user);
 					startActivity(nextPage);
 					break;
 				case 3: // FORUMS
 					nextPage = new Intent(parent.getContext(),
-							CourseForumView.class);
+							CourseForumController.class);
 					nextPage.putExtra("userObject", user);
 					startActivity(nextPage);
 					break;

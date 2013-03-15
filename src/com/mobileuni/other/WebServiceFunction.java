@@ -1,4 +1,4 @@
-package moodle.android.moodle.other;
+package com.mobileuni.other;
 
 public class WebServiceFunction {
 	public static final String moodle_enrol_get_users_courses = "moodle_enrol_get_users_courses";

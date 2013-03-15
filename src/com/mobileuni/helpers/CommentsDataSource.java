@@ -23,7 +23,7 @@
  * http://www.vogella.com/articles/AndroidSQLite/article.html
  */
 
-package moodle.android.moodle.helpers;
+package com.mobileuni.helpers;
 
 import java.util.ArrayList;
 import java.util.List;

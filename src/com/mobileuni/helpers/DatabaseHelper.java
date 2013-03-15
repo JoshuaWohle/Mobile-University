@@ -23,7 +23,7 @@
  * http://www.vogella.com/articles/AndroidSQLite/article.html
  */
 
-package moodle.android.moodle.helpers;
+package com.mobileuni.helpers;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -17,7 +17,7 @@
 	    android:orientation="vertical">
 
 
-		<moodle.android.moodle.helpers.SectionListView 
+		<com.mobileuni.helpers.SectionListView 
 		    android:id="@+id/assign_section_list_view" 
 		    android:layout_width="fill_parent"                 
 		    android:layout_height="fill_parent"/>

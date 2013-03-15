@@ -18,15 +18,16 @@
 *    along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-package moodle.android.moodle.helpers;
+package com.mobileuni.helpers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.mobileuni.model.Content;
+import com.mobileuni.model.CourseContent;
+import com.mobileuni.model.Module;
+
 import moodle.android.moodle.R;
-import moodle.android.moodle.model.Content;
-import moodle.android.moodle.model.CourseContent;
-import moodle.android.moodle.model.Module;
 
 import android.content.Context;
 

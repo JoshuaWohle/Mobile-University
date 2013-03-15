@@ -18,20 +18,22 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package moodle.android.moodle;
+package com.mobileuni;
 
 import java.util.ArrayList;
 
-import moodle.android.moodle.config.Config;
-import moodle.android.moodle.config.UserSettings;
-import moodle.android.moodle.helpers.AppStatus;
-import moodle.android.moodle.helpers.MoodleWebService;
-import moodle.android.moodle.helpers.asynctasks.TokenRequestTask;
-import moodle.android.moodle.model.Course;
-import moodle.android.moodle.model.CourseContent;
-import moodle.android.moodle.model.SiteInfo;
-import moodle.android.moodle.model.User;
-import moodle.android.moodle.other.Constants;
+import com.mobileuni.config.Config;
+import com.mobileuni.config.UserSettings;
+import com.mobileuni.helpers.AppStatus;
+import com.mobileuni.helpers.MoodleWebService;
+import com.mobileuni.helpers.asynctasks.TokenRequestTask;
+import com.mobileuni.model.Course;
+import com.mobileuni.model.CourseContent;
+import com.mobileuni.model.SiteInfo;
+import com.mobileuni.model.User;
+import com.mobileuni.other.Constants;
+
+import moodle.android.moodle.R;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -133,7 +135,6 @@ public class MainApp extends Activity implements OnClickListener {
 
 			}
 			Config.serverUrl = serverUrl.getText().toString();
-			String siteUrlVal = Config.serverUrl;
 
 			// checks for http:// entry
 			/*
@@ -151,45 +152,45 @@ public class MainApp extends Activity implements OnClickListener {
 			saved = getSharedPreferences(loginDetails, MODE_PRIVATE);
 
 			SharedPreferences.Editor e = saved.edit();
-			e.putString("siteUrlVal", siteUrlVal);
+			e.putString("siteUrlVal", Config.serverUrl);
 			e.putString("usr", usr);
 			e.putString("pwd", pwd);
 			e.commit();
 
-			String url = siteUrlVal + "/login/token.php?username=" + usrUri
+			String tokenUrl = Config.serverUrl + "/login/token.php?username=" + usrUri
 					+ "&password=" + pwdUri + "&service=moodle_mobile_app";
 
-			new TokenRequestTask().execute(url);
-			String token = UserSettings.userToken;
+			TokenRequestTask.get(tokenUrl);
+			Log.d("authentication", "token set to : " + UserSettings.userToken);
 
 			// Toast.makeText(getApplicationContext(), token,
 			// Toast.LENGTH_LONG).show();
 
-			if (token != null && token != "") {
+			if (UserSettings.userToken != null && UserSettings.userToken != "") {
 
-				String serverurl = siteUrlVal + "/webservice/rest/server.php"
-						+ "?wstoken=" + token + "&wsfunction=";
+				Config.apiUrl = Config.serverUrl + "/webservice/rest/server.php"
+						+ "?wstoken=" + UserSettings.userToken + "&wsfunction=";
 
 				user = new User();
 				user.setUsername(usr);
 				user.setPassword(pwd);
-				user.setToken(token);
+				user.setToken(UserSettings.userToken);
 				user.setTokenCreateDate();
-				user.setUrl(url);
+				user.setUrl(Config.apiUrl);
 
 				MoodleWebService webService = new MoodleWebService();
 				SiteInfo siteInfo = new SiteInfo();
-				webService.getSiteinfo(serverurl, siteInfo);
+				webService.getSiteinfo(siteInfo);
 				user.setSiteInfo(siteInfo);
 				ArrayList<Course> courses = new ArrayList<Course>();
-				webService.getUserCourses(serverurl, siteInfo.getUserid(),
+				webService.getUserCourses(Config.apiUrl, siteInfo.getUserid(),
 						courses);
 
 				if (courses.size() > 0) {
 					for (int i = 0; i < courses.size(); i++) {
 						Course c = courses.get(i);
 						ArrayList<CourseContent> coursecontents = new ArrayList<CourseContent>();
-						webService.getCourseContents(serverurl, c.getId(),
+						webService.getCourseContents(Config.apiUrl, c.getId(),
 								coursecontents);
 
 						if (coursecontents.size() > 0) {

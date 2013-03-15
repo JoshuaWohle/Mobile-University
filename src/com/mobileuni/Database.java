@@ -23,18 +23,20 @@
  * http://www.vogella.com/articles/AndroidSQLite/article.html
  */
 
-package moodle.android.moodle;
+package com.mobileuni;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
-import moodle.android.moodle.helpers.CommentsDataSource;
-import moodle.android.moodle.helpers.DBComments;
-import moodle.android.moodle.helpers.FileManager;
-import moodle.android.moodle.helpers.SectionListItem;
-import moodle.android.moodle.model.User;
+import com.mobileuni.helpers.CommentsDataSource;
+import com.mobileuni.helpers.DBComments;
+import com.mobileuni.helpers.FileManager;
+import com.mobileuni.helpers.SectionListItem;
+import com.mobileuni.model.User;
+
+import moodle.android.moodle.R;
 
 import android.annotation.SuppressLint;
 import android.app.ListActivity;

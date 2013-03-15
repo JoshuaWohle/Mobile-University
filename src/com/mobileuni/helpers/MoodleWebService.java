@@ -18,27 +18,29 @@
  *	along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package moodle.android.moodle.helpers;
+package com.mobileuni.helpers;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import moodle.android.moodle.R;
-import moodle.android.moodle.helpers.asynctasks.WebServiceResponseTask;
-import moodle.android.moodle.model.Course;
-import moodle.android.moodle.model.CourseContent;
-import moodle.android.moodle.model.SiteInfo;
-import moodle.android.moodle.other.WebServiceFunction;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.mobileuni.helpers.asynctasks.WebServiceResponseTask;
+import com.mobileuni.model.Course;
+import com.mobileuni.model.CourseContent;
+import com.mobileuni.model.SiteInfo;
+import com.mobileuni.other.WebServiceFunction;
+
 import android.content.Context;
 
 public class MoodleWebService {
 
-	public void getSiteinfo(String serverurl, SiteInfo siteInfo) {
+	public void getSiteinfo(SiteInfo siteInfo) {
 		String urlParameters = ""; // moodle_webservice_get_siteinfo parameters
 									// //core_webservice_get_site_info
 		JSONObject jsonobj = WebServiceResponseTask.get("moodle_webservice_get_siteinfo", urlParameters,

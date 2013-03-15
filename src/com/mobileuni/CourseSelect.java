@@ -18,10 +18,11 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package moodle.android.moodle;
+package com.mobileuni;
 
-import moodle.android.moodle.model.Course;
-import moodle.android.moodle.model.User;
+import com.mobileuni.model.Course;
+import com.mobileuni.model.User;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;

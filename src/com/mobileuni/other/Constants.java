@@ -1,4 +1,4 @@
-package moodle.android.moodle.other;
+package com.mobileuni.other;
 
 public class Constants {
 	public static String testURL = "http://moodle.joshuawohle.com";

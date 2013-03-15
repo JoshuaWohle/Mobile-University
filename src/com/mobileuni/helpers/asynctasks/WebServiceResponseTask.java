@@ -1,4 +1,4 @@
-package moodle.android.moodle.helpers.asynctasks;
+package com.mobileuni.helpers.asynctasks;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -17,11 +17,12 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-import moodle.android.moodle.MainApp;
-import moodle.android.moodle.config.Config;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.mobileuni.MainApp;
+import com.mobileuni.config.Config;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -43,13 +44,14 @@ public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject
 	
 	@Override
 	protected JSONObject doInBackground(Object... params) {
-		String serverUrl = (String) params[0];
-		String functionName = (String) params[1];
-		String urlParameters = (String) params[2];
-		int xslRawId = (Integer) params[3];
+		String functionName = (String) params[0];
+		String urlParameters = (String) params[1];
+		int xslRawId = (Integer) params[2];
 		HttpURLConnection con;
 		try {
-			con = (HttpURLConnection) new URL(Config.serverUrl + functionName)
+			String url = Config.apiUrl + functionName;
+			Log.d("Web Service Request", url);
+			con = (HttpURLConnection) new URL(url)
 					.openConnection();
 			// HttpURLConnection con = (HttpURLConnection) new URL(serverurl +
 			// functionName + "&moodlewsrestformat=json").openConnection();

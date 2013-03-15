@@ -1,4 +1,4 @@
-package moodle.android.moodle.config;
+package com.mobileuni.config;
 
 public class UserSettings {
 	public static String userToken = "";

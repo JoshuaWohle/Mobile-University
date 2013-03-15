@@ -18,7 +18,7 @@
 *    along with this program.  If not, see <http://www.gnu.org/licenses/>
 */
 
-package moodle.android.moodle.helpers;
+package com.mobileuni.helpers;
 
 import java.io.File;
 import android.content.Context;
