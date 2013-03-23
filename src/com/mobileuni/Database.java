@@ -35,6 +35,7 @@ import com.mobileuni.helpers.DBComments;
 import com.mobileuni.helpers.FileManager;
 import com.mobileuni.helpers.SectionListItem;
 import com.mobileuni.model.User;
+import com.mobileuni.other.Session;
 
 import moodle.android.moodle.R;
 
@@ -71,7 +72,7 @@ public class Database extends ListActivity implements OnClickListener {
 
 		intent = getIntent();
 		// Bundle extras = intent.getExtras();
-		user = (User) intent.getParcelableExtra("userObject");
+		user = Session.getUser();
 
 		home = (Button) findViewById(R.id.coursework_home_view);
 		courseSelect = (Button) findViewById(R.id.select_course);

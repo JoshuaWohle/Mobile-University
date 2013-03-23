@@ -23,20 +23,21 @@ import org.json.JSONObject;
 
 import com.mobileuni.MainApp;
 import com.mobileuni.config.Config;
+import com.mobileuni.other.Session;
+import com.mobileuni.other.WebServiceFunction;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
 public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject> {
 	
+	private String fn;
+	
 	public static JSONObject get(String functionName, String urlParameters, int xslRawId) {
 		try {
-			return new WebServiceResponseTask().execute(functionName, urlParameters, xslRawId).get();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ExecutionException e) {
-			// TODO Auto-generated catch block
+			new WebServiceResponseTask().execute(functionName, urlParameters, xslRawId);
+			return null;
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -44,13 +45,13 @@ public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject
 	
 	@Override
 	protected JSONObject doInBackground(Object... params) {
-		String functionName = (String) params[0];
+		fn = (String) params[0];
 		String urlParameters = (String) params[1];
 		int xslRawId = (Integer) params[2];
 		HttpURLConnection con;
 		try {
-			String url = Config.apiUrl + functionName;
-			Log.d("Web Service Request", url);
+			String url = Config.apiUrl + fn;
+			Log.d("Web Service Request", "Sent: " + url);
 			con = (HttpURLConnection) new URL(url)
 					.openConnection();
 			// HttpURLConnection con = (HttpURLConnection) new URL(serverurl +
@@ -108,9 +109,26 @@ public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return null;
+	}
+	
+	@Override
+	protected void onPostExecute(JSONObject jsonObject) {
+		Log.d("Web Service Request", "Received: " + jsonObject.toString());
+		
+		// Have to use a lot of if-else, as switch over Strings doesn't work in Java 6 yet :(
+		if(fn.equals(WebServiceFunction.moodle_webservice_get_siteinfo))
+			Session.getCourseManager().setMainInfo(jsonObject);
+		else if(fn.equals(WebServiceFunction.moodle_enrol_get_users_courses))
+			Session.getCourseManager().setCourses(jsonObject);
+		else if(fn.equals(WebServiceFunction.core_course_get_contents))
+			Session.getCourseManager().setCourseDetails(jsonObject);
+		else
+			Log.d("Web Service Request", "Some unknown request was executed, please specify where to send the result to");
 	}
 
 }

@@ -29,9 +29,10 @@ import com.mobileuni.controller.CourseForumController;
 import com.mobileuni.controller.CourseGradeController;
 import com.mobileuni.helpers.CourseDetailsListHelper;
 import com.mobileuni.helpers.LazyAdapter;
+import com.mobileuni.listeners.UserChangeListener;
 import com.mobileuni.model.Course;
 import com.mobileuni.model.CourseContent;
-import com.mobileuni.model.User;
+import com.mobileuni.other.Session;
 
 import moodle.android.moodle.R;
 
@@ -47,11 +48,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class CourseDetail extends Activity implements OnClickListener {
+public class CourseDetail extends Activity implements OnClickListener, UserChangeListener {
 
 	Button home, courseSelect, upload, setting;
 	TextView footerCourseHdr, documents, assignments, grades, forum, offline;
-	User user;
 	LazyAdapter adapter;
 	ListView list;
 	Intent nextPage;
@@ -60,14 +60,17 @@ public class CourseDetail extends Activity implements OnClickListener {
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.course_detail);
+		Session.getUser().addListener(this);
+		Session.getCourseManager().setCourses(null);
 
+	}
+	
+	public void displayCourseChoice() {
 		try {
 			Intent i = getIntent();
-
-			user = (User) i.getParcelableExtra("userObject");
 
 			footerCourseHdr = (TextView) findViewById(R.id.course_ftr_view);
 
@@ -76,21 +79,22 @@ public class CourseDetail extends Activity implements OnClickListener {
 			setting = (Button) findViewById(R.id.settings_view);
 			upload = (Button) findViewById(R.id.upload_view);
 
-			if (user != null && user.getCourses().size() == 1) {
-				user.setSelectedCourseId(user.getCourses().get(0).getId());
+			if (Session.getUser() != null && Session.getUser().getCourses().size() == 1) {
+				Session.getUser().setSelectedCourseId(Session.getUser().getCourses().get(0).getId());
+				Log.d("Course", "Selected course: " + Session.getUser().getCourses().get(0).getId());
 				courseSelect.setEnabled(false);
 			} else
 				courseSelect.setEnabled(true);
 
-			if (user != null && user.getSelectedCourseId() == 99999) {
+			if (Session.getUser() != null && Session.getUser().getSelectedCourseId() == 99999) {
 				i = new Intent(this, CourseSelect.class);
-				i.putExtra("userObject", user);
+				i.putExtra("userObject", Session.getUser());
 				startActivityForResult(i, COURSE_SELECT_REQUEST_CODE);
 			}
 
-			if (user != null && user.getSelectedCourseId() != 99999)
-				footerCourseHdr.setText(user.getCourse(
-						user.getSelectedCourseId()).getShortName());
+			if (Session.getUser() != null && Session.getUser().getSelectedCourseId() != 99999)
+				footerCourseHdr.setText(Session.getUser().getCourse(
+						Session.getUser().getSelectedCourseId()).getShortName());
 
 			getCourseDetails();
 
@@ -103,7 +107,6 @@ public class CourseDetail extends Activity implements OnClickListener {
 			Log.e("Error 1", e.toString()
 					+ "Issue with Course Detail functionality");
 		}
-
 	}
 
 	public static final int COURSE_SELECT_REQUEST_CODE = 1;
@@ -113,13 +116,10 @@ public class CourseDetail extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.coursework_home_view:
 			nextPage = new Intent(this, CourseDetail.class);
-			nextPage.putExtra("userObject", user);
 			startActivity(nextPage);
 			break;
-
 		case R.id.select_course:
 			nextPage = new Intent(this, CourseSelect.class);
-			nextPage.putExtra("userObject", user);
 			startActivityForResult(nextPage, COURSE_SELECT_REQUEST_CODE);
 			break;
 		case R.id.settings_view:
@@ -128,7 +128,6 @@ public class CourseDetail extends Activity implements OnClickListener {
 			break;
 		case R.id.upload_view:
 			nextPage = new Intent(this, FileUpload.class);
-			nextPage.putExtra("userObject", user);
 			startActivity(nextPage);
 			break;
 		default:
@@ -139,9 +138,8 @@ public class CourseDetail extends Activity implements OnClickListener {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == COURSE_SELECT_REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
-				user = (User) data.getParcelableExtra("userObject");
-				if (user != null && user.getSelectedCourseId() != 99999) {
-					Course course = user.getCourse(user.getSelectedCourseId());
+				if (Session.getUser() != null && Session.getUser().getSelectedCourseId() != 99999) {
+					Course course = Session.getUser().getCourse(Session.getUser().getSelectedCourseId());
 					footerCourseHdr.setText(course.getShortName());
 
 					getCourseDetails();
@@ -152,18 +150,19 @@ public class CourseDetail extends Activity implements OnClickListener {
 	}
 
 	private void getCourseDetails() {
-
+		Log.d("Courses", "Getting course details");
 		ArrayList<CourseContent> coursecontent = new ArrayList<CourseContent>();
-		if (user != null && user.getCourse(user.getSelectedCourseId()) != null) {
-			coursecontent = user.getCourse(user.getSelectedCourseId())
+		if (Session.getUser() != null && Session.getUser().getCourse(Session.getUser().getSelectedCourseId()) != null) {
+			coursecontent = Session.getUser().getCourse(Session.getUser().getSelectedCourseId())
 					.getCourseContent();
+			Log.d("Courses", "Got course content for course id: " + Session.getUser().getSelectedCourseId());
 		}
 		// Populate the course overview for the list
 		courseDetailList = CourseDetailsListHelper.getInstance(this)
 				.populateCourseOverview(coursecontent);
 
 		list = (ListView) findViewById(R.id.course_home_list);
-
+		
 		adapter = new LazyAdapter(this, courseDetailList);
 		list.setAdapter(adapter);
 
@@ -182,36 +181,41 @@ public class CourseDetail extends Activity implements OnClickListener {
 				case 0: // DOCUMENTS
 					nextPage = new Intent(parent.getContext(),
 							CourseContentController.class);
-					nextPage.putExtra("userObject", user);
 					startActivity(nextPage);
 					break;
 				case 1: // ASSIGNMENTS
 					nextPage = new Intent(parent.getContext(),
 							CourseAssignmentController.class);
-					nextPage.putExtra("userObject", user);
 					startActivity(nextPage);
 					break;
 				case 2: // GRADES
 					nextPage = new Intent(parent.getContext(),
 							CourseGradeController.class);
-					nextPage.putExtra("userObject", user);
 					startActivity(nextPage);
 					break;
 				case 3: // FORUMS
 					nextPage = new Intent(parent.getContext(),
 							CourseForumController.class);
-					nextPage.putExtra("userObject", user);
 					startActivity(nextPage);
 					break;
 				case 4: // OFFLINE FILES
 					nextPage = new Intent(parent.getContext(), Database.class);
-					nextPage.putExtra("userObject", user);
 					startActivity(nextPage);
 					break;
 				default:
 				}
 			}
 		});
+	}
+
+	public void courseChange(boolean gotCourses) {
+		if(gotCourses) {
+			Log.d("Courses", "Displaying courses");
+			this.displayCourseChoice();
+		}
+		else
+			Log.d("Courses", "Something went wrong while setting the courses");
+		
 	}
 
 }

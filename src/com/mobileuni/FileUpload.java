@@ -33,6 +33,7 @@ import com.mobileuni.helpers.FileUploadsListHelper;
 import com.mobileuni.helpers.LazyAdapter;
 import com.mobileuni.model.Course;
 import com.mobileuni.model.User;
+import com.mobileuni.other.Session;
 
 import moodle.android.moodle.R;
 
@@ -94,7 +95,7 @@ public class FileUpload extends Activity implements OnClickListener {
 
 			Intent i = getIntent();
 
-			user = (User) i.getParcelableExtra("userObject");
+			user = Session.getUser();
 
 			footerCourseHdr = (TextView) findViewById(R.id.course_ftr_view);
 
@@ -288,15 +289,15 @@ public class FileUpload extends Activity implements OnClickListener {
 											// selectedMap.get(LazyAdapter.KEY_HEADER);
 											String selectedFile = selectedMap
 													.get(LazyAdapter.KEY_OTHER);
-
-											FileManager
-													.getInstance(
-															FileUpload.this)
-													.UploadToUrl(
-															user.getSiteInfo()
-																	.getSiteUrl(),
-															user.getToken(),
-															selectedFile);
+//TODO fix this now that siteinfo is gone
+//											FileManager
+//													.getInstance(
+//															FileUpload.this)
+//													.UploadToUrl(
+//															user.getSiteInfo()
+//																	.getSiteUrl(),
+//															user.getToken(),
+//															selectedFile);
 
 											dialog.dismiss();
 										}

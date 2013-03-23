@@ -31,56 +31,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.mobileuni.helpers.asynctasks.WebServiceResponseTask;
-import com.mobileuni.model.Course;
 import com.mobileuni.model.CourseContent;
-import com.mobileuni.model.SiteInfo;
 import com.mobileuni.other.WebServiceFunction;
 
-import android.content.Context;
-
 public class MoodleWebService {
-
-	public void getSiteinfo(SiteInfo siteInfo) {
-		String urlParameters = ""; // moodle_webservice_get_siteinfo parameters
-									// //core_webservice_get_site_info
-		JSONObject jsonobj = WebServiceResponseTask.get("moodle_webservice_get_siteinfo", urlParameters,
-				R.raw.siteinfoxsl);
-		siteInfo.populateSiteInfo(jsonobj);
-	}
-
-	public void getUserCourses(String serverurl, int userId,
-			ArrayList<Course> coursesArray) {
-
-		String user = String.valueOf(userId);
-		String urlParameters = "";
-
-		try {
-			urlParameters = "userid=" + URLEncoder.encode(user, "UTF-8");
-
-			JSONObject jsonobj = WebServiceResponseTask.get(WebServiceFunction.moodle_enrol_get_users_courses, urlParameters,
-					R.raw.coursesxsl);
-
-			JSONArray courses = jsonobj.getJSONArray("courses");
-			// looping through All Contacts
-			for (int i = 0; i < courses.length(); i++) {
-				JSONObject c = courses.getJSONObject(i);
-				Course course = new Course();
-				course.populateCourse(c);
-				// Toast.makeText(context.getApplicationContext(),
-				// course.getShortName(), Toast.LENGTH_LONG).show();
-				// Storing each json item in variable
-				coursesArray.add(course);
-			}
-
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e1) { // moodle_enrol_get_users_courses
-													// parameters
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	}
 
 	public void getCourseContents(String serverurl, int courseid,
 			ArrayList<CourseContent> courseContentsArray) {
@@ -94,16 +48,16 @@ public class MoodleWebService {
 			// core_course_get_contents
 			JSONObject jsonobj = WebServiceResponseTask.get(WebServiceFunction.core_course_get_contents, urlParameters, R.raw.contentxsl);
 
-			JSONArray coursecontents = jsonobj.getJSONArray("coursecontents");
+			JSONArray courseContents = jsonobj.getJSONArray("coursecontents");
 			// looping through All Course Content
-			for (int i = 0; i < coursecontents.length(); i++) {
-				JSONObject c = coursecontents.getJSONObject(i);
-				CourseContent coursecontent = new CourseContent();
-				coursecontent.populateCourseContent(c);
+			for (int i = 0; i < courseContents.length(); i++) {
+				JSONObject c = courseContents.getJSONObject(i);
+				CourseContent courseContent = new CourseContent();
+				courseContent.populateCourseContent(c);
 				// Toast.makeText(context.getApplicationContext(),
 				// coursecontent.getName(), Toast.LENGTH_LONG).show();
 				// Storing each json item in variable
-				courseContentsArray.add(coursecontent);
+				courseContentsArray.add(courseContent);
 			}
 
 		} catch (JSONException e) {

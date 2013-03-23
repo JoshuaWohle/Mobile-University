@@ -20,18 +20,13 @@
 
 package com.mobileuni;
 
-import java.util.ArrayList;
-
 import com.mobileuni.config.Config;
-import com.mobileuni.config.UserSettings;
 import com.mobileuni.helpers.AppStatus;
-import com.mobileuni.helpers.MoodleWebService;
-import com.mobileuni.helpers.asynctasks.TokenRequestTask;
-import com.mobileuni.model.Course;
-import com.mobileuni.model.CourseContent;
-import com.mobileuni.model.SiteInfo;
+import com.mobileuni.listeners.iCourseManagerListener;
+import com.mobileuni.model.Moodle;
 import com.mobileuni.model.User;
 import com.mobileuni.other.Constants;
+import com.mobileuni.other.Session;
 
 import moodle.android.moodle.R;
 
@@ -40,10 +35,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -51,16 +43,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainApp extends Activity implements OnClickListener {
-	
+public class MainApp extends Activity implements OnClickListener, iCourseManagerListener {
+
 	public static Context context;
-	//
+	
 	Button login;
 	EditText serverUrl, username, password;
-	User user;
 	SharedPreferences saved;
 	String loginDetails;
-
+	
 	ProgressDialog dialog;
 
 	/** Called when the activity is first created. */
@@ -69,6 +60,11 @@ public class MainApp extends Activity implements OnClickListener {
 		context = this;
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
+		
+		// TODO make really independent of Moodle
+		Session.setCourseManager(new Moodle());
+		Session.getCourseManager().addListener(this);
+		Session.setUser(new User());
 
 		try {
 			serverUrl = (EditText) findViewById(R.id.moodle_url);
@@ -77,15 +73,10 @@ public class MainApp extends Activity implements OnClickListener {
 			login = (Button) findViewById(R.id.login_button);
 
 			try {
-				
+
 				serverUrl.setHint(R.string.login_url_hint);
 				username.setHint(R.string.login_username_hint);
 				password.setHint(R.string.login_password_hint);
-
-				// siteUrl.setText(saved.getString("siteUrlVal",
-				// "http://moodletest.shaftedartist.com"));
-				// username.setText(saved.getString("usr", "guest@guest"));
-				// password.setText(saved.getString("pwd","Gu3$t%000"));
 
 				serverUrl.setText(Constants.testURL);
 				username.setText(Constants.testUser);
@@ -108,11 +99,6 @@ public class MainApp extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.login_button:
 
-			// this dialog box needs to be run separately....
-
-			dialog = ProgressDialog.show(this, "", "Logging in, please wait",
-					true);
-
 			/*
 			 * new Thread(new Runnable(){ public void run(){
 			 */
@@ -122,126 +108,55 @@ public class MainApp extends Activity implements OnClickListener {
 						.getConnectionType(MainApp.this);
 				conType = conType == null ? "Unknown" : conType;
 				Toast.makeText(getApplicationContext(),
-						"You are online (" + conType + ")!!!!",
+						R.string.not_online + "(" + conType + ")",
 						Toast.LENGTH_LONG).show();
 
 			} else {
-				messageHandler.sendEmptyMessage(0);
-
 				Toast.makeText(getApplicationContext(),
-						"You are not online!!!!", Toast.LENGTH_LONG).show();
+						R.string.not_online, Toast.LENGTH_LONG).show();
 				// enter details for offline access to some files. Restore the
 				// database.
-
 			}
-			Config.serverUrl = serverUrl.getText().toString();
-
-			// checks for http:// entry
-			/*
-			 * if(!(siteUrlVal.substring(0,
-			 * 7).toLowerCase().compareTo("http://")==0)) { siteUrlVal =
-			 * "http://"+siteUrlVal; siteUrl.setText(siteUrlVal); }
-			 */
-
-			String usr = username.getText().toString();
-			String pwd = password.getText().toString();
-
-			String usrUri = Uri.encode(usr);
-			String pwdUri = Uri.encode(pwd);
-
+			
+			login();
+			
 			saved = getSharedPreferences(loginDetails, MODE_PRIVATE);
 
 			SharedPreferences.Editor e = saved.edit();
 			e.putString("siteUrlVal", Config.serverUrl);
-			e.putString("usr", usr);
-			e.putString("pwd", pwd);
+			e.putString("usr", Session.getUser().getUsername());
+			e.putString("pwd", Session.getUser().getPassword());
 			e.commit();
-
-			String tokenUrl = Config.serverUrl + "/login/token.php?username=" + usrUri
-					+ "&password=" + pwdUri + "&service=moodle_mobile_app";
-
-			TokenRequestTask.get(tokenUrl);
-			Log.d("authentication", "token set to : " + UserSettings.userToken);
-
-			// Toast.makeText(getApplicationContext(), token,
-			// Toast.LENGTH_LONG).show();
-
-			if (UserSettings.userToken != null && UserSettings.userToken != "") {
-
-				Config.apiUrl = Config.serverUrl + "/webservice/rest/server.php"
-						+ "?wstoken=" + UserSettings.userToken + "&wsfunction=";
-
-				user = new User();
-				user.setUsername(usr);
-				user.setPassword(pwd);
-				user.setToken(UserSettings.userToken);
-				user.setTokenCreateDate();
-				user.setUrl(Config.apiUrl);
-
-				MoodleWebService webService = new MoodleWebService();
-				SiteInfo siteInfo = new SiteInfo();
-				webService.getSiteinfo(siteInfo);
-				user.setSiteInfo(siteInfo);
-				ArrayList<Course> courses = new ArrayList<Course>();
-				webService.getUserCourses(Config.apiUrl, siteInfo.getUserid(),
-						courses);
-
-				if (courses.size() > 0) {
-					for (int i = 0; i < courses.size(); i++) {
-						Course c = courses.get(i);
-						ArrayList<CourseContent> coursecontents = new ArrayList<CourseContent>();
-						webService.getCourseContents(Config.apiUrl, c.getId(),
-								coursecontents);
-
-						if (coursecontents.size() > 0) {
-							c.setCourseContent(coursecontents);
-						}
-					}
-					user.setCourses(courses);
-
-					Intent nextPage;
-
-					nextPage = new Intent(MainApp.this, CourseDetail.class);
-					nextPage.putExtra("userObject", user);
-
-					startActivity(nextPage);
-				} else {
-					messageHandler.sendEmptyMessage(0);
-
-					Log.e("Course Error", "User is not enrolled in any courses");
-					Toast.makeText(
-							getApplicationContext(),
-							R.string.user_no_courses,
-							Toast.LENGTH_LONG).show();
-
-				}
-
-			} else {
-				messageHandler.sendEmptyMessage(0);
-
-				Toast.makeText(
-						getApplicationContext(),
-						R.string.login_incorrect,
-						Toast.LENGTH_LONG).show();
-			}
-
-			/*
-			 * } }).start();
-			 */
 
 			break;
 		default:
 
 		}
 	}
+	
+	public void login() {
+		// Weirdly enough you need the getResources() here...
+		dialog = ProgressDialog.show(this, getResources().getString(R.string.loading), getResources().getString(R.string.wait_while_login));
+		Config.serverUrl = serverUrl.getText().toString();
+		
+		Session.getUser().setUsername(username.getText().toString());
+		Session.getUser().setPassword(password.getText().toString());
+		Session.getCourseManager().login(Session.getUser());
+	}
 
-	private Handler messageHandler = new Handler() {
-
-		public void handleMessage(Message msg) {
-			super.handleMessage(msg);
-			dialog.dismiss();
-
+	public void loginChange(boolean loggedIn) {
+		dialog.dismiss();
+		Log.d("authentication", "dismissed login dialog.");
+		if(loggedIn) {
+			Intent intent = new Intent(MainApp.this, CourseDetail.class);
+			intent.putExtra("userObject", Session.getUser());
+			startActivity(intent);
 		}
-	};
-
+		else {
+			Toast.makeText(getApplicationContext(), R.string.login_incorrect,
+					Toast.LENGTH_LONG).show();
+		}
+	}
+	
+	
 }

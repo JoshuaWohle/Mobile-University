@@ -35,6 +35,7 @@ import com.mobileuni.helpers.StandardArrayAdapter;
 import com.mobileuni.model.Course;
 import com.mobileuni.model.CourseContent;
 import com.mobileuni.model.User;
+import com.mobileuni.other.Session;
 
 import moodle.android.moodle.R;
 
@@ -76,7 +77,7 @@ public class CourseAssignmentController extends Activity implements OnClickListe
 
 		try {
 			Intent i = getIntent();
-			user = (User) i.getParcelableExtra("userObject");
+			user = Session.getUser();
 
 			footerCourseHdr = (TextView) findViewById(R.id.course_ftr_view);
 

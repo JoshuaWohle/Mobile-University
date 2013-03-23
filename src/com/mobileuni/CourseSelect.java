@@ -22,6 +22,7 @@ package com.mobileuni;
 
 import com.mobileuni.model.Course;
 import com.mobileuni.model.User;
+import com.mobileuni.other.Session;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -46,7 +47,7 @@ public class CourseSelect extends Activity {
 		try {
 			intent = getIntent();
 			// Bundle extras = intent.getExtras();
-			user = (User) intent.getParcelableExtra("userObject");
+			user = Session.getUser();
 
 			Course selectedCourse = new Course();
 			if (user == null

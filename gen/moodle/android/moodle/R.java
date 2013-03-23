@@ -423,6 +423,7 @@ containing a value of this type.
         public static final int grades_desc_view=0x7f06001d;
         public static final int grades_view=0x7f06001c;
         public static final int hello=0x7f060000;
+        public static final int loading=0x7f060037;
         public static final int login_button=0x7f06000b;
         public static final int login_incorrect=0x7f060034;
         public static final int login_moodle_desc=0x7f060006;
@@ -432,6 +433,7 @@ containing a value of this type.
         public static final int login_url_hint=0x7f060008;
         public static final int login_username_hint=0x7f060009;
         public static final int maximum_download_filesize_hdr_text=0x7f06002e;
+        public static final int not_online=0x7f060036;
         public static final int offline_desc_view=0x7f060021;
         public static final int offline_view=0x7f060020;
         public static final int section_default_hdr=0x7f060002;
@@ -444,6 +446,8 @@ containing a value of this type.
         public static final int upload_search_hint=0x7f060012;
         public static final int upload_view=0x7f060011;
         public static final int user_no_courses=0x7f060035;
+        public static final int wait_while_get_courses=0x7f060039;
+        public static final int wait_while_login=0x7f060038;
         public static final int week_one_desc_view=0x7f060025;
         public static final int week_one_view=0x7f060024;
     }

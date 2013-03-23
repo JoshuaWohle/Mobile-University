@@ -37,6 +37,7 @@ import com.mobileuni.helpers.StandardArrayAdapter;
 import com.mobileuni.model.Course;
 import com.mobileuni.model.CourseContent;
 import com.mobileuni.model.User;
+import com.mobileuni.other.Session;
 
 import moodle.android.moodle.R;
 
@@ -79,7 +80,7 @@ public class CourseContentController extends Activity implements OnClickListener
 
 		try {
 			Intent i = getIntent();
-			user = (User) i.getParcelableExtra("userObject");
+			user = Session.getUser();
 
 			footerCourseHdr = (TextView) findViewById(R.id.course_ftr_view);
 
@@ -212,7 +213,7 @@ public class CourseContentController extends Activity implements OnClickListener
 
 						File file = FileManager.getInstance(
 								CourseContentController.this).DownloadFromUrl(
-								fileURL + "&token=" + user.getToken(),
+								fileURL + "&token=" ,//TODO add token + user.getToken(),
 								fileName, courseDirectoryAndType);
 
 						if (file != null) {

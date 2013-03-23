@@ -1,11 +1,11 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <string name="hello">Hello World, Moodle for Android by YCIS!</string>
-    <string name="app_name">Moodle for Android YCIS</string>
+    <string name="app_name">Mobile University</string>
     <string name="section_default_hdr">Section</string>
 	<string name="standard_list">Standard</string>
 	<string name="empty_list">Empty</string>
-    <string name="login_moodle_hdr">YCIS - Moodle for Android</string>
+    <string name="login_moodle_hdr">Mobile University</string>
     <string name="login_moodle_desc">Please enter Moodle details</string>
     <string name="login_moodle_hint">Moodle URL</string>
     <string name="login_url_hint">Site Url</string>
@@ -59,5 +59,9 @@
         <item>Course 2</item>
         <item>Course 3</item>
     </string-array>
+    <string name="not_online">It seems you are not online. Did you forgot to switch-off airplane mode ?</string>
+    <string name="loading">Loading</string>
+    <string name="wait_while_login">Please wait whilst we\'re trying to log you in.</string>
+	<string name="wait_while_get_courses">Please wait whilst we\'re trying to get your enrolled courses</string>
 		
 </resources>
