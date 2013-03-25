@@ -27,7 +27,6 @@ import com.mobileuni.controller.CourseAssignmentController;
 import com.mobileuni.controller.CourseContentController;
 import com.mobileuni.controller.CourseForumController;
 import com.mobileuni.controller.CourseGradeController;
-import com.mobileuni.controller.CourseSelectController;
 import com.mobileuni.helpers.CourseDetailsListHelper;
 import com.mobileuni.helpers.LazyAdapter;
 import com.mobileuni.listeners.MenuListener;
@@ -43,7 +42,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -79,8 +77,6 @@ public class CourseDetail extends Activity {
 	
 	public void displayCourseChoice() {
 		try {
-			Intent i = getIntent();
-
 			footerCourseHdr = (TextView) findViewById(R.id.course_ftr_view);
 
 			home = (Button) findViewById(R.id.coursework_home_view);
@@ -133,6 +129,7 @@ public class CourseDetail extends Activity {
 				case 0: // DOCUMENTS
 					intent = new Intent(parent.getContext(),
 							CourseContentController.class);
+					intent.putExtra("selected_course_id", selectedCourse.getId());
 					startActivity(intent);
 					break;
 				case 1: // ASSIGNMENTS

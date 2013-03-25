@@ -34,6 +34,7 @@ import com.mobileuni.helpers.SectionListAdapter;
 import com.mobileuni.helpers.SectionListItem;
 import com.mobileuni.helpers.SectionListView;
 import com.mobileuni.helpers.StandardArrayAdapter;
+import com.mobileuni.listeners.MenuListener;
 import com.mobileuni.model.Course;
 import com.mobileuni.model.CourseContent;
 import com.mobileuni.model.User;
@@ -48,7 +49,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -58,7 +58,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class CourseContentController extends Activity implements OnClickListener {
+public class CourseContentController extends Activity {
 
 	Button home, courseSelect, upload, setting;
 	TextView footerCourseHdr;
@@ -70,6 +70,9 @@ public class CourseContentController extends Activity implements OnClickListener
 	StandardArrayAdapter arrayAdapter;
 	SectionListAdapter sectionAdapter;
 	SectionListView listView;
+	
+	Course selectedCourse;
+	MenuListener ml;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -77,10 +80,12 @@ public class CourseContentController extends Activity implements OnClickListener
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.course_material);
+		ml = new MenuListener(this);
+		user = Session.getUser();
+		Intent intent = getIntent();
+		selectedCourse = Session.getUser().getCourse(intent.getIntExtra("selected_course_id", 0));
 
 		try {
-			Intent i = getIntent();
-			user = Session.getUser();
 
 			footerCourseHdr = (TextView) findViewById(R.id.course_ftr_view);
 
@@ -89,74 +94,29 @@ public class CourseContentController extends Activity implements OnClickListener
 			setting = (Button) findViewById(R.id.settings_view);
 			upload = (Button) findViewById(R.id.upload_view);
 
-			if (user != null && user.getCourses().size() == 1) {
-				user.setSelectedCourseId(user.getCourses().get(0).getId());
-				courseSelect.setEnabled(false);
-			} else
-				courseSelect.setEnabled(true);
-
-			if (user != null && user.getSelectedCourseId() == 99999) {
-				i = new Intent(this, CourseSelect.class);
-				i.putExtra("userObject", user);
-				startActivityForResult(i, COURSE_SELECT_REQUEST_CODE);
-			}
-
-			if (user != null && user.getSelectedCourseId() != 99999)
-				footerCourseHdr.setText(user.getCourse(
-						user.getSelectedCourseId()).getShortName());
+			if (user != null && selectedCourse.getId() != 99999)
+				footerCourseHdr.setText(selectedCourse.getShortName());
 
 			getCourseDetails();
 
-			home.setOnClickListener(this);
-			if (courseSelect.isEnabled())
-				courseSelect.setOnClickListener(this);
-			setting.setOnClickListener(this);
-			upload.setOnClickListener(this);
+			home.setOnClickListener(ml);
+			courseSelect.setOnClickListener(ml);
+			setting.setOnClickListener(ml);
+			upload.setOnClickListener(ml);
 		} catch (Exception e) {
-			Log.e("Error 1", e.toString()
-					+ "Error with CourseContentView Class");
+			e.printStackTrace();
 		}
 
 	}
 
 	public static final int COURSE_SELECT_REQUEST_CODE = 1;
 
-	public void onClick(View v) {
-		Intent nextPage;
-
-		switch (v.getId()) {
-		case R.id.coursework_home_view:
-			nextPage = new Intent(this, CourseDetail.class);
-			nextPage.putExtra("userObject", user);
-			startActivity(nextPage);
-			break;
-		case R.id.select_course:
-			nextPage = new Intent(this, CourseSelect.class);
-			nextPage.putExtra("userObject", user);
-			startActivityForResult(nextPage, COURSE_SELECT_REQUEST_CODE);
-			break;
-		case R.id.settings_view:
-			nextPage = new Intent(this, Setting.class);
-			// nextPage.putExtra("userObject", user);
-			// startActivityForResult(nextPage, COURSE_SELECT_REQUEST_CODE);
-			startActivity(nextPage);
-			break;
-		case R.id.upload_view:
-			nextPage = new Intent(this, FileUpload.class);
-			nextPage.putExtra("userObject", user);
-			startActivity(nextPage);
-			break;
-		default:
-
-		}
-	}
-
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == COURSE_SELECT_REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
 				user = (User) data.getParcelableExtra("userObject");
 				if (user != null && user.getSelectedCourseId() != 99999) {
-					Course course = user.getCourse(user.getSelectedCourseId());
+					Course course = selectedCourse;
 					footerCourseHdr.setText(course.getShortName());
 
 					getCourseDetails();
@@ -172,16 +132,15 @@ public class CourseContentController extends Activity implements OnClickListener
 		courseworkLayout.setVisibility(View.VISIBLE);
 
 		ArrayList<CourseContent> coursecontent = new ArrayList<CourseContent>();
-		if (user != null && user.getCourse(user.getSelectedCourseId()) != null) {
-			coursecontent = user.getCourse(user.getSelectedCourseId())
-					.getCourseContent();
+		if (user != null && selectedCourse != null) {
+			coursecontent = selectedCourse.getCourseContent();
+			Log.d("Course", "Got course contents for course : " + selectedCourse.getId());
 		}
 
 		documentArray = CourseContentsListHelper.getInstance(this)
 				.populateCourseDocuments(
 						coursecontent,
-						user.getCourse(user.getSelectedCourseId())
-								.getFullname());
+						selectedCourse.getFullname());
 
 		if (documentArray != null && documentArray.length > 0) {
 			arrayAdapter = new StandardArrayAdapter(this, documentArray);
@@ -207,8 +166,7 @@ public class CourseContentController extends Activity implements OnClickListener
 						HashMap<String, String> selectedItem = (HashMap<String, String>) selectedMap.item;
 						String fileURL = selectedItem.get("url");
 						String fileName = selectedItem.get("filename");
-						String courseDirectoryAndType = user.getCourse(
-								user.getSelectedCourseId()).getFullname()
+						String courseDirectoryAndType = selectedCourse.getFullname()
 								+ "/Documents/";
 
 						File file = FileManager.getInstance(
