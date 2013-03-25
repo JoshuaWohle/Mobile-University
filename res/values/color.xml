@@ -142,4 +142,7 @@
  <color name="Navy">#000080</color> 
  <color name="Black">#000000</color> 
  <color name="Transparent">#44000000</color>
+ <color name="dark_brown">#2c020c</color>
+ <color name="light_brown">#fdf1e1</color>
+ <color name="orange_brown">#e7b673</color>
 </resources> 

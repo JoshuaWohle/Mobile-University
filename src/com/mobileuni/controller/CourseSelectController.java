@@ -9,14 +9,14 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-public class CourseSelectController extends Activity implements UserChangeListener {
+public class CourseSelectController extends Activity implements UserChangeListener, OnClickListener {
 
 	ProgressDialog dialog;
-	String[] courses = new String[] {"No courses"};
-	ArrayAdapter<String> adapter;
 
 	public void onCreate(Bundle savedInstanceState) {
 		
@@ -38,15 +38,18 @@ public class CourseSelectController extends Activity implements UserChangeListen
 
 	public void courseChange(boolean gotCourses) {
 		Log.d("Courses", "Setting courses on list");
-		int i = 0;
-		for(Course course : Session.getUser().getCourses()) {
-			courses[i] = course.getFullname();
-			i++;
+
+		LinearLayout main = (LinearLayout) findViewById(R.id.main);
+		for(Course course : Session.getUser().getCourses()){
+			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.course_select_course_item, main);
+			((TextView) child.findViewById(R.id.course_item_title)).setText(course.getShortName());
+			((TextView) child.findViewById(R.id.course_item_content)).setText(course.getFullname());
 		}
-		ListView listView = (ListView) findViewById(R.id.course_list);
-		adapter = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, android.R.id.text1, courses);
-		adapter.setNotifyOnChange(true);
-		listView.setAdapter(adapter);
 		dialog.dismiss();
+	}
+
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
 	}
 }
