@@ -22,7 +22,7 @@ package com.mobileuni.helpers;
 
 import java.util.HashMap;
 
-import moodle.android.moodle.R;
+import com.mobileuni.R;
 
 import android.content.Context;
 import android.view.LayoutInflater;

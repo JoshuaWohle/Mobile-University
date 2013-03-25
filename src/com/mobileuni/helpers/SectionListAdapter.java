@@ -25,7 +25,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import moodle.android.moodle.R;
+import com.mobileuni.R;
 
 import android.database.DataSetObserver;
 import android.view.LayoutInflater;

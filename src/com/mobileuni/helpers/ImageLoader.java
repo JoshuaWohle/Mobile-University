@@ -34,7 +34,7 @@ import java.util.WeakHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import moodle.android.moodle.R;
+import com.mobileuni.R;
 
 
 //import android.app.Activity;

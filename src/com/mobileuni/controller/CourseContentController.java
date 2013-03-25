@@ -39,7 +39,7 @@ import com.mobileuni.model.CourseContent;
 import com.mobileuni.model.User;
 import com.mobileuni.other.Session;
 
-import moodle.android.moodle.R;
+import com.mobileuni.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

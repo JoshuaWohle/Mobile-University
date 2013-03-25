@@ -37,7 +37,7 @@ import com.mobileuni.helpers.SectionListItem;
 import com.mobileuni.model.User;
 import com.mobileuni.other.Session;
 
-import moodle.android.moodle.R;
+import com.mobileuni.R;
 
 import android.annotation.SuppressLint;
 import android.app.ListActivity;

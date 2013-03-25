@@ -25,7 +25,7 @@ package com.mobileuni;
 //import moodleProject.AndroidMoodleApp.R.layout;
 import com.mobileuni.model.User;
 
-import moodle.android.moodle.R;
+import com.mobileuni.R;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;

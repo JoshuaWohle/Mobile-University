@@ -171,6 +171,7 @@ public class User implements Parcelable {
 				return course;
 			}
 		}
+		Log.d("Course", "Tried to get course with ID: " + id + ", but it doesn't exist in the list");
 		return null; // course not found.
 	}
 }

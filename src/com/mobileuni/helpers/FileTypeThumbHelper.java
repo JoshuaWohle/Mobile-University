@@ -20,7 +20,7 @@
 
 package com.mobileuni.helpers;
 
-import moodle.android.moodle.R;
+import com.mobileuni.R;
 import android.content.Context;
 
 public class FileTypeThumbHelper {

@@ -21,6 +21,7 @@
 package com.mobileuni;
 
 import com.mobileuni.config.Config;
+import com.mobileuni.controller.CourseSelectController;
 import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.listeners.iCourseManagerListener;
 import com.mobileuni.model.Moodle;
@@ -28,7 +29,7 @@ import com.mobileuni.model.User;
 import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
 
-import moodle.android.moodle.R;
+import com.mobileuni.R;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -148,8 +149,7 @@ public class MainApp extends Activity implements OnClickListener, iCourseManager
 		dialog.dismiss();
 		Log.d("authentication", "dismissed login dialog.");
 		if(loggedIn) {
-			Intent intent = new Intent(MainApp.this, CourseDetail.class);
-			intent.putExtra("userObject", Session.getUser());
+			Intent intent = new Intent(MainApp.this, CourseSelectController.class);
 			startActivity(intent);
 		}
 		else {

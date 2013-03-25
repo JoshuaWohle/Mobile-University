@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 
-import moodle.android.moodle.R;
+import com.mobileuni.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -99,20 +99,27 @@ public class Moodle implements iCourseManager {
 	}
 
 	public void setCourseDetails(JSONObject jsonObject) {
+		
 		ArrayList<CourseContent> courseContentsArray = new ArrayList<CourseContent>();
 		try {
-			JSONArray coursecontents = jsonObject
+			int courseId = 0;
+			JSONArray courseContents = jsonObject
 					.getJSONArray("coursecontents");
+			
 			// looping through All Course Content
-			for (int i = 0; i < coursecontents.length(); i++) {
-				JSONObject c = coursecontents.getJSONObject(i);
-				CourseContent coursecontent = new CourseContent();
-				coursecontent.populateCourseContent(c);
-				// Toast.makeText(context.getApplicationContext(),
-				// coursecontent.getName(), Toast.LENGTH_LONG).show();
-				// Storing each json item in variable
-				courseContentsArray.add(coursecontent);
+			for (int i = 0; i < courseContents.length(); i++) {
+				JSONObject c = courseContents.getJSONObject(i);
+				CourseContent courseContent = new CourseContent();
+				courseContent.populateCourseContent(c);
+				courseContentsArray.add(courseContent);
+				
+				// Small hack to get the right ID of the course
+				if(courseContent.getName().equals("General"))
+					courseId = courseContent.getId();
 			}
+			
+			Session.getUser().getCourse(courseId).setCourseContent(courseContentsArray);
+			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -139,17 +146,19 @@ public class Moodle implements iCourseManager {
 				// Boolean.TRUE : Boolean.FALSE);
 
 				JSONArray functions = jsonObject.getJSONArray("functions");
+				
 				// looping through All Functions
 				Map<String, String> temp = Collections
 						.synchronizedMap(new TreeMap<String, String>());
 				for (int i = 0; i < functions.length(); i++) {
 					JSONObject c = functions.getJSONObject(i);
 
-					// Storing each json item in variable
+					// Storing each JSON item in variable
 					String name = c.getString("name");
 					String version = c.getString("version");
 					temp.put(name, version);
 				}
+				
 				this.setAvailableFunctions(temp);
 
 				for (iCourseManagerListener listener : icml) {

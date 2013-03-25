@@ -35,7 +35,7 @@ import com.mobileuni.model.Course;
 import com.mobileuni.model.User;
 import com.mobileuni.other.Session;
 
-import moodle.android.moodle.R;
+import com.mobileuni.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;

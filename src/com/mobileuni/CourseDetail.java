@@ -34,9 +34,10 @@ import com.mobileuni.model.Course;
 import com.mobileuni.model.CourseContent;
 import com.mobileuni.other.Session;
 
-import moodle.android.moodle.R;
+import com.mobileuni.R;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -55,6 +56,7 @@ public class CourseDetail extends Activity implements OnClickListener, UserChang
 	LazyAdapter adapter;
 	ListView list;
 	Intent nextPage;
+	ProgressDialog dialog;
 	ArrayList<HashMap<String, String>> courseDetailList = new ArrayList<HashMap<String, String>>();
 
 	/** Called when the activity is first created. */
@@ -64,11 +66,11 @@ public class CourseDetail extends Activity implements OnClickListener, UserChang
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.course_detail);
 		Session.getUser().addListener(this);
-		Session.getCourseManager().setCourses(null);
-
+		
 	}
 	
 	public void displayCourseChoice() {
+		dialog.dismiss();
 		try {
 			Intent i = getIntent();
 
@@ -150,7 +152,6 @@ public class CourseDetail extends Activity implements OnClickListener, UserChang
 	}
 
 	private void getCourseDetails() {
-		Log.d("Courses", "Getting course details");
 		ArrayList<CourseContent> coursecontent = new ArrayList<CourseContent>();
 		if (Session.getUser() != null && Session.getUser().getCourse(Session.getUser().getSelectedCourseId()) != null) {
 			coursecontent = Session.getUser().getCourse(Session.getUser().getSelectedCourseId())

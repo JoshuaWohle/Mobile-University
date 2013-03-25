@@ -23,7 +23,7 @@ package com.mobileuni.helpers;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import moodle.android.moodle.R;
+import com.mobileuni.R;
 
 import android.app.Activity;
 import android.content.Context;

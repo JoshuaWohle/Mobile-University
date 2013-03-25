@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="moodle.android.moodle"
+    package="com.mobileuni"
     android:versionCode="4"
-    android:versionName="0.8.5.5" >
+    android:versionName="0.1" >
 
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="16"/>
     <uses-permission android:name="android.permission.INTERNET" />
@@ -25,7 +25,8 @@
         </activity>
         <activity android:name="com.mobileuni.CourseDetail" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar"/>
         <activity android:name="com.mobileuni.FileUpload" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar"/>
-        <activity android:name="com.mobileuni.controller.CourseContentController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme"/>
+        <activity android:name="com.mobileuni.controller.CourseSelectController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme" />
+    	<activity android:name="com.mobileuni.controller.CourseContentController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme"/>
         <activity android:name="com.mobileuni.controller.CourseAssignmentController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme"/>
         <activity android:name="com.mobileuni.controller.CourseGradeController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme"/>
         <activity android:name="com.mobileuni.controller.CourseForumController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme"/>

@@ -30,7 +30,7 @@ import com.mobileuni.model.Content;
 import com.mobileuni.model.CourseContent;
 import com.mobileuni.model.Module;
 
-import moodle.android.moodle.R;
+import com.mobileuni.R;
 
 import android.content.Context;
 import android.os.Environment;
