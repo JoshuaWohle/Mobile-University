@@ -1,5 +1,6 @@
 package com.mobileuni.controller;
 
+import com.mobileuni.CourseDetail;
 import com.mobileuni.R;
 import com.mobileuni.listeners.UserChangeListener;
 import com.mobileuni.model.Course;
@@ -7,6 +8,7 @@ import com.mobileuni.other.Session;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,6 +44,8 @@ public class CourseSelectController extends Activity implements UserChangeListen
 		LinearLayout main = (LinearLayout) findViewById(R.id.main);
 		for(Course course : Session.getUser().getCourses()){
 			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.course_select_course_item, main);
+			child.setTag(course.getId());
+			child.setOnClickListener(this);
 			((TextView) child.findViewById(R.id.course_item_title)).setText(course.getShortName());
 			((TextView) child.findViewById(R.id.course_item_content)).setText(course.getFullname());
 		}
@@ -49,7 +53,12 @@ public class CourseSelectController extends Activity implements UserChangeListen
 	}
 
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
+		int courseId = (Integer) v.getTag();
+		if(courseId != 0) {
+			Intent intent = new Intent(CourseSelectController.this, CourseDetail.class);
+			intent.putExtra("course_id", courseId);
+			startActivity(intent);
+		}
 		
 	}
 }
