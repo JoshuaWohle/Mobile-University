@@ -23,13 +23,15 @@
  * http://www.vogella.com/articles/AndroidSQLite/article.html
  */
 
-package com.mobileuni;
+package com.mobileuni.controller;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
+import com.mobileuni.R.id;
+import com.mobileuni.R.layout;
 import com.mobileuni.helpers.CommentsDataSource;
 import com.mobileuni.helpers.DBComments;
 import com.mobileuni.helpers.FileManager;
@@ -58,7 +60,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class Database extends ListActivity implements OnClickListener {
+public class DatabaseController extends ListActivity implements OnClickListener {
 	private CommentsDataSource datasource;
 	Intent intent;
 	User user;
@@ -181,13 +183,13 @@ public class Database extends ListActivity implements OnClickListener {
 			newIntent.setDataAndType(Uri.fromFile(file), mimeType);
 			newIntent.setFlags(newIntent.FLAG_ACTIVITY_NEW_TASK);
 			try {
-				Database.this.startActivity(newIntent);
+				DatabaseController.this.startActivity(newIntent);
 			} catch (android.content.ActivityNotFoundException e) {
 				Log.e("MIME Error", e.toString()
 						+ " default program for this filetype not found");
 				// Raise on activity not found
 				Toast.makeText(
-						Database.this,
+						DatabaseController.this,
 						"A suitable Application to access the file " + mimeType
 								+ " not found.", 4000).show();
 			}
@@ -252,23 +254,23 @@ public class Database extends ListActivity implements OnClickListener {
 			break;
 
 		case R.id.coursework_home_view:
-			nextPage = new Intent(this, CourseDetail.class);
+			nextPage = new Intent(this, CourseDetailController.class);
 			nextPage.putExtra("userObject", user);
 			startActivity(nextPage);
 			break;
 		case R.id.select_course:
-			nextPage = new Intent(this, CourseSelect.class);
+			nextPage = new Intent(this, CourseSelectController.class);
 			nextPage.putExtra("userObject", user);
 			startActivityForResult(nextPage, COURSE_SELECT_REQUEST_CODE);
 			break;
 		case R.id.settings_view:
-			nextPage = new Intent(this, Setting.class);
+			nextPage = new Intent(this, SettingsController.class);
 			// nextPage.putExtra("userObject", user);
 			// startActivityForResult(nextPage, COURSE_SELECT_REQUEST_CODE);
 			startActivity(nextPage);
 			break;
 		case R.id.upload_view:
-			nextPage = new Intent(this, FileUpload.class);
+			nextPage = new Intent(this, FileUploadController.class);
 			nextPage.putExtra("userObject", user);
 			startActivity(nextPage);
 			break;

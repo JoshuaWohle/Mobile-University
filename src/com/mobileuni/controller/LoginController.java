@@ -18,10 +18,9 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.mobileuni;
+package com.mobileuni.controller;
 
 import com.mobileuni.config.Config;
-import com.mobileuni.controller.CourseSelectController;
 import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.listeners.iCourseManagerListener;
 import com.mobileuni.model.Moodle;
@@ -44,7 +43,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainApp extends Activity implements OnClickListener, iCourseManagerListener {
+public class LoginController extends Activity implements OnClickListener, iCourseManagerListener {
 
 	public static Context context;
 	
@@ -104,9 +103,9 @@ public class MainApp extends Activity implements OnClickListener, iCourseManager
 			 * new Thread(new Runnable(){ public void run(){
 			 */
 
-			if (AppStatus.getInstance(MainApp.this).isOnline(MainApp.this)) {
-				String conType = AppStatus.getInstance(MainApp.this)
-						.getConnectionType(MainApp.this);
+			if (AppStatus.getInstance(LoginController.this).isOnline(LoginController.this)) {
+				String conType = AppStatus.getInstance(LoginController.this)
+						.getConnectionType(LoginController.this);
 				conType = conType == null ? "Unknown" : conType;
 				Toast.makeText(getApplicationContext(),
 						R.string.not_online + "(" + conType + ")",
@@ -149,7 +148,7 @@ public class MainApp extends Activity implements OnClickListener, iCourseManager
 		dialog.dismiss();
 		Log.d("authentication", "dismissed login dialog.");
 		if(loggedIn) {
-			Intent intent = new Intent(MainApp.this, CourseSelectController.class);
+			Intent intent = new Intent(LoginController.this, CourseSelectController.class);
 			startActivity(intent);
 		}
 		else {

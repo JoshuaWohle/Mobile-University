@@ -18,7 +18,7 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.mobileuni;
+package com.mobileuni.controller;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -27,11 +27,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
-
-import com.mobileuni.helpers.FileManager;
 import com.mobileuni.helpers.FileUploadsListHelper;
 import com.mobileuni.helpers.LazyAdapter;
-import com.mobileuni.model.Course;
+import com.mobileuni.listeners.MenuListener;
 import com.mobileuni.model.User;
 import com.mobileuni.other.Session;
 
@@ -48,7 +46,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,7 +55,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class FileUpload extends Activity implements OnClickListener {
+public class FileUploadController extends Activity{
 
 	public static final List<String> supportedFileExtensions = getSupportedExtensions();
 
@@ -77,6 +74,8 @@ public class FileUpload extends Activity implements OnClickListener {
 	List<String> fileStringList, pathStringList;
 	static List<File> availableFileList;
 	String root;
+	
+	MenuListener ml;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -84,9 +83,11 @@ public class FileUpload extends Activity implements OnClickListener {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.upload_layout);
+		
+		ml = new MenuListener(this);
 
 		try {
-			final ProgressDialog dialog = ProgressDialog.show(FileUpload.this,
+			final ProgressDialog dialog = ProgressDialog.show(FileUploadController.this,
 					"", "Fetching Files, this may take a few minutes", true,
 					false);
 
@@ -111,9 +112,9 @@ public class FileUpload extends Activity implements OnClickListener {
 				courseSelect.setEnabled(true);
 
 			if (user != null && user.getSelectedCourseId() == 99999) {
-				i = new Intent(FileUpload.this, CourseSelect.class);
+				i = new Intent(FileUploadController.this, CourseSelectController.class);
 				i.putExtra("userObject", user);
-				startActivityForResult(i, COURSE_SELECT_REQUEST_CODE);
+				startActivity(i);
 			}
 
 			if (user != null && user.getSelectedCourseId() != 99999)
@@ -122,11 +123,11 @@ public class FileUpload extends Activity implements OnClickListener {
 
 			getFileUpload();
 
-			home.setOnClickListener(FileUpload.this);
+			home.setOnClickListener(ml);
 			if (courseSelect.isEnabled())
-				courseSelect.setOnClickListener(FileUpload.this);
-			setting.setOnClickListener(FileUpload.this);
-			upload.setOnClickListener(FileUpload.this);
+				courseSelect.setOnClickListener(ml);
+			setting.setOnClickListener(ml);
+			upload.setOnClickListener(ml);
 
 			dialog.dismiss();
 
@@ -137,44 +138,6 @@ public class FileUpload extends Activity implements OnClickListener {
 			Log.e("Error 1", e.toString());
 		}
 
-	}
-
-	public static final int COURSE_SELECT_REQUEST_CODE = 1;
-
-	public void onClick(View v) {
-		Intent nextPage;
-
-		switch (v.getId()) {
-		case R.id.coursework_home_view:
-			nextPage = new Intent(this, CourseDetail.class);
-			nextPage.putExtra("userObject", user);
-			startActivity(nextPage);
-			break;
-		case R.id.select_course:
-			nextPage = new Intent(this, CourseSelect.class);
-			nextPage.putExtra("userObject", user);
-			startActivityForResult(nextPage, COURSE_SELECT_REQUEST_CODE);
-			// loading the initial view after changing course from within
-			// FileUpload
-			nextPage = new Intent(this, CourseDetail.class);
-			nextPage.putExtra("userObject", user);
-			startActivity(nextPage);
-			break;
-		case R.id.settings_view:
-			nextPage = new Intent(this, Setting.class);
-			nextPage.putExtra("userObject", user);
-			startActivityForResult(nextPage, COURSE_SELECT_REQUEST_CODE);
-			// startActivity(nextPage);
-			break;
-		case R.id.upload_view:
-			/*
-			 * nextPage = new Intent(this, FileUpload.class);
-			 * nextPage.putExtra("userObject", user); startActivity(nextPage);
-			 */
-			break;
-		default:
-
-		}
 	}
 
 	private void getFileUpload() {
@@ -248,7 +211,7 @@ public class FileUpload extends Activity implements OnClickListener {
 				public void onTextChanged(CharSequence cs, int arg1, int arg2,
 						int arg3) {
 					// When user changed the Text
-					FileUpload.this.adapter.getFilter().filter(cs);
+					FileUploadController.this.adapter.getFilter().filter(cs);
 				}
 
 				public void beforeTextChanged(CharSequence arg0, int arg1,
@@ -273,7 +236,7 @@ public class FileUpload extends Activity implements OnClickListener {
 							.getItem(position);
 					String value = selectedMap.get(LazyAdapter.KEY_HEADER);
 
-					new AlertDialog.Builder(FileUpload.this)
+					new AlertDialog.Builder(FileUploadController.this)
 							.setIcon(R.drawable.upload_icon_default)
 							.setTitle("Upload File")
 							.setMessage(
@@ -287,8 +250,8 @@ public class FileUpload extends Activity implements OnClickListener {
 												int which) {
 											// String value =
 											// selectedMap.get(LazyAdapter.KEY_HEADER);
-											String selectedFile = selectedMap
-													.get(LazyAdapter.KEY_OTHER);
+//											String selectedFile = selectedMap
+//													.get(LazyAdapter.KEY_OTHER);
 //TODO fix this now that siteinfo is gone
 //											FileManager
 //													.getInstance(
@@ -390,20 +353,6 @@ public class FileUpload extends Activity implements OnClickListener {
 		// ArrayAdapter<String> fileList = new ArrayAdapter<String>(this,
 		// R.layout.row, item);
 		// setListAdapter(fileList);
-	}
-
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == COURSE_SELECT_REQUEST_CODE) {
-			if (resultCode == RESULT_OK) {
-				user = (User) data.getParcelableExtra("userObject");
-				if (user != null && user.getSelectedCourseId() != 99999) {
-					Course course = user.getCourse(user.getSelectedCourseId());
-					footerCourseHdr.setText(course.getShortName());
-
-					getFileUpload();
-				}
-			}
-		}
 	}
 
 	public static List<String> getSupportedExtensions() {

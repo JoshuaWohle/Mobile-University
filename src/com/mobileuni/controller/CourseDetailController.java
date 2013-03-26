@@ -18,15 +18,13 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.mobileuni;
+package com.mobileuni.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.mobileuni.controller.CourseAssignmentController;
-import com.mobileuni.controller.CourseContentController;
-import com.mobileuni.controller.CourseForumController;
-import com.mobileuni.controller.CourseGradeController;
+import com.mobileuni.R.id;
+import com.mobileuni.R.layout;
 import com.mobileuni.helpers.CourseDetailsListHelper;
 import com.mobileuni.helpers.LazyAdapter;
 import com.mobileuni.listeners.MenuListener;
@@ -48,7 +46,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class CourseDetail extends Activity {
+public class CourseDetailController extends Activity {
 
 	Button home, courseSelect, upload, setting;
 	TextView footerCourseHdr, documents, assignments, grades, forum, offline;
@@ -147,7 +145,7 @@ public class CourseDetail extends Activity {
 					startActivity(intent);
 					break;
 				case 4: // OFFLINE FILES
-					intent = new Intent(parent.getContext(), Database.class);
+					intent = new Intent(parent.getContext(), DatabaseController.class);
 					startActivity(intent);
 					break;
 				default:

@@ -20,8 +20,8 @@ import javax.xml.transform.stream.StreamSource;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.mobileuni.MainApp;
 import com.mobileuni.config.Config;
+import com.mobileuni.controller.LoginController;
 import com.mobileuni.other.Session;
 import com.mobileuni.other.WebServiceFunction;
 
@@ -69,7 +69,7 @@ public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject
 			InputStream is = con.getInputStream();
 
 			Source xmlSource = new StreamSource(is);
-			Source xsltSource = new StreamSource(MainApp.context.getResources()
+			Source xsltSource = new StreamSource(LoginController.context.getResources()
 					.openRawResource(xslRawId));
 
 			TransformerFactory transFact = TransformerFactory.newInstance();

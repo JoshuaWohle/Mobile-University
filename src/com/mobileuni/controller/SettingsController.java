@@ -18,11 +18,8 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>
  */
 
-package com.mobileuni;
+package com.mobileuni.controller;
 
-//import moodleProject.AndroidMoodleApp.R;
-//import moodleProject.AndroidMoodleApp.R.drawable;
-//import moodleProject.AndroidMoodleApp.R.layout;
 import com.mobileuni.model.User;
 
 import com.mobileuni.R;
@@ -38,7 +35,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 
-public class Setting extends Activity {
+public class SettingsController extends Activity {
 
 	Intent intent;
 
@@ -106,7 +103,7 @@ public class Setting extends Activity {
 
 	public void logout() {
 		Intent nextPage;
-		nextPage = new Intent(Setting.this, MainApp.class);
+		nextPage = new Intent(SettingsController.this, LoginController.class);
 		nextPage.putExtra("userObject", user);
 		startActivity(nextPage);
 	}

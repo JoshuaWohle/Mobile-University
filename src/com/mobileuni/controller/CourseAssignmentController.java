@@ -23,16 +23,12 @@ package com.mobileuni.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.mobileuni.CourseDetail;
-import com.mobileuni.CourseSelect;
-import com.mobileuni.FileUpload;
-import com.mobileuni.Setting;
 import com.mobileuni.helpers.CourseContentsListHelper;
 import com.mobileuni.helpers.SectionListAdapter;
 import com.mobileuni.helpers.SectionListItem;
 import com.mobileuni.helpers.SectionListView;
 import com.mobileuni.helpers.StandardArrayAdapter;
-import com.mobileuni.model.Course;
+import com.mobileuni.listeners.MenuListener;
 import com.mobileuni.model.CourseContent;
 import com.mobileuni.model.User;
 import com.mobileuni.other.Session;
@@ -46,7 +42,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -55,7 +50,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class CourseAssignmentController extends Activity implements OnClickListener {
+public class CourseAssignmentController extends Activity {
 
 	Button home, courseSelect, upload, setting;
 	TextView footerCourseHdr;
@@ -67,6 +62,8 @@ public class CourseAssignmentController extends Activity implements OnClickListe
 	StandardArrayAdapter arrayAdapter;
 	SectionListAdapter sectionAdapter;
 	SectionListView listView;
+	
+	MenuListener ml;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -74,6 +71,7 @@ public class CourseAssignmentController extends Activity implements OnClickListe
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.course_assignment);
+		ml = new MenuListener(this);
 
 		try {
 			Intent i = getIntent();
@@ -93,9 +91,9 @@ public class CourseAssignmentController extends Activity implements OnClickListe
 				courseSelect.setEnabled(true);
 
 			if (user != null && user.getSelectedCourseId() == 99999) {
-				i = new Intent(this, CourseSelect.class);
+				i = new Intent(this, CourseSelectController.class);
 				i.putExtra("userObject", user);
-				startActivityForResult(i, COURSE_SELECT_REQUEST_CODE);
+				startActivity(i);
 			}
 
 			if (user != null && user.getSelectedCourseId() != 99999)
@@ -104,60 +102,16 @@ public class CourseAssignmentController extends Activity implements OnClickListe
 
 			getCourseAssignments();
 
-			home.setOnClickListener(this);
+			home.setOnClickListener(ml);
 			if (courseSelect.isEnabled())
-				courseSelect.setOnClickListener(this);
-			setting.setOnClickListener(this);
-			upload.setOnClickListener(this);
+				courseSelect.setOnClickListener(ml);
+			setting.setOnClickListener(ml);
+			upload.setOnClickListener(ml);
 		} catch (Exception e) {
 			Log.e("Error 1", e.toString()
 					+ "Error within CourseAssignmentView Class");
 		}
 
-	}
-
-	public static final int COURSE_SELECT_REQUEST_CODE = 1;
-
-	public void onClick(View v) {
-		Intent nextPage;
-
-		switch (v.getId()) {
-		case R.id.coursework_home_view:
-			nextPage = new Intent(this, CourseDetail.class);
-			nextPage.putExtra("userObject", user);
-			startActivity(nextPage);
-			break;
-		case R.id.select_course:
-			nextPage = new Intent(this, CourseSelect.class);
-			nextPage.putExtra("userObject", user);
-			startActivityForResult(nextPage, COURSE_SELECT_REQUEST_CODE);
-			break;
-		case R.id.settings_view:
-			nextPage = new Intent(this, Setting.class);
-			startActivity(nextPage);
-			break;
-		case R.id.upload_view:
-			nextPage = new Intent(this, FileUpload.class);
-			nextPage.putExtra("userObject", user);
-			startActivity(nextPage);
-			break;
-		default:
-
-		}
-	}
-
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == COURSE_SELECT_REQUEST_CODE) {
-			if (resultCode == RESULT_OK) {
-				user = (User) data.getParcelableExtra("userObject");
-				if (user != null && user.getSelectedCourseId() != 99999) {
-					Course course = user.getCourse(user.getSelectedCourseId());
-					footerCourseHdr.setText(course.getShortName());
-
-					getCourseAssignments();
-				}
-			}
-		}
 	}
 
 	private void getCourseAssignments() {

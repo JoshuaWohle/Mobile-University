@@ -1,6 +1,5 @@
 package com.mobileuni.controller;
 
-import com.mobileuni.CourseDetail;
 import com.mobileuni.R;
 import com.mobileuni.listeners.UserChangeListener;
 import com.mobileuni.model.Course;
@@ -57,7 +56,7 @@ public class CourseSelectController extends Activity implements UserChangeListen
 	public void onClick(View v) {
 		int courseId = (Integer) v.getTag();
 		if(courseId != 0) {
-			Intent intent = new Intent(CourseSelectController.this, CourseDetail.class);
+			Intent intent = new Intent(CourseSelectController.this, CourseDetailController.class);
 			Session.setCurrentSelectedCourse(Session.getUser().getCourse(courseId));
 			startActivity(intent);
 		}
