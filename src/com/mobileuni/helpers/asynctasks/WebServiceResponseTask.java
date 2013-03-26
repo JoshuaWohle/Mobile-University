@@ -7,7 +7,6 @@ import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.concurrent.ExecutionException;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
@@ -32,30 +31,22 @@ import android.util.Log;
 public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject> {
 	
 	private String fn;
-	
-	public static JSONObject get(String functionName, String urlParameters, int xslRawId) {
-		try {
-			new WebServiceResponseTask().execute(functionName, urlParameters, xslRawId);
-			return null;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+	private Object extra; 
 	
 	@Override
 	protected JSONObject doInBackground(Object... params) {
 		fn = (String) params[0];
 		String urlParameters = (String) params[1];
 		int xslRawId = (Integer) params[2];
+		if(params.length > 3) {
+			extra = params[3];
+		}
 		HttpURLConnection con;
 		try {
 			String url = Config.apiUrl + fn;
 			Log.d("Web Service Request", "Sent: " + url);
 			con = (HttpURLConnection) new URL(url)
 					.openConnection();
-			// HttpURLConnection con = (HttpURLConnection) new URL(serverurl +
-			// functionName + "&moodlewsrestformat=json").openConnection();
 
 			con.setConnectTimeout(30000);
 			con.setReadTimeout(30000);
@@ -126,7 +117,7 @@ public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject
 		else if(fn.equals(WebServiceFunction.moodle_enrol_get_users_courses))
 			Session.getCourseManager().setCourses(jsonObject);
 		else if(fn.equals(WebServiceFunction.core_course_get_contents))
-			Session.getCourseManager().setCourseDetails(jsonObject);
+			Session.getCourseManager().setCourseDetails(jsonObject, (Integer)extra);
 		else
 			Log.d("Web Service Request", "Some unknown request was executed, please specify where to send the result to");
 	}

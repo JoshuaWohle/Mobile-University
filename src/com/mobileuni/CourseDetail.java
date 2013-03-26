@@ -67,8 +67,7 @@ public class CourseDetail extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.course_detail);
 		ml = new MenuListener(this);
-		Intent intent = getIntent();
-		selectedCourse = Session.getUser().getCourse(intent.getIntExtra("course_id", 0));
+		selectedCourse = Session.getCurrentSelectedCourse();
 		Log.d("Course", "Set selected course to ID: " + selectedCourse.getId());
 		
 		displayCourseChoice();

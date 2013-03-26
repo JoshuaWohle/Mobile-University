@@ -43,11 +43,13 @@ public class CourseSelectController extends Activity implements UserChangeListen
 
 		LinearLayout main = (LinearLayout) findViewById(R.id.main);
 		for(Course course : Session.getUser().getCourses()){
-			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.course_select_course_item, main);
+			Log.d("Courses", "Adding course: " + course.getId());
+			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.course_select_course_item, null);
 			child.setTag(course.getId());
 			child.setOnClickListener(this);
 			((TextView) child.findViewById(R.id.course_item_title)).setText(course.getShortName());
 			((TextView) child.findViewById(R.id.course_item_content)).setText(course.getFullname());
+			main.addView(child);
 		}
 		dialog.dismiss();
 	}
@@ -56,7 +58,7 @@ public class CourseSelectController extends Activity implements UserChangeListen
 		int courseId = (Integer) v.getTag();
 		if(courseId != 0) {
 			Intent intent = new Intent(CourseSelectController.this, CourseDetail.class);
-			intent.putExtra("course_id", courseId);
+			Session.setCurrentSelectedCourse(Session.getUser().getCourse(courseId));
 			startActivity(intent);
 		}
 		

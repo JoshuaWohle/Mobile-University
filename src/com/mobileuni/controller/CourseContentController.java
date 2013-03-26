@@ -24,10 +24,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.mobileuni.CourseDetail;
-import com.mobileuni.CourseSelect;
-import com.mobileuni.FileUpload;
-import com.mobileuni.Setting;
 import com.mobileuni.helpers.CourseContentsListHelper;
 import com.mobileuni.helpers.FileManager;
 import com.mobileuni.helpers.SectionListAdapter;

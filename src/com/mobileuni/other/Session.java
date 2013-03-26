@@ -1,11 +1,13 @@
 package com.mobileuni.other;
 
+import com.mobileuni.model.Course;
 import com.mobileuni.model.User;
 import com.mobileuni.model.iCourseManager;
 
 public class Session {
 	private static User user = null;
 	private static iCourseManager courseManager = null;
+	private static Course currentSelectedCourse = null;
 	
 	public static User getUser() {
 		if(user == null) {/*TODO handle case when user is empty and called for*/ return null;}
@@ -25,5 +27,13 @@ public class Session {
 	public static void setCourseManager(iCourseManager courseManager) {
 		if(Session.courseManager == null)
 			Session.courseManager = courseManager;
+	}
+
+	public static Course getCurrentSelectedCourse() {
+		return currentSelectedCourse;
+	}
+
+	public static void setCurrentSelectedCourse(Course currentSelectedCourse) {
+		Session.currentSelectedCourse = currentSelectedCourse;
 	}
 }

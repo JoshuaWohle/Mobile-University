@@ -22,8 +22,11 @@ package com.mobileuni.model;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.mobileuni.other.Session;
 
 import android.os.Parcel;
 import android.os.Parcelable;

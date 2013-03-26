@@ -82,13 +82,12 @@ public class Moodle implements iCourseManager {
 		if (courseArray.size() > 0) {
 			for (Course c : courseArray) {
 				try {
-					String urlParameters;
-					urlParameters = "courseid="
+					String urlParameters = "courseid="
 							+ URLEncoder.encode(String.valueOf(c.getId()),
 									"UTF-8");
 					new WebServiceResponseTask().execute(
 							WebServiceFunction.core_course_get_contents,
-							urlParameters, R.raw.contentxsl);
+							urlParameters, R.raw.contentxsl, c.getId());
 				} catch (UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -98,11 +97,10 @@ public class Moodle implements iCourseManager {
 		}
 	}
 
-	public void setCourseDetails(JSONObject jsonObject) {
+	public void setCourseDetails(JSONObject jsonObject, int courseId) {
 		
 		ArrayList<CourseContent> courseContentsArray = new ArrayList<CourseContent>();
 		try {
-			int courseId = 0;
 			JSONArray courseContents = jsonObject
 					.getJSONArray("coursecontents");
 			
@@ -112,10 +110,6 @@ public class Moodle implements iCourseManager {
 				CourseContent courseContent = new CourseContent();
 				courseContent.populateCourseContent(c);
 				courseContentsArray.add(courseContent);
-				
-				// Small hack to get the right ID of the course
-				if(courseContent.getName().equals("General"))
-					courseId = courseContent.getId();
 			}
 			
 			Session.getUser().getCourse(courseId).setCourseContent(courseContentsArray);

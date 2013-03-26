@@ -15,7 +15,7 @@ public interface iCourseManager {
 
 	public void login(User user);
 	public void setCourses(JSONObject jsonObject);
-	public void setCourseDetails(JSONObject jsonObject);
+	public void setCourseDetails(JSONObject jsonObject, int courseId);
 	public void setMainInfo(JSONObject jsonObject);
 	
 	public String getToken();
