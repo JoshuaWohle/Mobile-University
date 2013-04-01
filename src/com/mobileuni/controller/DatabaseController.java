@@ -119,12 +119,11 @@ public class DatabaseController extends ListActivity implements OnClickListener 
 		}
 
 		// loads up the list of documents
-		if (user != null && user.getSelectedCourseId() != 99999) {
+		if (user != null && Session.getCurrentSelectedCourse() != null) {
 
 			File sdCard = Environment.getExternalStorageDirectory();
 
-			String temp = user.getCourse(user.getSelectedCourseId())
-					.getFullname();
+			String temp = Session.getCurrentSelectedCourse().getFullname();
 
 			File moodle = new File(sdCard, "Moodle/" + temp + "/Documents");
 
@@ -166,7 +165,7 @@ public class DatabaseController extends ListActivity implements OnClickListener 
 
 		@SuppressWarnings("unchecked")
 		File sdCard = Environment.getExternalStorageDirectory();
-		String temp = user.getCourse(user.getSelectedCourseId()).getFullname();
+		String temp = Session.getCurrentSelectedCourse().getFullname();
 		String fileName = adapter.getItem(position).getComment().toString();
 		File file = new File(sdCard, "Moodle/" + temp + "/Documents/"
 				+ fileName);
@@ -210,12 +209,11 @@ public class DatabaseController extends ListActivity implements OnClickListener 
 		switch (view.getId()) {
 		case R.id.add:
 
-			if (user != null && user.getSelectedCourseId() != 99999) {
+			if (user != null && Session.getCurrentSelectedCourse() != null) {
 
 				File sdCard = Environment.getExternalStorageDirectory();
 
-				String temp = user.getCourse(user.getSelectedCourseId())
-						.getFullname();
+				String temp = Session.getCurrentSelectedCourse().getFullname();
 
 				File moodle = new File(sdCard, "Moodle/" + temp + "/Documents");
 

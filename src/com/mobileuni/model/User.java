@@ -39,7 +39,6 @@ public class User implements Parcelable {
 	private String firstName;
 	private String lastName;
 	private String profilePictureURL;
-	private int selectedCourseId = 99999;
 	private ArrayList<Course> courses = new ArrayList<Course>();
 	
 	List<UserChangeListener> ucl = new ArrayList<UserChangeListener>();
@@ -77,14 +76,12 @@ public class User implements Parcelable {
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeString(username);
 		dest.writeString(password);
-		dest.writeInt(selectedCourseId);
 		dest.writeTypedList(courses);
 	}
 
 	private User(Parcel in) {
 		this.username = in.readString();
 		this.password = in.readString();
-		this.selectedCourseId = in.readInt();
 		in.readTypedList(this.courses, Course.CREATOR);
 	}
 	
@@ -139,14 +136,6 @@ public class User implements Parcelable {
 
 	public void setProfilePictureURL(String profilePictureURL) {
 		this.profilePictureURL = profilePictureURL;
-	}
-
-	public void setSelectedCourseId(int selectedcourseid) {
-		this.selectedCourseId = selectedcourseid;
-	}
-
-	public int getSelectedCourseId() {
-		return selectedCourseId;
 	}
 
 	public void setCourses(ArrayList<Course> courses) {

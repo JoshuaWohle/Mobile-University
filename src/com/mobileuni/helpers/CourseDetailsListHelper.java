@@ -145,9 +145,18 @@ public class CourseDetailsListHelper {
 		// adding HashList to ArrayList
 		courseOverviewList.add(map);
 		
+		map = new HashMap<String, String>();
+		// adding each item to HashMap key => value		
+    	map.put(LazyAdapter.KEY_ID, "5");
+		map.put(LazyAdapter.KEY_HEADER, "Notes");
+		map.put(LazyAdapter.KEY_DESCRIPTION, "Some notes");
+		map.put(LazyAdapter.KEY_AVAILABLE, "0");
+		map.put(LazyAdapter.KEY_THUMB, String.valueOf(R.drawable.offlinefolder_icon));
+
+		// adding HashList to ArrayList
+		courseOverviewList.add(map);
+		
 		return courseOverviewList;
-
-
 	}
 
 }

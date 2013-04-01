@@ -32,7 +32,6 @@ import com.mobileuni.R;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -44,8 +43,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class LoginController extends Activity implements OnClickListener, iCourseManagerListener {
-
-	public static Context context;
 	
 	Button login;
 	EditText serverUrl, username, password;
@@ -57,7 +54,7 @@ public class LoginController extends Activity implements OnClickListener, iCours
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		context = this;
+		Session.setContext(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 		
@@ -73,7 +70,6 @@ public class LoginController extends Activity implements OnClickListener, iCours
 			login = (Button) findViewById(R.id.login_button);
 
 			try {
-
 				serverUrl.setHint(R.string.login_url_hint);
 				username.setHint(R.string.login_username_hint);
 				password.setHint(R.string.login_password_hint);
@@ -81,7 +77,6 @@ public class LoginController extends Activity implements OnClickListener, iCours
 				serverUrl.setText(Constants.testURL);
 				username.setText(Constants.testUser);
 				password.setText(Constants.testPassword);
-
 			} catch (Exception e) {
 				Log.e("NoPreferences", e.toString());
 			}

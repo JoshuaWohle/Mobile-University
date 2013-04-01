@@ -84,21 +84,13 @@ public class CourseForumController extends Activity {
 			setting = (Button) findViewById(R.id.settings_view);
 			upload = (Button) findViewById(R.id.upload_view);
 
-			if (user != null && user.getCourses().size() == 1) {
-				user.setSelectedCourseId(user.getCourses().get(0).getId());
-				courseSelect.setEnabled(false);
-			} else
-				courseSelect.setEnabled(true);
-
-			if (user != null && user.getSelectedCourseId() == 99999) {
+			if (user != null && Session.getCurrentSelectedCourse() == null) {
 				i = new Intent(this, CourseSelectController.class);
 				i.putExtra("userObject", user);
 				startActivity(i);
 			}
 
-			if (user != null && user.getSelectedCourseId() != 99999)
-				footerCourseHdr.setText(user.getCourse(
-						user.getSelectedCourseId()).getShortName());
+			footerCourseHdr.setText(Session.getCurrentSelectedCourse().getShortName());
 
 			getCourseAssignments();
 
@@ -120,10 +112,7 @@ public class CourseForumController extends Activity {
 		courseworkLayout.setVisibility(View.VISIBLE);
 
 		ArrayList<CourseContent> coursecontent = new ArrayList<CourseContent>();
-		if (user != null && user.getCourse(user.getSelectedCourseId()) != null) {
-			coursecontent = user.getCourse(user.getSelectedCourseId())
-					.getCourseContent();
-		}
+		coursecontent = Session.getCurrentSelectedCourse().getCourseContent();
 
 		forumArray = CourseContentsListHelper.getInstance(this)
 				.populateCourseForums(coursecontent);

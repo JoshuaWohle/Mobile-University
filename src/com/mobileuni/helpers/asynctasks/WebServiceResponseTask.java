@@ -69,7 +69,7 @@ public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject
 			InputStream is = con.getInputStream();
 
 			Source xmlSource = new StreamSource(is);
-			Source xsltSource = new StreamSource(LoginController.context.getResources()
+			Source xsltSource = new StreamSource(Session.getContext().getResources()
 					.openRawResource(xslRawId));
 
 			TransformerFactory transFact = TransformerFactory.newInstance();

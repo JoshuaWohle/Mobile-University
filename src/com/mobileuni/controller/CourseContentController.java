@@ -110,7 +110,7 @@ public class CourseContentController extends Activity {
 		if (requestCode == COURSE_SELECT_REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
 				user = (User) data.getParcelableExtra("userObject");
-				if (user != null && user.getSelectedCourseId() != 99999) {
+				if (user != null && selectedCourse.getId() != 99999) {
 					Course course = selectedCourse;
 					footerCourseHdr.setText(course.getShortName());
 

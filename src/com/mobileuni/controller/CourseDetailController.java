@@ -81,7 +81,7 @@ public class CourseDetailController extends Activity implements CourseChangeList
 			setting = (Button) findViewById(R.id.settings_view);
 			upload = (Button) findViewById(R.id.upload_view);
 
-			if (Session.getUser() != null && Session.getUser().getSelectedCourseId() != 99999)
+			if (Session.getUser() != null && Session.getCurrentSelectedCourse() != null)
 				footerCourseHdr.setText(selectedCourse.getShortName());
 
 			getCourseDetails();
