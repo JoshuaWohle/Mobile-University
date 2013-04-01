@@ -3,18 +3,22 @@
     style="@style/light_theme"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="10dip">
     
     <TextView
         style="@style/middle_theme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/course_item_title"/>
+        android:id="@+id/course_item_title"
+        android:textStyle="bold"
+        android:padding="5dip"/>
     
     <TextView
         style="@style/dark_theme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/course_item_content"/>
+        android:id="@+id/course_item_content"
+        android:padding="5dip"/>
 
 </LinearLayout>

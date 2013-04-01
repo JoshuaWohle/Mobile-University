@@ -64,5 +64,6 @@
     <string name="wait_while_login">Please wait whilst we\'re trying to log you in.</string>
 	<string name="wait_while_get_courses">Please wait whilst we\'re trying to get your enrolled courses</string>
 	<string name="wait_while_get_course_detail">Getting the details for your course...</string>
+	<string name="available_courses">Available courses</string>
 		
 </resources>

@@ -40,7 +40,7 @@ public class CourseSelectController extends Activity implements UserChangeListen
 	public void courseChange(boolean gotCourses) {
 		Log.d("Courses", "Setting courses on list");
 
-		LinearLayout main = (LinearLayout) findViewById(R.id.main);
+		LinearLayout main = (LinearLayout) findViewById(R.id.course_list);
 		for(Course course : Session.getUser().getCourses()){
 			Log.d("Courses", "Adding course: " + course.getId());
 			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.course_select_course_item, null);
