@@ -26,19 +26,37 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 import com.mobileuni.listeners.UserChangeListener;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+@DatabaseTable(tableName="user")
 public class User implements Parcelable {
-
+	
+	// We are only using 1 user, so we can simply set the ID to 1 -> needed to retrieve through ORM easier later
+	@DatabaseField(id = true)
+	private int id = 1;
+	
+	@DatabaseField
 	private String username;
+	
+	@DatabaseField
 	private String password;
+	
+	@DatabaseField
 	private String firstName;
+	
+	@DatabaseField
 	private String lastName;
+	
+	@DatabaseField
 	private String profilePictureURL;
+	
+	
 	private ArrayList<Course> courses = new ArrayList<Course>();
 	
 	List<UserChangeListener> ucl = new ArrayList<UserChangeListener>();

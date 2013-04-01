@@ -2,6 +2,7 @@ package com.mobileuni.other;
 
 import android.content.Context;
 
+import com.j256.ormlite.support.ConnectionSource;
 import com.mobileuni.model.Course;
 import com.mobileuni.model.User;
 import com.mobileuni.model.iCourseManager;
