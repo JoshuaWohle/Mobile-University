@@ -23,10 +23,9 @@ package com.mobileuni.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.mobileuni.R.id;
-import com.mobileuni.R.layout;
 import com.mobileuni.helpers.CourseDetailsListHelper;
 import com.mobileuni.helpers.LazyAdapter;
+import com.mobileuni.listeners.CourseChangeListener;
 import com.mobileuni.listeners.MenuListener;
 import com.mobileuni.model.Course;
 import com.mobileuni.model.CourseContent;
@@ -46,7 +45,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class CourseDetailController extends Activity {
+public class CourseDetailController extends Activity implements CourseChangeListener {
 
 	Button home, courseSelect, upload, setting;
 	TextView footerCourseHdr, documents, assignments, grades, forum, offline;
@@ -64,12 +63,13 @@ public class CourseDetailController extends Activity {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.course_detail);
+		dialog = ProgressDialog.show(this, 
+					getResources().getString(R.string.loading), 
+					getResources().getString(R.string.wait_while_get_course_detail));
 		ml = new MenuListener(this);
 		selectedCourse = Session.getCurrentSelectedCourse();
-		Log.d("Course", "Set selected course to ID: " + selectedCourse.getId());
-		
-		displayCourseChoice();
-		
+		selectedCourse.addListener(this);
+		Session.getCourseManager().setCourseDetails(null, selectedCourse.getId());
 	}
 	
 	public void displayCourseChoice() {
@@ -126,7 +126,6 @@ public class CourseDetailController extends Activity {
 				case 0: // DOCUMENTS
 					intent = new Intent(parent.getContext(),
 							CourseContentController.class);
-					intent.putExtra("selected_course_id", selectedCourse.getId());
 					startActivity(intent);
 					break;
 				case 1: // ASSIGNMENTS
@@ -152,6 +151,11 @@ public class CourseDetailController extends Activity {
 				}
 			}
 		});
+	}
+
+	public void courseContentsChanged() {
+		dialog.dismiss();
+		displayCourseChoice();		
 	}
 
 }

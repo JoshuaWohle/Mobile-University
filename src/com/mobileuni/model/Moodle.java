@@ -78,26 +78,26 @@ public class Moodle implements iCourseManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		if (courseArray.size() > 0) {
-			for (Course c : courseArray) {
-				try {
-					String urlParameters = "courseid="
-							+ URLEncoder.encode(String.valueOf(c.getId()),
-									"UTF-8");
-					new WebServiceResponseTask().execute(
-							WebServiceFunction.core_course_get_contents,
-							urlParameters, R.raw.contentxsl, c.getId());
-				} catch (UnsupportedEncodingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-			Session.getUser().setCourses(courseArray);
-		}
+		
+		Session.getUser().setCourses(courseArray);
 	}
 
 	public void setCourseDetails(JSONObject jsonObject, int courseId) {
+		
+		if(null == jsonObject) {
+			try {
+				String urlParameters = "courseid="
+						+ URLEncoder.encode(String.valueOf(courseId),
+								"UTF-8");
+				new WebServiceResponseTask().execute(
+						WebServiceFunction.core_course_get_contents,
+						urlParameters, R.raw.contentxsl, courseId);
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+			return;
+		}
 		
 		ArrayList<CourseContent> courseContentsArray = new ArrayList<CourseContent>();
 		try {

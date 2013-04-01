@@ -78,8 +78,7 @@ public class CourseContentController extends Activity {
 		setContentView(R.layout.course_material);
 		ml = new MenuListener(this);
 		user = Session.getUser();
-		Intent intent = getIntent();
-		selectedCourse = Session.getUser().getCourse(intent.getIntExtra("selected_course_id", 0));
+		selectedCourse = Session.getCurrentSelectedCourse();
 
 		try {
 
@@ -142,9 +141,7 @@ public class CourseContentController extends Activity {
 			arrayAdapter = new StandardArrayAdapter(this, documentArray);
 			sectionAdapter = new SectionListAdapter(getLayoutInflater(),
 					arrayAdapter);
-			listView = (SectionListView) findViewById(getResources()
-					.getIdentifier("document_section_list_view", "id",
-							this.getClass().getPackage().getName()));
+			listView = (SectionListView) findViewById(R.id.document_section_list_view);
 			listView.setAdapter(sectionAdapter);
 
 			listView.setOnItemClickListener(new OnItemClickListener() {
@@ -167,7 +164,7 @@ public class CourseContentController extends Activity {
 
 						File file = FileManager.getInstance(
 								CourseContentController.this).DownloadFromUrl(
-								fileURL + "&token=" ,//TODO add token + user.getToken(),
+								fileURL + "&token=" + Session.getCourseManager().getToken(),
 								fileName, courseDirectoryAndType);
 
 						if (file != null) {
@@ -198,6 +195,7 @@ public class CourseContentController extends Activity {
 										4000).show();
 							}
 						} else {
+							Log.d("Documents", "No SD Cards installed, cannot get document");
 							Toast.makeText(
 									CourseContentController.this,
 									"There is no SD Card installed to save the file to. Please insert to view the file.",
@@ -207,6 +205,7 @@ public class CourseContentController extends Activity {
 				}
 			});
 		} else {
+			Log.d("Documents", "Something went wrong whilst getting the documents for course ID: " + Session.getCurrentSelectedCourse().getId());
 			emptyLayout.setVisibility(View.VISIBLE);
 			courseworkLayout.setVisibility(View.INVISIBLE);
 		}

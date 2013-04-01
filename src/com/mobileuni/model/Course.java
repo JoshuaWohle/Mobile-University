@@ -22,33 +22,30 @@ package com.mobileuni.model;
 
 import java.util.ArrayList;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.mobileuni.other.Session;
+import com.mobileuni.listeners.CourseChangeListener;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Course implements Parcelable {
-	//private static Course instance;
-
+	
 	public Course() {
-
+		
 	}
 
-//	public static Course getInstance() {
-//		if (instance == null) {
-//			synchronized(Course.class) {
-//				if (instance == null) {
-//					instance = new Course();
-//				}
-//			}
-//		}
-//		return instance;
-//	}
+	private ArrayList<CourseChangeListener> cls = new ArrayList<CourseChangeListener>();
 	
+	public void addListener(CourseChangeListener listener) {
+		cls.add(listener);
+	}
+	
+	public void removeListener(CourseChangeListener listener) {
+		cls.remove(listener);
+	}
+
 	private int id;	
 	public void setId(int id) {
        this.id = id;
@@ -106,6 +103,10 @@ public class Course implements Parcelable {
     private ArrayList<CourseContent> coursecontents = new ArrayList<CourseContent>();	
 	public void setCourseContent(ArrayList<CourseContent> coursecontents) {
        this.coursecontents = coursecontents;
+       
+       for(CourseChangeListener listener : cls) {
+    	   listener.courseContentsChanged();
+       }
     }
 
     public ArrayList<CourseContent> getCourseContent() {

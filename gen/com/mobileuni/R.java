@@ -454,6 +454,7 @@ containing a value of this type.
         public static final int upload_search_hint=0x7f060012;
         public static final int upload_view=0x7f060011;
         public static final int user_no_courses=0x7f060035;
+        public static final int wait_while_get_course_detail=0x7f06003a;
         public static final int wait_while_get_courses=0x7f060039;
         public static final int wait_while_login=0x7f060038;
         public static final int week_one_desc_view=0x7f060025;
