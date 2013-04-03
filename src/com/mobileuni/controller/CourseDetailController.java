@@ -23,6 +23,7 @@ package com.mobileuni.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.helpers.CourseDetailsListHelper;
 import com.mobileuni.helpers.LazyAdapter;
 import com.mobileuni.listeners.CourseChangeListener;
@@ -69,7 +70,12 @@ public class CourseDetailController extends Activity implements CourseChangeList
 		ml = new MenuListener(this);
 		selectedCourse = Session.getCurrentSelectedCourse();
 		selectedCourse.addListener(this);
-		Session.getCourseManager().setCourseDetails(null, selectedCourse.getId());
+		
+		// Check if online
+		if(AppStatus.isOnline())
+			Session.getCourseManager().setCourseDetails(null, selectedCourse.getId()); // Get new details of course
+		else
+			courseContentsChanged(); // Serve old content
 	}
 	
 	public void displayCourseChoice() {
