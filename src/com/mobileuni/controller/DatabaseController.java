@@ -253,12 +253,10 @@ public class DatabaseController extends ListActivity implements OnClickListener 
 
 		case R.id.coursework_home_view:
 			nextPage = new Intent(this, CourseDetailController.class);
-			nextPage.putExtra("userObject", user);
 			startActivity(nextPage);
 			break;
 		case R.id.select_course:
 			nextPage = new Intent(this, CourseSelectController.class);
-			nextPage.putExtra("userObject", user);
 			startActivityForResult(nextPage, COURSE_SELECT_REQUEST_CODE);
 			break;
 		case R.id.settings_view:
@@ -269,7 +267,6 @@ public class DatabaseController extends ListActivity implements OnClickListener 
 			break;
 		case R.id.upload_view:
 			nextPage = new Intent(this, FileUploadController.class);
-			nextPage.putExtra("userObject", user);
 			startActivity(nextPage);
 			break;
 

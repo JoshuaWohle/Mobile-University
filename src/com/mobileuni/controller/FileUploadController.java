@@ -107,7 +107,6 @@ public class FileUploadController extends Activity{
 
 			if (user != null && Session.getCurrentSelectedCourse() == null) {
 				i = new Intent(FileUploadController.this, CourseSelectController.class);
-				i.putExtra("userObject", user);
 				startActivity(i);
 			}
 

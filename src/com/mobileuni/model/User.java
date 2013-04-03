@@ -26,36 +26,19 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
 import com.mobileuni.listeners.UserChangeListener;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
-@DatabaseTable(tableName="user")
-public class User implements Parcelable {
+public class User {
 	
-	// We are only using 1 user, so we can simply set the ID to 1 -> needed to retrieve through ORM easier later
-	@DatabaseField(id = true)
-	private int id = 1;
-	
-	@DatabaseField
 	private String username;
-	
-	@DatabaseField
 	private String password;
-	
-	@DatabaseField
 	private String firstName;
-	
-	@DatabaseField
 	private String lastName;
-	
-	@DatabaseField
 	private String profilePictureURL;
-	
 	
 	private ArrayList<Course> courses = new ArrayList<Course>();
 	
@@ -76,31 +59,6 @@ public class User implements Parcelable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	}
-
-	// this is used to regenerate your object. All Parcelables must have a
-	// CREATOR that implements these two methods
-	public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
-		public User createFromParcel(Parcel in) {
-			return new User(in);
-		}
-
-		public User[] newArray(int size) {
-			return new User[size];
-		}
-	};
-
-	// write your object's data to the passed-in Parcel
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString(username);
-		dest.writeString(password);
-		dest.writeTypedList(courses);
-	}
-
-	private User(Parcel in) {
-		this.username = in.readString();
-		this.password = in.readString();
-		in.readTypedList(this.courses, Course.CREATOR);
 	}
 	
 	public void addListener(UserChangeListener listener) {

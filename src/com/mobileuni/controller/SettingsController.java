@@ -104,7 +104,6 @@ public class SettingsController extends Activity {
 	public void logout() {
 		Intent nextPage;
 		nextPage = new Intent(SettingsController.this, LoginController.class);
-		nextPage.putExtra("userObject", user);
 		startActivity(nextPage);
 	}
 

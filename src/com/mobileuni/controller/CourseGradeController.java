@@ -87,7 +87,6 @@ public class CourseGradeController extends Activity {
 
 			if (user != null && Session.getCurrentSelectedCourse() == null) {
 				i = new Intent(this, CourseSelectController.class);
-				i.putExtra("userObject", user);
 				startActivity(i);
 			}
 
