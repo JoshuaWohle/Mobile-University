@@ -20,140 +20,36 @@
 
 package com.mobileuni.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+public class Module implements Serializable {
 
-public class Module implements Parcelable {
-	//private static Module instance;
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private int id;	
+	private String url;
+    private String name;
+    private String description;	
+    private int visible;	
+	private String modicon;	
+    private String modname;	
+    private String modplural;	
+    private int availablefrom;	
+    private int availableuntil;	
+    private int indent;	
+    private ArrayList<Content> contents = new ArrayList<Content>();	
+	
 	public Module() {
 
 	}
-
-//	public static Module getInstance() {
-//		if (instance == null) {
-//			synchronized(Module.class) {
-//				if (instance == null) {
-//					instance = new Module();
-//				}
-//			}
-//		}
-//		return instance;
-//	}
-	
-	private int id;	
-	public void setId(int id) {
-       this.id = id;
-    }
-
-    public int getId() {
-       return id;
-    }
-
-	private String url;	
-	public void setUrl(String url) {
-       this.url = url;
-    }
-
-    public String getUrl() {
-       return url;
-    }
-        
-    private String name;	
-	public void setName(String name) {
-       this.name = name;
-    }
-
-    public String getName() {
-       return name;
-    }
-    
-    private String description;	
-	public void setDescription(String description) {
-       this.description = description;
-    }
-
-    public String getDescription() {
-       return description;
-    }
-	    
-    private int visible;	
-	public void setVisible(int visible) {
-       this.visible = visible;
-    }
-
-    public int getVisible() {
-       return visible;
-    }
-        
-	private String modicon;	
-	public void setModIcon(String modicon) {
-	   this.modicon = modicon;
-	}
-	
-	public String getModIcon() {
-	   return modicon;
-	}
-    
-    private String modname;	
-	public void setModName(String modname) {
-       this.modname = modname;
-    }
-
-    public String getModName() {
-       return modname;
-    }
-    
-    private String modplural;	
-	public void setModPlural(String modplural) {
-       this.modplural = modplural;
-    }
-
-    public String getModPlural() {
-       return modplural;
-    }
-    
-    private int availablefrom;	
-	public void setAvailableFrom(int availablefrom) {
-       this.availablefrom = availablefrom;
-    }
-
-    public int getAvailableFrom() {
-       return availablefrom;
-    }
-    
-    private int availableuntil;	
-	public void setAvailableUntil(int availableuntil) {
-       this.availableuntil = availableuntil;
-    }
-
-    public int getAvailableUntil() {
-       return availableuntil;
-    }
-    
-    private int indent;	
-	public void setIndent(int indent) {
-       this.indent = indent;
-    }
-
-    public int getIndent() {
-       return indent;
-    }
-    
-    private ArrayList<Content> contents = new ArrayList<Content>();	
-	public void setContents(ArrayList<Content> contents) {
-       this.contents = contents;
-    }
-
-    public ArrayList<Content> getContents() {
-       return contents;
-    }
 
     public void populateModule(JSONObject jsonObject) {
     
@@ -215,52 +111,99 @@ public class Module implements Parcelable {
     	}
     }
     
-    /* everything below here is for implementing Parcelable */ 
-	 
-    // 99.9% of the time you can just ignore this 
-    public int describeContents() { 
-        return 0; 
-    } 
-    
- // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods 
-    public static final Parcelable.Creator<Module> CREATOR = new Parcelable.Creator<Module>() { 
-        public Module createFromParcel(Parcel in) { 
-            return new Module(in); 
-        } 
- 
-        public Module[] newArray(int size) { 
-            return new Module[size]; 
-        } 
-    }; 
- 
-    // write your object's data to the passed-in Parcel 
-    public void writeToParcel(Parcel dest, int flags) { 
-    	dest.writeInt(id); 
-    	dest.writeString(url);
-    	dest.writeString(name);
-    	dest.writeString(description);
-    	dest.writeInt(visible);
-    	dest.writeString(modicon);
-    	dest.writeString(modname);
-    	dest.writeString(modplural);
-    	dest.writeInt(availablefrom);
-    	dest.writeInt(availableuntil);
-    	dest.writeInt(indent);
-    	dest.writeTypedList(contents); 
+	public void setId(int id) {
+       this.id = id;
+    }
+
+    public int getId() {
+       return id;
+    }
+
+	public void setUrl(String url) {
+       this.url = url;
+    }
+
+    public String getUrl() {
+       return url;
+    }
+        	
+	public void setName(String name) {
+       this.name = name;
+    }
+
+    public String getName() {
+       return name;
     }
     
-    private Module(Parcel in) { 
-        this.id = in.readInt(); 
-        this.url = in.readString();
-        this.name = in.readString();
-        this.description = in.readString();
-        this.visible = in.readInt();
-        this.modicon = in.readString();
-        this.modname = in.readString();
-        this.modplural = in.readString();
-        this.availablefrom = in.readInt();
-        this.availableuntil = in.readInt();
-        this.indent = in.readInt();
-        in.readTypedList(this.contents, Content.CREATOR); 
-    } 
+	public void setDescription(String description) {
+       this.description = description;
+    }
+
+    public String getDescription() {
+       return description;
+    }
+	    
+	public void setVisible(int visible) {
+       this.visible = visible;
+    }
+
+    public int getVisible() {
+       return visible;
+    }
+        
+	public void setModIcon(String modicon) {
+	   this.modicon = modicon;
+	}
+	
+	public String getModIcon() {
+	   return modicon;
+	}
+    
+	public void setModName(String modname) {
+       this.modname = modname;
+    }
+
+    public String getModName() {
+       return modname;
+    }
+    
+	public void setModPlural(String modplural) {
+       this.modplural = modplural;
+    }
+
+    public String getModPlural() {
+       return modplural;
+    }
+    
+	public void setAvailableFrom(int availablefrom) {
+       this.availablefrom = availablefrom;
+    }
+
+    public int getAvailableFrom() {
+       return availablefrom;
+    }
+    
+	public void setAvailableUntil(int availableuntil) {
+       this.availableuntil = availableuntil;
+    }
+
+    public int getAvailableUntil() {
+       return availableuntil;
+    }
+    
+	public void setIndent(int indent) {
+       this.indent = indent;
+    }
+
+    public int getIndent() {
+       return indent;
+    }
+    
+	public void setContents(ArrayList<Content> contents) {
+       this.contents = contents;
+    }
+
+    public ArrayList<Content> getContents() {
+       return contents;
+    }
 }

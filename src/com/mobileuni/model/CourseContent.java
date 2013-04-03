@@ -20,34 +20,30 @@
 
 package com.mobileuni.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+public class CourseContent implements Serializable {
 
-public class CourseContent implements Parcelable {
-	//private static CourseContent instance;
-
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int id;	
+    private String name;	
+    private int visible;	
+	private String summary;	
+    private ArrayList<Module> modules = new ArrayList<Module>();	
+	
 	public CourseContent() {
 
 	}
-
-//	public static CourseContent getInstance() {
-//		if (instance == null) {
-//			synchronized(CourseContent.class) {
-//				if (instance == null) {
-//					instance = new CourseContent();
-//				}
-//			}
-//		}
-//		return instance;
-//	}
 	
-	private int id;	
 	public void setId(int id) {
        this.id = id;
     }
@@ -56,7 +52,6 @@ public class CourseContent implements Parcelable {
        return id;
     }
         
-    private String name;	
 	public void setName(String name) {
        this.name = name;
     }
@@ -65,7 +60,6 @@ public class CourseContent implements Parcelable {
        return name;
     }
 	    
-    private int visible;	
 	public void setVisible(int visible) {
        this.visible = visible;
     }
@@ -74,7 +68,6 @@ public class CourseContent implements Parcelable {
        return visible;
     }
         
-	private String summary;	
 	public void setSummary(String summary) {
 	   this.summary = summary;
 	}
@@ -83,7 +76,6 @@ public class CourseContent implements Parcelable {
 	   return summary;
 	}
     
-    private ArrayList<Module> modules = new ArrayList<Module>();	
 	public void setModules(ArrayList<Module> modules) {
        this.modules = modules;
     }
@@ -94,7 +86,6 @@ public class CourseContent implements Parcelable {
 
     public void populateCourseContent(JSONObject jsonObject) {
     
-    	    	 
     	try {  
     		if (jsonObject != null) {
     			
@@ -129,40 +120,5 @@ public class CourseContent implements Parcelable {
     	} catch (JSONException e) { 
     	    e.printStackTrace(); 
     	}
-    }
-    
-    /* everything below here is for implementing Parcelable */ 
-	 
-    // 99.9% of the time you can just ignore this 
-    public int describeContents() { 
-        return 0; 
-    } 
-    
- // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods 
-    public static final Parcelable.Creator<CourseContent> CREATOR = new Parcelable.Creator<CourseContent>() { 
-        public CourseContent createFromParcel(Parcel in) { 
-            return new CourseContent(in); 
-        } 
- 
-        public CourseContent[] newArray(int size) { 
-            return new CourseContent[size]; 
-        } 
-    }; 
- 
-    // write your object's data to the passed-in Parcel 
-    public void writeToParcel(Parcel dest, int flags) { 
-    	dest.writeInt(id);
-    	dest.writeString(name);
-    	dest.writeInt(visible);
-    	dest.writeString(summary);
-    	dest.writeTypedList(modules); 
-    }
-    
-    private CourseContent(Parcel in) { 
-        this.id = in.readInt();
-        this.name = in.readString();
-        this.visible = in.readInt();
-        this.summary = in.readString();
-        in.readTypedList(this.modules, Module.CREATOR); 
     }
 }

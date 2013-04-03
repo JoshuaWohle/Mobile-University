@@ -84,7 +84,6 @@ public class User implements Serializable {
 
 			ObjectInputStream is = new ObjectInputStream(fis);
 			User user = (User) is.readObject();
-			user.ucl = new ArrayList<UserChangeListener>();
 			is.close();
 			Log.d("User", "User restored successfully");
 			return user;
@@ -107,10 +106,14 @@ public class User implements Serializable {
 	}
 	
 	public void addListener(UserChangeListener listener) {
+		if(ucl == null)
+			ucl = new ArrayList<UserChangeListener>();
 		ucl.add(listener);
 	}
 	
 	public void removeListener(UserChangeListener listener) {
+		if(ucl == null)
+			ucl = new ArrayList<UserChangeListener>();
 		ucl.remove(listener);
 	}
 

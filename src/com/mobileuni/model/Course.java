@@ -36,7 +36,7 @@ public class Course implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int id;	
-	private ArrayList<CourseChangeListener> cls = new ArrayList<CourseChangeListener>();
+	transient private ArrayList<CourseChangeListener> cls = new ArrayList<CourseChangeListener>();
 	private String shortname;	
 	private String fullname;	
     private int enrolledusercount;	
@@ -48,10 +48,14 @@ public class Course implements Serializable {
 	}
 	
 	public void addListener(CourseChangeListener listener) {
+		if(cls == null)
+			cls = new ArrayList<CourseChangeListener>();
 		cls.add(listener);
 	}
 	
 	public void removeListener(CourseChangeListener listener) {
+		if(cls == null)
+			cls = new ArrayList<CourseChangeListener>();
 		cls.remove(listener);
 	}
 	public void setId(int id) {

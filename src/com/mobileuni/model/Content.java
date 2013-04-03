@@ -20,137 +20,34 @@
 
 package com.mobileuni.model;
 
+import java.io.Serializable;
+
 import org.json.JSONObject;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+public class Content implements Serializable {
 
-public class Content implements Parcelable  {
-		
-	//private static Content instance;
-
-	public Content() {
-
-	}
-
-//	public static Content getInstance() {
-//		if (instance == null) {
-//			synchronized(Content.class) {
-//				if (instance == null) {
-//					instance = new Content();
-//				}
-//			}
-//		}
-//		return instance;
-//	}
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private String type;	
-	public void setType(String type) {
-       this.type = type;
-    }
-
-    public String getType() {
-       return type;
-    }
-    
-    private String filename;	
-	public void setFileName(String filename) {
-       this.filename = filename;
-    }
-
-    public String getFileName() {
-       return filename;
-    }
-    
+    private String filename;
     private String filepath;	
-	public void setFilePath(String filepath) {
-       this.filepath = filepath;
-    }
-
-    public String getFilePath() {
-       return filepath;
-    }
-	
 	private int filesize;	
-	public void setFileSize(int filesize) {
-       this.filesize = filesize;
-    }
-
-    public int getFileSize() {
-       return filesize;
-    }
-
 	private String fileurl;	
-	public void setFileUrl(String fileurl) {
-       this.fileurl = fileurl;
-    }
-
-    public String getFileUrl() {
-       return fileurl;
-    }
-    
     private String content;	
-	public void setContent(String content) {
-       this.content = content;
-    }
-
-    public String getContent() {
-       return content;
-    }
-    
     private long timecreated;	
-	public void setTimeCreated(long timecreated) {
-       this.timecreated = timecreated;
-    }
-
-    public long getTimeCreated() {
-       return timecreated;
-    }
-    
     private long timemodified;	
-	public void setTimeModified(long timemodified) {
-       this.timemodified = timemodified;
-    }
-
-    public long getTimeModified() {
-       return timemodified;
-    }
-    
     private int sortorder;	
-	public void setSortOrder(int sortorder) {
-       this.sortorder = sortorder;
-    }
-
-    public int getSortOrder() {
-       return sortorder;
-    }
-    
     private int userid;	
-	public void setUserId(int userid) {
-       this.userid = userid;
-    }
-
-    public int getUserId() {
-       return userid;
-    }
-	    
     private String author;	
-	public void setAuthor(String author) {
-       this.author = author;
-    }
-
-    public String getAuthor() {
-       return author;
-    }
-    
     private String license;	
-	public void setLicense(String license) {
-       this.license = license;
-    }
+	
+	public Content() {
+	}
+	
 
-    public String getLicense() {
-       return license;
-    }
 
     public void populateContent(JSONObject jsonObject) {
      
@@ -193,53 +90,100 @@ public class Content implements Parcelable  {
 	        	this.setLicense(license);		        
 		}
     }
+	
+	public void setType(String type) {
+       this.type = type;
+    }
 
-    /* everything below here is for implementing Parcelable */ 
-	 
-    // 99.9% of the time you can just ignore this 
-    public int describeContents() { 
-        return 0; 
-    } 
-    
- // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods 
-    public static final Parcelable.Creator<Content> CREATOR = new Parcelable.Creator<Content>() { 
-        public Content createFromParcel(Parcel in) { 
-            return new Content(in); 
-        } 
- 
-        public Content[] newArray(int size) { 
-            return new Content[size]; 
-        } 
-    }; 
- 
-    // write your object's data to the passed-in Parcel 
-    public void writeToParcel(Parcel dest, int flags) { 
-    	dest.writeString(type); 
-    	dest.writeString(filename);
-    	dest.writeString(filepath);
-    	dest.writeInt(filesize);
-    	dest.writeString(fileurl);
-    	dest.writeString(content);
-    	dest.writeLong(timecreated);
-    	dest.writeLong(timemodified);
-    	dest.writeInt(sortorder);
-    	dest.writeInt(userid);
-    	dest.writeString(author);
-    	dest.writeString(license);
+    public String getType() {
+       return type;
+    }
+    	
+	public void setFileName(String filename) {
+       this.filename = filename;
+    }
+
+    public String getFileName() {
+       return filename;
     }
     
-    private Content(Parcel in) { 
-        this.type = in.readString(); 
-        this.filename = in.readString();
-        this.filepath = in.readString();
-        this.filesize = in.readInt();
-        this.fileurl = in.readString();
-        this.content = in.readString();
-        this.timecreated = in.readLong();
-        this.timemodified = in.readLong();
-        this.sortorder = in.readInt();
-        this.userid = in.readInt();
-        this.author = in.readString();
-        this.license = in.readString();
-    } 
+	public void setFilePath(String filepath) {
+       this.filepath = filepath;
+    }
+
+    public String getFilePath() {
+       return filepath;
+    }
+	
+	public void setFileSize(int filesize) {
+       this.filesize = filesize;
+    }
+
+    public int getFileSize() {
+       return filesize;
+    }
+
+	public void setFileUrl(String fileurl) {
+       this.fileurl = fileurl;
+    }
+
+    public String getFileUrl() {
+       return fileurl;
+    }
+    
+	public void setContent(String content) {
+       this.content = content;
+    }
+
+    public String getContent() {
+       return content;
+    }
+    
+	public void setTimeCreated(long timecreated) {
+       this.timecreated = timecreated;
+    }
+
+    public long getTimeCreated() {
+       return timecreated;
+    }
+    
+	public void setTimeModified(long timemodified) {
+       this.timemodified = timemodified;
+    }
+
+    public long getTimeModified() {
+       return timemodified;
+    }
+    
+	public void setSortOrder(int sortorder) {
+       this.sortorder = sortorder;
+    }
+
+    public int getSortOrder() {
+       return sortorder;
+    }
+    
+	public void setUserId(int userid) {
+       this.userid = userid;
+    }
+
+    public int getUserId() {
+       return userid;
+    }
+	    
+	public void setAuthor(String author) {
+       this.author = author;
+    }
+
+    public String getAuthor() {
+       return author;
+    }
+    
+	public void setLicense(String license) {
+       this.license = license;
+    }
+
+    public String getLicense() {
+       return license;
+    }
 }
