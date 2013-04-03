@@ -20,24 +20,16 @@
 
 package com.mobileuni.helpers;
 
+import com.mobileuni.other.Session;
+
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 public class AppStatus { 
-	 
-    private static AppStatus instance = new AppStatus(); 
-    static Context context; 
-    ConnectivityManager connectivityManager; 
-    NetworkInfo wifiInfo, mobileInfo; 
-    boolean connected = false; 
- 
-    public static AppStatus getInstance(Context ctx) { 
-        context = ctx; 
-        return instance; 
-    }
     
-    public String getConnectionType(Context con) { 
+    public static String getConnectionType(Context con) { 
     	String haveConnectedWifi = null; 
     	String haveConnectedMobile = null; 
 	 
@@ -54,11 +46,11 @@ public class AppStatus {
 	    return (haveConnectedWifi != null) ? haveConnectedWifi : haveConnectedMobile; 
 	}
  
-    public boolean isOnline(Context con) { 
+    public static boolean isOnline() { 
     	boolean haveConnectedWifi = false; 
 	    boolean haveConnectedMobile = false;
 	    
-		connectivityManager = (ConnectivityManager) con.getSystemService(Context.CONNECTIVITY_SERVICE); 
+	    ConnectivityManager connectivityManager = (ConnectivityManager) Session.getContext().getSystemService(Context.CONNECTIVITY_SERVICE); 
 		NetworkInfo[] netInfo = connectivityManager.getAllNetworkInfo(); 
 	    for (NetworkInfo networkInfo : netInfo) { 
 	        if (networkInfo.getTypeName().equalsIgnoreCase("WIFI")) 
@@ -68,7 +60,11 @@ public class AppStatus {
 	            if (networkInfo.isAvailable() && networkInfo.isConnected()) 
 	                haveConnectedMobile = true; 
 	    } 
-	    return haveConnectedWifi || haveConnectedMobile; 
+	    
+	    boolean connection = haveConnectedWifi || haveConnectedMobile;
+
+	    Log.d("Connection", Boolean.toString(connection));
+	    return connection; 
     } 
 } 
 

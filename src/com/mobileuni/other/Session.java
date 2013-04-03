@@ -18,8 +18,7 @@ public class Session {
 	}
 
 	public static void setUser(User user) {
-		if(Session.user == null)
-			Session.user = user;
+		Session.user = user;
 	}
 
 	public static iCourseManager getCourseManager() {
@@ -28,8 +27,7 @@ public class Session {
 	}
 
 	public static void setCourseManager(iCourseManager courseManager) {
-		if(Session.courseManager == null)
-			Session.courseManager = courseManager;
+		Session.courseManager = courseManager;
 	}
 
 	public static Course getCurrentSelectedCourse() {

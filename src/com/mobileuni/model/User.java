@@ -20,19 +20,31 @@
 
 package com.mobileuni.model;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.mobileuni.listeners.UserChangeListener;
+import com.mobileuni.other.Session;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import android.content.Context;
 import android.util.Log;
 
-public class User {
+public class User implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private static final String saveFileName = "user";
 	
 	private String username;
 	private String password;
@@ -42,23 +54,56 @@ public class User {
 	
 	private ArrayList<Course> courses = new ArrayList<Course>();
 	
-	List<UserChangeListener> ucl = new ArrayList<UserChangeListener>();
+	transient List<UserChangeListener> ucl = new ArrayList<UserChangeListener>();
 	
 	public User() {
-
+		
 	}
 	
-	public void getDataFromJSON(JSONObject jsonObject) {
-		//TODO handle more than just moodle related strings
-		 	try {
-				this.setUsername(jsonObject.getString("username"));
-			 	this.setFirstName(jsonObject.getString("firstname"));
-			 	this.setLastName(jsonObject.getString("lastname"));
-			 	this.setProfilePictureURL(jsonObject.getString("userpictureurl"));
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	public void save() {
+		FileOutputStream fos;
+		try {
+			fos = Session.getContext().openFileOutput(saveFileName, Context.MODE_PRIVATE);
+			ObjectOutputStream os = new ObjectOutputStream(fos);
+			os.writeObject(this);
+			os.close();
+		 	Log.d("User", "Successfully saved user to disk");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static User load() {
+		FileInputStream fis;
+		try {
+			fis = Session.getContext().openFileInput(saveFileName);
+
+			ObjectInputStream is = new ObjectInputStream(fis);
+			User user = (User) is.readObject();
+			user.ucl = new ArrayList<UserChangeListener>();
+			is.close();
+			Log.d("User", "User restored successfully");
+			return user;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (StreamCorruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// Failed to find the user
+		return null;
 	}
 	
 	public void addListener(UserChangeListener listener) {

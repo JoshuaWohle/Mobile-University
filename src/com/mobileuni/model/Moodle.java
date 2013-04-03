@@ -24,7 +24,7 @@ import com.mobileuni.other.Session;
 import com.mobileuni.other.WebServiceFunction;
 
 public class Moodle implements iCourseManager {
-
+	
 	private String tokenURL = "";
 	private String token = "";
 	private int currentMoodleUserID = 0;
@@ -80,6 +80,7 @@ public class Moodle implements iCourseManager {
 		}
 		
 		Session.getUser().setCourses(courseArray);
+		Session.getUser().save();
 	}
 
 	public void setCourseDetails(JSONObject jsonObject, int courseId) {
@@ -113,6 +114,7 @@ public class Moodle implements iCourseManager {
 			}
 			
 			Session.getUser().getCourse(courseId).setCourseContent(courseContentsArray);
+			Session.getUser().save();
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -154,7 +156,6 @@ public class Moodle implements iCourseManager {
 				}
 				
 				this.setAvailableFunctions(temp);
-
 				for (iCourseManagerListener listener : icml) {
 					listener.loginChange(true);
 				}

@@ -61,7 +61,6 @@ public class LoginController extends Activity implements OnClickListener, iCours
 		// TODO make really independent of Moodle
 		Session.setCourseManager(new Moodle());
 		Session.getCourseManager().addListener(this);
-		Session.setUser(new User());
 
 		try {
 			serverUrl = (EditText) findViewById(R.id.moodle_url);
@@ -93,35 +92,18 @@ public class LoginController extends Activity implements OnClickListener, iCours
 
 		switch (v.getId()) {
 		case R.id.login_button:
-
 			/*
 			 * new Thread(new Runnable(){ public void run(){
 			 */
-
-			if (AppStatus.getInstance(LoginController.this).isOnline(LoginController.this)) {
-				String conType = AppStatus.getInstance(LoginController.this)
-						.getConnectionType(LoginController.this);
-				conType = conType == null ? "Unknown" : conType;
-				Toast.makeText(getApplicationContext(),
-						R.string.not_online + "(" + conType + ")",
-						Toast.LENGTH_LONG).show();
-
-			} else {
-				Toast.makeText(getApplicationContext(),
-						R.string.not_online, Toast.LENGTH_LONG).show();
-				// enter details for offline access to some files. Restore the
-				// database.
-			}
-			
 			login();
 			
-			saved = getSharedPreferences(loginDetails, MODE_PRIVATE);
-
-			SharedPreferences.Editor e = saved.edit();
-			e.putString("siteUrlVal", Config.serverUrl);
-			e.putString("usr", Session.getUser().getUsername());
-			e.putString("pwd", Session.getUser().getPassword());
-			e.commit();
+//			saved = getSharedPreferences(loginDetails, MODE_PRIVATE);
+//
+//			SharedPreferences.Editor e = saved.edit();
+//			e.putString("siteUrlVal", Config.serverUrl);
+//			e.putString("usr", Session.getUser().getUsername());
+//			e.putString("pwd", Session.getUser().getPassword());
+//			e.commit();
 
 			break;
 		default:
@@ -132,11 +114,27 @@ public class LoginController extends Activity implements OnClickListener, iCours
 	public void login() {
 		// Weirdly enough you need the getResources() here...
 		dialog = ProgressDialog.show(this, getResources().getString(R.string.loading), getResources().getString(R.string.wait_while_login));
-		Config.serverUrl = serverUrl.getText().toString();
 		
-		Session.getUser().setUsername(username.getText().toString());
-		Session.getUser().setPassword(password.getText().toString());
-		Session.getCourseManager().login(Session.getUser());
+		if (AppStatus.isOnline()) {
+			Session.setUser(new User());
+			Config.serverUrl = serverUrl.getText().toString();
+			
+			Session.getUser().setUsername(username.getText().toString());
+			Session.getUser().setPassword(password.getText().toString());
+			Session.getUser().save();
+			Session.getCourseManager().login(Session.getUser());
+		} else {
+			// Offline usage
+			Log.d("Session", "Proceding with offline session");
+			Session.setUser(User.load());
+			if(Session.getUser() == null) {
+				Toast.makeText(this, "No connection and no previous data (so cannot browse offline)."
+						+ " Please make sure you have a data connection and try again.", Toast.LENGTH_SHORT).show();
+				dialog.dismiss();
+				return;
+			}
+			loginChange(true);
+		}
 	}
 
 	public void loginChange(boolean loggedIn) {

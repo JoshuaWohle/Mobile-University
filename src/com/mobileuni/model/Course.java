@@ -20,6 +20,7 @@
 
 package com.mobileuni.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.json.JSONException;
@@ -27,16 +28,24 @@ import org.json.JSONObject;
 
 import com.mobileuni.listeners.CourseChangeListener;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-public class Course implements Parcelable {
+public class Course implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private int id;	
+	private ArrayList<CourseChangeListener> cls = new ArrayList<CourseChangeListener>();
+	private String shortname;	
+	private String fullname;	
+    private int enrolledusercount;	
+    private String idnumber;	
+    private int visible;	
+
 	public Course() {
 		
 	}
-
-	private ArrayList<CourseChangeListener> cls = new ArrayList<CourseChangeListener>();
 	
 	public void addListener(CourseChangeListener listener) {
 		cls.add(listener);
@@ -45,8 +54,6 @@ public class Course implements Parcelable {
 	public void removeListener(CourseChangeListener listener) {
 		cls.remove(listener);
 	}
-
-	private int id;	
 	public void setId(int id) {
        this.id = id;
     }
@@ -54,8 +61,7 @@ public class Course implements Parcelable {
     public int getId() {
        return id;
     }
-
-	private String shortname;	
+    
 	public void setShortName(String shortname) {
        this.shortname = shortname;
     }
@@ -63,8 +69,7 @@ public class Course implements Parcelable {
     public String getShortName() {
        return shortname;
     }
-	    
-    private String fullname;	
+    
 	public void setFullname(String fullname) {
        this.fullname = fullname;
     }
@@ -73,7 +78,6 @@ public class Course implements Parcelable {
        return fullname;
     }
     
-    private int enrolledusercount;	
 	public void setEnrolledUserCount(int enrolledusercount) {
        this.enrolledusercount = enrolledusercount;
     }
@@ -82,7 +86,6 @@ public class Course implements Parcelable {
        return enrolledusercount;
     }
     
-    private String idnumber;	
 	public void setIdNumber(String idnumber) {
        this.idnumber = idnumber;
     }
@@ -91,7 +94,6 @@ public class Course implements Parcelable {
        return idnumber;
     }
     
-    private int visible;	
 	public void setVisible(int visible) {
        this.visible = visible;
     }
@@ -148,37 +150,5 @@ public class Course implements Parcelable {
     public int describeContents() { 
         return 0; 
     } 
-    
- // this is used to regenerate your object. All Parcelables must have a CREATOR that implements these two methods 
-    public static final Parcelable.Creator<Course> CREATOR = new Parcelable.Creator<Course>() { 
-        public Course createFromParcel(Parcel in) { 
-            return new Course(in); 
-        } 
- 
-        public Course[] newArray(int size) { 
-            return new Course[size]; 
-        } 
-    }; 
- 
-    // write your object's data to the passed-in Parcel 
-    public void writeToParcel(Parcel dest, int flags) { 
-    	dest.writeInt(id);
-    	dest.writeString(shortname);
-    	dest.writeString(fullname);
-    	dest.writeInt(enrolledusercount);
-    	dest.writeString(idnumber);
-    	dest.writeInt(visible);
-    	dest.writeTypedList(coursecontents); 
-    }
-    
-    private Course(Parcel in) { 
-        this.id = in.readInt();
-        this.shortname = in.readString();
-        this.fullname = in.readString();
-        this.enrolledusercount = in.readInt();
-        this.idnumber = in.readString();
-        this.visible = in.readInt();
-        in.readTypedList(this.coursecontents, CourseContent.CREATOR); 
-    }
     
 }

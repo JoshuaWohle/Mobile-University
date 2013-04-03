@@ -1,6 +1,7 @@
 package com.mobileuni.controller;
 
 import com.mobileuni.R;
+import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.listeners.UserChangeListener;
 import com.mobileuni.model.Course;
 import com.mobileuni.other.Session;
@@ -20,20 +21,23 @@ public class CourseSelectController extends Activity implements UserChangeListen
 	ProgressDialog dialog;
 
 	public void onCreate(Bundle savedInstanceState) {
-		
+
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.course_select);
 		if(Session.getUser() == null) {
 			Log.d("Session", "No user is set, cannot use the application");
 			return;
 		}
-
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.course_select);
+		
 		dialog = ProgressDialog.show(this,
 				getResources().getString(R.string.loading), getResources()
 						.getString(R.string.wait_while_get_courses));
 		
 		Session.getUser().addListener(this);
-		Session.getCourseManager().setCourses(null);
+		if(AppStatus.isOnline())
+			Session.getCourseManager().setCourses(null);
+		else
+			courseChange(true);
 
 	}
 
