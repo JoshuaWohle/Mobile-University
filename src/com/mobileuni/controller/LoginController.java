@@ -91,23 +91,11 @@ public class LoginController extends Activity implements OnClickListener, iCours
 	public void onClick(View v) {
 
 		switch (v.getId()) {
-		case R.id.login_button:
-			/*
-			 * new Thread(new Runnable(){ public void run(){
-			 */
-			login();
-			
-//			saved = getSharedPreferences(loginDetails, MODE_PRIVATE);
-//
-//			SharedPreferences.Editor e = saved.edit();
-//			e.putString("siteUrlVal", Config.serverUrl);
-//			e.putString("usr", Session.getUser().getUsername());
-//			e.putString("pwd", Session.getUser().getPassword());
-//			e.commit();
-
-			break;
-		default:
-
+			case R.id.login_button:
+				login();
+				break;
+			default:
+				break;
 		}
 	}
 	
