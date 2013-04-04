@@ -1,8 +1,8 @@
 /**
 *  an Android implementation of REST and XML-RPC access to Moodle 2.2 servers or higher
-*  Copyright (C) 2012  Justin Stevanz, Andrew Kelson and Matthias Peitsch
+*  Copyright (C) 2012  Justin Stevanz, Andrew Kelson, Matthias Peitsch and Joshua Wöhle
 *
-*	Contact the.omega.online@gmail.com for further information.
+*	Contact the.omega.online@gmail.com or jwohle@gmail.com for further information.
 *
 *   This program is free software: you can redistribute it and/or modify
 *    it under the terms of the GNU General Public License as published by
