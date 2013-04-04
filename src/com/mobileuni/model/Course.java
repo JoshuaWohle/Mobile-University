@@ -42,6 +42,8 @@ public class Course implements Serializable {
     private int enrolledusercount;	
     private String idnumber;	
     private int visible;	
+    private ArrayList<CourseContent> coursecontents = new ArrayList<CourseContent>();	
+    private ArrayList<String> absoluteFilePaths = new ArrayList<String>();
 
 	public Course() {
 		
@@ -106,7 +108,6 @@ public class Course implements Serializable {
        return visible;
     }
     
-    private ArrayList<CourseContent> coursecontents = new ArrayList<CourseContent>();	
 	public void setCourseContent(ArrayList<CourseContent> coursecontents) {
        this.coursecontents = coursecontents;
        
@@ -153,6 +154,28 @@ public class Course implements Serializable {
     // 99.9% of the time you can just ignore this 
     public int describeContents() { 
         return 0; 
-    } 
+    }
+	
+	public ArrayList<String> getAbsoluteFilePaths() {
+		return absoluteFilePaths;
+	}
+
+	public void setAbsoluteFilePaths(ArrayList<String> absoluteFilePaths) {
+		this.absoluteFilePaths = absoluteFilePaths;
+	}
+
+	public void addAbsoluteFilePath(String fielPath) {
+		if(!this.absoluteFilePaths.contains(fielPath)) {
+			this.absoluteFilePaths.add(fielPath);
+
+			for(CourseChangeListener listener : cls)
+				listener.fileChanged(fielPath);
+		}
+	}
+	
+	public void removeAbsoluteFilePath(String fielPath) {
+		if(this.absoluteFilePaths.contains(fielPath))
+			this.absoluteFilePaths.remove(fielPath);
+	}
     
 }

@@ -123,6 +123,7 @@ public class CourseContentsListHelper {
 						    		map.put("availability", filesize);
 						    		map.put("thumb", String.valueOf(thumbresourse));
 						    		map.put("filename", item.getFileName());
+						    		map.put("absolutePath", file.getAbsolutePath());
 						    		map.put("traffic", String.valueOf(traffic));
 						    		map.put("url", item.getFileUrl());
 						    		map.put("modifieddate", String.valueOf(item.getTimeModified()));

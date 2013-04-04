@@ -24,12 +24,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.helpers.CourseContentsListHelper;
-import com.mobileuni.helpers.FileManager;
 import com.mobileuni.helpers.SectionListAdapter;
 import com.mobileuni.helpers.SectionListItem;
 import com.mobileuni.helpers.SectionListView;
 import com.mobileuni.helpers.StandardArrayAdapter;
+import com.mobileuni.helpers.asynctasks.DownloadFileTask;
+import com.mobileuni.listeners.CourseChangeListener;
 import com.mobileuni.listeners.MenuListener;
 import com.mobileuni.model.Course;
 import com.mobileuni.model.CourseContent;
@@ -40,6 +42,7 @@ import com.mobileuni.R;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -54,7 +57,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class CourseContentController extends Activity {
+public class CourseContentController extends Activity implements CourseChangeListener {
 
 	Button home, courseSelect, upload, setting;
 	TextView footerCourseHdr;
@@ -66,7 +69,7 @@ public class CourseContentController extends Activity {
 	StandardArrayAdapter arrayAdapter;
 	SectionListAdapter sectionAdapter;
 	SectionListView listView;
-	
+
 	Course selectedCourse;
 	MenuListener ml;
 
@@ -79,6 +82,7 @@ public class CourseContentController extends Activity {
 		ml = new MenuListener(this);
 		user = Session.getUser();
 		selectedCourse = Session.getCurrentSelectedCourse();
+		selectedCourse.addListener(this);
 
 		try {
 
@@ -129,12 +133,12 @@ public class CourseContentController extends Activity {
 		ArrayList<CourseContent> coursecontent = new ArrayList<CourseContent>();
 		if (user != null && selectedCourse != null) {
 			coursecontent = selectedCourse.getCourseContent();
-			Log.d("Course", "Got course contents for course : " + selectedCourse.getId());
+			Log.d("Course", "Got course contents for course : "
+					+ selectedCourse.getId());
 		}
 
 		documentArray = CourseContentsListHelper.getInstance(this)
-				.populateCourseDocuments(
-						coursecontent,
+				.populateCourseDocuments(coursecontent,
 						selectedCourse.getFullname());
 
 		if (documentArray != null && documentArray.length > 0) {
@@ -146,68 +150,59 @@ public class CourseContentController extends Activity {
 
 			listView.setOnItemClickListener(new OnItemClickListener() {
 
-				@SuppressLint("ShowToast")
-				@SuppressWarnings("static-access")
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 
 					Object obj = sectionAdapter.getItem(position);
 					if (obj instanceof SectionListItem) {
-
+						
 						SectionListItem selectedMap = (SectionListItem) obj;
 						@SuppressWarnings("unchecked")
 						HashMap<String, String> selectedItem = (HashMap<String, String>) selectedMap.item;
 						String fileURL = selectedItem.get("url");
 						String fileName = selectedItem.get("filename");
-						String courseDirectoryAndType = selectedCourse.getFullname()
-								+ "/Documents/";
-
-						File file = FileManager.getInstance(
-								CourseContentController.this).DownloadFromUrl(
-								fileURL + "&token=" + Session.getCourseManager().getToken(),
-								fileName, courseDirectoryAndType);
-
-						if (file != null) {
-							MimeTypeMap myMime = MimeTypeMap.getSingleton();
-							Intent newIntent = new Intent(
-									android.content.Intent.ACTION_VIEW);
-
-							// Intent newIntent = new
-							// Intent(Intent.ACTION_VIEW);
-							String mimeType = myMime
-									.getMimeTypeFromExtension(fileExt(
-											file.toString()).substring(1));
-							newIntent.setDataAndType(Uri.fromFile(file),
-									mimeType);
-							newIntent
-									.setFlags(newIntent.FLAG_ACTIVITY_NEW_TASK);
-							try {
-								CourseContentController.this.startActivity(newIntent);
-							} catch (android.content.ActivityNotFoundException e) {
-								Log.e("MIME Error",
-										e.toString()
-												+ " default program for this filetype not found");
-								// Raise on activity not found
-								Toast.makeText(
-										CourseContentController.this,
-										"A suitable Application to access the file "
-												+ mimeType + " not found.",
-										4000).show();
-							}
-						} else {
-							Log.d("Documents", "No SD Cards installed, cannot get document");
-							Toast.makeText(
-									CourseContentController.this,
-									"There is no SD Card installed to save the file to. Please insert to view the file.",
-									4000).show();
-						}
+						String courseDirectoryAndType = selectedCourse
+								.getFullname() + "/Documents/";
+						
+						// Handle both online & Offline scenarios
+						if(AppStatus.isOnline())
+							new DownloadFileTask().execute(fileURL, fileName, courseDirectoryAndType);
+						else if(selectedCourse.getAbsoluteFilePaths().contains(selectedItem.get("absolutePath")))
+							downloadedFile(selectedItem.get("absolutePath"));
 					}
 				}
 			});
 		} else {
-			Log.d("Documents", "Something went wrong whilst getting the documents for course ID: " + Session.getCurrentSelectedCourse().getId());
+			Log.d("Documents",
+					"Something went wrong whilst getting the documents for course ID: "
+							+ Session.getCurrentSelectedCourse().getId());
 			emptyLayout.setVisibility(View.VISIBLE);
 			courseworkLayout.setVisibility(View.INVISIBLE);
+		}
+	}
+
+	public void downloadedFile(String absoluteFilePath) {
+		File file = new File(absoluteFilePath);
+
+		MimeTypeMap myMime = MimeTypeMap.getSingleton();
+		Intent i = new Intent(android.content.Intent.ACTION_VIEW);
+
+		// Intent newIntent = new
+		// Intent(Intent.ACTION_VIEW);
+		String mimeType = myMime.getMimeTypeFromExtension(fileExt(
+				file.toString()).substring(1));
+		i.setDataAndType(Uri.fromFile(file), mimeType);
+		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		try {
+			CourseContentController.this.startActivity(i);
+		} catch (ActivityNotFoundException e) {
+			Log.e("MIME Error", e.toString()
+					+ " default program for this filetype not found");
+			// Raise on activity not found
+			Toast.makeText(
+					CourseContentController.this,
+					"A suitable Application to access the file " + mimeType
+							+ " not found.", Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -228,6 +223,15 @@ public class CourseContentController extends Activity {
 			return ext.toLowerCase();
 
 		}
+	}
+
+	public void courseContentsChanged() {
+		// Nothing to do here
+	}
+
+	public void fileChanged(String filePath) {
+		Log.d("File Download", "Triggering response to downloaded file");
+		downloadedFile(filePath);
 	}
 
 }

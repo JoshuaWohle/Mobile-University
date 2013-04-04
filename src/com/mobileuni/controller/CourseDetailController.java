@@ -164,4 +164,8 @@ public class CourseDetailController extends Activity implements CourseChangeList
 		displayCourseChoice();		
 	}
 
+	public void fileChanged(String filename) {
+		//Nothing to do here
+	}
+
 }
