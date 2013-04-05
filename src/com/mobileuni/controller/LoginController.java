@@ -24,6 +24,7 @@ import com.mobileuni.config.Config;
 import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.listeners.iCourseManagerListener;
 import com.mobileuni.model.Moodle;
+import com.mobileuni.model.University;
 import com.mobileuni.model.User;
 import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
@@ -33,59 +34,49 @@ import com.mobileuni.R;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class LoginController extends Activity implements OnClickListener, iCourseManagerListener {
 	
-	Button login;
-	EditText serverUrl, username, password;
-	SharedPreferences saved;
-	String loginDetails;
+	EditText username, password;
+	Spinner universitySelect;
 	
 	ProgressDialog dialog;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		Session.setContext(this);
 		super.onCreate(savedInstanceState);
+		Session.setContext(this);
 		setContentView(R.layout.login);
+		University.init();
+		universitySelect = (Spinner) findViewById(R.id.login_university_select);
+		// Create an ArrayAdapter using the string array and a default spinner layout
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,
+		        University.getUniversityNameList());
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		// Apply the adapter to the spinner
+		universitySelect.setAdapter(adapter);
 		
 		// TODO make really independent of Moodle
 		Session.setCourseManager(new Moodle());
 		Session.getCourseManager().addListener(this);
+		
+		username = (EditText) findViewById(R.id.username);
+		password = (EditText) findViewById(R.id.password);
+		
+		username.setText(Constants.testUser);
+		password.setText(Constants.testPassword);
 
-		try {
-			serverUrl = (EditText) findViewById(R.id.moodle_url);
-			username = (EditText) findViewById(R.id.username);
-			password = (EditText) findViewById(R.id.password);
-			login = (Button) findViewById(R.id.login_button);
-
-			try {
-				serverUrl.setHint(R.string.login_url_hint);
-				username.setHint(R.string.login_username_hint);
-				password.setHint(R.string.login_password_hint);
-
-				serverUrl.setText(Constants.testURL);
-				username.setText(Constants.testUser);
-				password.setText(Constants.testPassword);
-			} catch (Exception e) {
-				Log.e("NoPreferences", e.toString());
-			}
-
-			login.setOnClickListener(this);
-
-		} catch (Exception e) {
-			Log.e("Error With Login", e.toString());
-		}
-
+		((Button) findViewById(R.id.login_button)).setOnClickListener(this);
 	}
 
 	public void onClick(View v) {
@@ -105,7 +96,7 @@ public class LoginController extends Activity implements OnClickListener, iCours
 		
 		if (AppStatus.isOnline()) {
 			Session.setUser(new User());
-			Config.serverUrl = serverUrl.getText().toString();
+			Config.serverUrl = University.getCourseManagerURL(universitySelect.getSelectedItem().toString());
 			
 			Session.getUser().setUsername(username.getText().toString());
 			Session.getUser().setPassword(password.getText().toString());

@@ -2,6 +2,7 @@ package com.mobileuni.other;
 
 import android.content.Context;
 
+import com.evernote.client.android.EvernoteSession;
 import com.mobileuni.model.Course;
 import com.mobileuni.model.User;
 import com.mobileuni.model.iCourseManager;
@@ -11,6 +12,7 @@ public class Session {
 	private static iCourseManager courseManager = null;
 	private static Course currentSelectedCourse = null;
 	private static Context context;
+	private static EvernoteSession es = null;
 	
 	public static User getUser() {
 		if(user == null) {/*TODO handle case when user is empty and called for*/ return null;}
@@ -44,5 +46,11 @@ public class Session {
 
 	public static void setContext(Context context) {
 		Session.context = context;
+	}
+
+	public static EvernoteSession getEs() {
+		if(es == null)
+			es = EvernoteSession.getInstance(Session.getContext(), Constants.EVERNOTE_CONSUMER_KEY, Constants.EVERNOTE_CONSUMER_SECRET, Constants.EVERNOTE_HOST);
+		return es;
 	}
 }

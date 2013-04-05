@@ -1,98 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" android:background="#ffffff" >
+    android:background="@color/light_brown"
+    android:orientation="vertical" 
+    android:padding="20dip">
 
-    <LinearLayout
-        android:id="@+id/hdr_menu_view"
+    <TextView 
+        android:text="@string/login_mobile" 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/navbar_shape"
-        android:orientation="horizontal"
-        android:weightSum="3" >
-
-        <TextView
-            android:id="@+id/login_hdr"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/login_moodle_hdr"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:layout_marginBottom="5dp"
-            android:textColor="#ffffff" android:gravity="center"
-		    android:textStyle="bold" />
-
-        </LinearLayout>
-
-    <TextView
-        android:id="@+id/login_details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/hdr_menu_view"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/login_moodle_desc"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#000000" />
-
-    <EditText
-        android:id="@+id/moodle_url"
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:layout_marginTop="30dip"
+        android:textStyle="bold"
+        android:textColor="@color/dark_brown"
+        android:textSize="40sp"/>
+    
+    <TextView 
+        android:text="@string/login_university" 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/login_details"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:singleLine="true" 
-        android:visibility="visible">
-
-<!--         <requestFocus /> -->
-    </EditText>
+        android:textAllCaps="true"
+        android:gravity="center"
+        android:layout_marginBottom="30dip"
+        android:textStyle="bold"
+        android:textColor="@color/login_blue"
+        android:textSize="40sp"/>
 
     <EditText
         android:id="@+id/username"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/moodle_url"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:singleLine="true" />
+        android:singleLine="true" 
+        android:hint="@string/login_username"/>
 
     <EditText
         android:id="@+id/password"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/username"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
         android:inputType="textPassword"
-        android:singleLine="true" />
+        android:singleLine="true" 
+        android:hint="@string/login_password"
+        android:layout_marginBottom="10dip"/>
     
-    <Button
-        android:id="@+id/login_button"
-        style="@style/ButtonText"
+    <TextView 
+        android:text="@string/login_select_university" 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/password"
-        android:layout_below="@+id/password"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/black_button"
-        android:drawableLeft="@drawable/login_button"
-        android:drawablePadding="10dp"
-        android:paddingBottom="3dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="3dp"
-        android:text="@string/login_button" />
-    </RelativeLayout>
+        android:textColor="@color/dark_brown"/>
     
+    <Spinner
+        android:id="@+id/login_university_select"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:layout_marginBottom="30dip"/>
+
+    <Button
+        style="@style/dark_theme"
+        android:id="@+id/login_button"      
+        android:layout_width="fill_parent"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_height="40dip"
+        android:text="@string/login_button" />
+
+</LinearLayout>

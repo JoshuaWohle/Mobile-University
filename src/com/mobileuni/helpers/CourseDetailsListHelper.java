@@ -47,14 +47,12 @@ public class CourseDetailsListHelper {
 		String assignmentCount = "(0)";
 		String gradesCount = "(0)";
 		String forumCount = "(0)";
-		String offlineCount = "(0)";
 		
 		if (coursecontent.size() > 0) {
 			int docCount = 0;
 			int assignCount = 0;
 			int gradeCount = 0;
 			int frmCount = 0;
-			int olCount = 0;
 			
 			for (CourseContent content : coursecontent) {
 				for (Module module : content.getModules()) {
@@ -74,9 +72,6 @@ public class CourseDetailsListHelper {
 					else if (module.getModName().equalsIgnoreCase("forum")) {
 						frmCount++;
 					}
-					else if (module.getModName().equalsIgnoreCase("online")) {
-						olCount++;
-					}
 				}
 			}
 			
@@ -84,7 +79,6 @@ public class CourseDetailsListHelper {
 			assignmentCount = "(" + String.valueOf(assignCount) + ")";
 			gradesCount = "(" + String.valueOf(gradeCount) + ")";
 			forumCount = "(" + String.valueOf(frmCount) + ")";
-			offlineCount = "(" + String.valueOf(olCount) + ")";
 		}
 		
 		ArrayList<HashMap<String, String>> courseOverviewList = new ArrayList<HashMap<String, String>>();
@@ -136,7 +130,7 @@ public class CourseDetailsListHelper {
 		
 		map = new HashMap<String, String>();
 		// adding each item to HashMap key => value		
-    	map.put(LazyAdapter.KEY_ID, "5");
+    	map.put(LazyAdapter.KEY_ID, "4");
 		map.put(LazyAdapter.KEY_HEADER, "Notes");
 		map.put(LazyAdapter.KEY_DESCRIPTION, "Some notes");
 		map.put(LazyAdapter.KEY_AVAILABLE, "0");

@@ -5,12 +5,11 @@
     <string name="section_default_hdr">Section</string>
 	<string name="standard_list">Standard</string>
 	<string name="empty_list">Empty</string>
-    <string name="login_moodle_hdr">Mobile University</string>
     <string name="login_moodle_desc">Please enter Moodle details</string>
     <string name="login_moodle_hint">Moodle URL</string>
-    <string name="login_url_hint">Site Url</string>
-    <string name="login_username_hint">Username</string>
-    <string name="login_password_hint">Password</string>
+    <string name="login_url">Site Url</string>
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
     <string name="login_button">Login</string>
     <string name="coursework_home_view">Overview</string>
     <string name="coursework_detail_view">Course Work</string>
@@ -65,5 +64,13 @@
 	<string name="wait_while_get_courses">Please wait whilst we\'re trying to get your enrolled courses</string>
 	<string name="wait_while_get_course_detail">Getting the details for your course...</string>
 	<string name="available_courses">Available courses</string>
+	<string name="login_mobile">mobile</string>
+	<string name="login_university">University</string>
+	<string name="login_select_university">Please select your university</string>
+	<string name="notes_title">Course notes</string>
+	<string name="general_title">View title</string>
+	<string name="note_add">Add a new note</string>
+	<string name="install_evernote">Mobile University uses the Evernote app to create notes. Would you like to install it ?</string>
+	<string name="authenticate_evernote">As Mobile University uses Evernote to keep track of notes, you can only access them if you authenticate Evernote first.</string>
 		
 </resources>

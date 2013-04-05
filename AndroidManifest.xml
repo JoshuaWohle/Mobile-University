@@ -30,9 +30,10 @@
         <activity android:name="com.mobileuni.controller.CourseAssignmentController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme"/>
         <activity android:name="com.mobileuni.controller.CourseGradeController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme"/>
         <activity android:name="com.mobileuni.controller.CourseForumController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme"/>
-        <activity android:name="com.mobileuni.CourseSelect" android:screenOrientation="portrait" android:theme="@style/Theme.Transparent" />
         <activity android:name="com.mobileuni.controller.SettingsController" android:screenOrientation="portrait" android:theme="@style/Theme.Transparent" />
-        <activity android:name="com.mobileuni.controller.DatabaseController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme" />
+    	<activity android:name="com.mobileuni.controller.CourseNoteController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme" />
+    	<activity android:name="com.evernote.client.android.EvernoteOAuthActivity" android:configChanges="orientation|keyboardHidden" />
+    	<activity android:name="com.evernote.action.CREATE_NEW_NOTE" android:configChanges="orientation|keyboardHidden" />
     </application>
 
 </manifest>

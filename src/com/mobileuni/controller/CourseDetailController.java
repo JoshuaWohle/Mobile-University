@@ -23,6 +23,7 @@ package com.mobileuni.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.evernote.client.android.EvernoteSession;
 import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.helpers.CourseDetailsListHelper;
 import com.mobileuni.helpers.LazyAdapter;
@@ -35,8 +36,13 @@ import com.mobileuni.other.Session;
 import com.mobileuni.R;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -46,7 +52,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class CourseDetailController extends Activity implements CourseChangeListener {
+public class CourseDetailController extends Activity implements
+		CourseChangeListener, OnItemClickListener {
 
 	Button home, courseSelect, upload, setting;
 	TextView footerCourseHdr, documents, assignments, grades, forum, offline;
@@ -54,30 +61,31 @@ public class CourseDetailController extends Activity implements CourseChangeList
 	ListView list;
 	ProgressDialog dialog;
 	ArrayList<HashMap<String, String>> courseDetailList = new ArrayList<HashMap<String, String>>();
-	
+
 	Course selectedCourse;
 	MenuListener ml;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.course_detail);
-		dialog = ProgressDialog.show(this, 
-					getResources().getString(R.string.loading), 
-					getResources().getString(R.string.wait_while_get_course_detail));
+		dialog = ProgressDialog.show(this,
+				getResources().getString(R.string.loading), getResources()
+						.getString(R.string.wait_while_get_course_detail));
 		ml = new MenuListener(this);
 		selectedCourse = Session.getCurrentSelectedCourse();
 		selectedCourse.addListener(this);
-		
+
 		// Check if online
-		if(AppStatus.isOnline())
-			Session.getCourseManager().setCourseDetails(null, selectedCourse.getId()); // Get new details of course
+		if (AppStatus.isOnline())
+			Session.getCourseManager().setCourseDetails(null,
+					selectedCourse.getId()); // Get new details of course
 		else
 			courseContentsChanged(); // Serve old content
 	}
-	
+
 	public void displayCourseChoice() {
 		try {
 			footerCourseHdr = (TextView) findViewById(R.id.course_ftr_view);
@@ -87,11 +95,12 @@ public class CourseDetailController extends Activity implements CourseChangeList
 			setting = (Button) findViewById(R.id.settings_view);
 			upload = (Button) findViewById(R.id.upload_view);
 
-			if (Session.getUser() != null && Session.getCurrentSelectedCourse() != null)
+			if (Session.getUser() != null
+					&& Session.getCurrentSelectedCourse() != null)
 				footerCourseHdr.setText(selectedCourse.getShortName());
 
 			getCourseDetails();
-			
+
 			courseSelect.setOnClickListener(ml);
 			home.setOnClickListener(ml);
 			setting.setOnClickListener(ml);
@@ -106,62 +115,84 @@ public class CourseDetailController extends Activity implements CourseChangeList
 		ArrayList<CourseContent> courseContent = new ArrayList<CourseContent>();
 		if (Session.getUser() != null && selectedCourse != null) {
 			courseContent = selectedCourse.getCourseContent();
-			Log.d("Courses", "Got course content for course id: " + selectedCourse.getId());
+			Log.d("Courses", "Got course content for course id: "
+					+ selectedCourse.getId());
 		}
 		// Populate the course overview for the list
 		courseDetailList = CourseDetailsListHelper.getInstance(this)
 				.populateCourseOverview(courseContent);
 
 		list = (ListView) findViewById(R.id.course_home_list);
-		
+
 		adapter = new LazyAdapter(this, courseDetailList);
 		list.setAdapter(adapter);
 
-		// Click event for single list row
-		list.setOnItemClickListener(new OnItemClickListener() {
-			Intent intent;
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-
-				HashMap<String, String> selectedMap = courseDetailList
-						.get(position);
-				String value = selectedMap.get(LazyAdapter.KEY_ID);
-				int selectedId = Integer.valueOf(value);
-
-				switch (selectedId) {
-				case 0: // DOCUMENTS
-					intent = new Intent(parent.getContext(),
-							CourseContentController.class);
-					startActivity(intent);
-					break;
-				case 1: // ASSIGNMENTS
-					intent = new Intent(parent.getContext(),
-							CourseAssignmentController.class);
-					startActivity(intent);
-					break;
-				case 2: // GRADES
-					intent = new Intent(parent.getContext(),
-							CourseGradeController.class);
-					startActivity(intent);
-					break;
-				case 3: // FORUMS
-					intent = new Intent(parent.getContext(),
-							CourseForumController.class);
-					startActivity(intent);
-					break;
-				default:
-				}
-			}
-		});
+		list.setOnItemClickListener(this);
 	}
 
 	public void courseContentsChanged() {
 		dialog.dismiss();
-		displayCourseChoice();		
+		displayCourseChoice();
 	}
 
 	public void fileChanged(String filename) {
-		//Nothing to do here
+		// Nothing to do here
+	}
+
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		Intent intent = null;
+
+		HashMap<String, String> selectedMap = courseDetailList.get(position);
+		String value = selectedMap.get(LazyAdapter.KEY_ID);
+		int selectedId = Integer.valueOf(value);
+
+		switch (selectedId) {
+		case 0: // DOCUMENTS
+			intent = new Intent(parent.getContext(),
+					CourseContentController.class);
+			startActivity(intent);
+			break;
+		case 1: // ASSIGNMENTS
+			intent = new Intent(parent.getContext(),
+					CourseAssignmentController.class);
+			break;
+		case 2: // GRADES
+			intent = new Intent(parent.getContext(),
+					CourseGradeController.class);
+			break;
+		case 3: // FORUMS
+			intent = new Intent(parent.getContext(),
+					CourseForumController.class);
+			break;
+		case 4: // NOTES
+			intent = new Intent(parent.getContext(), CourseNoteController.class);
+			break;
+		default:
+			break;
+		}
+		if(intent != null)
+			startActivity(intent);
+	}
+	
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		switch (requestCode) {
+		// Update UI when oauth activity returns result
+		case EvernoteSession.REQUEST_CODE_OAUTH:
+			if (resultCode == Activity.RESULT_OK) {
+
+			}
+			break;
+		default:
+			break;
+		}
+	}
+
+	public void notesChanged() {
+		// Nothing to do on this view
+		
 	}
 
 }

@@ -23,7 +23,7 @@ public class CourseSelectController extends Activity implements UserChangeListen
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.course_select);
+		setContentView(R.layout.item_list);
 		if(Session.getUser() == null) {
 			Log.d("Session", "No user is set, cannot use the application");
 			return;
@@ -44,14 +44,16 @@ public class CourseSelectController extends Activity implements UserChangeListen
 	public void courseChange(boolean gotCourses) {
 		Log.d("Courses", "Setting courses on list");
 
-		LinearLayout main = (LinearLayout) findViewById(R.id.course_list);
+		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
+		// Set title of the view
+		((TextView) findViewById(R.id.title)).setText(Session.getContext().getResources().getString(R.string.select_course)); 
 		for(Course course : Session.getUser().getCourses()){
 			Log.d("Courses", "Adding course: " + course.getId());
-			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.course_select_course_item, null);
+			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.list_item, null);
 			child.setTag(course.getId());
 			child.setOnClickListener(this);
-			((TextView) child.findViewById(R.id.course_item_title)).setText(course.getShortName());
-			((TextView) child.findViewById(R.id.course_item_content)).setText(course.getFullname());
+			((TextView) child.findViewById(R.id.item_title)).setText(course.getShortName());
+			((TextView) child.findViewById(R.id.item_content)).setText(course.getFullname());
 			main.addView(child);
 		}
 		dialog.dismiss();

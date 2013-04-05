@@ -234,4 +234,9 @@ public class CourseContentController extends Activity implements CourseChangeLis
 		downloadedFile(filePath);
 	}
 
+	public void notesChanged() {
+		// Nothing to do on this view
+		
+	}
+
 }

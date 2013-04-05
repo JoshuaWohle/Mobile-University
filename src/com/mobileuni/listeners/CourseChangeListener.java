@@ -4,5 +4,6 @@ public interface CourseChangeListener {
 
 	public void courseContentsChanged();
 	public void fileChanged(String filePath);
+	public void notesChanged();
 	
 }

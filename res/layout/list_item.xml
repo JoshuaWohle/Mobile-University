@@ -10,7 +10,7 @@
         style="@style/middle_theme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/course_item_title"
+        android:id="@+id/item_title"
         android:textStyle="bold"
         android:padding="5dip"/>
     
@@ -18,7 +18,7 @@
         style="@style/dark_theme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/course_item_content"
+        android:id="@+id/item_content"
         android:padding="5dip"/>
 
 </LinearLayout>

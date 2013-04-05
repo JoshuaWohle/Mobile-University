@@ -44,6 +44,7 @@ public class Course implements Serializable {
     private int visible;	
     private ArrayList<CourseContent> coursecontents = new ArrayList<CourseContent>();	
     private ArrayList<String> absoluteFilePaths = new ArrayList<String>();
+    private ArrayList<MetaNote> notes = new ArrayList<MetaNote>();
 
 	public Course() {
 		
@@ -176,6 +177,35 @@ public class Course implements Serializable {
 	public void removeAbsoluteFilePath(String fielPath) {
 		if(this.absoluteFilePaths.contains(fielPath))
 			this.absoluteFilePaths.remove(fielPath);
+	}
+	
+	public void addMetaNote(MetaNote note) {
+		if(!notes.contains(note))
+			notes.add(note);
+		
+		for(CourseChangeListener listener : cls) {
+			listener.notesChanged();
+		}
+	}
+	
+	public void removeMetaNote(MetaNote note) {
+		notes.remove(note);
+		
+		for(CourseChangeListener listener : cls) {
+			listener.notesChanged();
+		}
+	}
+
+	public ArrayList<MetaNote> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(ArrayList<MetaNote> notes) {
+		this.notes = notes;
+		
+		for(CourseChangeListener listener : cls) {
+			listener.notesChanged();
+		}
 	}
     
 }

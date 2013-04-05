@@ -145,4 +145,5 @@
  <color name="dark_brown">#2c020c</color>
  <color name="light_brown">#fdf1e1</color>
  <color name="orange_brown">#e7b673</color>
+ <color name="login_blue">#0d568b</color>
 </resources> 
