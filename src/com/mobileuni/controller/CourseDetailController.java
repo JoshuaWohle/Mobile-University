@@ -149,10 +149,6 @@ public class CourseDetailController extends Activity implements CourseChangeList
 							CourseForumController.class);
 					startActivity(intent);
 					break;
-				case 4: // OFFLINE FILES
-					intent = new Intent(parent.getContext(), DatabaseController.class);
-					startActivity(intent);
-					break;
 				default:
 				}
 			}

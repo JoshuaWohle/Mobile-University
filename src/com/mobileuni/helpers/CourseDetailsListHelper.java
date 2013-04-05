@@ -136,17 +136,6 @@ public class CourseDetailsListHelper {
 		
 		map = new HashMap<String, String>();
 		// adding each item to HashMap key => value		
-    	map.put(LazyAdapter.KEY_ID, "4");
-		map.put(LazyAdapter.KEY_HEADER, context.getResources().getString(R.string.offline_view));
-		map.put(LazyAdapter.KEY_DESCRIPTION, context.getResources().getString(R.string.offline_desc_view));
-		map.put(LazyAdapter.KEY_AVAILABLE, offlineCount);
-		map.put(LazyAdapter.KEY_THUMB, String.valueOf(R.drawable.offlinefolder_icon));
-
-		// adding HashList to ArrayList
-		courseOverviewList.add(map);
-		
-		map = new HashMap<String, String>();
-		// adding each item to HashMap key => value		
     	map.put(LazyAdapter.KEY_ID, "5");
 		map.put(LazyAdapter.KEY_HEADER, "Notes");
 		map.put(LazyAdapter.KEY_DESCRIPTION, "Some notes");
