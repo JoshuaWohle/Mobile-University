@@ -1,6 +1,7 @@
 package com.mobileuni.listeners;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.app.Activity;
 import android.util.Log;
@@ -28,7 +29,13 @@ public class EvernoteListener extends OnClientCallback {
 		if(data instanceof NotesMetadataList) {
 			ArrayList<MetaNote> notes = new ArrayList<MetaNote>();
 			for(NoteMetadata note : ((NotesMetadataList) data).getNotes()) {
-				notes.add(new MetaNote());
+				MetaNote mNote = new MetaNote();
+				mNote.setName(note.getTitle());
+				Calendar cal = Calendar.getInstance();
+				cal.setTimeInMillis(note.getCreated());
+				mNote.setDateCreated(cal);
+				mNote.setEvernoteId(note.getGuid());
+				notes.add(mNote);
 			}
 			Session.getCurrentSelectedCourse().setNotes(notes);
 		}

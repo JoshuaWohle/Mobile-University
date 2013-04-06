@@ -1,16 +1,12 @@
 package com.mobileuni.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.evernote.client.android.AsyncNoteStoreClient;
 import com.evernote.client.android.EvernoteSession;
-import com.evernote.client.android.OnClientCallback;
-import com.evernote.edam.error.EDAMErrorCode;
-import com.evernote.edam.error.EDAMUserException;
 import com.evernote.edam.notestore.NoteFilter;
-import com.evernote.edam.notestore.NoteMetadata;
-import com.evernote.edam.notestore.NotesMetadataList;
 import com.evernote.edam.notestore.NotesMetadataResultSpec;
 import com.evernote.thrift.transport.TTransportException;
 import com.mobileuni.R;
@@ -39,6 +35,7 @@ import android.widget.TextView;
 public class CourseNoteController extends Activity implements OnClickListener, CourseChangeListener {
 	
 	final int EVERNOTE_CREATED_NOTE = 1;
+	final int EVERNOTE_VIEW_NOTE = 2;
 	AsyncNoteStoreClient ns;
 	EvernoteListener el = new EvernoteListener(this);
 
@@ -79,6 +76,8 @@ public class CourseNoteController extends Activity implements OnClickListener, C
 		tags.add(Session.getCurrentSelectedCourse().getShortName());
 		filter.setWords(Session.getCurrentSelectedCourse().getShortName());
 		NotesMetadataResultSpec spec = new NotesMetadataResultSpec();
+		spec.setIncludeTitle(true);
+		spec.setIncludeCreated(true);
 		if(ns == null) {
 			try {
 				ns = Session.getEs().getClientFactory().createNoteStoreClient();
@@ -87,12 +86,19 @@ public class CourseNoteController extends Activity implements OnClickListener, C
 				e1.printStackTrace();
 			}
 		}
-		
-		ns.findNotesMetadata(filter, 0, pageSize, spec, el);
+		if(AppStatus.isOnline())
+			ns.findNotesMetadata(filter, 0, pageSize, spec, el);
+		else
+			notesChanged();
 	}
 	
 	private void addNote(MetaNote note) {
 		LinearLayout temp = (LinearLayout) getLayoutInflater().inflate(R.layout.list_item, null);
+		temp.setTag(note);
+		temp.setOnClickListener(this);
+		TextView title = (TextView) temp.findViewById(R.id.item_title);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		title.setText(note.getName() + " - Created: " + sdf.format(note.getDateCreated().getTime()));
 		((LinearLayout) findViewById(R.id.item_list)).addView(temp);
 	}
 	
@@ -125,6 +131,16 @@ public class CourseNoteController extends Activity implements OnClickListener, C
 			intent.putExtra("TAG_NAME_LIST", tags);
 			if(evernoteInstalled())
 				startActivityForResult(intent, EVERNOTE_CREATED_NOTE);
+			else {
+				AlertDialog dialog = evernoteInstallDialog();
+				dialog.show();
+			}
+		} else if(v.getTag() instanceof MetaNote) {
+			MetaNote note = (MetaNote) v.getTag();
+			Intent intent = new Intent("com.evernote.action.VIEW_NOTE");
+			intent.putExtra("NOTE_GUID", note.getEvernoteId());
+			if(evernoteInstalled())
+				startActivityForResult(intent, EVERNOTE_VIEW_NOTE);
 			else {
 				AlertDialog dialog = evernoteInstallDialog();
 				dialog.show();
@@ -182,9 +198,8 @@ public class CourseNoteController extends Activity implements OnClickListener, C
 				findRelatedNotes();
 			break;
 		case EVERNOTE_CREATED_NOTE:
-			if (resultCode == Activity.RESULT_OK) {
-				Log.d("Note", "Successfully created note");
-			}
+			if (resultCode == Activity.RESULT_OK)
+				findRelatedNotes();
 			break;
 		default:
 			break;
