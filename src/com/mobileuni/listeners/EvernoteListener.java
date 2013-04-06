@@ -38,6 +38,8 @@ public class EvernoteListener extends OnClientCallback {
 				notes.add(mNote);
 			}
 			Session.getCurrentSelectedCourse().setNotes(notes);
+		} else {
+			Log.d("Notes", data.toString());
 		}
 	}
 

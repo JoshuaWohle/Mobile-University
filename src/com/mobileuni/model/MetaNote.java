@@ -14,6 +14,7 @@ public class MetaNote implements Serializable {
 	private String excerpt;
 	private Calendar dateCreated;
 	private String evernoteId;
+	private String shareLink;
 	
 	public MetaNote() {
 		

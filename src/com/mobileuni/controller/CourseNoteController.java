@@ -25,11 +25,14 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class CourseNoteController extends Activity implements OnClickListener, CourseChangeListener {
@@ -49,9 +52,7 @@ public class CourseNoteController extends Activity implements OnClickListener, C
 		((TextView) findViewById(R.id.title)).setText(Session.getContext()
 				.getResources().getString(R.string.notes_title));
 		createAddNoteButton();
-		if(Session.getEs().isLoggedIn()) {
-			Log.d("Note", "Logged in to evernote");
-		} else if(AppStatus.isOnline()) { // If online && we're not logged-in, it means we need a new token
+		if(!Session.getEs().isLoggedIn() && AppStatus.isOnline()) { // If online && we're not logged-in, it means we need a new token
 			AlertDialog dialog = evernoteAuthenticateDialog();
 			dialog.show();
 		}
@@ -99,6 +100,16 @@ public class CourseNoteController extends Activity implements OnClickListener, C
 		TextView title = (TextView) temp.findViewById(R.id.item_title);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		title.setText(note.getName() + " - Created: " + sdf.format(note.getDateCreated().getTime()));
+		
+		Button shareButton = new Button(this);
+		shareButton.setText("Share");
+		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+		
+		shareButton.setTag("share_note-"+note.getEvernoteId());
+		shareButton.setOnClickListener(this);
+		
+		((RelativeLayout) temp.findViewById(R.id.list_item_title_layout)).addView(shareButton, lp);
 		((LinearLayout) findViewById(R.id.item_list)).addView(temp);
 	}
 	
@@ -145,6 +156,10 @@ public class CourseNoteController extends Activity implements OnClickListener, C
 				AlertDialog dialog = evernoteInstallDialog();
 				dialog.show();
 			}
+		} else if(((String)v.getTag()).startsWith("share_note")) {
+			String tag = (String)v.getTag();
+			String evernoteId = tag.replaceAll("share_note-", "");
+			ns.getNoteContent(evernoteId, el);
 		}
 
 	}
@@ -207,13 +222,11 @@ public class CourseNoteController extends Activity implements OnClickListener, C
 	}
 
 	public void courseContentsChanged() {
-		// TODO Auto-generated method stub
-		
+		//Nothing to do
 	}
 
 	public void fileChanged(String filePath) {
-		// TODO Auto-generated method stub
-		
+		//Nothing to do
 	}
 
 	public void notesChanged() {
