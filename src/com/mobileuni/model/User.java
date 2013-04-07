@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mobileuni.listeners.UserChangeListener;
+import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
 
 import android.content.Context;
@@ -67,7 +68,7 @@ public class User implements Serializable {
 			ObjectOutputStream os = new ObjectOutputStream(fos);
 			os.writeObject(this);
 			os.close();
-		 	Log.d("User", "Successfully saved user to disk");
+		 	Log.d(Constants.LOG_USER, "Successfully saved user to disk");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,7 +86,7 @@ public class User implements Serializable {
 			ObjectInputStream is = new ObjectInputStream(fis);
 			User user = (User) is.readObject();
 			is.close();
-			Log.d("User", "User restored successfully");
+			Log.d(Constants.LOG_USER, "User restored successfully");
 			return user;
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -183,7 +184,7 @@ public class User implements Serializable {
 				return course;
 			}
 		}
-		Log.d("Course", "Tried to get course with ID: " + id + ", but it doesn't exist in the list");
+		Log.d(Constants.LOG_COURSE, "Tried to get course with ID: " + id + ", but it doesn't exist in the list");
 		return null; // course not found.
 	}
 }

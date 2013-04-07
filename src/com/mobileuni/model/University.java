@@ -3,6 +3,8 @@ package com.mobileuni.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mobileuni.other.Constants;
+
 import android.util.Log;
 
 public class University {
@@ -33,11 +35,11 @@ public class University {
 	}
 	
 	public static List<String> getUniversityNameList() {
-		Log.d("University", "University list size: " + universities.size());
+		Log.d(Constants.LOG_UNIVERSITY, "University list size: " + universities.size());
 		List<String> temp = new ArrayList<String>();
 		for(University university : universities) {
 			temp.add(university.name);
-			Log.d("University", "Added a university to the list: " + university.name);
+			Log.d(Constants.LOG_UNIVERSITY, "Added a university to the list: " + university.name);
 		}
 		return temp;
 	}

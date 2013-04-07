@@ -13,4 +13,15 @@ public class Constants {
 	public static final String EVERNOTE_CONSUMER_SECRET = "b73d16cb79bb43a9";
 	public static final EvernoteService EVERNOTE_HOST = EvernoteSession.EvernoteService.SANDBOX;
 	
+	// Log tags
+	public static final String LOG_NOTES = "Notes";
+	public static final String LOG_DOCUMENTS = "Documents";
+	public static final String LOG_WSR = "Web Service Request";
+	public static final String LOG_USER = "User";
+	public static final String LOG_UNIVERSITY = "University";
+	public static final String LOG_COURSE = "Course";
+	public static final String LOG_AUTHENTICATION = "Authentication";
+	public static final String LOG_SESSION = "Session";
+	public static final String LOG_CONNECTION_STATUS = "Connection";
+	
 }

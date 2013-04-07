@@ -10,6 +10,7 @@ import java.net.URLConnection;
 
 import org.apache.http.util.ByteArrayBuffer;
 
+import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
 
 import android.os.AsyncTask;
@@ -18,7 +19,7 @@ import android.util.Log;
 
 public class DownloadFileTask extends AsyncTask<Object, Object, File> {
 	
-	String TAG = "File Download";
+	String TAG = Constants.LOG_DOCUMENTS;
 	String PATH = Environment.getExternalStorageDirectory().getPath();
 
 	@Override

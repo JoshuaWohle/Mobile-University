@@ -11,6 +11,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.mobileuni.model.iCourseManager;
+import com.mobileuni.other.Constants;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -21,7 +22,7 @@ public class TokenRequestTask extends AsyncTask<Object, Object, JSONObject> {
 	
 	@Override
 	protected JSONObject doInBackground(Object... params) {
-		Log.d("authentication", "Processing login in background");
+		Log.d(Constants.LOG_AUTHENTICATION, "Processing login in background");
 		String tokenUrl = (String) params[0];
 
 		cm = (iCourseManager) params[1];
@@ -31,7 +32,7 @@ public class TokenRequestTask extends AsyncTask<Object, Object, JSONObject> {
 
 		// Creating HTTP Post
 		HttpGet httpPost = new HttpGet(tokenUrl);
-		Log.d("Web Service Request", tokenUrl);
+		Log.d(Constants.LOG_WSR, tokenUrl);
 		try {
 			ResponseHandler<String> responseHandler = new BasicResponseHandler();
 			responseBody = httpClient.execute(httpPost, responseHandler);
@@ -54,10 +55,10 @@ public class TokenRequestTask extends AsyncTask<Object, Object, JSONObject> {
 	@Override
 	public void onPostExecute(JSONObject jsonObject) {
 		try {
-			Log.d("authentication", "Got a new token : " + jsonObject.getString("token"));
+			Log.d(Constants.LOG_AUTHENTICATION, "Got a new token : " + jsonObject.getString("token"));
 			cm.setToken(jsonObject.getString("token"));
 		} catch (JSONException e) {
-			Log.d("authentication", "JSON Exception, setting token to null");
+			Log.d(Constants.LOG_AUTHENTICATION, "JSON Exception, setting token to null");
 			cm.setToken(null);
 			e.printStackTrace();
 		}

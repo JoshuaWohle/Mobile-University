@@ -31,6 +31,7 @@ import com.mobileuni.listeners.CourseChangeListener;
 import com.mobileuni.listeners.MenuListener;
 import com.mobileuni.model.Course;
 import com.mobileuni.model.CourseContent;
+import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
 
 import com.mobileuni.R;
@@ -115,7 +116,7 @@ public class CourseDetailController extends Activity implements
 		ArrayList<CourseContent> courseContent = new ArrayList<CourseContent>();
 		if (Session.getUser() != null && selectedCourse != null) {
 			courseContent = selectedCourse.getCourseContent();
-			Log.d("Courses", "Got course content for course id: "
+			Log.d(Constants.LOG_COURSE, "Got course content for course id: "
 					+ selectedCourse.getId());
 		}
 		// Populate the course overview for the list

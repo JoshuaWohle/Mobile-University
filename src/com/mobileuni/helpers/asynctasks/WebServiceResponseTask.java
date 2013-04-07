@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import com.mobileuni.config.Config;
 import com.mobileuni.controller.LoginController;
+import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
 import com.mobileuni.other.WebServiceFunction;
 
@@ -44,7 +45,7 @@ public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject
 		HttpURLConnection con;
 		try {
 			String url = Config.apiUrl + fn;
-			Log.d("Web Service Request", "Sent: " + url);
+			Log.d(Constants.LOG_WSR, "Sent: " + url);
 			con = (HttpURLConnection) new URL(url)
 					.openConnection();
 
@@ -60,7 +61,7 @@ public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject
 			con.setDoInput(true);
 			DataOutputStream wr = new DataOutputStream(con.getOutputStream());
 
-			Log.d("URLParameters: ", urlParameters.toString());
+			Log.d(Constants.LOG_WSR, "URL parameters: " + urlParameters.toString());
 			wr.writeBytes(urlParameters);
 			wr.flush();
 			wr.close();
@@ -82,7 +83,7 @@ public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject
 			jsonstr = jsonstr.replace("</p></div>", "");
 			jsonstr = jsonstr.replace("<p>", "");
 			jsonstr = jsonstr.replace("</p>", "");
-			Log.d("TransformObject: ", jsonstr);
+			Log.d(Constants.LOG_WSR, "Transformed object to: " + jsonstr);
 			return new JSONObject(jsonstr);
 			
 		} catch (MalformedURLException e) {
@@ -109,7 +110,7 @@ public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject
 	
 	@Override
 	protected void onPostExecute(JSONObject jsonObject) {
-		Log.d("Web Service Request", "Received: " + jsonObject.toString());
+		Log.d(Constants.LOG_WSR, "Received: " + jsonObject.toString());
 		
 		// Have to use a lot of if-else, as switch over Strings doesn't work in Java 6 yet :(
 		if(fn.equals(WebServiceFunction.moodle_webservice_get_siteinfo))
@@ -119,7 +120,7 @@ public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject
 		else if(fn.equals(WebServiceFunction.core_course_get_contents))
 			Session.getCourseManager().setCourseDetails(jsonObject, (Integer)extra);
 		else
-			Log.d("Web Service Request", "Some unknown request was executed, please specify where to send the result to");
+			Log.d(Constants.LOG_WSR, "Some unknown request was executed, please specify where to send the result to");
 	}
 
 }

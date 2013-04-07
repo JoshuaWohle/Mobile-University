@@ -1,6 +1,7 @@
 package com.mobileuni.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class MetaNote implements Serializable {
@@ -11,16 +12,15 @@ public class MetaNote implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String name;
-	private String excerpt;
+	private String content;
 	private Calendar dateCreated;
 	private String evernoteId;
-	private String shareLink;
 	
 	public MetaNote() {
 		
 	}
 	
-	public MetaNote(String name, String excerpt, Calendar dateCreated, String evernoteId) {
+	public MetaNote(String name, String content, Calendar dateCreated, String evernoteId) {
 		
 	}
 
@@ -32,12 +32,12 @@ public class MetaNote implements Serializable {
 		this.name = name;
 	}
 
-	public String getExcerpt() {
-		return excerpt;
+	public String getContent() {
+		return content;
 	}
 
-	public void setExcerpt(String excerpt) {
-		this.excerpt = excerpt;
+	public void setContent(String excerpt) {
+		this.content = excerpt;
 	}
 
 	public Calendar getDateCreated() {

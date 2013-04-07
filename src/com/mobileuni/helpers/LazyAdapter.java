@@ -105,14 +105,12 @@ public class LazyAdapter extends BaseAdapter implements Filterable {
 
             @SuppressWarnings("unchecked")
 			protected void publishResults(CharSequence constraint, FilterResults results) { 
-                Log.d(TAG, "**** PUBLISHING RESULTS for: " + constraint); 
                 
                 filtered = (ArrayList<HashMap<String, String>>)results.values; 
                 notifyDataSetChanged();
             } 
 
             protected FilterResults performFiltering(CharSequence constraint) { 
-                Log.d(TAG, "**** PERFORM FILTERING for: " + constraint); 
                 constraint = constraint.toString().toLowerCase();
  
                 FilterResults results = new FilterResults(); 

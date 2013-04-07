@@ -6,11 +6,13 @@ import java.util.List;
 
 import com.evernote.client.android.AsyncNoteStoreClient;
 import com.evernote.client.android.EvernoteSession;
+import com.evernote.client.android.OnClientCallback;
 import com.evernote.edam.notestore.NoteFilter;
 import com.evernote.edam.notestore.NotesMetadataResultSpec;
 import com.evernote.thrift.transport.TTransportException;
 import com.mobileuni.R;
 import com.mobileuni.helpers.AppStatus;
+import com.mobileuni.helpers.DialogHelper;
 import com.mobileuni.listeners.CourseChangeListener;
 import com.mobileuni.listeners.EvernoteListener;
 import com.mobileuni.model.MetaNote;
@@ -18,25 +20,23 @@ import com.mobileuni.other.Session;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class CourseNoteController extends Activity implements OnClickListener, CourseChangeListener {
-	
+public class CourseNoteController extends Activity implements OnClickListener,
+		CourseChangeListener {
+
 	final int EVERNOTE_CREATED_NOTE = 1;
 	final int EVERNOTE_VIEW_NOTE = 2;
 	AsyncNoteStoreClient ns;
@@ -48,12 +48,23 @@ public class CourseNoteController extends Activity implements OnClickListener, C
 		setContentView(R.layout.item_list);
 		Session.setContext(this);
 		Session.getCurrentSelectedCourse().addListener(this);
-		
+
 		((TextView) findViewById(R.id.title)).setText(Session.getContext()
 				.getResources().getString(R.string.notes_title));
 		createAddNoteButton();
-		if(!Session.getEs().isLoggedIn() && AppStatus.isOnline()) { // If online && we're not logged-in, it means we need a new token
-			AlertDialog dialog = evernoteAuthenticateDialog();
+		if (!Session.getEs().isLoggedIn() && AppStatus.isOnline()) { // If
+																		// online
+																		// &&
+																		// we're
+																		// not
+																		// logged-in,
+																		// it
+																		// means
+																		// we
+																		// need
+																		// a new
+																		// token
+			AlertDialog dialog = DialogHelper.evernoteAuthenticateDialog(this);
 			dialog.show();
 		}
 		findRelatedNotes();
@@ -69,7 +80,7 @@ public class CourseNoteController extends Activity implements OnClickListener, C
 		addNoteButton.setOnClickListener(this);
 		list.addView(addNoteButton);
 	}
-	
+
 	private void findRelatedNotes() {
 		int pageSize = 10;
 		NoteFilter filter = new NoteFilter();
@@ -79,7 +90,7 @@ public class CourseNoteController extends Activity implements OnClickListener, C
 		NotesMetadataResultSpec spec = new NotesMetadataResultSpec();
 		spec.setIncludeTitle(true);
 		spec.setIncludeCreated(true);
-		if(ns == null) {
+		if (ns == null) {
 			try {
 				ns = Session.getEs().getClientFactory().createNoteStoreClient();
 			} catch (TTransportException e1) {
@@ -87,47 +98,52 @@ public class CourseNoteController extends Activity implements OnClickListener, C
 				e1.printStackTrace();
 			}
 		}
-		if(AppStatus.isOnline())
+		if (AppStatus.isOnline())
 			ns.findNotesMetadata(filter, 0, pageSize, spec, el);
 		else
 			notesChanged();
 	}
-	
+
 	private void addNote(MetaNote note) {
-		LinearLayout temp = (LinearLayout) getLayoutInflater().inflate(R.layout.list_item, null);
+		LinearLayout temp = (LinearLayout) getLayoutInflater().inflate(
+				R.layout.list_item, null);
 		temp.setTag(note);
 		temp.setOnClickListener(this);
 		TextView title = (TextView) temp.findViewById(R.id.item_title);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		title.setText(note.getName() + " - Created: " + sdf.format(note.getDateCreated().getTime()));
-		
+		title.setText(note.getName() + " - Created: "
+				+ sdf.format(note.getDateCreated().getTime()));
+
 		Button shareButton = new Button(this);
 		shareButton.setText("Share");
-		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 		lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-		
-		shareButton.setTag("share_note-"+note.getEvernoteId());
+
+		shareButton.setTag("share_note-" + note.getEvernoteId());
 		shareButton.setOnClickListener(this);
-		
-		((RelativeLayout) temp.findViewById(R.id.list_item_title_layout)).addView(shareButton, lp);
+
+		((RelativeLayout) temp.findViewById(R.id.list_item_title_layout))
+				.addView(shareButton, lp);
 		((LinearLayout) findViewById(R.id.item_list)).addView(temp);
 	}
-	
+
 	public void evernoteAuthenticate() {
 		Session.getEs().authenticate(this);
 	}
-	
+
 	/**
 	 * Checks if Evernote is installed
+	 * 
 	 * @return
 	 */
 	private boolean evernoteInstalled() {
-		try{
-		    ApplicationInfo info = getPackageManager().
-		            getApplicationInfo("com.evernote", 0 );
-		    return true;
-		} catch( PackageManager.NameNotFoundException e ){
-		    return false;
+		try {
+			ApplicationInfo info = getPackageManager().getApplicationInfo(
+					"com.evernote", 0);
+			return true;
+		} catch (PackageManager.NameNotFoundException e) {
+			return false;
 		}
 	}
 
@@ -140,67 +156,39 @@ public class CourseNoteController extends Activity implements OnClickListener, C
 			tags.add(Session.getCurrentSelectedCourse().getShortName());
 			tags.add(Session.getCurrentSelectedCourse().getIdNumber());
 			intent.putExtra("TAG_NAME_LIST", tags);
-			if(evernoteInstalled())
+			if (evernoteInstalled())
 				startActivityForResult(intent, EVERNOTE_CREATED_NOTE);
 			else {
-				AlertDialog dialog = evernoteInstallDialog();
+				AlertDialog dialog = DialogHelper.evernoteInstallDialog(this);
 				dialog.show();
 			}
-		} else if(v.getTag() instanceof MetaNote) {
+		} else if (v.getTag() instanceof MetaNote) {
 			MetaNote note = (MetaNote) v.getTag();
 			Intent intent = new Intent("com.evernote.action.VIEW_NOTE");
 			intent.putExtra("NOTE_GUID", note.getEvernoteId());
-			if(evernoteInstalled())
+			if (evernoteInstalled())
 				startActivityForResult(intent, EVERNOTE_VIEW_NOTE);
 			else {
-				AlertDialog dialog = evernoteInstallDialog();
+				AlertDialog dialog = DialogHelper.evernoteInstallDialog(this);
 				dialog.show();
 			}
-		} else if(((String)v.getTag()).startsWith("share_note")) {
-			String tag = (String)v.getTag();
+		} else if (((String) v.getTag()).startsWith("share_note")) {
+			String tag = (String) v.getTag();
 			String evernoteId = tag.replaceAll("share_note-", "");
-			ns.getNoteContent(evernoteId, el);
+			String noteContent = Session.getCurrentSelectedCourse()
+					.getNoteFromEvernoteId(evernoteId).getContent();
+			if (noteContent != null) {
+				Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+				sharingIntent.setType("text/plain");
+				sharingIntent.putExtra(noteContent,
+						android.content.Intent.EXTRA_TEXT);
+				startActivity(Intent.createChooser(sharingIntent,
+						getResources().getString(R.string.share_using)));
+			} else {
+				Toast.makeText(this, getResources().getString(R.string.note_content_not_set), Toast.LENGTH_SHORT);
+			}
 		}
 
-	}
-	
-	private AlertDialog evernoteInstallDialog() {
-		// If the intent was not found, it means the app was not installed, so just redirect the user to install Evernote
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(R.string.install_evernote)
-		.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-			
-			public void onClick(DialogInterface dialog, int which) {
-				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.evernote"));
-				startActivity(browserIntent);
-			}
-		})
-		.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-			
-			public void onClick(DialogInterface dialog, int which) {
-				// TODO Auto-generated method stub
-			}
-		});
-		return builder.create();
-	}
-	
-	private AlertDialog evernoteAuthenticateDialog() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(R.string.authenticate_evernote)
-		.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-			
-			public void onClick(DialogInterface dialog, int which) {
-				Session.getEs().authenticate(Session.getContext());
-			}
-		})
-		.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-			
-			public void onClick(DialogInterface dialog, int which) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		return builder.create();
 	}
 
 	@Override
@@ -221,17 +209,17 @@ public class CourseNoteController extends Activity implements OnClickListener, C
 		}
 	}
 
+	public void notesChanged() {
+		for (MetaNote note : Session.getCurrentSelectedCourse().getNotes()) {
+			addNote(note);
+		}
+	}
+
 	public void courseContentsChanged() {
-		//Nothing to do
+		// Nothing to do
 	}
 
 	public void fileChanged(String filePath) {
-		//Nothing to do
-	}
-
-	public void notesChanged() {
-		for(MetaNote note : Session.getCurrentSelectedCourse().getNotes()) {
-			addNote(note);
-		}
+		// Nothing to do
 	}
 }

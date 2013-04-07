@@ -56,6 +56,14 @@ public class Course implements Serializable {
 		cls.add(listener);
 	}
 	
+	public MetaNote getNoteFromEvernoteId(String evernoteId) {
+		for(MetaNote note : notes) {
+			if(note.getEvernoteId().equals(evernoteId))
+				return note;
+		}
+		return null;
+	}
+	
 	public void removeListener(CourseChangeListener listener) {
 		if(cls == null)
 			cls = new ArrayList<CourseChangeListener>();

@@ -39,6 +39,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.util.ByteArrayBuffer;
 import org.apache.http.util.EntityUtils;
+
+import com.mobileuni.other.Constants;
 //import org.json.JSONObject;
 
 import android.content.Context;
@@ -48,7 +50,7 @@ import android.webkit.MimeTypeMap;
 
 public class FileManager {
 	
-	private static final String TAG = "FileManager";
+	private static final String TAG = Constants.LOG_DOCUMENTS;
 	
 	private static FileManager instance = new FileManager(); 
     static Context context; 

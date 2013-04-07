@@ -36,6 +36,7 @@ import com.mobileuni.listeners.MenuListener;
 import com.mobileuni.model.Course;
 import com.mobileuni.model.CourseContent;
 import com.mobileuni.model.User;
+import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
 
 import com.mobileuni.R;
@@ -133,7 +134,7 @@ public class CourseContentController extends Activity implements CourseChangeLis
 		ArrayList<CourseContent> coursecontent = new ArrayList<CourseContent>();
 		if (user != null && selectedCourse != null) {
 			coursecontent = selectedCourse.getCourseContent();
-			Log.d("Course", "Got course contents for course : "
+			Log.d(Constants.LOG_COURSE, "Got course contents for course : "
 					+ selectedCourse.getId());
 		}
 
@@ -173,7 +174,7 @@ public class CourseContentController extends Activity implements CourseChangeLis
 				}
 			});
 		} else {
-			Log.d("Documents",
+			Log.d(Constants.LOG_DOCUMENTS,
 					"Something went wrong whilst getting the documents for course ID: "
 							+ Session.getCurrentSelectedCourse().getId());
 			emptyLayout.setVisibility(View.VISIBLE);
@@ -230,7 +231,7 @@ public class CourseContentController extends Activity implements CourseChangeLis
 	}
 
 	public void fileChanged(String filePath) {
-		Log.d("File Download", "Triggering response to downloaded file");
+		Log.d(Constants.LOG_DOCUMENTS, "Triggering response to downloaded file");
 		downloadedFile(filePath);
 	}
 

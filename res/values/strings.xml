@@ -72,5 +72,7 @@
 	<string name="note_add">Add a new note</string>
 	<string name="install_evernote">Mobile University uses the Evernote app to create notes. Would you like to install it ?</string>
 	<string name="authenticate_evernote">As Mobile University uses Evernote to keep track of notes, you can only access them if you authenticate Evernote first.</string>
+	<string name="share_using">Share using</string>
+	<string name="note_content_not_set">It seems this note is currently empty (or hasn\'t been synchronized yet). Please connect to the internet and restart the application to share this note.</string>
 		
 </resources>

@@ -463,12 +463,14 @@ containing a value of this type.
         public static final int maximum_download_filesize_hdr_text=0x7f050034;
         public static final int not_online=0x7f05003c;
         public static final int note_add=0x7f050047;
+        public static final int note_content_not_set=0x7f05004b;
         public static final int notes_title=0x7f050045;
         public static final int offline_desc_view=0x7f050027;
         public static final int offline_view=0x7f050026;
         public static final int section_default_hdr=0x7f050009;
         public static final int select_course=0x7f05001c;
         public static final int settings_view=0x7f05001a;
+        public static final int share_using=0x7f05004a;
         public static final int spin=0x7f050038;
         public static final int standard_list=0x7f05000a;
         public static final int storage_hdr_text=0x7f050030;

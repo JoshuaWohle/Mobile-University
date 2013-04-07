@@ -4,6 +4,7 @@ import com.mobileuni.R;
 import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.listeners.UserChangeListener;
 import com.mobileuni.model.Course;
+import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
 
 import android.app.Activity;
@@ -25,7 +26,7 @@ public class CourseSelectController extends Activity implements UserChangeListen
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.item_list);
 		if(Session.getUser() == null) {
-			Log.d("Session", "No user is set, cannot use the application");
+			Log.d(Constants.LOG_SESSION, "No user is set, cannot use the application");
 			return;
 		}
 		
@@ -42,13 +43,13 @@ public class CourseSelectController extends Activity implements UserChangeListen
 	}
 
 	public void courseChange(boolean gotCourses) {
-		Log.d("Courses", "Setting courses on list");
+		Log.d(Constants.LOG_COURSE, "Setting courses on list");
 
 		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
 		// Set title of the view
 		((TextView) findViewById(R.id.title)).setText(Session.getContext().getResources().getString(R.string.select_course)); 
 		for(Course course : Session.getUser().getCourses()){
-			Log.d("Courses", "Adding course: " + course.getId());
+			Log.d(Constants.LOG_COURSE, "Adding course: " + course.getId());
 			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.list_item, null);
 			child.setTag(course.getId());
 			child.setOnClickListener(this);

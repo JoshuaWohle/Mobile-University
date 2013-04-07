@@ -20,6 +20,7 @@
 
 package com.mobileuni.helpers;
 
+import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
 
 import android.content.Context;
@@ -63,7 +64,7 @@ public class AppStatus {
 	    
 	    boolean connection = haveConnectedWifi || haveConnectedMobile;
 
-	    Log.d("Connection", Boolean.toString(connection));
+	    Log.d(Constants.LOG_CONNECTION_STATUS, Boolean.toString(connection));
 	    return connection; 
     } 
 } 

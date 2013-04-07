@@ -20,6 +20,7 @@ import com.mobileuni.config.Config;
 import com.mobileuni.helpers.asynctasks.TokenRequestTask;
 import com.mobileuni.helpers.asynctasks.WebServiceResponseTask;
 import com.mobileuni.listeners.iCourseManagerListener;
+import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
 import com.mobileuni.other.WebServiceFunction;
 
@@ -48,7 +49,7 @@ public class Moodle implements iCourseManager {
 						+ URLEncoder.encode(
 								String.valueOf(this.getCurrentMoodleUserID()),
 								"UTF-8");
-				Log.d("Courses",
+				Log.d(Constants.LOG_COURSE,
 						"Starting request to get courses with moodle ID: "
 								+ this.getCurrentMoodleUserID());
 				new WebServiceResponseTask().execute(
@@ -61,7 +62,7 @@ public class Moodle implements iCourseManager {
 			return;
 		}
 
-		Log.d("Courses", "Got courses, now populating them");
+		Log.d(Constants.LOG_COURSE, "Got courses, now populating them");
 		ArrayList<Course> courseArray = new ArrayList<Course>();
 
 		JSONArray courses;
@@ -193,7 +194,7 @@ public class Moodle implements iCourseManager {
 					+ "?wstoken=" + token + "&wsfunction=";
 			initMainInfo();
 		} else {
-			Log.d("authentication", "User token has been set to null");
+			Log.d(Constants.LOG_AUTHENTICATION, "User token has been set to null");
 			for (iCourseManagerListener listener : icml) {
 				listener.loginChange(false);
 			}

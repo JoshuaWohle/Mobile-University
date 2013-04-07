@@ -104,7 +104,7 @@ public class LoginController extends Activity implements OnClickListener, iCours
 			Session.getCourseManager().login(Session.getUser());
 		} else {
 			// Offline usage
-			Log.d("Session", "Proceding with offline session");
+			Log.d(Constants.LOG_SESSION, "Proceding with offline session");
 			Session.setUser(User.load());
 			if(Session.getUser() == null) {
 				Toast.makeText(this, "No connection and no previous data (so cannot browse offline)."
@@ -118,7 +118,7 @@ public class LoginController extends Activity implements OnClickListener, iCours
 
 	public void loginChange(boolean loggedIn) {
 		dialog.dismiss();
-		Log.d("authentication", "dismissed login dialog.");
+		Log.d(Constants.LOG_AUTHENTICATION, "dismissed login dialog.");
 		if(loggedIn) {
 			Intent intent = new Intent(LoginController.this, CourseSelectController.class);
 			startActivity(intent);
