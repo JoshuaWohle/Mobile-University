@@ -9,15 +9,70 @@ package com.mobileuni;
 
 public final class R {
     public static final class array {
-        public static final int course=0x7f070000;
+        public static final int course=0x7f090000;
     }
     public static final class attr {
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int behindOffset=0x7f010003;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int behindScrollScale=0x7f010005;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int behindWidth=0x7f010004;
+        /** <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int fadeDegree=0x7f01000b;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int fadeEnabled=0x7f01000a;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>left</code></td><td>0</td><td></td></tr>
+<tr><td><code>right</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int mode=0x7f010000;
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
-        public static final int sectionListView_listItemBackground=0x7f010006;
+        public static final int sectionListView_listItemBackground=0x7f010014;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -27,13 +82,13 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int sectionListView_listItemPadding=0x7f010005;
+        public static final int sectionListView_listItemPadding=0x7f010013;
         /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
 <p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
          */
-        public static final int sectionListView_sectionItemBackground=0x7f010004;
+        public static final int sectionListView_sectionItemBackground=0x7f010012;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -43,7 +98,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int sectionListView_sectionItemPadding=0x7f010003;
+        public static final int sectionListView_sectionItemPadding=0x7f010011;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -53,7 +108,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int sectionListView_sectionTextViewPadding=0x7f010000;
+        public static final int sectionListView_sectionTextViewPadding=0x7f01000e;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -62,7 +117,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int sectionListView_sectionTextViewTextColor=0x7f010001;
+        public static final int sectionListView_sectionTextViewTextColor=0x7f01000f;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -72,155 +127,214 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int sectionListView_sectionTextViewTextSize=0x7f010002;
+        public static final int sectionListView_sectionTextViewTextSize=0x7f010010;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int selectorDrawable=0x7f01000d;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int selectorEnabled=0x7f01000c;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int shadowDrawable=0x7f010008;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int shadowWidth=0x7f010009;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>margin</code></td><td>0</td><td></td></tr>
+<tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int touchModeAbove=0x7f010006;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>margin</code></td><td>0</td><td></td></tr>
+<tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int touchModeBehind=0x7f010007;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int viewAbove=0x7f010001;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int viewBehind=0x7f010002;
     }
     public static final class color {
-        public static final int AliceBlue=0x7f06002c;
-        public static final int AntiqueWhite=0x7f060022;
-        public static final int Aqua=0x7f06007d;
-        public static final int Aquamarine=0x7f060062;
-        public static final int Azure=0x7f06002a;
-        public static final int Beige=0x7f060027;
-        public static final int Bisque=0x7f06000d;
-        public static final int Black=0x7f06008c;
-        public static final int BlanchedAlmond=0x7f06000b;
-        public static final int Blue=0x7f060088;
-        public static final int BlueViolet=0x7f06005b;
-        public static final int Brown=0x7f06004f;
-        public static final int BurlyWood=0x7f060034;
-        public static final int CadetBlue=0x7f06006d;
-        public static final int Chartreuse=0x7f060063;
-        public static final int Chocolate=0x7f06003f;
-        public static final int Coral=0x7f060017;
-        public static final int CornflowerBlue=0x7f06006c;
-        public static final int Cornsilk=0x7f060007;
-        public static final int Crimson=0x7f060037;
-        public static final int Cyan=0x7f06007e;
-        public static final int DarkBlue=0x7f06008a;
-        public static final int DarkCyan=0x7f060084;
-        public static final int DarkGoldenrod=0x7f060047;
-        public static final int DarkGray=0x7f06004e;
-        public static final int DarkGreen=0x7f060087;
-        public static final int DarkGrey=0x7f06003d;
-        public static final int DarkKhaki=0x7f060044;
-        public static final int DarkMagenta=0x7f060059;
-        public static final int DarkOliveGreen=0x7f06006e;
-        public static final int DarkOrange=0x7f060016;
-        public static final int DarkOrchid=0x7f060052;
-        public static final int DarkRed=0x7f06005a;
-        public static final int DarkSalmon=0x7f060031;
-        public static final int DarkSeaGreen=0x7f060057;
-        public static final int DarkSlateBlue=0x7f060071;
-        public static final int DarkSlateGray=0x7f060077;
-        public static final int DarkTurquoise=0x7f060082;
-        public static final int DarkViolet=0x7f060054;
-        public static final int DeepPink=0x7f06001b;
-        public static final int DeepSkyBlue=0x7f060083;
-        public static final int DimGray=0x7f06006a;
-        public static final int DodgerBlue=0x7f06007b;
-        public static final int FireBrick=0x7f060048;
-        public static final int FloralWhite=0x7f060005;
-        public static final int ForestGreen=0x7f060079;
-        public static final int Fuchsia=0x7f06001c;
-        public static final int Gainsboro=0x7f060036;
-        public static final int GhostWhite=0x7f060024;
-        public static final int Gold=0x7f060011;
-        public static final int Goldenrod=0x7f060039;
-        public static final int Gray=0x7f06005e;
-        public static final int Green=0x7f060086;
-        public static final int GreenYellow=0x7f06004c;
-        public static final int Honeydew=0x7f06002b;
-        public static final int HotPink=0x7f060018;
-        public static final int IndianRed=0x7f060041;
-        public static final int Indigo=0x7f06006f;
-        public static final int Ivory=0x7f060001;
-        public static final int Khaki=0x7f06002d;
-        public static final int Lavender=0x7f060032;
-        public static final int LavenderBlush=0x7f060009;
-        public static final int LawnGreen=0x7f060064;
-        public static final int LemonChiffon=0x7f060006;
-        public static final int LightBlue=0x7f06004d;
-        public static final int LightCoral=0x7f06002e;
-        public static final int LightCyan=0x7f060033;
-        public static final int LightGoldenrodYellow=0x7f060020;
-        public static final int LightGreen=0x7f060056;
-        public static final int LightGrey=0x7f06003c;
-        public static final int LightPink=0x7f060013;
-        public static final int LightSalmon=0x7f060015;
-        public static final int LightSeaGreen=0x7f06007a;
-        public static final int LightSkyBlue=0x7f06005c;
-        public static final int LightSlateGray=0x7f060066;
-        public static final int LightSteelBlue=0x7f06004a;
-        public static final int LightYellow=0x7f060002;
-        public static final int Lime=0x7f060080;
-        public static final int LimeGreen=0x7f060076;
-        public static final int Linen=0x7f060021;
-        public static final int Magenta=0x7f06001d;
-        public static final int Maroon=0x7f060061;
-        public static final int MediumAquamarine=0x7f06006b;
-        public static final int MediumBlue=0x7f060089;
-        public static final int MediumOrchid=0x7f060046;
-        public static final int MediumPurple=0x7f060055;
-        public static final int MediumSeaGreen=0x7f060075;
-        public static final int MediumSlateBlue=0x7f060065;
-        public static final int MediumSpringGreen=0x7f060081;
-        public static final int MediumTurquoise=0x7f060070;
-        public static final int MediumVioletRed=0x7f060042;
-        public static final int MidnightBlue=0x7f06007c;
-        public static final int MintCream=0x7f060025;
-        public static final int MistyRose=0x7f06000c;
-        public static final int Moccasin=0x7f06000e;
-        public static final int NavajoWhite=0x7f06000f;
-        public static final int Navy=0x7f06008b;
-        public static final int OldLace=0x7f06001f;
-        public static final int Olive=0x7f06005f;
-        public static final int OliveDrab=0x7f060068;
-        public static final int Orange=0x7f060014;
-        public static final int OrangeRed=0x7f06001a;
-        public static final int Orchid=0x7f06003a;
-        public static final int PaleGoldenrod=0x7f06002f;
-        public static final int PaleGreen=0x7f060053;
-        public static final int PaleTurquoise=0x7f06004b;
-        public static final int PaleVioletRed=0x7f060038;
-        public static final int PapayaWhip=0x7f06000a;
-        public static final int PeachPuff=0x7f060010;
-        public static final int Peru=0x7f060040;
-        public static final int Pink=0x7f060012;
-        public static final int Plum=0x7f060035;
-        public static final int PowderBlue=0x7f060049;
-        public static final int Purple=0x7f060060;
-        public static final int Red=0x7f06001e;
-        public static final int RosyBrown=0x7f060045;
-        public static final int RoyalBlue=0x7f060073;
-        public static final int SaddleBrown=0x7f060058;
-        public static final int Salmon=0x7f060023;
-        public static final int SandyBrown=0x7f060029;
-        public static final int SeaGreen=0x7f060078;
-        public static final int Seashell=0x7f060008;
-        public static final int Sienna=0x7f060050;
-        public static final int Silver=0x7f060043;
-        public static final int SkyBlue=0x7f06005d;
-        public static final int SlateBlue=0x7f060069;
-        public static final int SlateGray=0x7f060067;
-        public static final int Snow=0x7f060004;
-        public static final int SpringGreen=0x7f06007f;
-        public static final int SteelBlue=0x7f060072;
-        public static final int Tan=0x7f06003e;
-        public static final int Teal=0x7f060085;
-        public static final int Thistle=0x7f06003b;
-        public static final int Tomato=0x7f060019;
-        public static final int Transparent=0x7f06008d;
-        public static final int Turquoise=0x7f060074;
-        public static final int Violet=0x7f060030;
-        public static final int Wheat=0x7f060028;
-        public static final int White=0x7f060000;
-        public static final int WhiteSmoke=0x7f060026;
-        public static final int Yellow=0x7f060003;
-        public static final int YellowGreen=0x7f060051;
-        public static final int dark_brown=0x7f06008e;
-        public static final int light_brown=0x7f06008f;
-        public static final int login_blue=0x7f060091;
-        public static final int orange_brown=0x7f060090;
+        public static final int AliceBlue=0x7f07002c;
+        public static final int AntiqueWhite=0x7f070022;
+        public static final int Aqua=0x7f07007d;
+        public static final int Aquamarine=0x7f070062;
+        public static final int Azure=0x7f07002a;
+        public static final int Beige=0x7f070027;
+        public static final int Bisque=0x7f07000d;
+        public static final int Black=0x7f07008c;
+        public static final int BlanchedAlmond=0x7f07000b;
+        public static final int Blue=0x7f070088;
+        public static final int BlueViolet=0x7f07005b;
+        public static final int Brown=0x7f07004f;
+        public static final int BurlyWood=0x7f070034;
+        public static final int CadetBlue=0x7f07006d;
+        public static final int Chartreuse=0x7f070063;
+        public static final int Chocolate=0x7f07003f;
+        public static final int Coral=0x7f070017;
+        public static final int CornflowerBlue=0x7f07006c;
+        public static final int Cornsilk=0x7f070007;
+        public static final int Crimson=0x7f070037;
+        public static final int Cyan=0x7f07007e;
+        public static final int DarkBlue=0x7f07008a;
+        public static final int DarkCyan=0x7f070084;
+        public static final int DarkGoldenrod=0x7f070047;
+        public static final int DarkGray=0x7f07004e;
+        public static final int DarkGreen=0x7f070087;
+        public static final int DarkGrey=0x7f07003d;
+        public static final int DarkKhaki=0x7f070044;
+        public static final int DarkMagenta=0x7f070059;
+        public static final int DarkOliveGreen=0x7f07006e;
+        public static final int DarkOrange=0x7f070016;
+        public static final int DarkOrchid=0x7f070052;
+        public static final int DarkRed=0x7f07005a;
+        public static final int DarkSalmon=0x7f070031;
+        public static final int DarkSeaGreen=0x7f070057;
+        public static final int DarkSlateBlue=0x7f070071;
+        public static final int DarkSlateGray=0x7f070077;
+        public static final int DarkTurquoise=0x7f070082;
+        public static final int DarkViolet=0x7f070054;
+        public static final int DeepPink=0x7f07001b;
+        public static final int DeepSkyBlue=0x7f070083;
+        public static final int DimGray=0x7f07006a;
+        public static final int DodgerBlue=0x7f07007b;
+        public static final int FireBrick=0x7f070048;
+        public static final int FloralWhite=0x7f070005;
+        public static final int ForestGreen=0x7f070079;
+        public static final int Fuchsia=0x7f07001c;
+        public static final int Gainsboro=0x7f070036;
+        public static final int GhostWhite=0x7f070024;
+        public static final int Gold=0x7f070011;
+        public static final int Goldenrod=0x7f070039;
+        public static final int Gray=0x7f07005e;
+        public static final int Green=0x7f070086;
+        public static final int GreenYellow=0x7f07004c;
+        public static final int Honeydew=0x7f07002b;
+        public static final int HotPink=0x7f070018;
+        public static final int IndianRed=0x7f070041;
+        public static final int Indigo=0x7f07006f;
+        public static final int Ivory=0x7f070001;
+        public static final int Khaki=0x7f07002d;
+        public static final int Lavender=0x7f070032;
+        public static final int LavenderBlush=0x7f070009;
+        public static final int LawnGreen=0x7f070064;
+        public static final int LemonChiffon=0x7f070006;
+        public static final int LightBlue=0x7f07004d;
+        public static final int LightCoral=0x7f07002e;
+        public static final int LightCyan=0x7f070033;
+        public static final int LightGoldenrodYellow=0x7f070020;
+        public static final int LightGreen=0x7f070056;
+        public static final int LightGrey=0x7f07003c;
+        public static final int LightPink=0x7f070013;
+        public static final int LightSalmon=0x7f070015;
+        public static final int LightSeaGreen=0x7f07007a;
+        public static final int LightSkyBlue=0x7f07005c;
+        public static final int LightSlateGray=0x7f070066;
+        public static final int LightSteelBlue=0x7f07004a;
+        public static final int LightYellow=0x7f070002;
+        public static final int Lime=0x7f070080;
+        public static final int LimeGreen=0x7f070076;
+        public static final int Linen=0x7f070021;
+        public static final int Magenta=0x7f07001d;
+        public static final int Maroon=0x7f070061;
+        public static final int MediumAquamarine=0x7f07006b;
+        public static final int MediumBlue=0x7f070089;
+        public static final int MediumOrchid=0x7f070046;
+        public static final int MediumPurple=0x7f070055;
+        public static final int MediumSeaGreen=0x7f070075;
+        public static final int MediumSlateBlue=0x7f070065;
+        public static final int MediumSpringGreen=0x7f070081;
+        public static final int MediumTurquoise=0x7f070070;
+        public static final int MediumVioletRed=0x7f070042;
+        public static final int MidnightBlue=0x7f07007c;
+        public static final int MintCream=0x7f070025;
+        public static final int MistyRose=0x7f07000c;
+        public static final int Moccasin=0x7f07000e;
+        public static final int NavajoWhite=0x7f07000f;
+        public static final int Navy=0x7f07008b;
+        public static final int OldLace=0x7f07001f;
+        public static final int Olive=0x7f07005f;
+        public static final int OliveDrab=0x7f070068;
+        public static final int Orange=0x7f070014;
+        public static final int OrangeRed=0x7f07001a;
+        public static final int Orchid=0x7f07003a;
+        public static final int PaleGoldenrod=0x7f07002f;
+        public static final int PaleGreen=0x7f070053;
+        public static final int PaleTurquoise=0x7f07004b;
+        public static final int PaleVioletRed=0x7f070038;
+        public static final int PapayaWhip=0x7f07000a;
+        public static final int PeachPuff=0x7f070010;
+        public static final int Peru=0x7f070040;
+        public static final int Pink=0x7f070012;
+        public static final int Plum=0x7f070035;
+        public static final int PowderBlue=0x7f070049;
+        public static final int Purple=0x7f070060;
+        public static final int Red=0x7f07001e;
+        public static final int RosyBrown=0x7f070045;
+        public static final int RoyalBlue=0x7f070073;
+        public static final int SaddleBrown=0x7f070058;
+        public static final int Salmon=0x7f070023;
+        public static final int SandyBrown=0x7f070029;
+        public static final int SeaGreen=0x7f070078;
+        public static final int Seashell=0x7f070008;
+        public static final int Sienna=0x7f070050;
+        public static final int Silver=0x7f070043;
+        public static final int SkyBlue=0x7f07005d;
+        public static final int SlateBlue=0x7f070069;
+        public static final int SlateGray=0x7f070067;
+        public static final int Snow=0x7f070004;
+        public static final int SpringGreen=0x7f07007f;
+        public static final int SteelBlue=0x7f070072;
+        public static final int Tan=0x7f07003e;
+        public static final int Teal=0x7f070085;
+        public static final int Thistle=0x7f07003b;
+        public static final int Tomato=0x7f070019;
+        public static final int Transparent=0x7f07008d;
+        public static final int Turquoise=0x7f070074;
+        public static final int Violet=0x7f070030;
+        public static final int Wheat=0x7f070028;
+        public static final int White=0x7f070000;
+        public static final int WhiteSmoke=0x7f070026;
+        public static final int Yellow=0x7f070003;
+        public static final int YellowGreen=0x7f070051;
+        public static final int dark_brown=0x7f07008e;
+        public static final int light_brown=0x7f07008f;
+        public static final int login_blue=0x7f070091;
+        public static final int orange_brown=0x7f070090;
+    }
+    public static final class dimen {
+        public static final int menu_offset_right=0x7f080000;
     }
     public static final class drawable {
         public static final int arrow=0x7f020000;
@@ -295,86 +409,91 @@ containing a value of this type.
         public static final int upload_icon_on=0x7f020045;
     }
     public static final class id {
-        public static final int add=0x7f0a001c;
-        public static final int assign_section_list_view=0x7f0a0004;
-        public static final int assignlistView=0x7f0a0003;
-        public static final int availability=0x7f0a0035;
-        public static final int close=0x7f0a0008;
-        public static final int course_ftr_view=0x7f0a0021;
-        public static final int course_home_list=0x7f0a000b;
-        public static final int courses_spinner=0x7f0a0006;
-        public static final int coursework_assignhdr_view=0x7f0a0001;
-        public static final int coursework_assignitem_empty=0x7f0a0005;
-        public static final int coursework_forumhdr_view=0x7f0a000d;
-        public static final int coursework_forumitem_empty=0x7f0a0010;
-        public static final int coursework_gradeitem_empty=0x7f0a0015;
-        public static final int coursework_hdr_view=0x7f0a000a;
-        public static final int coursework_home_view=0x7f0a0023;
-        public static final int coursework_item_empty=0x7f0a0018;
-        public static final int database_hdr_view=0x7f0a001a;
-        public static final int default_download_toggle=0x7f0a0045;
-        public static final int default_download_toggle_hdr_text=0x7f0a0044;
-        public static final int default_file_size=0x7f0a0041;
-        public static final int default_file_size_hdr_text=0x7f0a0040;
-        public static final int default_file_size_kb_text=0x7f0a0042;
-        public static final int delete=0x7f0a001d;
-        public static final int description=0x7f0a0034;
-        public static final int document_section_list_view=0x7f0a0017;
-        public static final int download_toggle_splitter=0x7f0a0046;
-        public static final int empty_list=0x7f0a004f;
-        public static final int esdk__switch_service=0x7f0a004d;
-        public static final int esdk__webview=0x7f0a001e;
-        public static final int filesize_splitter=0x7f0a0043;
-        public static final int footer_view=0x7f0a0002;
-        public static final int forum_section_list_view=0x7f0a000f;
-        public static final int forum_view=0x7f0a0029;
-        public static final int forumlistView=0x7f0a000e;
-        public static final int ftr_menu_btn_view=0x7f0a0022;
-        public static final int ftr_menu_item_view=0x7f0a0020;
-        public static final int ftr_menu_view=0x7f0a001f;
-        public static final int grade_section_list_view=0x7f0a0014;
-        public static final int grade_webview=0x7f0a0012;
-        public static final int gradelistView=0x7f0a0013;
-        public static final int group=0x7f0a001b;
-        public static final int hdr_coursework_assignitem_view=0x7f0a0000;
-        public static final int hdr_coursework_forumitem_view=0x7f0a000c;
-        public static final int hdr_coursework_gradeitem_view=0x7f0a0011;
-        public static final int hdr_coursework_item_view=0x7f0a0009;
-        public static final int hdr_database_item_view=0x7f0a0019;
-        public static final int hdr_menu_btn_view=0x7f0a0028;
-        public static final int hdr_menu_view=0x7f0a0027;
-        public static final int hdr_upload_view=0x7f0a0047;
-        public static final int header=0x7f0a0033;
-        public static final int item_content=0x7f0a0030;
-        public static final int item_list=0x7f0a002d;
-        public static final int item_title=0x7f0a002f;
-        public static final int listTextView=0x7f0a003c;
-        public static final int listView=0x7f0a0016;
-        public static final int list_image=0x7f0a0032;
-        public static final int list_item_title_layout=0x7f0a002e;
-        public static final int login_button=0x7f0a003b;
-        public static final int login_university_select=0x7f0a003a;
-        public static final int logout_splitter=0x7f0a003e;
-        public static final int main=0x7f0a002b;
-        public static final int offline_view=0x7f0a002a;
-        public static final int password=0x7f0a0039;
-        public static final int rightarrow=0x7f0a0036;
-        public static final int select_course=0x7f0a0024;
-        public static final int settings_view=0x7f0a0025;
-        public static final int standard_list=0x7f0a004e;
-        public static final int storage_hdr_text=0x7f0a003d;
-        public static final int storage_splitter=0x7f0a003f;
-        public static final int textView1=0x7f0a0007;
-        public static final int thumbnail=0x7f0a0031;
-        public static final int title=0x7f0a002c;
-        public static final int traffic_image=0x7f0a0037;
-        public static final int uploadInputSearch=0x7f0a0049;
-        public static final int upload_empty_text=0x7f0a004c;
-        public static final int upload_file_list=0x7f0a004a;
-        public static final int upload_hdr_view=0x7f0a0048;
-        public static final int upload_item_empty=0x7f0a004b;
-        public static final int upload_view=0x7f0a0026;
-        public static final int username=0x7f0a0038;
+        public static final int add=0x7f050021;
+        public static final int assign_section_list_view=0x7f050009;
+        public static final int assignlistView=0x7f050008;
+        public static final int availability=0x7f050036;
+        public static final int close=0x7f05000d;
+        public static final int course_ftr_view=0x7f050026;
+        public static final int course_home_list=0x7f050010;
+        public static final int courses_spinner=0x7f05000b;
+        public static final int coursework_assignhdr_view=0x7f050006;
+        public static final int coursework_assignitem_empty=0x7f05000a;
+        public static final int coursework_forumhdr_view=0x7f050012;
+        public static final int coursework_forumitem_empty=0x7f050015;
+        public static final int coursework_gradeitem_empty=0x7f05001a;
+        public static final int coursework_hdr_view=0x7f05000f;
+        public static final int coursework_home_view=0x7f050028;
+        public static final int coursework_item_empty=0x7f05001d;
+        public static final int database_hdr_view=0x7f05001f;
+        public static final int default_download_toggle=0x7f050049;
+        public static final int default_download_toggle_hdr_text=0x7f050048;
+        public static final int default_file_size=0x7f050045;
+        public static final int default_file_size_hdr_text=0x7f050044;
+        public static final int default_file_size_kb_text=0x7f050046;
+        public static final int delete=0x7f050022;
+        public static final int description=0x7f050035;
+        public static final int document_section_list_view=0x7f05001c;
+        public static final int download_toggle_splitter=0x7f05004a;
+        public static final int empty_list=0x7f050054;
+        public static final int esdk__switch_service=0x7f050052;
+        public static final int esdk__webview=0x7f050023;
+        public static final int filesize_splitter=0x7f050047;
+        public static final int footer_view=0x7f050007;
+        public static final int forum_section_list_view=0x7f050014;
+        public static final int forumlistView=0x7f050013;
+        public static final int ftr_menu_btn_view=0x7f050027;
+        public static final int ftr_menu_item_view=0x7f050025;
+        public static final int ftr_menu_view=0x7f050024;
+        public static final int fullscreen=0x7f050003;
+        public static final int grade_section_list_view=0x7f050019;
+        public static final int grade_webview=0x7f050017;
+        public static final int gradelistView=0x7f050018;
+        public static final int group=0x7f050020;
+        public static final int hdr_coursework_assignitem_view=0x7f050005;
+        public static final int hdr_coursework_forumitem_view=0x7f050011;
+        public static final int hdr_coursework_gradeitem_view=0x7f050016;
+        public static final int hdr_coursework_item_view=0x7f05000e;
+        public static final int hdr_database_item_view=0x7f05001e;
+        public static final int hdr_upload_view=0x7f05004c;
+        public static final int header=0x7f050034;
+        public static final int item_content=0x7f050031;
+        public static final int item_list=0x7f05002e;
+        public static final int item_title=0x7f050030;
+        public static final int left=0x7f050000;
+        public static final int listTextView=0x7f050040;
+        public static final int listView=0x7f05001b;
+        public static final int list_image=0x7f050033;
+        public static final int list_item_title_layout=0x7f05002f;
+        public static final int login_button=0x7f05003c;
+        public static final int login_university_select=0x7f05003b;
+        public static final int logout_splitter=0x7f050042;
+        public static final int main=0x7f05002c;
+        public static final int margin=0x7f050002;
+        public static final int menu_select_course=0x7f05003d;
+        public static final int menu_settings=0x7f05003f;
+        public static final int menu_upload_document=0x7f05003e;
+        public static final int password=0x7f05003a;
+        public static final int right=0x7f050001;
+        public static final int rightarrow=0x7f050037;
+        public static final int select_course=0x7f050029;
+        public static final int selected_view=0x7f050004;
+        public static final int settings_view=0x7f05002a;
+        public static final int slidingmenumain=0x7f05004b;
+        public static final int standard_list=0x7f050053;
+        public static final int storage_hdr_text=0x7f050041;
+        public static final int storage_splitter=0x7f050043;
+        public static final int textView1=0x7f05000c;
+        public static final int thumbnail=0x7f050032;
+        public static final int title=0x7f05002d;
+        public static final int traffic_image=0x7f050038;
+        public static final int uploadInputSearch=0x7f05004e;
+        public static final int upload_empty_text=0x7f050051;
+        public static final int upload_file_list=0x7f05004f;
+        public static final int upload_hdr_view=0x7f05004d;
+        public static final int upload_item_empty=0x7f050050;
+        public static final int upload_view=0x7f05002b;
+        public static final int username=0x7f050039;
     }
     public static final class layout {
         public static final int course_assignment=0x7f030000;
@@ -386,18 +505,19 @@ containing a value of this type.
         public static final int database=0x7f030006;
         public static final int esdk__webview=0x7f030007;
         public static final int footer_navigation=0x7f030008;
-        public static final int header_navigation=0x7f030009;
-        public static final int item_list=0x7f03000a;
-        public static final int list_item=0x7f03000b;
-        public static final int list_row=0x7f03000c;
-        public static final int login=0x7f03000d;
+        public static final int item_list=0x7f030009;
+        public static final int list_item=0x7f03000a;
+        public static final int list_row=0x7f03000b;
+        public static final int login=0x7f03000c;
+        public static final int menu=0x7f03000d;
         public static final int section_view=0x7f03000e;
         public static final int settings=0x7f03000f;
-        public static final int upload_layout=0x7f030010;
+        public static final int slidingmenumain=0x7f030010;
+        public static final int upload_layout=0x7f030011;
     }
     public static final class menu {
-        public static final int esdk__oauth=0x7f090000;
-        public static final int menu=0x7f090001;
+        public static final int esdk__oauth=0x7f0b0000;
+        public static final int menu=0x7f0b0001;
     }
     public static final class raw {
         public static final int contentxsl=0x7f040000;
@@ -407,94 +527,335 @@ containing a value of this type.
         public static final int uploadinfoxml=0x7f040004;
     }
     public static final class string {
-        public static final int account_hdr_text=0x7f05002e;
-        public static final int account_logout_text=0x7f05002f;
-        public static final int app_name=0x7f050008;
-        public static final int assign_discus_desc_view=0x7f05002d;
-        public static final int assign_discus_view=0x7f05002c;
-        public static final int assignments_desc_view=0x7f050021;
-        public static final int assignments_view=0x7f050020;
-        public static final int authenticate_evernote=0x7f050049;
-        public static final int available_courses=0x7f050041;
-        public static final int courses_view=0x7f050019;
-        public static final int coursework_assigndetail_view=0x7f050014;
-        public static final int coursework_detail_view=0x7f050013;
-        public static final int coursework_forumdetail_view=0x7f050015;
-        public static final int coursework_gradedetail_view=0x7f050016;
-        public static final int coursework_home_view=0x7f050012;
-        public static final int database_home_view=0x7f050039;
-        public static final int deafult_course_name=0x7f05001d;
-        public static final int default_download_toggle_hdr_text=0x7f050033;
-        public static final int default_file_size_hdr_text=0x7f050031;
-        public static final int default_file_size_kb_text=0x7f050032;
-        public static final int documents_desc_view=0x7f05001f;
-        public static final int documents_view=0x7f05001e;
-        public static final int download_toggle_hdr_text=0x7f050035;
-        public static final int empty_coursework=0x7f050036;
-        public static final int empty_list=0x7f05000b;
-        public static final int empty_upload=0x7f050037;
-        public static final int esdk__err_api_setup=0x7f050005;
-        public static final int esdk__err_authentication=0x7f050004;
-        public static final int esdk__err_protocol_version=0x7f050003;
-        public static final int esdk__evernote=0x7f050000;
-        public static final int esdk__evernote_login_failed=0x7f050001;
-        public static final int esdk__evernote_login_successful=0x7f050002;
-        public static final int esdk__loading=0x7f050006;
-        public static final int forum_desc_view=0x7f050025;
-        public static final int forum_view=0x7f050024;
-        public static final int general_discus_desc_view=0x7f050029;
-        public static final int general_discus_view=0x7f050028;
-        public static final int general_title=0x7f050046;
-        public static final int grades_desc_view=0x7f050023;
-        public static final int grades_view=0x7f050022;
-        public static final int hello=0x7f050007;
-        public static final int install_evernote=0x7f050048;
-        public static final int loading=0x7f05003d;
-        public static final int login_button=0x7f050011;
-        public static final int login_incorrect=0x7f05003a;
-        public static final int login_mobile=0x7f050042;
-        public static final int login_moodle_desc=0x7f05000c;
-        public static final int login_moodle_hint=0x7f05000d;
-        public static final int login_password=0x7f050010;
-        public static final int login_select_university=0x7f050044;
-        public static final int login_university=0x7f050043;
-        public static final int login_url=0x7f05000e;
-        public static final int login_username=0x7f05000f;
-        public static final int maximum_download_filesize_hdr_text=0x7f050034;
-        public static final int not_online=0x7f05003c;
-        public static final int note_add=0x7f050047;
-        public static final int note_content_not_set=0x7f05004b;
-        public static final int notes_title=0x7f050045;
-        public static final int offline_desc_view=0x7f050027;
-        public static final int offline_view=0x7f050026;
-        public static final int section_default_hdr=0x7f050009;
-        public static final int select_course=0x7f05001c;
-        public static final int settings_view=0x7f05001a;
-        public static final int share_using=0x7f05004a;
-        public static final int spin=0x7f050038;
-        public static final int standard_list=0x7f05000a;
-        public static final int storage_hdr_text=0x7f050030;
-        public static final int upload_btn_view=0x7f05001b;
-        public static final int upload_search_hint=0x7f050018;
-        public static final int upload_view=0x7f050017;
-        public static final int user_no_courses=0x7f05003b;
-        public static final int wait_while_get_course_detail=0x7f050040;
-        public static final int wait_while_get_courses=0x7f05003f;
-        public static final int wait_while_login=0x7f05003e;
-        public static final int week_one_desc_view=0x7f05002b;
-        public static final int week_one_view=0x7f05002a;
+        public static final int account_hdr_text=0x7f06002d;
+        public static final int account_logout_text=0x7f06002e;
+        public static final int app_name=0x7f060007;
+        public static final int assign_discus_desc_view=0x7f06002c;
+        public static final int assign_discus_view=0x7f06002b;
+        public static final int assignments_desc_view=0x7f060020;
+        public static final int assignments_view=0x7f06001f;
+        public static final int authenticate_evernote=0x7f060048;
+        public static final int available_courses=0x7f060040;
+        public static final int courses_view=0x7f060018;
+        public static final int coursework_assigndetail_view=0x7f060013;
+        public static final int coursework_detail_view=0x7f060012;
+        public static final int coursework_forumdetail_view=0x7f060014;
+        public static final int coursework_gradedetail_view=0x7f060015;
+        public static final int coursework_home_view=0x7f060011;
+        public static final int database_home_view=0x7f060038;
+        public static final int deafult_course_name=0x7f06001c;
+        public static final int default_download_toggle_hdr_text=0x7f060032;
+        public static final int default_file_size_hdr_text=0x7f060030;
+        public static final int default_file_size_kb_text=0x7f060031;
+        public static final int documents_desc_view=0x7f06001e;
+        public static final int documents_view=0x7f06001d;
+        public static final int download_toggle_hdr_text=0x7f060034;
+        public static final int empty_coursework=0x7f060035;
+        public static final int empty_list=0x7f06000a;
+        public static final int empty_upload=0x7f060036;
+        public static final int esdk__err_api_setup=0x7f060005;
+        public static final int esdk__err_authentication=0x7f060004;
+        public static final int esdk__err_protocol_version=0x7f060003;
+        public static final int esdk__evernote=0x7f060000;
+        public static final int esdk__evernote_login_failed=0x7f060001;
+        public static final int esdk__evernote_login_successful=0x7f060002;
+        public static final int esdk__loading=0x7f060006;
+        public static final int forum_desc_view=0x7f060024;
+        public static final int forum_view=0x7f060023;
+        public static final int general_discus_desc_view=0x7f060028;
+        public static final int general_discus_view=0x7f060027;
+        public static final int general_title=0x7f060045;
+        public static final int grades_desc_view=0x7f060022;
+        public static final int grades_view=0x7f060021;
+        public static final int install_evernote=0x7f060047;
+        public static final int loading=0x7f06003c;
+        public static final int login_button=0x7f060010;
+        public static final int login_incorrect=0x7f060039;
+        public static final int login_mobile=0x7f060041;
+        public static final int login_moodle_desc=0x7f06000b;
+        public static final int login_moodle_hint=0x7f06000c;
+        public static final int login_password=0x7f06000f;
+        public static final int login_select_university=0x7f060043;
+        public static final int login_university=0x7f060042;
+        public static final int login_url=0x7f06000d;
+        public static final int login_username=0x7f06000e;
+        public static final int maximum_download_filesize_hdr_text=0x7f060033;
+        public static final int menu_courses=0x7f06004b;
+        public static final int menu_settings=0x7f06004c;
+        public static final int menu_upload=0x7f06004d;
+        public static final int not_online=0x7f06003b;
+        public static final int note_add=0x7f060046;
+        public static final int note_content_not_set=0x7f06004a;
+        public static final int notes_title=0x7f060044;
+        public static final int offline_desc_view=0x7f060026;
+        public static final int offline_view=0x7f060025;
+        public static final int section_default_hdr=0x7f060008;
+        public static final int select_course=0x7f06001b;
+        public static final int settings_view=0x7f060019;
+        public static final int share_using=0x7f060049;
+        public static final int spin=0x7f060037;
+        public static final int standard_list=0x7f060009;
+        public static final int storage_hdr_text=0x7f06002f;
+        public static final int upload_btn_view=0x7f06001a;
+        public static final int upload_search_hint=0x7f060017;
+        public static final int upload_view=0x7f060016;
+        public static final int user_no_courses=0x7f06003a;
+        public static final int wait_while_get_course_detail=0x7f06003f;
+        public static final int wait_while_get_courses=0x7f06003e;
+        public static final int wait_while_login=0x7f06003d;
+        public static final int week_one_desc_view=0x7f06002a;
+        public static final int week_one_view=0x7f060029;
     }
     public static final class style {
-        public static final int FooterText=0x7f080003;
-        public static final int HeadingText=0x7f080002;
-        public static final int MyColorDialogTheme=0x7f080004;
-        public static final int SectionItemStyle=0x7f080001;
-        public static final int SectionListViewTheme=0x7f08000a;
-        public static final int SectionTextViewStyle=0x7f080000;
-        public static final int Theme_Transparent=0x7f080005;
-        public static final int dark_theme=0x7f080008;
-        public static final int full_screen_dialog=0x7f080006;
-        public static final int light_theme=0x7f080007;
-        public static final int middle_theme=0x7f080009;
+        public static final int FooterText=0x7f0a0003;
+        public static final int HeadingText=0x7f0a0002;
+        public static final int MyColorDialogTheme=0x7f0a0004;
+        public static final int SectionItemStyle=0x7f0a0001;
+        public static final int SectionListViewTheme=0x7f0a000a;
+        public static final int SectionTextViewStyle=0x7f0a0000;
+        public static final int Theme_Transparent=0x7f0a0005;
+        public static final int dark_theme=0x7f0a0008;
+        public static final int full_screen_dialog=0x7f0a0006;
+        public static final int light_theme=0x7f0a0007;
+        public static final int middle_theme=0x7f0a0009;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a SlidingMenu.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SlidingMenu_behindOffset com.mobileuni:behindOffset}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_behindScrollScale com.mobileuni:behindScrollScale}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_behindWidth com.mobileuni:behindWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_fadeDegree com.mobileuni:fadeDegree}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_fadeEnabled com.mobileuni:fadeEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_mode com.mobileuni:mode}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_selectorDrawable com.mobileuni:selectorDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_selectorEnabled com.mobileuni:selectorEnabled}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_shadowDrawable com.mobileuni:shadowDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_shadowWidth com.mobileuni:shadowWidth}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_touchModeAbove com.mobileuni:touchModeAbove}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_touchModeBehind com.mobileuni:touchModeBehind}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_viewAbove com.mobileuni:viewAbove}</code></td><td></td></tr>
+           <tr><td><code>{@link #SlidingMenu_viewBehind com.mobileuni:viewBehind}</code></td><td></td></tr>
+           </table>
+           @see #SlidingMenu_behindOffset
+           @see #SlidingMenu_behindScrollScale
+           @see #SlidingMenu_behindWidth
+           @see #SlidingMenu_fadeDegree
+           @see #SlidingMenu_fadeEnabled
+           @see #SlidingMenu_mode
+           @see #SlidingMenu_selectorDrawable
+           @see #SlidingMenu_selectorEnabled
+           @see #SlidingMenu_shadowDrawable
+           @see #SlidingMenu_shadowWidth
+           @see #SlidingMenu_touchModeAbove
+           @see #SlidingMenu_touchModeBehind
+           @see #SlidingMenu_viewAbove
+           @see #SlidingMenu_viewBehind
+         */
+        public static final int[] SlidingMenu = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
+            0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007,
+            0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b,
+            0x7f01000c, 0x7f01000d
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.mobileuni.R.attr#behindOffset}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:behindOffset
+        */
+        public static final int SlidingMenu_behindOffset = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.mobileuni.R.attr#behindScrollScale}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:behindScrollScale
+        */
+        public static final int SlidingMenu_behindScrollScale = 5;
+        /**
+          <p>This symbol is the offset where the {@link com.mobileuni.R.attr#behindWidth}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:behindWidth
+        */
+        public static final int SlidingMenu_behindWidth = 4;
+        /**
+          <p>This symbol is the offset where the {@link com.mobileuni.R.attr#fadeDegree}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:fadeDegree
+        */
+        public static final int SlidingMenu_fadeDegree = 11;
+        /**
+          <p>This symbol is the offset where the {@link com.mobileuni.R.attr#fadeEnabled}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:fadeEnabled
+        */
+        public static final int SlidingMenu_fadeEnabled = 10;
+        /**
+          <p>This symbol is the offset where the {@link com.mobileuni.R.attr#mode}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>left</code></td><td>0</td><td></td></tr>
+<tr><td><code>right</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name android:mode
+        */
+        public static final int SlidingMenu_mode = 0;
+        /**
+          <p>This symbol is the offset where the {@link com.mobileuni.R.attr#selectorDrawable}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:selectorDrawable
+        */
+        public static final int SlidingMenu_selectorDrawable = 13;
+        /**
+          <p>This symbol is the offset where the {@link com.mobileuni.R.attr#selectorEnabled}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:selectorEnabled
+        */
+        public static final int SlidingMenu_selectorEnabled = 12;
+        /**
+          <p>This symbol is the offset where the {@link com.mobileuni.R.attr#shadowDrawable}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:shadowDrawable
+        */
+        public static final int SlidingMenu_shadowDrawable = 8;
+        /**
+          <p>This symbol is the offset where the {@link com.mobileuni.R.attr#shadowWidth}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:shadowWidth
+        */
+        public static final int SlidingMenu_shadowWidth = 9;
+        /**
+          <p>This symbol is the offset where the {@link com.mobileuni.R.attr#touchModeAbove}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>margin</code></td><td>0</td><td></td></tr>
+<tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name android:touchModeAbove
+        */
+        public static final int SlidingMenu_touchModeAbove = 6;
+        /**
+          <p>This symbol is the offset where the {@link com.mobileuni.R.attr#touchModeBehind}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>margin</code></td><td>0</td><td></td></tr>
+<tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
+</table>
+          @attr name android:touchModeBehind
+        */
+        public static final int SlidingMenu_touchModeBehind = 7;
+        /**
+          <p>This symbol is the offset where the {@link com.mobileuni.R.attr#viewAbove}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:viewAbove
+        */
+        public static final int SlidingMenu_viewAbove = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.mobileuni.R.attr#viewBehind}
+          attribute's value can be found in the {@link #SlidingMenu} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:viewBehind
+        */
+        public static final int SlidingMenu_viewBehind = 2;
+    };
 }

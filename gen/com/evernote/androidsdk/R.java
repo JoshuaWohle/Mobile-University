@@ -8,20 +8,20 @@ package com.evernote.androidsdk;
 
 public final class R {
 	public static final class id {
-		public static final int esdk__webview = 0x7f0a001e;
-		public static final int esdk__switch_service = 0x7f0a004d;
+		public static final int esdk__webview = 0x7f050023;
+		public static final int esdk__switch_service = 0x7f050052;
 	}
 	public static final class string {
-		public static final int esdk__err_protocol_version = 0x7f050003;
-		public static final int esdk__err_authentication = 0x7f050004;
-		public static final int esdk__loading = 0x7f050006;
-		public static final int esdk__evernote_login_successful = 0x7f050002;
-		public static final int esdk__evernote_login_failed = 0x7f050001;
-		public static final int esdk__err_api_setup = 0x7f050005;
-		public static final int esdk__evernote = 0x7f050000;
+		public static final int esdk__err_protocol_version = 0x7f060003;
+		public static final int esdk__err_authentication = 0x7f060004;
+		public static final int esdk__loading = 0x7f060006;
+		public static final int esdk__evernote_login_successful = 0x7f060002;
+		public static final int esdk__evernote_login_failed = 0x7f060001;
+		public static final int esdk__err_api_setup = 0x7f060005;
+		public static final int esdk__evernote = 0x7f060000;
 	}
 	public static final class menu {
-		public static final int esdk__oauth = 0x7f090000;
+		public static final int esdk__oauth = 0x7f0b0000;
 	}
 	public static final class layout {
 		public static final int esdk__webview = 0x7f030007;

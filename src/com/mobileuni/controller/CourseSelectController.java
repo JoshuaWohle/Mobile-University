@@ -2,10 +2,12 @@ package com.mobileuni.controller;
 
 import com.mobileuni.R;
 import com.mobileuni.helpers.AppStatus;
+import com.mobileuni.helpers.MenuHelper;
 import com.mobileuni.listeners.UserChangeListener;
 import com.mobileuni.model.Course;
 import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
+import com.slidingmenu.lib.SlidingMenu;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -25,6 +27,9 @@ public class CourseSelectController extends Activity implements UserChangeListen
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.item_list);
+		
+		MenuHelper.setSlideMenu(this);
+		
 		if(Session.getUser() == null) {
 			Log.d(Constants.LOG_SESSION, "No user is set, cannot use the application");
 			return;
