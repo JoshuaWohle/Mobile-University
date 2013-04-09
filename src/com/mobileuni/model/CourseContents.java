@@ -31,7 +31,7 @@ import android.util.Log;
 
 import com.mobileuni.other.Constants;
 
-public class CourseContent implements Serializable {
+public class CourseContents implements Serializable {
 
 	
 	/**
@@ -44,7 +44,7 @@ public class CourseContent implements Serializable {
 	private String summary;	
     private ArrayList<Module> modules = new ArrayList<Module>();	
 	
-	public CourseContent() {
+	public CourseContents() {
 
 	}
 	

@@ -29,7 +29,7 @@ import com.mobileuni.helpers.SectionListAdapter;
 import com.mobileuni.helpers.SectionListItem;
 import com.mobileuni.helpers.SectionListView;
 import com.mobileuni.helpers.StandardArrayAdapter;
-import com.mobileuni.model.CourseContent;
+import com.mobileuni.model.CourseContents;
 import com.mobileuni.other.Session;
 
 import com.mobileuni.R;
@@ -70,7 +70,7 @@ public class CourseAssignmentController extends Activity {
 	private void getCourseAssignments() {
 		courseworkLayout = (FrameLayout) findViewById(R.id.assignlistView);
 
-		ArrayList<CourseContent> coursecontent = new ArrayList<CourseContent>();
+		ArrayList<CourseContents> coursecontent = new ArrayList<CourseContents>();
 		coursecontent = Session.getCurrentSelectedCourse().getCourseContent();
 
 		SectionListItem[] assignArray = CourseContentsListHelper.getInstance(this)

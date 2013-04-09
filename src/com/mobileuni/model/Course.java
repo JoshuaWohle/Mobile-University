@@ -42,7 +42,7 @@ public class Course implements Serializable {
     private int enrolledusercount;	
     private String idnumber;	
     private int visible;	
-    private ArrayList<CourseContent> coursecontents = new ArrayList<CourseContent>();	
+    private ArrayList<CourseContents> coursecontents = new ArrayList<CourseContents>();	
     private ArrayList<String> absoluteFilePaths = new ArrayList<String>();
     private ArrayList<MetaNote> notes = new ArrayList<MetaNote>();
 
@@ -117,7 +117,7 @@ public class Course implements Serializable {
        return visible;
     }
     
-	public void setCourseContent(ArrayList<CourseContent> coursecontents) {
+	public void setCourseContent(ArrayList<CourseContents> coursecontents) {
        this.coursecontents = coursecontents;
        
        for(CourseChangeListener listener : cls) {
@@ -125,7 +125,7 @@ public class Course implements Serializable {
        }
     }
 
-    public ArrayList<CourseContent> getCourseContent() {
+    public ArrayList<CourseContents> getCourseContent() {
        return coursecontents;
     }
 

@@ -30,7 +30,7 @@ import com.mobileuni.helpers.SectionListItem;
 import com.mobileuni.helpers.SectionListView;
 import com.mobileuni.helpers.StandardArrayAdapter;
 import com.mobileuni.listeners.MenuListener;
-import com.mobileuni.model.CourseContent;
+import com.mobileuni.model.CourseContents;
 import com.mobileuni.model.User;
 import com.mobileuni.other.Session;
 
@@ -89,7 +89,7 @@ public class CourseForumController extends Activity {
 		courseworkLayout = (FrameLayout) findViewById(R.id.forumlistView);
 		courseworkLayout.setVisibility(View.VISIBLE);
 
-		ArrayList<CourseContent> coursecontent = new ArrayList<CourseContent>();
+		ArrayList<CourseContents> coursecontent = new ArrayList<CourseContents>();
 		coursecontent = Session.getCurrentSelectedCourse().getCourseContent();
 
 		forumArray = CourseContentsListHelper.getInstance(this)

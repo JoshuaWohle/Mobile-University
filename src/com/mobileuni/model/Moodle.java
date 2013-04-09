@@ -101,7 +101,7 @@ public class Moodle implements iCourseManager {
 			return;
 		}
 		
-		ArrayList<CourseContent> courseContentsArray = new ArrayList<CourseContent>();
+		ArrayList<CourseContents> courseContentsArray = new ArrayList<CourseContents>();
 		try {
 			JSONArray courseContents = jsonObject
 					.getJSONArray("coursecontents");
@@ -109,7 +109,7 @@ public class Moodle implements iCourseManager {
 			// looping through All Course Content
 			for (int i = 0; i < courseContents.length(); i++) {
 				JSONObject c = courseContents.getJSONObject(i);
-				CourseContent courseContent = new CourseContent();
+				CourseContents courseContent = new CourseContents();
 				courseContent.populateCourseContent(c);
 				courseContentsArray.add(courseContent);
 			}

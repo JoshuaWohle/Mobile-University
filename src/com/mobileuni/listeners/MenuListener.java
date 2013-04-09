@@ -4,6 +4,7 @@ import com.mobileuni.R;
 import com.mobileuni.controller.CourseDetailController;
 import com.mobileuni.controller.CourseSelectController;
 import com.mobileuni.controller.FileUploadController;
+import com.mobileuni.controller.LoginController;
 import com.mobileuni.controller.SettingsController;
 
 import android.app.Activity;
@@ -20,29 +21,30 @@ public class MenuListener implements OnClickListener {
 	}
 
 	public void onClick(View v) {
-		Intent intent;
+		Intent i = null;
 
 		switch (v.getId()) {
 		case R.id.menu_selected_course:
-			intent = new Intent(a, CourseDetailController.class);
-			a.startActivity(intent);
+			i = new Intent(a, CourseDetailController.class);
 			break;
 		case R.id.menu_select_course:
-			intent = new Intent(a, CourseSelectController.class);
-			a.startActivity(intent);
+			i = new Intent(a, CourseSelectController.class);
 			break;
 		case R.id.menu_upload_document:
-			intent = new Intent(a, FileUploadController.class);
-			a.startActivity(intent);
+			i = new Intent(a, FileUploadController.class);
 			break;
 		case R.id.menu_settings:
-			intent = new Intent(a, SettingsController.class);
-			a.startActivity(intent);
+			i = new Intent(a, SettingsController.class);
+			break;
+		case R.id.menu_logout:
+			i = new Intent(a, LoginController.class);
 			break;
 		default:
-
+			break;
 		}
 		
+		if(i != null)
+			a.startActivity(i);
 	}
 
 }

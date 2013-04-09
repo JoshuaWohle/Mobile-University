@@ -36,6 +36,8 @@ public class MenuHelper {
 				.setOnClickListener(ml);
 		((LinearLayout) menuView.findViewById(R.id.menu_selected_course))
 				.setOnClickListener(ml);
+		((LinearLayout) menuView.findViewById(R.id.menu_logout))
+		.setOnClickListener(ml);
 		menu.setMenu(menuView);
 
 		if (courseSectionList == null) {

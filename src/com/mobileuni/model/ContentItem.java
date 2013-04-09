@@ -28,7 +28,7 @@ import android.util.Log;
 
 import com.mobileuni.other.Constants;
 
-public class Content implements Serializable {
+public class ContentItem implements Serializable {
 
 	/**
 	 * 
@@ -48,7 +48,7 @@ public class Content implements Serializable {
     private String author;
     private String license;
 	
-	public Content() {
+	public ContentItem() {
 	}
 	
     public void populateContent(JSONObject jsonObject) {

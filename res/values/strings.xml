@@ -88,5 +88,6 @@
 	<string name="course_section_notes_description">View notes of your courses</string>
 	<string name="settings_auto_download">Automatically download files ?</string>
 	<string name="settings_sync_deadlines">Synchronize your course deadlines to your calendar ?</string>
+	<string name="menu_logout">Logout</string>
 		
 </resources>

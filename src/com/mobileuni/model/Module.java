@@ -49,7 +49,7 @@ public class Module implements Serializable {
     private int availablefrom;	
     private int availableuntil;	
     private int indent;	
-    private ArrayList<Content> contents = new ArrayList<Content>();	
+    private ArrayList<ContentItem> contents = new ArrayList<ContentItem>();	
 	
 	public Module() {
 
@@ -95,12 +95,12 @@ public class Module implements Serializable {
 		        	this.setIndent(Integer.valueOf(indent));
 		        
 		        JSONArray contents = jsonObject.getJSONArray("contents");
-		        ArrayList<Content> contentsArray = new ArrayList<Content>();
+		        ArrayList<ContentItem> contentsArray = new ArrayList<ContentItem>();
 		        
 	    	    // looping through all Contents 
 	    	    for(int i = 0; i < contents.length(); i++){ 
 	    	        JSONObject c = contents.getJSONObject(i); 
-	    	        Content content = new Content();
+	    	        ContentItem content = new ContentItem();
 	    	        
 	    	        content.populateContent(c);
 	    	        contentsArray.add(content);
@@ -203,11 +203,11 @@ public class Module implements Serializable {
        return indent;
     }
     
-	public void setContents(ArrayList<Content> contents) {
+	public void setContents(ArrayList<ContentItem> contents) {
        this.contents = contents;
     }
 
-    public ArrayList<Content> getContents() {
+    public ArrayList<ContentItem> getContents() {
        return contents;
     }
 }

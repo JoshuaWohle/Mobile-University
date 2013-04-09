@@ -34,7 +34,7 @@ import com.mobileuni.helpers.StandardArrayAdapter;
 import com.mobileuni.helpers.asynctasks.DownloadFileTask;
 import com.mobileuni.listeners.CourseChangeListener;
 import com.mobileuni.model.Course;
-import com.mobileuni.model.CourseContent;
+import com.mobileuni.model.CourseContents;
 import com.mobileuni.model.User;
 import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
@@ -93,7 +93,7 @@ public class CourseDocumentController extends Activity implements CourseChangeLi
 		courseworkLayout = (FrameLayout) findViewById(R.id.listView);
 		courseworkLayout.setVisibility(View.VISIBLE);
 
-		ArrayList<CourseContent> coursecontent = new ArrayList<CourseContent>();
+		ArrayList<CourseContents> coursecontent = new ArrayList<CourseContents>();
 		if (user != null && selectedCourse != null) {
 			coursecontent = selectedCourse.getCourseContent();
 			Log.d(Constants.LOG_COURSE, "Got course contents for course : "

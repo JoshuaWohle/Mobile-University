@@ -26,8 +26,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.mobileuni.model.Content;
-import com.mobileuni.model.CourseContent;
+import com.mobileuni.model.ContentItem;
+import com.mobileuni.model.CourseContents;
 import com.mobileuni.model.Module;
 import com.mobileuni.other.Constants;
 
@@ -47,15 +47,15 @@ public class CourseContentsListHelper {
         return instance; 
     }
 	
-	public SectionListItem[] populateCourseDocuments(ArrayList<CourseContent> coursecontent, String courseName) {
+	public SectionListItem[] populateCourseDocuments(ArrayList<CourseContents> coursecontent, String courseName) {
 		
 		SectionListItem[] documentArray = null;
 		int docCount = 0;
 		if (coursecontent.size() > 0) {
-			for (CourseContent content : coursecontent) {
+			for (CourseContents content : coursecontent) {
 				for (Module module : content.getModules()) {
 					if (module.getModName().equalsIgnoreCase("resource")) {
-						for (Content item : module.getContents()) {
+						for (ContentItem item : module.getContents()) {
 							if (item.getType().equalsIgnoreCase("file")) {
 								docCount++;
 							}
@@ -66,12 +66,12 @@ public class CourseContentsListHelper {
 			documentArray = new SectionListItem[docCount];
 			
 			int elementCount = 0;
-			for (CourseContent content : coursecontent) {
+			for (CourseContents content : coursecontent) {
 				String sectionName = content.getName();
 				if (content.getVisible() == 1) {		
 					for (Module module : content.getModules()) {
 						if (module.getModName().equalsIgnoreCase("resource") && module.getVisible() == 1) {
-							for (Content item : module.getContents()) {
+							for (ContentItem item : module.getContents()) {
 								if (item.getType().equalsIgnoreCase("file")) {
 									HashMap<String, String> map = new HashMap<String, String>();
 									
@@ -143,12 +143,12 @@ public class CourseContentsListHelper {
 		return documentArray;		
 	}
 	
-	public SectionListItem[] populateCourseAssignments(ArrayList<CourseContent> coursecontent) {
+	public SectionListItem[] populateCourseAssignments(ArrayList<CourseContents> coursecontent) {
 		
 		SectionListItem[] assignmentArray = null;
 		int assignCount = 0;
 		if (coursecontent.size() > 0) {
-			for (CourseContent content : coursecontent) {
+			for (CourseContents content : coursecontent) {
 				for (Module module : content.getModules()) {
 					if (module.getModName().equalsIgnoreCase("assignment") || module.getModName().equalsIgnoreCase("assign")) {
 						assignCount++;
@@ -158,7 +158,7 @@ public class CourseContentsListHelper {
 			assignmentArray = new SectionListItem[assignCount];
 			
 			int elementCount = 0;
-			for (CourseContent content : coursecontent) {
+			for (CourseContents content : coursecontent) {
 				String sectionName = content.getName();
 				if (content.getVisible() == 1) {					
 					for (Module module : content.getModules()) {
@@ -186,12 +186,12 @@ public class CourseContentsListHelper {
 		return assignmentArray;		
 	}
 	
-	public SectionListItem[] populateCourseGrades(ArrayList<CourseContent> coursecontent) {
+	public SectionListItem[] populateCourseGrades(ArrayList<CourseContents> coursecontent) {
 		
 		SectionListItem[] assignmentArray = null;
 		int assignCount = 0;
 		if (coursecontent.size() > 0) {
-			for (CourseContent content : coursecontent) {
+			for (CourseContents content : coursecontent) {
 				for (Module module : content.getModules()) {
 					if (module.getModName().equalsIgnoreCase("assignment") || module.getModName().equalsIgnoreCase("assign")) {
 						assignCount++;
@@ -201,7 +201,7 @@ public class CourseContentsListHelper {
 			assignmentArray = new SectionListItem[assignCount];
 			
 			int elementCount = 0;
-			for (CourseContent content : coursecontent) {
+			for (CourseContents content : coursecontent) {
 				String sectionName = content.getName();
 				if (content.getVisible() == 1) {					
 					for (Module module : content.getModules()) {
@@ -228,12 +228,12 @@ public class CourseContentsListHelper {
 		return assignmentArray;		
 	}
 	
-	public SectionListItem[] populateCourseForums(ArrayList<CourseContent> coursecontent) {
+	public SectionListItem[] populateCourseForums(ArrayList<CourseContents> coursecontent) {
 		
 		SectionListItem[] assignmentArray = null;
 		int assignCount = 0;
 		if (coursecontent.size() > 0) {
-			for (CourseContent content : coursecontent) {
+			for (CourseContents content : coursecontent) {
 				for (Module module : content.getModules()) {
 					if (module.getModName().equalsIgnoreCase("forum")) {
 						assignCount++;
@@ -243,7 +243,7 @@ public class CourseContentsListHelper {
 			assignmentArray = new SectionListItem[assignCount];
 			
 			int elementCount = 0;
-			for (CourseContent content : coursecontent) {
+			for (CourseContents content : coursecontent) {
 				String sectionName = content.getName();
 				if (content.getVisible() == 1) {					
 					for (Module module : content.getModules()) {

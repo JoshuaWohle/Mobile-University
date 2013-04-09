@@ -421,7 +421,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int coursework_item_empty=0x7f050019;
         public static final int description=0x7f050024;
         public static final int document_section_list_view=0x7f050018;
-        public static final int esdk__switch_service=0x7f05003a;
+        public static final int esdk__switch_service=0x7f05003b;
         public static final int esdk__webview=0x7f05001a;
         public static final int footer_view=0x7f050007;
         public static final int forum_section_list_view=0x7f05000e;
@@ -434,13 +434,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int hdr_coursework_forumitem_view=0x7f05000b;
         public static final int hdr_coursework_gradeitem_view=0x7f050010;
         public static final int hdr_coursework_item_view=0x7f050015;
-        public static final int hdr_upload_view=0x7f050034;
+        public static final int hdr_upload_view=0x7f050035;
         public static final int header=0x7f050023;
         public static final int item_content=0x7f050020;
         public static final int item_list=0x7f05001d;
         public static final int item_title=0x7f05001f;
         public static final int left=0x7f050000;
-        public static final int listTextView=0x7f050030;
+        public static final int listTextView=0x7f050031;
         public static final int listView=0x7f050017;
         public static final int list_image=0x7f050022;
         public static final int list_item_title_layout=0x7f05001e;
@@ -448,6 +448,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int login_university_select=0x7f05002a;
         public static final int main=0x7f05001b;
         public static final int margin=0x7f050002;
+        public static final int menu_logout=0x7f050030;
         public static final int menu_select_course=0x7f05002d;
         public static final int menu_selected_course=0x7f05002c;
         public static final int menu_settings=0x7f05002f;
@@ -456,17 +457,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int right=0x7f050001;
         public static final int rightarrow=0x7f050026;
         public static final int selected_view=0x7f050004;
-        public static final int settings_auto_download=0x7f050031;
-        public static final int settings_sync_deadlines=0x7f050032;
-        public static final int slidingmenumain=0x7f050033;
+        public static final int settings_auto_download=0x7f050032;
+        public static final int settings_sync_deadlines=0x7f050033;
+        public static final int slidingmenumain=0x7f050034;
         public static final int thumbnail=0x7f050021;
         public static final int title=0x7f05001c;
         public static final int traffic_image=0x7f050027;
-        public static final int uploadInputSearch=0x7f050036;
-        public static final int upload_empty_text=0x7f050039;
-        public static final int upload_file_list=0x7f050037;
-        public static final int upload_hdr_view=0x7f050035;
-        public static final int upload_item_empty=0x7f050038;
+        public static final int uploadInputSearch=0x7f050037;
+        public static final int upload_empty_text=0x7f05003a;
+        public static final int upload_file_list=0x7f050038;
+        public static final int upload_hdr_view=0x7f050036;
+        public static final int upload_item_empty=0x7f050039;
         public static final int username=0x7f050028;
     }
     public static final class layout {
@@ -561,6 +562,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int maximum_download_filesize_hdr_text=0x7f060033;
         public static final int menu_courses=0x7f06004b;
         public static final int menu_current_course=0x7f06004e;
+        public static final int menu_logout=0x7f06005b;
         public static final int menu_settings=0x7f06004c;
         public static final int menu_upload=0x7f06004d;
         public static final int not_online=0x7f06003b;
