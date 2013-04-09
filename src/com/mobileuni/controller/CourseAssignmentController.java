@@ -29,9 +29,7 @@ import com.mobileuni.helpers.SectionListAdapter;
 import com.mobileuni.helpers.SectionListItem;
 import com.mobileuni.helpers.SectionListView;
 import com.mobileuni.helpers.StandardArrayAdapter;
-import com.mobileuni.listeners.MenuListener;
 import com.mobileuni.model.CourseContent;
-import com.mobileuni.model.User;
 import com.mobileuni.other.Session;
 
 import com.mobileuni.R;
@@ -43,25 +41,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class CourseAssignmentController extends Activity {
 
-	Button home, courseSelect, upload, setting;
-	TextView footerCourseHdr;
-	LinearLayout emptyLayout;
 	FrameLayout courseworkLayout;
-	User user;
-
-	SectionListItem[] assignArray;
-	StandardArrayAdapter arrayAdapter;
-	SectionListAdapter sectionAdapter;
-	SectionListView listView;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -71,44 +57,30 @@ public class CourseAssignmentController extends Activity {
 		setContentView(R.layout.course_assignment);
 		MenuHelper.setSlideMenu(this);
 
-		try {
-			Intent i = getIntent();
-			user = Session.getUser();
-
-			footerCourseHdr = (TextView) findViewById(R.id.course_ftr_view);
-
-			if (Session.getCurrentSelectedCourse() == null) {
-				i = new Intent(this, CourseSelectController.class);
-				startActivity(i);
-			}
-
-			footerCourseHdr.setText(Session.getCurrentSelectedCourse().getShortName());
-
-			getCourseAssignments();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		Intent i = getIntent();
+		
+		if (Session.getCurrentSelectedCourse() == null) {
+			i = new Intent(this, CourseSelectController.class);
+			startActivity(i);
 		}
-
+		getCourseAssignments();
+		
 	}
 
 	private void getCourseAssignments() {
-		emptyLayout = (LinearLayout) findViewById(R.id.coursework_assignitem_empty);
-		emptyLayout.setVisibility(View.INVISIBLE);
 		courseworkLayout = (FrameLayout) findViewById(R.id.assignlistView);
-		courseworkLayout.setVisibility(View.VISIBLE);
 
 		ArrayList<CourseContent> coursecontent = new ArrayList<CourseContent>();
 		coursecontent = Session.getCurrentSelectedCourse().getCourseContent();
 
-		assignArray = CourseContentsListHelper.getInstance(this)
+		SectionListItem[] assignArray = CourseContentsListHelper.getInstance(this)
 				.populateCourseAssignments(coursecontent);
 
 		if (assignArray != null && assignArray.length > 0) {
-			arrayAdapter = new StandardArrayAdapter(this, assignArray);
-			sectionAdapter = new SectionListAdapter(getLayoutInflater(),
+			StandardArrayAdapter arrayAdapter = new StandardArrayAdapter(this, assignArray);
+			final SectionListAdapter sectionAdapter = new SectionListAdapter(getLayoutInflater(),
 					arrayAdapter);
-			listView = (SectionListView) findViewById(R.id.assign_section_list_view);
+			SectionListView listView = (SectionListView) findViewById(R.id.assign_section_list_view);
 			listView.setAdapter(sectionAdapter);
 
 			listView.setOnItemClickListener(new OnItemClickListener() {
@@ -121,8 +93,7 @@ public class CourseAssignmentController extends Activity {
 
 						SectionListItem selectedMap = (SectionListItem) obj;
 						@SuppressWarnings("unchecked")
-						// String value = ((HashMap<String,
-						// String>)selectedMap.item).get("id");
+
 						String url = ((HashMap<String, String>) selectedMap.item)
 								.get("url");
 
@@ -145,9 +116,6 @@ public class CourseAssignmentController extends Activity {
 					}
 				}
 			});
-		} else {
-			emptyLayout.setVisibility(View.VISIBLE);
-			courseworkLayout.setVisibility(View.INVISIBLE);
 		}
 	}
 

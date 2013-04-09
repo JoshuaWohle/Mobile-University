@@ -72,24 +72,14 @@ public class CourseForumController extends Activity {
 		setContentView(R.layout.course_forum);
 		MenuHelper.setSlideMenu(this);
 
-		try {
-			Intent i = getIntent();
-			user = Session.getUser();
+		Intent i = getIntent();
+		user = Session.getUser();
 
-			footerCourseHdr = (TextView) findViewById(R.id.course_ftr_view);
-
-			if (user != null && Session.getCurrentSelectedCourse() == null) {
-				i = new Intent(this, CourseSelectController.class);
-				startActivity(i);
-			}
-
-			footerCourseHdr.setText(Session.getCurrentSelectedCourse().getShortName());
-
-			getCourseAssignments();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (user != null && Session.getCurrentSelectedCourse() == null) {
+			i = new Intent(this, CourseSelectController.class);
+			startActivity(i);
 		}
+		getCourseAssignments();
 
 	}
 

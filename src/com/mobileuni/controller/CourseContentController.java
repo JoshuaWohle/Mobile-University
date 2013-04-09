@@ -33,7 +33,6 @@ import com.mobileuni.helpers.SectionListView;
 import com.mobileuni.helpers.StandardArrayAdapter;
 import com.mobileuni.helpers.asynctasks.DownloadFileTask;
 import com.mobileuni.listeners.CourseChangeListener;
-import com.mobileuni.listeners.MenuListener;
 import com.mobileuni.model.Course;
 import com.mobileuni.model.CourseContent;
 import com.mobileuni.model.User;
@@ -42,7 +41,6 @@ import com.mobileuni.other.Session;
 
 import com.mobileuni.R;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -84,36 +82,9 @@ public class CourseContentController extends Activity implements CourseChangeLis
 		selectedCourse = Session.getCurrentSelectedCourse();
 		selectedCourse.addListener(this);
 
-		try {
+		getCourseDetails();
+		MenuHelper.setSlideMenu(this);
 
-			footerCourseHdr = (TextView) findViewById(R.id.course_ftr_view);
-			
-			if (user != null && selectedCourse.getId() != 99999)
-				footerCourseHdr.setText(selectedCourse.getShortName());
-
-			getCourseDetails();
-
-			MenuHelper.setSlideMenu(this);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public static final int COURSE_SELECT_REQUEST_CODE = 1;
-
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == COURSE_SELECT_REQUEST_CODE) {
-			if (resultCode == RESULT_OK) {
-				user = (User) data.getParcelableExtra("userObject");
-				if (user != null && selectedCourse.getId() != 99999) {
-					Course course = selectedCourse;
-					footerCourseHdr.setText(course.getShortName());
-
-					getCourseDetails();
-				}
-			}
-		}
 	}
 
 	private void getCourseDetails() {

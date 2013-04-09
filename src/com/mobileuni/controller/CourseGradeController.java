@@ -73,25 +73,14 @@ public class CourseGradeController extends Activity {
 
 		MenuHelper.setSlideMenu(this);
 		
-		try {
-			Intent i = getIntent();
-			user = Session.getUser();
-
-			footerCourseHdr = (TextView) findViewById(R.id.course_ftr_view);
-
-			if (user != null && Session.getCurrentSelectedCourse() == null) {
-				i = new Intent(this, CourseSelectController.class);
-				startActivity(i);
-			}
-
-			footerCourseHdr.setText(Session.getCurrentSelectedCourse().getShortName());
-
-			getCourseGrades();
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		Intent i = getIntent();
+		user = Session.getUser();
+		if (user != null && Session.getCurrentSelectedCourse() == null) {
+			i = new Intent(this, CourseSelectController.class);
+			startActivity(i);
 		}
 
+		getCourseGrades();
 	}
 
 	private void getCourseGrades() {

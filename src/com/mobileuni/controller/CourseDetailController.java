@@ -84,18 +84,10 @@ public class CourseDetailController extends Activity implements
 	}
 
 	public void displayCourseChoice() {
-		try {
-			footerCourseHdr = (TextView) findViewById(R.id.course_ftr_view);
-			
-			if (Session.getUser() != null
+		if (Session.getUser() != null
 					&& Session.getCurrentSelectedCourse() != null)
-				
-				footerCourseHdr.setText(selectedCourse.getShortName());
-
-			getCourseDetails();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			
+		getCourseDetails();
 	}
 
 	private void getCourseDetails() {

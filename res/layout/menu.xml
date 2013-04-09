@@ -5,12 +5,12 @@
     android:orientation="vertical" >
     
     <LinearLayout
+		android:id="@+id/menu_selected_course"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 		<Button
-		    android:id="@+id/menu_selected_course"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:background="@android:color/transparent"
@@ -22,12 +22,12 @@
 	</LinearLayout>
     
     <LinearLayout
+        android:id="@+id/menu_select_course"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 		<Button
-		    android:id="@+id/menu_select_course"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:background="@android:color/transparent"
@@ -39,12 +39,12 @@
 	</LinearLayout>
 	
     <LinearLayout
+		android:id="@+id/menu_upload_document"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 		<Button
-		    android:id="@+id/menu_upload_document"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:background="@android:color/transparent"
@@ -56,12 +56,12 @@
 	</LinearLayout>
 	
     <LinearLayout
+		android:id="@+id/menu_settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 		<Button
-		    android:id="@+id/menu_settings"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:background="@android:color/transparent"

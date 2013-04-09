@@ -55,7 +55,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class FileUploadController extends Activity{
+public class FileUploadController extends Activity {
 
 	public static final List<String> supportedFileExtensions = getSupportedExtensions();
 
@@ -74,7 +74,7 @@ public class FileUploadController extends Activity{
 	List<String> fileStringList, pathStringList;
 	static List<File> availableFileList;
 	String root;
-	
+
 	MenuListener ml;
 
 	/** Called when the activity is first created. */
@@ -83,52 +83,26 @@ public class FileUploadController extends Activity{
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.upload_layout);
-		
+
 		ml = new MenuListener(this);
 
-		try {
-			final ProgressDialog dialog = ProgressDialog.show(FileUploadController.this,
-					"", "Fetching Files, this may take a few minutes", true,
-					false);
+		final ProgressDialog dialog = ProgressDialog.show(
+				FileUploadController.this, "",
+				"Fetching Files, this may take a few minutes", true, false);
 
-			// new Thread(new Runnable(){
-			// public void run(){
+		Intent i = getIntent();
 
-			Intent i = getIntent();
+		user = Session.getUser();
 
-			user = Session.getUser();
-
-			footerCourseHdr = (TextView) findViewById(R.id.course_ftr_view);
-
-			home = (Button) findViewById(R.id.coursework_home_view);
-			courseSelect = (Button) findViewById(R.id.select_course);
-			setting = (Button) findViewById(R.id.settings_view);
-			upload = (Button) findViewById(R.id.upload_view);
-
-			if (user != null && Session.getCurrentSelectedCourse() == null) {
-				i = new Intent(FileUploadController.this, CourseSelectController.class);
-				startActivity(i);
-			}
-
-			footerCourseHdr.setText(Session.getCurrentSelectedCourse().getShortName());
-
-			getFileUpload();
-
-			home.setOnClickListener(ml);
-			if (courseSelect.isEnabled())
-				courseSelect.setOnClickListener(ml);
-			setting.setOnClickListener(ml);
-			upload.setOnClickListener(ml);
-
-			dialog.dismiss();
-
-			// }
-			// }).start();
-
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (user != null && Session.getCurrentSelectedCourse() == null) {
+			i = new Intent(FileUploadController.this,
+					CourseSelectController.class);
+			startActivity(i);
 		}
 
+		getFileUpload();
+
+		dialog.dismiss();
 	}
 
 	private void getFileUpload() {
@@ -241,17 +215,18 @@ public class FileUploadController extends Activity{
 												int which) {
 											// String value =
 											// selectedMap.get(LazyAdapter.KEY_HEADER);
-//											String selectedFile = selectedMap
-//													.get(LazyAdapter.KEY_OTHER);
-//TODO fix this now that siteinfo is gone
-//											FileManager
-//													.getInstance(
-//															FileUpload.this)
-//													.UploadToUrl(
-//															user.getSiteInfo()
-//																	.getSiteUrl(),
-//															user.getToken(),
-//															selectedFile);
+											// String selectedFile = selectedMap
+											// .get(LazyAdapter.KEY_OTHER);
+											// TODO fix this now that siteinfo
+											// is gone
+											// FileManager
+											// .getInstance(
+											// FileUpload.this)
+											// .UploadToUrl(
+											// user.getSiteInfo()
+											// .getSiteUrl(),
+											// user.getToken(),
+											// selectedFile);
 
 											dialog.dismiss();
 										}

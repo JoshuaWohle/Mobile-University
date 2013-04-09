@@ -17,10 +17,10 @@ public class MenuHelper {
 		menu.setBehindOffsetRes(R.dimen.menu_offset_right);
 		menu.attachToActivity(a, SlidingMenu.SLIDING_CONTENT);
 		LinearLayout menuView = (LinearLayout) a.getLayoutInflater().inflate(R.layout.menu, null);
-		((Button) menuView.findViewById(R.id.menu_select_course)).setOnClickListener(ml);
-		((Button) menuView.findViewById(R.id.menu_upload_document)).setOnClickListener(ml);
-		((Button) menuView.findViewById(R.id.menu_settings)).setOnClickListener(ml);
-		((Button) menuView.findViewById(R.id.menu_selected_course)).setOnClickListener(ml);
+		((LinearLayout) menuView.findViewById(R.id.menu_select_course)).setOnClickListener(ml);
+		((LinearLayout) menuView.findViewById(R.id.menu_upload_document)).setOnClickListener(ml);
+		((LinearLayout) menuView.findViewById(R.id.menu_settings)).setOnClickListener(ml);
+		((LinearLayout) menuView.findViewById(R.id.menu_selected_course)).setOnClickListener(ml);
 		menu.setMenu(menuView);
 	}
 }
