@@ -27,6 +27,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
+
+import com.mobileuni.other.Constants;
+
 public class CourseContent implements Serializable {
 
 	
@@ -108,8 +112,6 @@ public class CourseContent implements Serializable {
 	    	        JSONObject c = modules.getJSONObject(i); 
 	    	        Module module = new Module();
 	    	        module.populateModule(c);
-	    	        //Toast.makeText(context.getApplicationContext(), course.getShortName(), Toast.LENGTH_LONG).show();
-	    	        // Storing each json item in variable 
 	    	        modulesArray.add(module);
 	    	    } 	
 	    	    

@@ -63,10 +63,8 @@ public class CourseDetailsListHelper {
 							}
 						}
 					}
-					else if (module.getModName().equalsIgnoreCase("assignment")) {
+					else if (module.getModName().equalsIgnoreCase("assign") || module.getModName().equalsIgnoreCase("assignment")) {
 						assignCount++;
-					//}
-					//else if (module.getModName().equalsIgnoreCase("assignment")) {
 						gradeCount++;
 					}
 					else if (module.getModName().equalsIgnoreCase("forum")) {

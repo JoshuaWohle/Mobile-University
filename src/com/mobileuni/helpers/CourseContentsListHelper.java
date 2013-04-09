@@ -29,11 +29,13 @@ import java.util.HashMap;
 import com.mobileuni.model.Content;
 import com.mobileuni.model.CourseContent;
 import com.mobileuni.model.Module;
+import com.mobileuni.other.Constants;
 
 import com.mobileuni.R;
 
 import android.content.Context;
 import android.os.Environment;
+import android.util.Log;
 
 public class CourseContentsListHelper {
 
@@ -148,7 +150,7 @@ public class CourseContentsListHelper {
 		if (coursecontent.size() > 0) {
 			for (CourseContent content : coursecontent) {
 				for (Module module : content.getModules()) {
-					if (module.getModName().equalsIgnoreCase("assignment")) {
+					if (module.getModName().equalsIgnoreCase("assignment") || module.getModName().equalsIgnoreCase("assign")) {
 						assignCount++;
 					}
 				}
@@ -160,7 +162,8 @@ public class CourseContentsListHelper {
 				String sectionName = content.getName();
 				if (content.getVisible() == 1) {					
 					for (Module module : content.getModules()) {
-						if (module.getModName().equalsIgnoreCase("assignment") && module.getVisible() == 1) {
+						Log.d(Constants.LOG_COURSE, module.getModName());
+						if ((module.getModName().equalsIgnoreCase("assignment") || module.getModName().equalsIgnoreCase("assign")) && module.getVisible() == 1) {
 							HashMap<String, String> map = new HashMap<String, String>();
 
 							map.put("id", String.valueOf(elementCount));
@@ -190,7 +193,7 @@ public class CourseContentsListHelper {
 		if (coursecontent.size() > 0) {
 			for (CourseContent content : coursecontent) {
 				for (Module module : content.getModules()) {
-					if (module.getModName().equalsIgnoreCase("assignment")) {
+					if (module.getModName().equalsIgnoreCase("assignment") || module.getModName().equalsIgnoreCase("assign")) {
 						assignCount++;
 					}
 				}
@@ -202,7 +205,7 @@ public class CourseContentsListHelper {
 				String sectionName = content.getName();
 				if (content.getVisible() == 1) {					
 					for (Module module : content.getModules()) {
-						if (module.getModName().equalsIgnoreCase("assignment") && module.getVisible() == 1) {
+						if ((module.getModName().equalsIgnoreCase("assignment") || module.getModName().equalsIgnoreCase("assign")) && module.getVisible() == 1) {
 							HashMap<String, String> map = new HashMap<String, String>();
 
 							map.put("id", String.valueOf(elementCount));

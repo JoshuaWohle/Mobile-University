@@ -126,7 +126,7 @@ public class FileUploadController extends Activity{
 			// }).start();
 
 		} catch (Exception e) {
-			Log.e("Error 1", e.toString());
+			e.printStackTrace();
 		}
 
 	}
@@ -181,7 +181,7 @@ public class FileUploadController extends Activity{
 			}
 
 		} catch (Exception e) {
-			Log.e("Error 1", e.toString());
+			e.printStackTrace();
 		}
 
 		if (availableFileList != null && availableFileList.size() > 0) {

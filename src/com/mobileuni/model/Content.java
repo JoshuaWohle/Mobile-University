@@ -24,6 +24,10 @@ import java.io.Serializable;
 
 import org.json.JSONObject;
 
+import android.util.Log;
+
+import com.mobileuni.other.Constants;
+
 public class Content implements Serializable {
 
 	/**
@@ -31,24 +35,22 @@ public class Content implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String type;	
+	private String type;
     private String filename;
-    private String filepath;	
-	private int filesize;	
-	private String fileurl;	
-    private String content;	
-    private long timecreated;	
-    private long timemodified;	
-    private int sortorder;	
-    private int userid;	
-    private String author;	
-    private String license;	
+    private String filepath;
+	private int filesize;
+	private String fileurl;
+    private String content;
+    private long timecreated;
+    private long timemodified;
+    private int sortorder;
+    private int userid;
+    private String author;
+    private String license;
 	
 	public Content() {
 	}
 	
-
-
     public void populateContent(JSONObject jsonObject) {
      
 		if (jsonObject != null) {    			
@@ -87,7 +89,7 @@ public class Content implements Serializable {
 	        	this.setAuthor(author);
 	        String license = jsonObject.optString("license");  
 	        if (license != null && license.trim().length() > 0)
-	        	this.setLicense(license);		        
+	        	this.setLicense(license);
 		}
     }
 	

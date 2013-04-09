@@ -100,7 +100,7 @@ public class CourseGradeController extends Activity {
 			setting.setOnClickListener(ml);
 			upload.setOnClickListener(ml);
 		} catch (Exception e) {
-			Log.e("Error 1", e.toString());
+			e.printStackTrace();
 		}
 
 	}
@@ -121,9 +121,7 @@ public class CourseGradeController extends Activity {
 			arrayAdapter = new StandardArrayAdapter(this, gradeArray);
 			sectionAdapter = new SectionListAdapter(getLayoutInflater(),
 					arrayAdapter);
-			listView = (SectionListView) findViewById(getResources()
-					.getIdentifier("grade_section_list_view", "id",
-							this.getClass().getPackage().getName()));
+			listView = (SectionListView) findViewById(R.id.grade_section_list_view);
 			listView.setAdapter(sectionAdapter);
 
 			listView.setOnItemClickListener(new OnItemClickListener() {

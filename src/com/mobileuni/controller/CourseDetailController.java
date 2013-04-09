@@ -37,13 +37,8 @@ import com.mobileuni.other.Session;
 import com.mobileuni.R;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -107,8 +102,7 @@ public class CourseDetailController extends Activity implements
 			setting.setOnClickListener(ml);
 			upload.setOnClickListener(ml);
 		} catch (Exception e) {
-			Log.e("Error 1", e.toString()
-					+ "Issue with Course Detail functionality");
+			e.printStackTrace();
 		}
 	}
 
