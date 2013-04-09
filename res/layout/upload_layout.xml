@@ -52,6 +52,4 @@
 	    </LinearLayout>
     </RelativeLayout>
 	
-	<include android:id="@+id/footer_view" layout="@layout/footer_navigation" />
-	
 </RelativeLayout>

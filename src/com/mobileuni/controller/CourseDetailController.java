@@ -27,6 +27,7 @@ import com.evernote.client.android.EvernoteSession;
 import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.helpers.CourseDetailsListHelper;
 import com.mobileuni.helpers.LazyAdapter;
+import com.mobileuni.helpers.MenuHelper;
 import com.mobileuni.listeners.CourseChangeListener;
 import com.mobileuni.listeners.MenuListener;
 import com.mobileuni.model.Course;
@@ -59,7 +60,6 @@ public class CourseDetailController extends Activity implements
 	ArrayList<HashMap<String, String>> courseDetailList = new ArrayList<HashMap<String, String>>();
 
 	Course selectedCourse;
-	MenuListener ml;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -70,7 +70,8 @@ public class CourseDetailController extends Activity implements
 		dialog = ProgressDialog.show(this,
 				getResources().getString(R.string.loading), getResources()
 						.getString(R.string.wait_while_get_course_detail));
-		ml = new MenuListener(this);
+		MenuHelper.setSlideMenu(this);
+		
 		selectedCourse = Session.getCurrentSelectedCourse();
 		selectedCourse.addListener(this);
 
@@ -85,22 +86,13 @@ public class CourseDetailController extends Activity implements
 	public void displayCourseChoice() {
 		try {
 			footerCourseHdr = (TextView) findViewById(R.id.course_ftr_view);
-
-			home = (Button) findViewById(R.id.coursework_home_view);
-			courseSelect = (Button) findViewById(R.id.select_course);
-			setting = (Button) findViewById(R.id.settings_view);
-			upload = (Button) findViewById(R.id.upload_view);
-
+			
 			if (Session.getUser() != null
 					&& Session.getCurrentSelectedCourse() != null)
+				
 				footerCourseHdr.setText(selectedCourse.getShortName());
 
 			getCourseDetails();
-
-			courseSelect.setOnClickListener(ml);
-			home.setOnClickListener(ml);
-			setting.setOnClickListener(ml);
-			upload.setOnClickListener(ml);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

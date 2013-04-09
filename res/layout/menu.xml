@@ -10,6 +10,23 @@
         android:orientation="horizontal"
         android:gravity="center_vertical">
 		<Button
+		    android:id="@+id/menu_selected_course"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:background="@android:color/transparent"
+		    android:drawableTop="@drawable/document_button"/>
+		<TextView
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+		    android:text="@string/menu_current_course"/>
+	</LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+		<Button
 		    android:id="@+id/menu_select_course"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"

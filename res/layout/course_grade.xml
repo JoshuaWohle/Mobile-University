@@ -44,6 +44,4 @@
 	        android:gravity="center"/>
     </LinearLayout>
 	
-	<include android:id="@+id/footer_view" layout="@layout/footer_navigation" />
-	
 </RelativeLayout>

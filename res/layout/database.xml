@@ -40,7 +40,5 @@
         android:layout_height="fill_parent"
         android:layout_weight="1"/>
     </LinearLayout>
- 
-<include android:id="@+id/footer_view" layout="@layout/footer_navigation" />
 	
 </RelativeLayout>

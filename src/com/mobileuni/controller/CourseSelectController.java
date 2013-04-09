@@ -7,7 +7,6 @@ import com.mobileuni.listeners.UserChangeListener;
 import com.mobileuni.model.Course;
 import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
-import com.slidingmenu.lib.SlidingMenu;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

@@ -13,6 +13,7 @@ import com.evernote.thrift.transport.TTransportException;
 import com.mobileuni.R;
 import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.helpers.DialogHelper;
+import com.mobileuni.helpers.MenuHelper;
 import com.mobileuni.listeners.CourseChangeListener;
 import com.mobileuni.listeners.EvernoteListener;
 import com.mobileuni.model.MetaNote;
@@ -48,9 +49,12 @@ public class CourseNoteController extends Activity implements OnClickListener,
 		setContentView(R.layout.item_list);
 		Session.setContext(this);
 		Session.getCurrentSelectedCourse().addListener(this);
+		
+		MenuHelper.setSlideMenu(this);
 
 		((TextView) findViewById(R.id.title)).setText(Session.getContext()
 				.getResources().getString(R.string.notes_title));
+		
 		createAddNoteButton();
 		if (!Session.getEs().isLoggedIn() && AppStatus.isOnline()) { // If
 																		// online
@@ -185,7 +189,10 @@ public class CourseNoteController extends Activity implements OnClickListener,
 				startActivity(Intent.createChooser(sharingIntent,
 						getResources().getString(R.string.share_using)));
 			} else {
-				Toast.makeText(this, getResources().getString(R.string.note_content_not_set), Toast.LENGTH_SHORT);
+				Toast.makeText(
+						this,
+						getResources().getString(R.string.note_content_not_set),
+						Toast.LENGTH_SHORT);
 			}
 		}
 

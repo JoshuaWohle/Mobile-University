@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.mobileuni.helpers.CourseContentsListHelper;
+import com.mobileuni.helpers.MenuHelper;
 import com.mobileuni.helpers.SectionListAdapter;
 import com.mobileuni.helpers.SectionListItem;
 import com.mobileuni.helpers.SectionListView;
@@ -62,8 +63,6 @@ public class CourseForumController extends Activity {
 	StandardArrayAdapter arrayAdapter;
 	SectionListAdapter sectionAdapter;
 	SectionListView listView;
-	
-	MenuListener ml;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -71,18 +70,13 @@ public class CourseForumController extends Activity {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.course_forum);
-		ml = new MenuListener(this);
+		MenuHelper.setSlideMenu(this);
 
 		try {
 			Intent i = getIntent();
 			user = Session.getUser();
 
 			footerCourseHdr = (TextView) findViewById(R.id.course_ftr_view);
-
-			home = (Button) findViewById(R.id.coursework_home_view);
-			courseSelect = (Button) findViewById(R.id.select_course);
-			setting = (Button) findViewById(R.id.settings_view);
-			upload = (Button) findViewById(R.id.upload_view);
 
 			if (user != null && Session.getCurrentSelectedCourse() == null) {
 				i = new Intent(this, CourseSelectController.class);
@@ -92,12 +86,7 @@ public class CourseForumController extends Activity {
 			footerCourseHdr.setText(Session.getCurrentSelectedCourse().getShortName());
 
 			getCourseAssignments();
-
-			home.setOnClickListener(ml);
-			if (courseSelect.isEnabled())
-				courseSelect.setOnClickListener(ml);
-			setting.setOnClickListener(ml);
-			upload.setOnClickListener(ml);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

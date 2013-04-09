@@ -23,20 +23,20 @@ public class MenuListener implements OnClickListener {
 		Intent intent;
 
 		switch (v.getId()) {
-		case R.id.coursework_home_view:
+		case R.id.menu_selected_course:
 			intent = new Intent(a, CourseDetailController.class);
 			a.startActivity(intent);
 			break;
-		case R.id.select_course:
+		case R.id.menu_select_course:
 			intent = new Intent(a, CourseSelectController.class);
 			a.startActivity(intent);
 			break;
-		case R.id.settings_view:
-			intent = new Intent(a, SettingsController.class);
+		case R.id.menu_upload_document:
+			intent = new Intent(a, FileUploadController.class);
 			a.startActivity(intent);
 			break;
-		case R.id.upload_view:
-			intent = new Intent(a, FileUploadController.class);
+		case R.id.menu_settings:
+			intent = new Intent(a, SettingsController.class);
 			a.startActivity(intent);
 			break;
 		default:

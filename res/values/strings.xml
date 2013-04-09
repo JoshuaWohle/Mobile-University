@@ -75,5 +75,6 @@
 	<string name="menu_courses">Courses</string>
 	<string name="menu_settings">Settings</string>
 	<string name="menu_upload">Upload file</string>
+	<string name="menu_current_course">Selected Course</string>
 		
 </resources>
