@@ -76,5 +76,17 @@
 	<string name="menu_settings">Settings</string>
 	<string name="menu_upload">Upload file</string>
 	<string name="menu_current_course">Selected Course</string>
+	<string name="course_section_document_title">Documents</string>
+	<string name="course_section_document_description">Documents related to the selected course</string>
+	<string name="course_section_assignments_title">Assignments</string>
+	<string name="course_section_assignments_description">Assignment details of deliverables (Online only)</string>
+	<string name="course_section_grades_title">Grades</string>
+	<string name="course_section_grades_description">Results from assignments (Online only)</string>
+	<string name="course_section_forums_title">Forums</string>
+	<string name="course_section_forums_description">View the course forums (Online only)</string>
+	<string name="course_section_notes_title">Notes</string>
+	<string name="course_section_notes_description">View notes of your courses</string>
+	<string name="settings_auto_download">Automatically download files ?</string>
+	<string name="settings_sync_deadlines">Synchronize your course deadlines to your calendar ?</string>
 		
 </resources>

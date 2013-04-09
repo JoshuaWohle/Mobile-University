@@ -20,91 +20,41 @@
 
 package com.mobileuni.controller;
 
-import com.mobileuni.model.User;
-
 import com.mobileuni.R;
+import com.mobileuni.helpers.MenuHelper;
+import com.mobileuni.model.Settings;
+
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
+import android.widget.ToggleButton;
 
 public class SettingsController extends Activity {
-
-	Intent intent;
-
-	User user;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		try {
-			intent = getIntent();
-
-			user = (User) intent.getParcelableExtra("userObject");
-
-			// stretch custom dialog horizontally in android
-			LayoutInflater factory = LayoutInflater.from(this);
-			final View EntryView = factory.inflate(R.layout.settings, null);
-
-			AlertDialog.Builder adb = new AlertDialog.Builder(this);
-			adb.setTitle("Settings");
-			adb.setIcon(R.drawable.setting_icon);
-			adb.setInverseBackgroundForced(true);
-			adb.setPositiveButton("Logout",
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) {
-							logout();
-							finish();
-							return;
-						}
-					});
-			adb.setNeutralButton("Save", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-					// Downloading of files process started here....
-
-					finish();
-					return;
-				}
-			});
-			adb.setNegativeButton("Cancel",
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int which) {
-							finish();
-							return;
-						}
-					});
-
-			// Dialog d = adb.setView(new View(this)).create();
-			Dialog d = adb.setView(EntryView).create();
-
-			WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-			lp.copyFrom(d.getWindow().getAttributes());
-			lp.width = WindowManager.LayoutParams.FILL_PARENT;
-			lp.height = WindowManager.LayoutParams.FILL_PARENT;
-
-			d.show();
-			d.getWindow().setAttributes(lp);
-			d.getWindow().setBackgroundDrawable(
-					new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-		} catch (Exception e) {
-			Log.e("Error 3", e.toString() + " Error within Settings page");
-		}
+		setContentView(R.layout.settings);
+		MenuHelper.setSlideMenu(this);
+		
+		ToggleButton autoDownload = (ToggleButton) findViewById(R.id.settings_auto_download);
+		ToggleButton syncDeadlines = (ToggleButton) findViewById(R.id.settings_sync_deadlines);
+		autoDownload.setChecked(Settings.isAutoDownload());
+		syncDeadlines.setChecked(Settings.isSyncDeadlines());
 	}
-
-	public void logout() {
-		Intent nextPage;
-		nextPage = new Intent(SettingsController.this, LoginController.class);
-		startActivity(nextPage);
+	
+	public void onToggleClicked(View v) {
+	    
+	    switch(v.getId()) {
+	    	case R.id.settings_auto_download:
+	    		Settings.setAutoDownload(((ToggleButton) v).isChecked());
+	    		break;
+	    	case R.id.settings_sync_deadlines:
+	    		Settings.setSyncDeadlines(((ToggleButton) v).isChecked());
+	    	default:
+	    		break;
+	    }
 	}
 
 }

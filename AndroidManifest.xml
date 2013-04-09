@@ -23,15 +23,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.mobileuni.controller.CourseDetailController" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar"/>
-        <activity android:name="com.mobileuni.controller.FileUploadController" android:screenOrientation="portrait" android:theme="@android:style/Theme.Black.NoTitleBar"/>
-        <activity android:name="com.mobileuni.controller.CourseSelectController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme" />
-    	<activity android:name="com.mobileuni.controller.CourseContentController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme"/>
-        <activity android:name="com.mobileuni.controller.CourseAssignmentController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme"/>
-        <activity android:name="com.mobileuni.controller.CourseGradeController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme"/>
-        <activity android:name="com.mobileuni.controller.CourseForumController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme"/>
-        <activity android:name="com.mobileuni.controller.SettingsController" android:screenOrientation="portrait" android:theme="@style/Theme.Transparent" />
-    	<activity android:name="com.mobileuni.controller.CourseNoteController" android:screenOrientation="portrait" android:theme="@style/SectionListViewTheme" />
+        <activity android:name="com.mobileuni.controller.CourseDetailController" android:screenOrientation="portrait"/>
+        <activity android:name="com.mobileuni.controller.FileUploadController" android:screenOrientation="portrait"/>
+        <activity android:name="com.mobileuni.controller.CourseSelectController" android:screenOrientation="portrait"/>
+    	<activity android:name="com.mobileuni.controller.CourseDocumentController" android:screenOrientation="portrait"/>
+        <activity android:name="com.mobileuni.controller.CourseAssignmentController" android:screenOrientation="portrait"/>
+        <activity android:name="com.mobileuni.controller.CourseGradeController" android:screenOrientation="portrait"/>
+        <activity android:name="com.mobileuni.controller.CourseForumController" android:screenOrientation="portrait"/>
+        <activity android:name="com.mobileuni.controller.SettingsController" android:screenOrientation="portrait"/>
+    	<activity android:name="com.mobileuni.controller.CourseNoteController" android:screenOrientation="portrait"/>
     	<activity android:name="com.evernote.client.android.EvernoteOAuthActivity" android:configChanges="orientation|keyboardHidden" />
     	<activity android:name="com.evernote.action.CREATE_NEW_NOTE" android:configChanges="orientation|keyboardHidden" />
     </application>

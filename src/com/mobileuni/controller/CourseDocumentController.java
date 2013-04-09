@@ -57,7 +57,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class CourseContentController extends Activity implements CourseChangeListener {
+public class CourseDocumentController extends Activity implements CourseChangeListener {
 
 	Button home, courseSelect, upload, setting;
 	TextView footerCourseHdr;
@@ -157,13 +157,13 @@ public class CourseContentController extends Activity implements CourseChangeLis
 		i.setDataAndType(Uri.fromFile(file), mimeType);
 		i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		try {
-			CourseContentController.this.startActivity(i);
+			CourseDocumentController.this.startActivity(i);
 		} catch (ActivityNotFoundException e) {
 			Log.e("MIME Error", e.toString()
 					+ " default program for this filetype not found");
 			// Raise on activity not found
 			Toast.makeText(
-					CourseContentController.this,
+					CourseDocumentController.this,
 					"A suitable Application to access the file " + mimeType
 							+ " not found.", Toast.LENGTH_SHORT).show();
 		}
