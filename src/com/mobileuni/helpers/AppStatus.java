@@ -23,7 +23,10 @@ package com.mobileuni.helpers;
 import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
@@ -67,5 +70,17 @@ public class AppStatus {
 	    Log.d(Constants.LOG_CONNECTION_STATUS, Boolean.toString(connection));
 	    return connection; 
     } 
+    
+    public static void setChangeOrientation(Activity a) {
+    	if(isTablet(a)) {
+    		a.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+    	}
+    }
+    
+    private static boolean isTablet(Context context) {
+        boolean xlarge = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == 4);
+        boolean large = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE);
+        return (xlarge || large);
+    }
 } 
 

@@ -57,6 +57,7 @@ public class LoginController extends Activity implements OnClickListener, iCours
 		super.onCreate(savedInstanceState);
 		Session.setContext(this);
 		setContentView(R.layout.login);
+		AppStatus.setChangeOrientation(this);
 		University.init();
 		universitySelect = (Spinner) findViewById(R.id.login_university_select);
 		// Create an ArrayAdapter using the string array and a default spinner layout
