@@ -20,7 +20,7 @@ public class CalendarController extends Activity {
 	
 	private void fillUpcoming() {
 		LinearLayout main = (LinearLayout) findViewById(R.id.calendar_upcoming_items_list);
-		for(Assignment upcoming : Session.getCourseManager().getAssignments()) {
+		for(Assignment upcoming : Session.getCourseManager().getAssignments(null)) {
 			LinearLayout child = (LinearLayout) this.getLayoutInflater().inflate(R.layout.list_item_single_line, null);
 			TextView content = (TextView) child.findViewById(R.id.item_content);
 			content.setText(upcoming.getName());

@@ -21,48 +21,26 @@
 package com.mobileuni.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import com.mobileuni.helpers.CourseContentsListHelper;
 import com.mobileuni.helpers.MenuHelper;
-import com.mobileuni.helpers.SectionListAdapter;
-import com.mobileuni.helpers.SectionListItem;
-import com.mobileuni.helpers.SectionListView;
-import com.mobileuni.helpers.StandardArrayAdapter;
-import com.mobileuni.listeners.MenuListener;
-import com.mobileuni.model.CourseContents;
+import com.mobileuni.model.Assignment;
 import com.mobileuni.model.User;
 import com.mobileuni.other.Session;
 
 import com.mobileuni.R;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.FrameLayout;
+import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.TextView;;
 
-public class CourseGradeController extends Activity {
+public class CourseGradeController extends Activity implements OnClickListener {
 
-	Button home, courseSelect, upload, setting;
-	TextView footerCourseHdr;
-	LinearLayout emptyLayout;
-	FrameLayout courseworkLayout;
 	User user;
-
-	SectionListItem[] gradeArray;
-	StandardArrayAdapter arrayAdapter;
-	SectionListAdapter sectionAdapter;
-	SectionListView listView;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -70,7 +48,7 @@ public class CourseGradeController extends Activity {
 
 		super.onCreate(savedInstanceState);
 
-		MenuHelper.setContentViewAndSlideMenu(this, R.layout.course_grade, R.string.menu_grades);
+		MenuHelper.setContentViewAndSlideMenu(this, R.layout.item_list, R.string.menu_grades);
 		
 		Intent i = getIntent();
 		user = Session.getUser();
@@ -79,66 +57,34 @@ public class CourseGradeController extends Activity {
 			startActivity(i);
 		}
 
-		getCourseGrades();
+		setCourseGrades();
 	}
 
-	private void getCourseGrades() {
-		emptyLayout = (LinearLayout) findViewById(R.id.coursework_gradeitem_empty);
-		emptyLayout.setVisibility(View.INVISIBLE);
-		courseworkLayout = (FrameLayout) findViewById(R.id.gradelistView);
-		courseworkLayout.setVisibility(View.VISIBLE);
-
-		ArrayList<CourseContents> coursecontent = new ArrayList<CourseContents>();
-		coursecontent = Session.getCurrentSelectedCourse().getCourseContent();
-
-		gradeArray = CourseContentsListHelper.getInstance(this)
-				.populateCourseGrades(coursecontent);
-
-		if (gradeArray != null && gradeArray.length > 0) {
-			arrayAdapter = new StandardArrayAdapter(this, gradeArray);
-			sectionAdapter = new SectionListAdapter(getLayoutInflater(),
-					arrayAdapter);
-			listView = (SectionListView) findViewById(R.id.grade_section_list_view);
-			listView.setAdapter(sectionAdapter);
-
-			listView.setOnItemClickListener(new OnItemClickListener() {
-
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id) {
-
-					Object obj = sectionAdapter.getItem(position);
-					if (obj instanceof SectionListItem) {
-
-						SectionListItem selectedMap = (SectionListItem) obj;
-						@SuppressWarnings("unchecked")
-						// String value = ((HashMap<String,
-						// String>)selectedMap.item).get("id");
-						String url = ((HashMap<String, String>) selectedMap.item)
-								.get("url");
-
-						if (!url.startsWith("http://")
-								&& !url.startsWith("https://"))
-							url = "http://" + url;
-
-						Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-								Uri.parse(url));
-
-						try {
-							// Start the activity
-							startActivity(browserIntent);
-						} catch (ActivityNotFoundException e) {
-							// Raise on activity not found
-							Toast.makeText(getApplicationContext(),
-									"Browser not found.", Toast.LENGTH_SHORT)
-									.show();
-						}
-					}
-				}
-			});
-		} else {
-			emptyLayout.setVisibility(View.VISIBLE);
-			courseworkLayout.setVisibility(View.INVISIBLE);
+	private void setCourseGrades() {
+		ArrayList<Assignment> assignments = Session.getCourseManager().getAssignments(Session.getCurrentSelectedCourse());
+		
+		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
+		// Set title of the view
+		for(Assignment assignment : assignments){
+			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.list_item, null);
+			child.setTag(assignment);
+			child.setOnClickListener(this);
+			((TextView) child.findViewById(R.id.item_title)).setText(assignment.getName());
+			((TextView) child.findViewById(R.id.item_content)).setText("Description: " + assignment.getDescription());
+			main.addView(child);
 		}
+	}
+
+	public void onClick(View v) {
+
+		Assignment assignment = (Assignment) v.getTag();
+		String url = assignment.getUrl();
+		
+		if (!url.startsWith("http://") && !url.startsWith("https://"))
+			url = "http://" + url;
+
+		startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(url)));
+		
 	}
 
 }

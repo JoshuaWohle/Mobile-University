@@ -24,10 +24,6 @@ import java.io.Serializable;
 
 import org.json.JSONObject;
 
-import android.util.Log;
-
-import com.mobileuni.other.Constants;
-
 public class ContentItem implements Serializable {
 
 	/**
@@ -35,18 +31,18 @@ public class ContentItem implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String type;
-    private String filename;
-    private String filepath;
-	private int filesize;
-	private String fileurl;
-    private String content;
-    private long timecreated;
-    private long timemodified;
-    private int sortorder;
-    private int userid;
-    private String author;
-    private String license;
+	private String type = "";
+    private String filename = "";
+    private String filepath = "";
+	private int filesize = 0;
+	private String fileurl = "";
+    private String content = "";
+    private long timecreated = 0;
+    private long timemodified = 0;
+    private int sortorder = 0;
+    private int userid = 0;
+    private String author = "";
+    private String license = "";
 	
 	public ContentItem() {
 	}
@@ -74,10 +70,10 @@ public class ContentItem implements Serializable {
 	        	this.setContent(content);		        
 	        String timecreated = jsonObject.optString("timecreated");  
 	        if (timecreated != null && timecreated.trim().length() > 0)
-	        	this.setTimeCreated(Long.valueOf(timecreated));
+	        	this.setTimeCreated(Long.valueOf(timecreated)*1000);
 	        String timemodified = jsonObject.optString("timemodified");  
 	        if (timemodified != null && timemodified.trim().length() > 0)
-	        	this.setTimeModified(Long.valueOf(timemodified));		        
+	        	this.setTimeModified(Long.valueOf(timemodified)*1000);		        
 	        String sortorder = jsonObject.optString("sortorder");  
 	        if (sortorder != null && sortorder.trim().length() > 0)
 	        	this.setSortOrder(Integer.valueOf(sortorder));

@@ -21,31 +21,24 @@
 package com.mobileuni.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import com.mobileuni.helpers.CourseContentsListHelper;
 import com.mobileuni.helpers.MenuHelper;
-import com.mobileuni.helpers.SectionListAdapter;
-import com.mobileuni.helpers.SectionListItem;
-import com.mobileuni.helpers.SectionListView;
-import com.mobileuni.helpers.StandardArrayAdapter;
-import com.mobileuni.model.CourseContents;
+import com.mobileuni.model.Assignment;
 import com.mobileuni.other.Session;
 
 import com.mobileuni.R;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-public class CourseAssignmentController extends Activity {
+public class CourseAssignmentController extends Activity implements OnClickListener {
 
 	FrameLayout courseworkLayout;
 
@@ -54,7 +47,7 @@ public class CourseAssignmentController extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		MenuHelper.setContentViewAndSlideMenu(this, R.layout.course_assignment, R.string.menu_assignments);
+		MenuHelper.setContentViewAndSlideMenu(this, R.layout.item_list, R.string.menu_assignments);
 
 		Intent i = getIntent();
 		
@@ -62,60 +55,33 @@ public class CourseAssignmentController extends Activity {
 			i = new Intent(this, CourseSelectController.class);
 			startActivity(i);
 		}
-		getCourseAssignments();
+		setCourseAssignments();
 		
 	}
 
-	private void getCourseAssignments() {
-		courseworkLayout = (FrameLayout) findViewById(R.id.assignlistView);
-
-		ArrayList<CourseContents> coursecontent = new ArrayList<CourseContents>();
-		coursecontent = Session.getCurrentSelectedCourse().getCourseContent();
-
-		SectionListItem[] assignArray = CourseContentsListHelper.getInstance(this)
-				.populateCourseAssignments(coursecontent);
-
-		if (assignArray != null && assignArray.length > 0) {
-			StandardArrayAdapter arrayAdapter = new StandardArrayAdapter(this, assignArray);
-			final SectionListAdapter sectionAdapter = new SectionListAdapter(getLayoutInflater(),
-					arrayAdapter);
-			SectionListView listView = (SectionListView) findViewById(R.id.assign_section_list_view);
-			listView.setAdapter(sectionAdapter);
-
-			listView.setOnItemClickListener(new OnItemClickListener() {
-
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id) {
-
-					Object obj = sectionAdapter.getItem(position);
-					if (obj instanceof SectionListItem) {
-
-						SectionListItem selectedMap = (SectionListItem) obj;
-						@SuppressWarnings("unchecked")
-
-						String url = ((HashMap<String, String>) selectedMap.item)
-								.get("url");
-
-						if (!url.startsWith("http://")
-								&& !url.startsWith("https://"))
-							url = "http://" + url;
-
-						Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-								Uri.parse(url));
-
-						try {
-							// Start the activity
-							startActivity(browserIntent);
-						} catch (ActivityNotFoundException e) {
-							// Raise on activity not found
-							Toast.makeText(getApplicationContext(),
-									"Browser not found.", Toast.LENGTH_SHORT)
-									.show();
-						}
-					}
-				}
-			});
+	private void setCourseAssignments() {
+		ArrayList<Assignment> assignments = Session.getCourseManager().getAssignments(Session.getCurrentSelectedCourse());
+		
+		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
+		// Set title of the view
+		for(Assignment assignment : assignments){
+			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.list_item, null);
+			child.setTag(assignment);
+			child.setOnClickListener(this);
+			((TextView) child.findViewById(R.id.item_title)).setText(assignment.getName());
+			((TextView) child.findViewById(R.id.item_content)).setText("Description: " + assignment.getDescription());
+			main.addView(child);
 		}
+	}
+
+	public void onClick(View v) {
+		Assignment assignment = (Assignment) v.getTag();
+		String url = assignment.getUrl();
+		
+		if (!url.startsWith("http://") && !url.startsWith("https://"))
+			url = "http://" + url;
+
+		startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(url)));
 	}
 
 }

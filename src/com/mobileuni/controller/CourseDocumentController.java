@@ -21,7 +21,9 @@
 package com.mobileuni.controller;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import com.mobileuni.helpers.AppStatus;
@@ -31,12 +33,13 @@ import com.mobileuni.helpers.SectionListAdapter;
 import com.mobileuni.helpers.SectionListItem;
 import com.mobileuni.helpers.SectionListView;
 import com.mobileuni.helpers.StandardArrayAdapter;
-import com.mobileuni.helpers.asynctasks.DownloadFileTask;
 import com.mobileuni.listeners.CourseChangeListener;
+import com.mobileuni.model.ContentItem;
 import com.mobileuni.model.Course;
 import com.mobileuni.model.CourseContents;
 import com.mobileuni.model.User;
 import com.mobileuni.other.Constants;
+import com.mobileuni.other.ContentType;
 import com.mobileuni.other.Session;
 
 import com.mobileuni.R;
@@ -48,6 +51,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -57,7 +61,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class CourseDocumentController extends Activity implements CourseChangeListener {
+public class CourseDocumentController extends Activity implements CourseChangeListener, OnClickListener {
 
 	Button home, courseSelect, upload, setting;
 	TextView footerCourseHdr;
@@ -77,64 +81,37 @@ public class CourseDocumentController extends Activity implements CourseChangeLi
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		MenuHelper.setContentViewAndSlideMenu(this, R.layout.course_material, R.string.menu_documents);
+		MenuHelper.setContentViewAndSlideMenu(this, R.layout.item_list, R.string.menu_documents);
 		user = Session.getUser();
 		selectedCourse = Session.getCurrentSelectedCourse();
 		selectedCourse.addListener(this);
 
-		getCourseDetails();
+		setCourseDocuments();
 
 	}
 
-	private void getCourseDetails() {
-		emptyLayout = (LinearLayout) findViewById(R.id.coursework_item_empty);
-		emptyLayout.setVisibility(View.INVISIBLE);
-		courseworkLayout = (FrameLayout) findViewById(R.id.listView);
-		courseworkLayout.setVisibility(View.VISIBLE);
-
-		ArrayList<CourseContents> coursecontent = new ArrayList<CourseContents>();
-		if (user != null && selectedCourse != null) {
-			coursecontent = selectedCourse.getCourseContent();
-			Log.d(Constants.LOG_COURSE, "Got course contents for course : "
-					+ selectedCourse.getId());
-		}
-
-		documentArray = CourseContentsListHelper.getInstance(this)
-				.populateCourseDocuments(coursecontent,
-						selectedCourse.getFullname());
-
-		if (documentArray != null && documentArray.length > 0) {
-			arrayAdapter = new StandardArrayAdapter(this, documentArray);
-			sectionAdapter = new SectionListAdapter(getLayoutInflater(), arrayAdapter);
-			listView = (SectionListView) findViewById(R.id.document_section_list_view);
-			listView.setAdapter(sectionAdapter);
-
-			listView.setOnItemClickListener(new OnItemClickListener() {
-
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id) {
-
-					Object obj = sectionAdapter.getItem(position);
-					if (obj instanceof SectionListItem) {
-						
-						SectionListItem selectedMap = (SectionListItem) obj;
-
-						HashMap<String, String> selectedItem = (HashMap<String, String>) selectedMap.item;
-						
-						// Handle both online & Offline scenarios
-						if(AppStatus.isOnline())
-							Session.getCourseManager().downloadDocument(Session.getCurrentSelectedCourse(), selectedItem.get("filename"));
-						else
-							downloadedFile(selectedItem.get("absolutePath"));
-					}
-				}
-			});
-		} else {
-			Log.d(Constants.LOG_DOCUMENTS,
-					"Something went wrong whilst getting the documents for course ID: "
-							+ Session.getCurrentSelectedCourse().getId());
-			emptyLayout.setVisibility(View.VISIBLE);
-			courseworkLayout.setVisibility(View.INVISIBLE);
+	private void setCourseDocuments() {
+		ArrayList<ContentItem> documents = Session.getCourseManager().getCourseContentTypeByCourse(
+				Session.getCurrentSelectedCourse(), ContentType.DOCUMENT);
+		
+		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
+		// Set title of the view
+		for(ContentItem document : documents){
+			Log.d(Constants.LOG_DOCUMENTS, "Adding course: " + document.getFileName());
+			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.list_item, null);
+			child.setTag(document);
+			child.setOnClickListener(this);
+			((TextView) child.findViewById(R.id.item_title)).setText(document.getFileName());
+			
+			Calendar cal = Calendar.getInstance();
+			cal.setTimeInMillis(document.getTimeCreated());
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+			
+			((TextView) child.findViewById(R.id.item_content)).setText(
+					"Size: " + document.getFileSize() + "B \n" +
+					"Created: " + sdf.format(cal.getTime()) + " \n" +
+					"Author: "	+ document.getAuthor());
+			main.addView(child);
 		}
 	}
 
@@ -184,6 +161,17 @@ public class CourseDocumentController extends Activity implements CourseChangeLi
 			return ext.toLowerCase();
 
 		}
+	}
+
+	public void onClick(View v) {
+		ContentItem document = (ContentItem) v.getTag();
+		File file = Session.getCourseManager().downloadDocument(Session.getCurrentSelectedCourse(), document.getFileName());
+		if(AppStatus.isOnline()) {
+			if(null != file)
+				downloadedFile(file.getAbsolutePath());
+		} else
+			downloadedFile(file.getAbsolutePath());
+		
 	}
 
 	public void courseContentsChanged() {

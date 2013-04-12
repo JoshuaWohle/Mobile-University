@@ -8,6 +8,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/settings_explanation"
+        android:layout_marginBottom="30dip"/>
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/settings_auto_download_content"/>
     
     <ToggleButton
@@ -42,6 +48,13 @@
         android:layout_height="wrap_content"
         android:textOn="On"
         android:textOff="Off"
-        android:onClick="onToggleClicked"/>
+        android:onClick="onToggleClicked"
+        android:layout_marginBottom="30dip"/>
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_credits"
+        android:layout_marginBottom="30dip"/>
     
 </LinearLayout>

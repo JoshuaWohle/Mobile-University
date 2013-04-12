@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/login_main_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/light_brown"
@@ -64,6 +65,15 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_height="40dip"
-        android:text="@string/login_button" />
+        android:text="@string/login_button"
+        android:layout_marginBottom="20dip" />
+    
+    <TextView 
+        android:id="@+id/login_advanced_config"
+        android:text="@string/login_advanced_config" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/dark_brown"
+        android:textStyle="italic"/>
 
 </LinearLayout>

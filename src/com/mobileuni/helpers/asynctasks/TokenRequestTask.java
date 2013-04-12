@@ -10,11 +10,15 @@ import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.mobileuni.R;
 import com.mobileuni.model.iCourseManager;
 import com.mobileuni.other.Constants;
+import com.mobileuni.other.Session;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 public class TokenRequestTask extends AsyncTask<Object, Object, JSONObject> {
 	
@@ -59,6 +63,11 @@ public class TokenRequestTask extends AsyncTask<Object, Object, JSONObject> {
 			cm.setToken(jsonObject.getString("token"));
 		} catch (JSONException e) {
 			Log.d(Constants.LOG_AUTHENTICATION, "JSON Exception, setting token to null");
+			cm.setToken(null);
+			e.printStackTrace();
+		} catch (Exception e) {
+			Log.d(Constants.LOG_AUTHENTICATION, "Something else went wrong while authenticating");
+			Toast.makeText(Session.getContext(), R.string.login_incorrect, Toast.LENGTH_SHORT).show();
 			cm.setToken(null);
 			e.printStackTrace();
 		}

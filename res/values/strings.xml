@@ -100,5 +100,9 @@
 	<string name="menu_forums">Forums</string>
 	<string name="menu_grades">Grades</string>
 	<string name="menu_notes">Notes</string>
+	<string name="login_advanced_config">Click here for advanced configuration.</string>
+	<string name="login_url">URL</string>
+	<string name="settings_explanation">Here you can define your settings for the application.</string>
+	<string name="settings_credits">Thank you for using this application. This project is open source and you can get all of the code @ www.github.com/JoshuaWohle/Moodle-for-Android. If you have any questions, you can send a quick e-mail to jwohle@gmail.com or the.omega.online@gmail.com. If you would like to help us out maintaining / upgrading this app, please do get in touch as well !</string>
 		
 </resources>

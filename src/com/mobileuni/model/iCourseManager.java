@@ -1,12 +1,14 @@
 package com.mobileuni.model;
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONObject;
 
 import com.mobileuni.listeners.iCourseManagerListener;
+import com.mobileuni.other.ContentType;
 
 
 public interface iCourseManager {
@@ -17,9 +19,21 @@ public interface iCourseManager {
 	public void setCourses(JSONObject jsonObject, boolean autoDownload);
 	public void setCourseDetails(JSONObject jsonObject, int courseId);
 	public void setMainInfo(JSONObject jsonObject);
-	public void downloadDocument(Course course, String fileName);
+	public ArrayList<ContentItem> getCourseContentTypeByCourse(Course course, ContentType type);
+	
+	/**
+	 * @param course
+	 * @param fileName
+	 * @return null if the file has to be downloaded, FILE if the file already exists
+	 */
+	public File downloadDocument(Course course, String fileName);
 	public void syncAllDocuments();
-	public ArrayList<Assignment> getAssignments();
+	/**
+	 * If a course is passed, it returns all of the assignemnts of the course, if not, it simply returns ALL assignments
+	 * @param course
+	 * @return
+	 */
+	public ArrayList<Assignment> getAssignments(Course course);
 	
 	public String getToken();
 	public void setToken(String token);

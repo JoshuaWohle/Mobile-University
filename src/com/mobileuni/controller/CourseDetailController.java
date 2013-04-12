@@ -47,37 +47,48 @@ public class CourseDetailController extends Activity implements
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		MenuHelper.setContentViewAndSlideMenu(this, R.layout.item_list, R.string.app_name);
+		MenuHelper.setContentViewAndSlideMenu(this, R.layout.item_list,
+				R.string.app_name);
 		dialog = ProgressDialog.show(this,
 				getResources().getString(R.string.loading), getResources()
 						.getString(R.string.wait_while_get_course_detail));
-		
-		Session.getCurrentSelectedCourse().addListener(this);
 
-		// Check if online
-		if (AppStatus.isOnline())
-			Session.getCourseManager().setCourseDetails(null,
-					Session.getCurrentSelectedCourse().getId()); // Get new details of course
-		else
-			courseContentsChanged(); // Serve old content
+		if (Session.getCurrentSelectedCourse() == null)
+			startActivity(new Intent(this, CourseSelectController.class));
+		else {
+			Session.getCurrentSelectedCourse().addListener(this);
+
+			// Check if online
+			if (AppStatus.isOnline())
+				Session.getCourseManager().setCourseDetails(null,
+						Session.getCurrentSelectedCourse().getId()); // Get new
+																		// details
+																		// of
+																		// course
+			else
+				courseContentsChanged(); // Serve old content
+		}
 	}
 
 	public void displayCourseChoice() {
 		if (Session.getUser() != null
-					&& Session.getCurrentSelectedCourse() != null)
-			
-		showCourseSections();
+				&& Session.getCurrentSelectedCourse() != null)
+
+			showCourseSections();
 	}
 
 	private void showCourseSections() {
 		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
 		// Set title of the view
-		for(CourseSectionItem courseSection : MenuHelper.courseSectionList){
-			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.list_item, null);
+		for (CourseSectionItem courseSection : MenuHelper.courseSectionList) {
+			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(
+					R.layout.list_item, null);
 			child.setTag(courseSection.targetActivity);
 			child.setOnClickListener(this);
-			((TextView) child.findViewById(R.id.item_title)).setText(courseSection.name);
-			((TextView) child.findViewById(R.id.item_content)).setText(courseSection.description);
+			((TextView) child.findViewById(R.id.item_title))
+					.setText(courseSection.name);
+			((TextView) child.findViewById(R.id.item_content))
+					.setText(courseSection.description);
 			main.addView(child);
 		}
 	}
@@ -93,13 +104,14 @@ public class CourseDetailController extends Activity implements
 
 	public void notesChanged() {
 		// Nothing to do on this view
-		
+
 	}
 
 	public void onClick(View v) {
-		
-		// If the clicked menu is a course section item, just go to its corresponding section
-		if(MenuHelper.isCourseSection((Class) v.getTag())) {
+
+		// If the clicked menu is a course section item, just go to its
+		// corresponding section
+		if (MenuHelper.isCourseSection((Class) v.getTag())) {
 			Intent i = new Intent(this, (Class<?>) v.getTag());
 			startActivity(i);
 		}

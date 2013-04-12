@@ -29,7 +29,7 @@ public class MenuListener implements OnClickListener {
 
 		switch (v.getId()) {
 		case R.id.main_menu_button:
-			MenuHelper.openMenu();
+			MenuHelper.openMenu(a);
 			break;
 		case R.id.menu_selected_course:
 			i = new Intent(a, CourseDetailController.class);

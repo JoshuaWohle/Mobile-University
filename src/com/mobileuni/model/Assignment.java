@@ -5,6 +5,8 @@ import java.util.Calendar;
 public class Assignment {
 	
 	private String name;
+	private String description;
+	private String url;
 	private Calendar startDate;
 	private Calendar deadline;
 	
@@ -12,8 +14,10 @@ public class Assignment {
 		
 	}
 	
-	public Assignment(String name, Calendar startDate, Calendar deadline) {
+	public Assignment(String name, String description, String url, Calendar startDate, Calendar deadline) {
 		this.name = name;
+		this.description = description;
+		this.url = url;
 		this.startDate = startDate;
 		this.deadline = deadline;
 	}
@@ -24,6 +28,22 @@ public class Assignment {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public Calendar getStartDate() {

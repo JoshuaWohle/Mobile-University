@@ -21,7 +21,6 @@ import com.slidingmenu.lib.SlidingMenu;
 public class MenuHelper {
 
 	public static ArrayList<CourseSectionItem> courseSectionList;
-	private static SlidingMenu menu;
 	private static ArrayList<SlidingMenu> history = new ArrayList<SlidingMenu>();
 
 	public static void setContentViewAndSlideMenu(Activity a, int resource, int titleResource) {
@@ -36,12 +35,12 @@ public class MenuHelper {
 		main.addView(child);
 		MenuListener ml = new MenuListener(a);
 		
-		history.add(menu);
-		menu = new SlidingMenu(a);
+		SlidingMenu menu = new SlidingMenu(a);
 		menu.setMode(SlidingMenu.LEFT);
 		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		menu.setBehindOffsetRes(R.dimen.menu_offset_right);
 		menu.attachToActivity(a, SlidingMenu.SLIDING_CONTENT);
+		addSlidingMenu(menu);
 		
 		((Button) a.findViewById(R.id.main_menu_button)).setOnClickListener(ml);
 		
@@ -101,8 +100,19 @@ public class MenuHelper {
 
 	}
 	
-	public static void openMenu() {
-		menu.showMenu();
+	public static void openMenu(Activity a) {
+		for(SlidingMenu menu : history) {
+			if(a == menu.getContext())
+				menu.showMenu();
+		}
+	}
+	
+	private static void addSlidingMenu(SlidingMenu menu) {
+		for(SlidingMenu hist : history) {
+			if(hist.getContext() == menu.getContext())
+				return;
+		}
+		history.add(menu);
 	}
 	
 	public static boolean isCourseSection(Class checkedClass) {

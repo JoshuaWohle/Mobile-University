@@ -41,13 +41,16 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginController extends Activity implements OnClickListener, iCourseManagerListener {
 	
 	EditText username, password;
 	Spinner universitySelect;
+	EditText courseManagerURL;
 	
 	ProgressDialog dialog;
 
@@ -78,6 +81,7 @@ public class LoginController extends Activity implements OnClickListener, iCours
 		password.setText(Constants.testPassword);
 
 		((Button) findViewById(R.id.login_button)).setOnClickListener(this);
+		((TextView) findViewById(R.id.login_advanced_config)).setOnClickListener(this);
 	}
 
 	public void onClick(View v) {
@@ -86,7 +90,16 @@ public class LoginController extends Activity implements OnClickListener, iCours
 			case R.id.login_button:
 				login();
 				break;
+			case R.id.login_advanced_config:
+				if(courseManagerURL == null) {
+					courseManagerURL = new EditText(this);
+					courseManagerURL.setHint(R.string.login_url);
+					LinearLayout parent = (LinearLayout) this.findViewById(R.id.login_main_layout);
+					parent.addView(courseManagerURL, 4);
+				}
+				break;
 			default:
+				Log.d(Constants.LOG_AUTHENTICATION, "Some button / view was clicked that we do not know of.");
 				break;
 		}
 	}
@@ -101,7 +114,10 @@ public class LoginController extends Activity implements OnClickListener, iCours
 			if(Session.getUser() == null)
 				Session.setUser(new User());
 			
-			Config.serverUrl = University.getCourseManagerURL(universitySelect.getSelectedItem().toString());
+			if(courseManagerURL == null)
+				Config.serverUrl = University.getCourseManagerURL(universitySelect.getSelectedItem().toString());
+			else
+				Config.serverUrl = courseManagerURL.getText().toString();
 			
 			Session.getUser().setUsername(username.getText().toString());
 			Session.getUser().setPassword(password.getText().toString());
