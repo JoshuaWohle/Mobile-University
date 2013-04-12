@@ -35,8 +35,7 @@ public class SettingsController extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.settings);
-		MenuHelper.setSlideMenu(this);
+		MenuHelper.setContentViewAndSlideMenu(this, R.layout.settings, R.id.menu_settings);
 		
 		ToggleButton autoDownloadFiles = (ToggleButton) findViewById(R.id.settings_auto_download_files);
 		ToggleButton autoDownloadContent = (ToggleButton) findViewById(R.id.settings_auto_download_content);

@@ -207,6 +207,24 @@ public class Moodle implements iCourseManager {
 		}
 	}
 	
+	public ArrayList<Assignment> getAssignments() {
+		ArrayList<Assignment> items = new ArrayList<Assignment>();
+		for(Course course : Session.getUser().getCourses()) {
+			for(CourseContents content : course.getCourseContent()) {
+				for(Module module : content.getModules()) {
+					if((module.getModName().equalsIgnoreCase("assignment") 
+							|| module.getModName().equalsIgnoreCase("assign")) 
+							&& module.getVisible() == 1) {
+						Assignment assignment = new Assignment();
+						assignment.setName(module.getName());
+						items.add(assignment);
+					}
+				}
+			}
+		}
+		return items;
+	}
+	
 	public void syncAllDocuments() {
 		// Moodle integrates this through getting course details
 		//TODO implement background sync

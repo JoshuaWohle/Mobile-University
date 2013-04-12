@@ -84,7 +84,6 @@ public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject
 			jsonstr = jsonstr.replace("</p></div>", "");
 			jsonstr = jsonstr.replace("<p>", "");
 			jsonstr = jsonstr.replace("</p>", "");
-			Log.d(Constants.LOG_WSR, "Transformed object to: " + jsonstr);
 			return new JSONObject(jsonstr);
 			
 		} catch (MalformedURLException e) {

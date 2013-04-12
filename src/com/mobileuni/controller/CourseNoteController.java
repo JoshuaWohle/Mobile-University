@@ -46,15 +46,11 @@ public class CourseNoteController extends Activity implements OnClickListener,
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.item_list);
+		MenuHelper.setContentViewAndSlideMenu(this, R.layout.item_list, R.string.menu_notes);
 		Session.setContext(this);
 		Session.getCurrentSelectedCourse().addListener(this);
 		
-		MenuHelper.setSlideMenu(this);
 
-		((TextView) findViewById(R.id.title)).setText(Session.getContext()
-				.getResources().getString(R.string.notes_title));
-		
 		createAddNoteButton();
 		if (!Session.getEs().isLoggedIn() && AppStatus.isOnline()) { // If
 																		// online

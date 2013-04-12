@@ -32,5 +32,7 @@ public class Constants {
 	public static final String LOG_AUTHENTICATION = "Authentication";
 	public static final String LOG_SESSION = "Session";
 	public static final String LOG_CONNECTION_STATUS = "Connection";
+	public static final String LOG_CALENDAR = "Calendar";
+	public static final String LOG_MENU = "Menu";
 	
 }

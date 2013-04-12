@@ -69,8 +69,7 @@ public class CourseForumController extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.course_forum);
-		MenuHelper.setSlideMenu(this);
+		MenuHelper.setContentViewAndSlideMenu(this, R.layout.course_forum, R.string.menu_forums);
 
 		Intent i = getIntent();
 		user = Session.getUser();

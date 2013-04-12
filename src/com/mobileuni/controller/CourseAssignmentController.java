@@ -54,8 +54,7 @@ public class CourseAssignmentController extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.course_assignment);
-		MenuHelper.setSlideMenu(this);
+		MenuHelper.setContentViewAndSlideMenu(this, R.layout.course_assignment, R.string.menu_assignments);
 
 		Intent i = getIntent();
 		

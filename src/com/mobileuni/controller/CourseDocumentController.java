@@ -77,13 +77,12 @@ public class CourseDocumentController extends Activity implements CourseChangeLi
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.course_material);
+		MenuHelper.setContentViewAndSlideMenu(this, R.layout.course_material, R.string.menu_documents);
 		user = Session.getUser();
 		selectedCourse = Session.getCurrentSelectedCourse();
 		selectedCourse.addListener(this);
 
 		getCourseDetails();
-		MenuHelper.setSlideMenu(this);
 
 	}
 

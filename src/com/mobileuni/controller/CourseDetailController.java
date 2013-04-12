@@ -47,15 +47,12 @@ public class CourseDetailController extends Activity implements
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.item_list);
+		MenuHelper.setContentViewAndSlideMenu(this, R.layout.item_list, R.string.app_name);
 		dialog = ProgressDialog.show(this,
 				getResources().getString(R.string.loading), getResources()
 						.getString(R.string.wait_while_get_course_detail));
-		MenuHelper.setSlideMenu(this);
 		
 		Session.getCurrentSelectedCourse().addListener(this);
-		
-		((TextView) findViewById(R.id.title)).setText(R.string.course_screen_title);
 
 		// Check if online
 		if (AppStatus.isOnline())
@@ -75,7 +72,6 @@ public class CourseDetailController extends Activity implements
 	private void showCourseSections() {
 		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
 		// Set title of the view
-		((TextView) findViewById(R.id.title)).setText(Session.getContext().getResources().getString(R.string.select_course));
 		for(CourseSectionItem courseSection : MenuHelper.courseSectionList){
 			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.list_item, null);
 			child.setTag(courseSection.targetActivity);

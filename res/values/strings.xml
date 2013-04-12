@@ -92,5 +92,13 @@
 	<string name="course_screen_title">Course sections</string>
 	<string name="file_not_found">This file have not been downloaded yet. Please make sure you have a data connection and try again.</string>
 	<string name="settings_auto_download_content">Automatically download course content (non-files) ?</string>
+	<string name="menu_calendar">Calendar</string>
+	<string name="calendar_upcoming_title">Upcoming courses / deadlines</string>
+	<string name="main_menu_button">Menu</string>
+	<string name="menu_assignments">Assignments</string>
+	<string name="menu_documents">Documents</string>
+	<string name="menu_forums">Forums</string>
+	<string name="menu_grades">Grades</string>
+	<string name="menu_notes">Notes</string>
 		
 </resources>

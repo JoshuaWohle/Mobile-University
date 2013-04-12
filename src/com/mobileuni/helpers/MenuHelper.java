@@ -3,7 +3,10 @@ package com.mobileuni.helpers;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.mobileuni.R;
 import com.mobileuni.controller.CourseAssignmentController;
@@ -18,26 +21,44 @@ import com.slidingmenu.lib.SlidingMenu;
 public class MenuHelper {
 
 	public static ArrayList<CourseSectionItem> courseSectionList;
+	private static SlidingMenu menu;
+	private static ArrayList<SlidingMenu> history = new ArrayList<SlidingMenu>();
 
-	public static void setSlideMenu(Activity a) {
+	public static void setContentViewAndSlideMenu(Activity a, int resource, int titleResource) {
+		
+		// Include menu bar and then set the appropriate view
+		a.setContentView(R.layout.main_layout);
+		LinearLayout main = (LinearLayout) a.findViewById(R.id.main_layout);
+		TextView titleView = (TextView) a.findViewById(R.id.main_title);
+		titleView.setText(a.getResources().getString(titleResource));
+		
+		View child = (View) a.getLayoutInflater().inflate(resource, null);
+		main.addView(child);
 		MenuListener ml = new MenuListener(a);
-		SlidingMenu menu = new SlidingMenu(a);
+		
+		history.add(menu);
+		menu = new SlidingMenu(a);
 		menu.setMode(SlidingMenu.LEFT);
 		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		menu.setBehindOffsetRes(R.dimen.menu_offset_right);
 		menu.attachToActivity(a, SlidingMenu.SLIDING_CONTENT);
+		
+		((Button) a.findViewById(R.id.main_menu_button)).setOnClickListener(ml);
+		
 		LinearLayout menuView = (LinearLayout) a.getLayoutInflater().inflate(
 				R.layout.menu, null);
 		((LinearLayout) menuView.findViewById(R.id.menu_select_course))
 				.setOnClickListener(ml);
 		((LinearLayout) menuView.findViewById(R.id.menu_upload_document))
 				.setOnClickListener(ml);
+		((LinearLayout) menuView.findViewById(R.id.menu_calendar))
+			.setOnClickListener(ml);
 		((LinearLayout) menuView.findViewById(R.id.menu_settings))
 				.setOnClickListener(ml);
 		((LinearLayout) menuView.findViewById(R.id.menu_selected_course))
 				.setOnClickListener(ml);
 		((LinearLayout) menuView.findViewById(R.id.menu_logout))
-		.setOnClickListener(ml);
+				.setOnClickListener(ml);
 		menu.setMenu(menuView);
 
 		if (courseSectionList == null) {
@@ -78,6 +99,10 @@ public class MenuHelper {
 							CourseNoteController.class));
 		}
 
+	}
+	
+	public static void openMenu() {
+		menu.showMenu();
 	}
 	
 	public static boolean isCourseSection(Class checkedClass) {

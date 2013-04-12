@@ -23,7 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name="com.mobileuni.controller.CourseDetailController" android:screenOrientation="portrait"/>
-        <activity android:name="com.mobileuni.controller.FileUploadController" android:screenOrientation="portrait"/>
+        <activity android:name="com.mobileuni.controller.CalendarController" android:screenOrientation="portrait"/>
+    	<activity android:name="com.mobileuni.controller.FileUploadController" android:screenOrientation="portrait"/>
         <activity android:name="com.mobileuni.controller.CourseSelectController" android:screenOrientation="portrait"/>
     	<activity android:name="com.mobileuni.controller.CourseDocumentController" android:screenOrientation="portrait"/>
         <activity android:name="com.mobileuni.controller.CourseAssignmentController" android:screenOrientation="portrait"/>

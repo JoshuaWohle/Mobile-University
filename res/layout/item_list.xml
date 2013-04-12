@@ -6,14 +6,6 @@
     android:background="@color/light_brown"
     android:padding="5dip">
     
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dip"
-        android:text="@string/general_title"
-        android:textColor="@color/Black"/>
-    
     <LinearLayout
     	android:id="@+id/item_list"
         android:layout_width="fill_parent"

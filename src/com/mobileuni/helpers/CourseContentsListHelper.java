@@ -34,7 +34,6 @@ import com.mobileuni.other.Constants;
 import com.mobileuni.R;
 
 import android.content.Context;
-import android.os.Environment;
 import android.util.Log;
 
 public class CourseContentsListHelper {

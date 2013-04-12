@@ -69,9 +69,8 @@ public class CourseGradeController extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.course_grade);
 
-		MenuHelper.setSlideMenu(this);
+		MenuHelper.setContentViewAndSlideMenu(this, R.layout.course_grade, R.string.menu_grades);
 		
 		Intent i = getIntent();
 		user = Session.getUser();

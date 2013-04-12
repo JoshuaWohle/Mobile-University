@@ -26,9 +26,7 @@ public class CourseSelectController extends Activity implements UserChangeListen
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.item_list);
-		
-		MenuHelper.setSlideMenu(this);
+		MenuHelper.setContentViewAndSlideMenu(this, R.layout.item_list, R.string.menu_courses);
 		
 		if(Session.getUser() == null) {
 			Log.d(Constants.LOG_SESSION, "No user is set, cannot use the application");
@@ -52,7 +50,6 @@ public class CourseSelectController extends Activity implements UserChangeListen
 
 		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
 		// Set title of the view
-		((TextView) findViewById(R.id.title)).setText(Session.getContext().getResources().getString(R.string.select_course)); 
 		for(Course course : Session.getUser().getCourses()){
 			Log.d(Constants.LOG_COURSE, "Adding course: " + course.getId());
 			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.list_item, null);

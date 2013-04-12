@@ -19,6 +19,7 @@ public interface iCourseManager {
 	public void setMainInfo(JSONObject jsonObject);
 	public void downloadDocument(Course course, String fileName);
 	public void syncAllDocuments();
+	public ArrayList<Assignment> getAssignments();
 	
 	public String getToken();
 	public void setToken(String token);
