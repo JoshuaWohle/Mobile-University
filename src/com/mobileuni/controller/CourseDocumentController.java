@@ -106,8 +106,7 @@ public class CourseDocumentController extends Activity implements CourseChangeLi
 
 		if (documentArray != null && documentArray.length > 0) {
 			arrayAdapter = new StandardArrayAdapter(this, documentArray);
-			sectionAdapter = new SectionListAdapter(getLayoutInflater(),
-					arrayAdapter);
+			sectionAdapter = new SectionListAdapter(getLayoutInflater(), arrayAdapter);
 			listView = (SectionListView) findViewById(R.id.document_section_list_view);
 			listView.setAdapter(sectionAdapter);
 
@@ -120,17 +119,13 @@ public class CourseDocumentController extends Activity implements CourseChangeLi
 					if (obj instanceof SectionListItem) {
 						
 						SectionListItem selectedMap = (SectionListItem) obj;
-						@SuppressWarnings("unchecked")
+
 						HashMap<String, String> selectedItem = (HashMap<String, String>) selectedMap.item;
-						String fileURL = selectedItem.get("url");
-						String fileName = selectedItem.get("filename");
-						String courseDirectoryAndType = selectedCourse
-								.getFullname() + "/Documents/";
 						
 						// Handle both online & Offline scenarios
 						if(AppStatus.isOnline())
-							new DownloadFileTask().execute(fileURL, fileName, courseDirectoryAndType);
-						else if(selectedCourse.getAbsoluteFilePaths().contains(selectedItem.get("absolutePath")))
+							Session.getCourseManager().downloadDocument(Session.getCurrentSelectedCourse(), selectedItem.get("filename"));
+						else
 							downloadedFile(selectedItem.get("absolutePath"));
 					}
 				}
@@ -146,6 +141,10 @@ public class CourseDocumentController extends Activity implements CourseChangeLi
 
 	public void downloadedFile(String absoluteFilePath) {
 		File file = new File(absoluteFilePath);
+		Log.d(Constants.LOG_DOCUMENTS, "Opening file: " + file.getAbsolutePath());
+		if(!file.exists()) {
+			Toast.makeText(this, getResources().getString(R.string.file_not_found), Toast.LENGTH_SHORT);
+		}
 
 		MimeTypeMap myMime = MimeTypeMap.getSingleton();
 		Intent i = new Intent(android.content.Intent.ACTION_VIEW);

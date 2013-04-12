@@ -14,9 +14,11 @@ public interface iCourseManager {
 	List<iCourseManagerListener> icml = new ArrayList<iCourseManagerListener>();
 
 	public void login(User user);
-	public void setCourses(JSONObject jsonObject);
+	public void setCourses(JSONObject jsonObject, boolean autoDownload);
 	public void setCourseDetails(JSONObject jsonObject, int courseId);
 	public void setMainInfo(JSONObject jsonObject);
+	public void downloadDocument(Course course, String fileName);
+	public void syncAllDocuments();
 	
 	public String getToken();
 	public void setToken(String token);

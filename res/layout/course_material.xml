@@ -17,8 +17,8 @@
 	    android:orientation="vertical">
 
 
-		<com.mobileuni.helpers.SectionListView 
-		    android:id="@+id/document_section_list_view" 
+		<com.mobileuni.helpers.SectionListView
+		    android:id="@+id/document_section_list_view"
 		    android:layout_width="fill_parent"                 
 		    android:layout_height="fill_parent"/>
 	 

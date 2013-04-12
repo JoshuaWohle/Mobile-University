@@ -5,6 +5,7 @@ import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.helpers.MenuHelper;
 import com.mobileuni.listeners.UserChangeListener;
 import com.mobileuni.model.Course;
+import com.mobileuni.model.Settings;
 import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
 
@@ -40,7 +41,7 @@ public class CourseSelectController extends Activity implements UserChangeListen
 		
 		Session.getUser().addListener(this);
 		if(AppStatus.isOnline())
-			Session.getCourseManager().setCourses(null);
+			Session.getCourseManager().setCourses(null, Settings.isAutoDownloadContent());
 		else
 			courseChange(true);
 

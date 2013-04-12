@@ -176,9 +176,10 @@ public class Course implements Serializable {
 	public void addAbsoluteFilePath(String fielPath) {
 		if(!this.absoluteFilePaths.contains(fielPath)) {
 			this.absoluteFilePaths.add(fielPath);
-
-			for(CourseChangeListener listener : cls)
-				listener.fileChanged(fielPath);
+			
+			if(cls != null)
+				for(CourseChangeListener listener : cls)
+					listener.fileChanged(fielPath);
 		}
 	}
 	

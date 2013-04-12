@@ -22,6 +22,7 @@ import org.json.JSONObject;
 
 import com.mobileuni.config.Config;
 import com.mobileuni.controller.LoginController;
+import com.mobileuni.model.Settings;
 import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
 import com.mobileuni.other.WebServiceFunction;
@@ -110,13 +111,16 @@ public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject
 	
 	@Override
 	protected void onPostExecute(JSONObject jsonObject) {
+		if(jsonObject == null)
+			return;
+		
 		Log.d(Constants.LOG_WSR, "Received: " + jsonObject.toString());
 		
 		// Have to use a lot of if-else, as switch over Strings doesn't work in Java 6 yet :(
 		if(fn.equals(WebServiceFunction.moodle_webservice_get_siteinfo))
 			Session.getCourseManager().setMainInfo(jsonObject);
 		else if(fn.equals(WebServiceFunction.moodle_enrol_get_users_courses))
-			Session.getCourseManager().setCourses(jsonObject);
+			Session.getCourseManager().setCourses(jsonObject, Settings.isAutoDownloadContent());
 		else if(fn.equals(WebServiceFunction.core_course_get_contents))
 			Session.getCourseManager().setCourseDetails(jsonObject, (Integer)extra);
 		else

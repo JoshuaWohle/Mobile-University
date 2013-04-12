@@ -1,5 +1,6 @@
 package com.mobileuni.model;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -14,9 +15,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.net.Uri;
+import android.os.Environment;
 import android.util.Log;
 
 import com.mobileuni.config.Config;
+import com.mobileuni.helpers.asynctasks.DownloadFileTask;
 import com.mobileuni.helpers.asynctasks.TokenRequestTask;
 import com.mobileuni.helpers.asynctasks.WebServiceResponseTask;
 import com.mobileuni.listeners.iCourseManagerListener;
@@ -42,7 +45,7 @@ public class Moodle implements iCourseManager {
 		new TokenRequestTask().execute(tokenURL, this);
 	}
 
-	public void setCourses(JSONObject jsonObject) {
+	public void setCourses(JSONObject jsonObject, boolean autoDownload) {
 		if (jsonObject == null) {
 			try {
 				String urlParameters = "userid="
@@ -73,12 +76,19 @@ public class Moodle implements iCourseManager {
 				JSONObject c = courses.getJSONObject(i);
 				Course course = new Course();
 				course.populateCourse(c);
+				//Make sure offline file paths keep persisted
+				if(null != Session.getUser().getCourse(course.getId()))
+					course.setAbsoluteFilePaths(Session.getUser().getCourse(course.getId()).getAbsoluteFilePaths());
 				courseArray.add(course);
 			}
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		if(autoDownload)
+			for(Course course : courseArray)
+				setCourseDetails(null, course.getId());
 		
 		Session.getUser().setCourses(courseArray);
 		Session.getUser().save();
@@ -102,6 +112,7 @@ public class Moodle implements iCourseManager {
 		}
 		
 		ArrayList<CourseContents> courseContentsArray = new ArrayList<CourseContents>();
+		Course course = Session.getUser().getCourse(courseId);
 		try {
 			JSONArray courseContents = jsonObject
 					.getJSONArray("coursecontents");
@@ -114,7 +125,19 @@ public class Moodle implements iCourseManager {
 				courseContentsArray.add(courseContent);
 			}
 			
-			Session.getUser().getCourse(courseId).setCourseContent(courseContentsArray);
+			course.setCourseContent(courseContentsArray);
+			if(Settings.isAutoDownloadFiles()) {
+				for(CourseContents contents : courseContentsArray) {
+					for(Module module : contents.getModules()) {
+						for(ContentItem item : module.getContents()) {
+							if(item.getType().equalsIgnoreCase("file")) {
+								downloadDocument(course, item.getFileName());
+							}
+						}
+					}
+				}
+			}
+			
 			Session.getUser().save();
 			
 		} catch (JSONException e) {
@@ -164,6 +187,29 @@ public class Moodle implements iCourseManager {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void downloadDocument(Course course, String fileName) {
+		for(CourseContents contents : course.getCourseContent()) {
+			for(Module module : contents.getModules()) {
+				for(ContentItem item : module.getContents()) {
+					if(item.getFileName().equals(fileName)) {
+						File file = new File(Constants.FILE_STORAGE_FOLDER_NAME + course.getFullname() + "/" + item.getFileName());
+						if(!file.exists() ||
+								(file.lastModified() < item.getTimeModified())) {
+							new DownloadFileTask().execute(item.getFileUrl(), fileName, 
+								course.getFullname() + "/", course);
+							Log.d(Constants.LOG_DOCUMENTS, "Downloading new file: " + fileName);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	public void syncAllDocuments() {
+		// Moodle integrates this through getting course details
+		//TODO implement background sync
 	}
 
 	public String getTokenURL() {

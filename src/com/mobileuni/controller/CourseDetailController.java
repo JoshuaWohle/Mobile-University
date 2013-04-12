@@ -54,6 +54,8 @@ public class CourseDetailController extends Activity implements
 		MenuHelper.setSlideMenu(this);
 		
 		Session.getCurrentSelectedCourse().addListener(this);
+		
+		((TextView) findViewById(R.id.title)).setText(R.string.course_screen_title);
 
 		// Check if online
 		if (AppStatus.isOnline())

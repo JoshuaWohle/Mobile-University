@@ -10,6 +10,7 @@ import java.net.URLConnection;
 
 import org.apache.http.util.ByteArrayBuffer;
 
+import com.mobileuni.model.Course;
 import com.mobileuni.other.Constants;
 import com.mobileuni.other.Session;
 
@@ -20,7 +21,7 @@ import android.util.Log;
 public class DownloadFileTask extends AsyncTask<Object, Object, File> {
 	
 	String TAG = Constants.LOG_DOCUMENTS;
-	String PATH = Environment.getExternalStorageDirectory().getPath();
+	Course course;
 
 	@Override
 	protected File doInBackground(Object... params) {
@@ -30,8 +31,10 @@ public class DownloadFileTask extends AsyncTask<Object, Object, File> {
 		String fileURL = (String) params[0] + "&token=" + Session.getCourseManager().getToken();
 		String fileName = (String) params[1];
 		String directory = (String) params[2];
+		course = (Course) params[3];
+		
 		try {
-			URL url = new URL(fileURL); //you can write here any link
+			URL url = new URL(fileURL); 
 			
 			boolean mExternalStorageAvailable = false;
         	boolean mExternalStorageWriteable = false;
@@ -53,7 +56,8 @@ public class DownloadFileTask extends AsyncTask<Object, Object, File> {
         	if (mExternalStorageAvailable || mExternalStorageWriteable) {
 			
 				// create a File object for the parent directory 
-				File fileDirectory = new File(PATH + "/Moodle/" + directory); 
+        		//TODO make moodle independent
+				File fileDirectory = new File(Constants.FILE_STORAGE_FOLDER_NAME + directory); 
 				// have the object build the directory structure, if needed. 
 				fileDirectory.mkdirs(); 
 				// create a File object for the output file 
@@ -102,7 +106,7 @@ public class DownloadFileTask extends AsyncTask<Object, Object, File> {
 	public void onPostExecute(File file) {
 		if(file != null) {
 			Log.d(TAG, "File downloaded: " + file.getAbsolutePath());
-			Session.getCurrentSelectedCourse().addAbsoluteFilePath(file.getAbsolutePath());
+			course.addAbsoluteFilePath(file.getAbsolutePath());
 		} else
 			Log.d(TAG, "File not downloaded, set to NULL");
 	}

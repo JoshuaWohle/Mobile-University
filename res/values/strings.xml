@@ -86,8 +86,11 @@
 	<string name="course_section_forums_description">View the course forums (Online only)</string>
 	<string name="course_section_notes_title">Notes</string>
 	<string name="course_section_notes_description">View notes of your courses</string>
-	<string name="settings_auto_download">Automatically download files ?</string>
+	<string name="settings_auto_download_files">Automatically download files ?</string>
 	<string name="settings_sync_deadlines">Synchronize your course deadlines to your calendar ?</string>
 	<string name="menu_logout">Logout</string>
+	<string name="course_screen_title">Course sections</string>
+	<string name="file_not_found">This file have not been downloaded yet. Please make sure you have a data connection and try again.</string>
+	<string name="settings_auto_download_content">Automatically download course content (non-files) ?</string>
 		
 </resources>

@@ -95,7 +95,11 @@ public class LoginController extends Activity implements OnClickListener, iCours
 		dialog = ProgressDialog.show(this, getResources().getString(R.string.loading), getResources().getString(R.string.wait_while_login));
 		
 		if (AppStatus.isOnline()) {
-			Session.setUser(new User());
+			Session.setUser(User.load());
+			
+			if(Session.getUser() == null)
+				Session.setUser(new User());
+			
 			Config.serverUrl = University.getCourseManagerURL(universitySelect.getSelectedItem().toString());
 			
 			Session.getUser().setUsername(username.getText().toString());

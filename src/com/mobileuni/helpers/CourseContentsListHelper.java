@@ -79,7 +79,8 @@ public class CourseContentsListHelper {
 									String fullextension = "." + fileextension;
 									String filename = item.getFileName().replace(fullextension, "");
 									
-									File file = new File(Environment.getExternalStorageDirectory().getPath() + "/Moodle/" + courseName + "/Documents/" + item.getFileName());
+									File file = new File(Constants.FILE_STORAGE_FOLDER_NAME + courseName + "/" + item.getFileName());
+									Log.d(Constants.LOG_DOCUMENTS, file.getAbsolutePath());
 									file.exists();
 									
 									int thumbresourse = FileTypeThumbHelper.getInstance(context).getThumbResourse(fileextension);

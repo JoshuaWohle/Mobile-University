@@ -61,20 +61,6 @@ public class User implements Serializable {
 		
 	}
 	
-	public void syncDocuments() {
-		for(Course course : courses) {
-			for(CourseContents content : course.getCourseContent()) {
-				for(Module module : content.getModules()) {
-					for(ContentItem ci : module.getContents()) {
-						if(ci.getType().equalsIgnoreCase("file")) {
-							
-						}
-					}
-				}
-			}
-		}
-	}
-	
 	public void save() {
 		FileOutputStream fos;
 		try {

@@ -8,10 +8,23 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/settings_auto_download"/>
+        android:text="@string/settings_auto_download_content"/>
     
     <ToggleButton
-        android:id="@+id/settings_auto_download"
+        android:id="@+id/settings_auto_download_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOn="On"
+        android:textOff="Off"
+        android:onClick="onToggleClicked"/>
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_auto_download_files"/>
+    
+    <ToggleButton
+        android:id="@+id/settings_auto_download_files"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textOn="On"

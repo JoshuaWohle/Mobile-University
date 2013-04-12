@@ -38,20 +38,25 @@ public class SettingsController extends Activity {
 		setContentView(R.layout.settings);
 		MenuHelper.setSlideMenu(this);
 		
-		ToggleButton autoDownload = (ToggleButton) findViewById(R.id.settings_auto_download);
+		ToggleButton autoDownloadFiles = (ToggleButton) findViewById(R.id.settings_auto_download_files);
+		ToggleButton autoDownloadContent = (ToggleButton) findViewById(R.id.settings_auto_download_content);
 		ToggleButton syncDeadlines = (ToggleButton) findViewById(R.id.settings_sync_deadlines);
-		autoDownload.setChecked(Settings.isAutoDownload());
+		autoDownloadFiles.setChecked(Settings.isAutoDownloadFiles());
+		autoDownloadContent.setChecked(Settings.isAutoDownloadContent());
 		syncDeadlines.setChecked(Settings.isSyncDeadlines());
 	}
 	
 	public void onToggleClicked(View v) {
 	    
 	    switch(v.getId()) {
-	    	case R.id.settings_auto_download:
-	    		Settings.setAutoDownload(((ToggleButton) v).isChecked());
+	    	case R.id.settings_auto_download_files:
+	    		Settings.setAutoDownloadFiles(((ToggleButton) v).isChecked());
 	    		break;
 	    	case R.id.settings_sync_deadlines:
 	    		Settings.setSyncDeadlines(((ToggleButton) v).isChecked());
+	    	case R.id.settings_auto_download_content:
+	    		Settings.setAutoDownloadContent(((ToggleButton) v).isChecked());
+	    		break;
 	    	default:
 	    		break;
 	    }

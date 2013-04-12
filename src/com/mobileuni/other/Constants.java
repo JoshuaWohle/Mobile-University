@@ -1,5 +1,9 @@
 package com.mobileuni.other;
 
+import java.io.File;
+
+import android.os.Environment;
+
 import com.evernote.client.android.EvernoteSession;
 import com.evernote.client.android.EvernoteSession.EvernoteService;
 
@@ -7,6 +11,9 @@ public class Constants {
 	public static final String testURL = "http://moodle.joshuawohle.com";
 	public static final String testUser = "kcl_test_account";
 	public static final String testPassword = "90bB1960a3/";
+	
+	public static final String FILE_STORAGE_FOLDER_NAME = Environment.getExternalStorageDirectory().getPath() 
+			+ "/" + "Mobile University" + "/";
 	
 	public static final String PREFERENCE_NAME = "MUSettings";
 	
