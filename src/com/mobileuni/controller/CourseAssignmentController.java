@@ -24,6 +24,8 @@ import java.util.ArrayList;
 
 import com.mobileuni.helpers.MenuHelper;
 import com.mobileuni.model.Assignment;
+import com.mobileuni.model.Module;
+import com.mobileuni.other.ModuleType;
 import com.mobileuni.other.Session;
 
 import com.mobileuni.R;
@@ -60,11 +62,11 @@ public class CourseAssignmentController extends Activity implements OnClickListe
 	}
 
 	private void setCourseAssignments() {
-		ArrayList<Assignment> assignments = Session.getCourseManager().getAssignments(Session.getCurrentSelectedCourse());
+		ArrayList<Module> assignments = Session.getCourseManager().getModules(Session.getCurrentSelectedCourse(), ModuleType.ASSIGNMENT);
 		
 		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
 		// Set title of the view
-		for(Assignment assignment : assignments){
+		for(Module assignment : assignments){
 			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.list_item, null);
 			child.setTag(assignment);
 			child.setOnClickListener(this);

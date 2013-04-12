@@ -24,19 +24,12 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 
 import com.mobileuni.helpers.AppStatus;
-import com.mobileuni.helpers.CourseContentsListHelper;
 import com.mobileuni.helpers.MenuHelper;
-import com.mobileuni.helpers.SectionListAdapter;
-import com.mobileuni.helpers.SectionListItem;
-import com.mobileuni.helpers.SectionListView;
-import com.mobileuni.helpers.StandardArrayAdapter;
 import com.mobileuni.listeners.CourseChangeListener;
 import com.mobileuni.model.ContentItem;
 import com.mobileuni.model.Course;
-import com.mobileuni.model.CourseContents;
 import com.mobileuni.model.User;
 import com.mobileuni.other.Constants;
 import com.mobileuni.other.ContentType;
@@ -53,26 +46,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.MimeTypeMap;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class CourseDocumentController extends Activity implements CourseChangeListener, OnClickListener {
 
-	Button home, courseSelect, upload, setting;
-	TextView footerCourseHdr;
-	LinearLayout emptyLayout;
-	FrameLayout courseworkLayout;
 	User user;
-
-	SectionListItem[] documentArray;
-	StandardArrayAdapter arrayAdapter;
-	SectionListAdapter sectionAdapter;
-	SectionListView listView;
 
 	Course selectedCourse;
 

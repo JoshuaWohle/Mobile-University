@@ -3,6 +3,8 @@ package com.mobileuni.controller;
 import com.mobileuni.R;
 import com.mobileuni.helpers.MenuHelper;
 import com.mobileuni.model.Assignment;
+import com.mobileuni.model.Module;
+import com.mobileuni.other.ModuleType;
 import com.mobileuni.other.Session;
 
 import android.app.Activity;
@@ -20,7 +22,7 @@ public class CalendarController extends Activity {
 	
 	private void fillUpcoming() {
 		LinearLayout main = (LinearLayout) findViewById(R.id.calendar_upcoming_items_list);
-		for(Assignment upcoming : Session.getCourseManager().getAssignments(null)) {
+		for(Module upcoming : Session.getCourseManager().getModules(null, ModuleType.ASSIGNMENT)) {
 			LinearLayout child = (LinearLayout) this.getLayoutInflater().inflate(R.layout.list_item_single_line, null);
 			TextView content = (TextView) child.findViewById(R.id.item_content);
 			content.setText(upcoming.getName());

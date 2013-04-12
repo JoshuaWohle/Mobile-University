@@ -1,14 +1,14 @@
 package com.mobileuni.model;
 
-
-public class Assignment extends Module {
+public class Forum extends Module {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Assignment() {
+	public Forum() {
 		
 	}
+	
 }

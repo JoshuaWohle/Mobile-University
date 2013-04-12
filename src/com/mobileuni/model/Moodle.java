@@ -25,14 +25,19 @@ import com.mobileuni.helpers.asynctasks.WebServiceResponseTask;
 import com.mobileuni.listeners.iCourseManagerListener;
 import com.mobileuni.other.Constants;
 import com.mobileuni.other.ContentType;
+import com.mobileuni.other.ModuleType;
 import com.mobileuni.other.Session;
 import com.mobileuni.other.WebServiceFunction;
 
 public class Moodle implements iCourseManager {
 	
 	private static final HashMap<ContentType, String> docTypes = new HashMap<ContentType, String>(); 
+	private static final HashMap<ModuleType, String> modTypes = new HashMap<ModuleType, String>();
 	static {
 		docTypes.put(ContentType.DOCUMENT, "file");
+		modTypes.put(ModuleType.ASSIGNMENT, "assign");
+		modTypes.put(ModuleType.GRADE, "assign");
+		modTypes.put(ModuleType.FORUM, "forum");
 	}
 
 	private String tokenURL = "";
@@ -221,19 +226,18 @@ public class Moodle implements iCourseManager {
 		return file;
 	}
 
-	public ArrayList<Assignment> getAssignments(Course course) {
+	public ArrayList<Module> getModules(Course course, ModuleType type) {
 		ArrayList<Course> courses = new ArrayList<Course>();
 		if(course == null)
 			courses = Session.getUser().getCourses();
 		else
 			courses.add(course);
 		
-		ArrayList<Assignment> items = new ArrayList<Assignment>();
+		ArrayList<Module> items = new ArrayList<Module>();
 		for (Course c : courses) {
 			for (CourseContents content : c.getCourseContent()) {
 				for (Module module : content.getModules()) {
-					if ((module.getModName().equalsIgnoreCase("assignment") || module
-							.getModName().equalsIgnoreCase("assign"))
+					if ((module.getModName().startsWith(modTypes.get(type)))
 							&& module.getVisible() == 1) {
 						Assignment assignment = new Assignment();
 						assignment.setName(module.getName());
@@ -264,8 +268,6 @@ public class Moodle implements iCourseManager {
 					}
 				}
 			}
-			break;
-		case ASSIGNMENT:
 			break;
 		default:
 			break;

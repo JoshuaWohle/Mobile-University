@@ -21,55 +21,35 @@
 package com.mobileuni.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import com.mobileuni.helpers.CourseContentsListHelper;
 import com.mobileuni.helpers.MenuHelper;
-import com.mobileuni.helpers.SectionListAdapter;
-import com.mobileuni.helpers.SectionListItem;
-import com.mobileuni.helpers.SectionListView;
-import com.mobileuni.helpers.StandardArrayAdapter;
-import com.mobileuni.listeners.MenuListener;
-import com.mobileuni.model.CourseContents;
+import com.mobileuni.model.Assignment;
+import com.mobileuni.model.Module;
 import com.mobileuni.model.User;
+import com.mobileuni.other.ModuleType;
 import com.mobileuni.other.Session;
 
 import com.mobileuni.R;
 
 import android.app.Activity;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.FrameLayout;
+import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
 
-public class CourseForumController extends Activity {
+public class CourseForumController extends Activity implements OnClickListener {
 
-	Button home, courseSelect, upload, setting;
-	TextView footerCourseHdr;
-	LinearLayout emptyLayout;
-	FrameLayout courseworkLayout;
 	User user;
-
-	SectionListItem[] forumArray;
-	StandardArrayAdapter arrayAdapter;
-	SectionListAdapter sectionAdapter;
-	SectionListView listView;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
-		MenuHelper.setContentViewAndSlideMenu(this, R.layout.course_forum, R.string.menu_forums);
+		MenuHelper.setContentViewAndSlideMenu(this, R.layout.item_list, R.string.menu_forums);
 
 		Intent i = getIntent();
 		user = Session.getUser();
@@ -78,69 +58,34 @@ public class CourseForumController extends Activity {
 			i = new Intent(this, CourseSelectController.class);
 			startActivity(i);
 		}
-		getCourseAssignments();
+		setForums();
 
 	}
 
-	private void getCourseAssignments() {
-		emptyLayout = (LinearLayout) findViewById(R.id.coursework_forumitem_empty);
-		emptyLayout.setVisibility(View.INVISIBLE);
-		courseworkLayout = (FrameLayout) findViewById(R.id.forumlistView);
-		courseworkLayout.setVisibility(View.VISIBLE);
-
-		ArrayList<CourseContents> coursecontent = new ArrayList<CourseContents>();
-		coursecontent = Session.getCurrentSelectedCourse().getCourseContent();
-
-		forumArray = CourseContentsListHelper.getInstance(this)
-				.populateCourseForums(coursecontent);
-
-		if (forumArray != null && forumArray.length > 0) {
-			arrayAdapter = new StandardArrayAdapter(this, forumArray);
-			sectionAdapter = new SectionListAdapter(getLayoutInflater(),
-					arrayAdapter);
-			listView = (SectionListView) findViewById(R.id.forum_section_list_view);
-			listView.setAdapter(sectionAdapter);
-
-			listView.setOnItemClickListener(new OnItemClickListener() {
-
-				public void onItemClick(AdapterView<?> parent, View view,
-						int position, long id) {
-
-					Object obj = sectionAdapter.getItem(position);
-					if (obj instanceof SectionListItem) {
-
-						SectionListItem selectedMap = (SectionListItem) obj;
-						@SuppressWarnings("unchecked")
-						// String value = ((HashMap<String,
-						// String>)selectedMap.item).get("id");
-						String url = ((HashMap<String, String>) selectedMap.item)
-								.get("url");
-
-						if (!url.startsWith("http://")
-								&& !url.startsWith("https://"))
-							url = "http://" + url;
-
-						Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-								Uri.parse(url));
-
-						try {
-							// Start the activity
-							startActivity(browserIntent);
-						} catch (ActivityNotFoundException e) {
-							Log.e("Browser Error", e.toString()
-									+ " No browser on device");
-							// Raise on activity not found
-							Toast.makeText(getApplicationContext(),
-									"Browser not found.", Toast.LENGTH_SHORT)
-									.show();
-						}
-					}
-				}
-			});
-		} else {
-			emptyLayout.setVisibility(View.VISIBLE);
-			courseworkLayout.setVisibility(View.INVISIBLE);
+	private void setForums() {
+		ArrayList<Module> forums = Session.getCourseManager().getModules(Session.getCurrentSelectedCourse(), ModuleType.FORUM);
+		
+		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
+		// Set title of the view
+		for(Module forum : forums){
+			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.list_item, null);
+			child.setTag(forum);
+			child.setOnClickListener(this);
+			((TextView) child.findViewById(R.id.item_title)).setText(forum.getName());
+			((TextView) child.findViewById(R.id.item_content)).setText("Description: " + forum.getDescription());
+			main.addView(child);
 		}
+	}
+
+	public void onClick(View v) {
+		Assignment forum = (Assignment) v.getTag();
+		String url = forum.getUrl();
+		
+		if (!url.startsWith("http://") && !url.startsWith("https://"))
+			url = "http://" + url;
+
+		startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(url)));
+		
 	}
 
 }

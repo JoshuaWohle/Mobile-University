@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import com.mobileuni.listeners.iCourseManagerListener;
 import com.mobileuni.other.ContentType;
+import com.mobileuni.other.ModuleType;
 
 
 public interface iCourseManager {
@@ -29,11 +30,11 @@ public interface iCourseManager {
 	public File downloadDocument(Course course, String fileName);
 	public void syncAllDocuments();
 	/**
-	 * If a course is passed, it returns all of the assignemnts of the course, if not, it simply returns ALL assignments
+	 * If a course is passed, it returns all of the modules of the course, if not, it simply returns ALL modules
 	 * @param course
 	 * @return
 	 */
-	public ArrayList<Assignment> getAssignments(Course course);
+	public ArrayList<Module> getModules(Course course, ModuleType type);
 	
 	public String getToken();
 	public void setToken(String token);

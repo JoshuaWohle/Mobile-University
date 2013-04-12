@@ -24,7 +24,9 @@ import java.util.ArrayList;
 
 import com.mobileuni.helpers.MenuHelper;
 import com.mobileuni.model.Assignment;
+import com.mobileuni.model.Module;
 import com.mobileuni.model.User;
+import com.mobileuni.other.ModuleType;
 import com.mobileuni.other.Session;
 
 import com.mobileuni.R;
@@ -61,24 +63,24 @@ public class CourseGradeController extends Activity implements OnClickListener {
 	}
 
 	private void setCourseGrades() {
-		ArrayList<Assignment> assignments = Session.getCourseManager().getAssignments(Session.getCurrentSelectedCourse());
+		ArrayList<Module> grades = Session.getCourseManager().getModules(Session.getCurrentSelectedCourse(), ModuleType.GRADE);
 		
 		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
 		// Set title of the view
-		for(Assignment assignment : assignments){
+		for(Module grade : grades){
 			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.list_item, null);
-			child.setTag(assignment);
+			child.setTag(grade);
 			child.setOnClickListener(this);
-			((TextView) child.findViewById(R.id.item_title)).setText(assignment.getName());
-			((TextView) child.findViewById(R.id.item_content)).setText("Description: " + assignment.getDescription());
+			((TextView) child.findViewById(R.id.item_title)).setText(grade.getName());
+			((TextView) child.findViewById(R.id.item_content)).setText("Description: " + grade.getDescription());
 			main.addView(child);
 		}
 	}
 
 	public void onClick(View v) {
 
-		Assignment assignment = (Assignment) v.getTag();
-		String url = assignment.getUrl();
+		Assignment grade = (Assignment) v.getTag();
+		String url = grade.getUrl();
 		
 		if (!url.startsWith("http://") && !url.startsWith("https://"))
 			url = "http://" + url;
