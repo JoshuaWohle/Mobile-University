@@ -30,8 +30,8 @@ import java.util.List;
 import com.mobileuni.helpers.FileUploadsListHelper;
 import com.mobileuni.helpers.LazyAdapter;
 import com.mobileuni.listeners.MenuListener;
+import com.mobileuni.model.Session;
 import com.mobileuni.model.User;
-import com.mobileuni.other.Session;
 
 import com.mobileuni.R;
 

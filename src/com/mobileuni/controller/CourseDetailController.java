@@ -24,7 +24,7 @@ import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.helpers.MenuHelper;
 import com.mobileuni.listeners.CourseChangeListener;
 import com.mobileuni.model.CourseSectionItem;
-import com.mobileuni.other.Session;
+import com.mobileuni.model.Session;
 
 import com.mobileuni.R;
 

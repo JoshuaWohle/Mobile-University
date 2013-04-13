@@ -1,11 +1,9 @@
-package com.mobileuni.other;
+package com.mobileuni.model;
 
 import android.content.Context;
 
 import com.evernote.client.android.EvernoteSession;
-import com.mobileuni.model.Course;
-import com.mobileuni.model.User;
-import com.mobileuni.model.iCourseManager;
+import com.mobileuni.other.Constants;
 
 public class Session {
 	private static User user = null;

@@ -30,10 +30,10 @@ import com.mobileuni.helpers.MenuHelper;
 import com.mobileuni.listeners.CourseChangeListener;
 import com.mobileuni.model.ContentItem;
 import com.mobileuni.model.Course;
+import com.mobileuni.model.Session;
 import com.mobileuni.model.User;
 import com.mobileuni.other.Constants;
 import com.mobileuni.other.ContentType;
-import com.mobileuni.other.Session;
 
 import com.mobileuni.R;
 

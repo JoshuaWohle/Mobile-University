@@ -17,7 +17,7 @@ import com.mobileuni.helpers.MenuHelper;
 import com.mobileuni.listeners.CourseChangeListener;
 import com.mobileuni.listeners.EvernoteListener;
 import com.mobileuni.model.MetaNote;
-import com.mobileuni.other.Session;
+import com.mobileuni.model.Session;
 
 import android.app.Activity;
 import android.app.AlertDialog;

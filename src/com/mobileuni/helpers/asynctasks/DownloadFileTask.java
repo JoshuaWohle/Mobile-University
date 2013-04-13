@@ -11,8 +11,8 @@ import java.net.URLConnection;
 import org.apache.http.util.ByteArrayBuffer;
 
 import com.mobileuni.model.Course;
+import com.mobileuni.model.Session;
 import com.mobileuni.other.Constants;
-import com.mobileuni.other.Session;
 
 import android.os.AsyncTask;
 import android.os.Environment;

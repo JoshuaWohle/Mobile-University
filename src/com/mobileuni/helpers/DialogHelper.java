@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 
 import com.mobileuni.R;
-import com.mobileuni.other.Session;
+import com.mobileuni.model.Session;
 
 public class DialogHelper {
 	public static AlertDialog evernoteInstallDialog(final Activity a) {

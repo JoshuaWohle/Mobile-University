@@ -1,7 +1,6 @@
 package com.mobileuni.model;
 
 import com.mobileuni.other.Constants;
-import com.mobileuni.other.Session;
 
 import android.content.SharedPreferences;
 

@@ -26,7 +26,6 @@ import com.mobileuni.listeners.iCourseManagerListener;
 import com.mobileuni.other.Constants;
 import com.mobileuni.other.ContentType;
 import com.mobileuni.other.ModuleType;
-import com.mobileuni.other.Session;
 import com.mobileuni.other.WebServiceFunction;
 
 public class Moodle implements iCourseManager {

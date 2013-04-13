@@ -2,10 +2,9 @@ package com.mobileuni.controller;
 
 import com.mobileuni.R;
 import com.mobileuni.helpers.MenuHelper;
-import com.mobileuni.model.Assignment;
 import com.mobileuni.model.Module;
+import com.mobileuni.model.Session;
 import com.mobileuni.other.ModuleType;
-import com.mobileuni.other.Session;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class CalendarController extends Activity {
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

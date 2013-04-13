@@ -14,8 +14,8 @@ import com.evernote.edam.notestore.NotesMetadataList;
 import com.evernote.thrift.transport.TTransportException;
 import com.mobileuni.controller.CourseNoteController;
 import com.mobileuni.model.MetaNote;
+import com.mobileuni.model.Session;
 import com.mobileuni.other.Constants;
-import com.mobileuni.other.Session;
 
 public class EvernoteListener extends OnClientCallback {
 	

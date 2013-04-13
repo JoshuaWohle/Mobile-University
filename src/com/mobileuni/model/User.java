@@ -33,7 +33,6 @@ import java.util.List;
 
 import com.mobileuni.listeners.UserChangeListener;
 import com.mobileuni.other.Constants;
-import com.mobileuni.other.Session;
 
 import android.content.Context;
 import android.util.Log;

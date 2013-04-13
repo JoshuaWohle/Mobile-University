@@ -25,8 +25,8 @@ import java.util.ArrayList;
 import com.mobileuni.helpers.MenuHelper;
 import com.mobileuni.model.Assignment;
 import com.mobileuni.model.Module;
+import com.mobileuni.model.Session;
 import com.mobileuni.other.ModuleType;
-import com.mobileuni.other.Session;
 
 import com.mobileuni.R;
 

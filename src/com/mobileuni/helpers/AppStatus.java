@@ -20,8 +20,8 @@
 
 package com.mobileuni.helpers;
 
+import com.mobileuni.model.Session;
 import com.mobileuni.other.Constants;
-import com.mobileuni.other.Session;
 
 import android.app.Activity;
 import android.content.Context;

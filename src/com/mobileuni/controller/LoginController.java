@@ -24,10 +24,10 @@ import com.mobileuni.config.Config;
 import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.listeners.iCourseManagerListener;
 import com.mobileuni.model.Moodle;
+import com.mobileuni.model.Session;
 import com.mobileuni.model.University;
 import com.mobileuni.model.User;
 import com.mobileuni.other.Constants;
-import com.mobileuni.other.Session;
 
 import com.mobileuni.R;
 

@@ -12,9 +12,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.mobileuni.R;
+import com.mobileuni.model.Session;
 import com.mobileuni.model.iCourseManager;
 import com.mobileuni.other.Constants;
-import com.mobileuni.other.Session;
 
 import android.os.AsyncTask;
 import android.util.Log;

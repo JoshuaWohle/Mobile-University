@@ -22,9 +22,9 @@ import org.json.JSONObject;
 
 import com.mobileuni.config.Config;
 import com.mobileuni.controller.LoginController;
+import com.mobileuni.model.Session;
 import com.mobileuni.model.Settings;
 import com.mobileuni.other.Constants;
-import com.mobileuni.other.Session;
 import com.mobileuni.other.WebServiceFunction;
 
 import android.os.AsyncTask;
