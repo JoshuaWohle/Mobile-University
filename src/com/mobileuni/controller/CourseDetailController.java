@@ -52,6 +52,7 @@ public class CourseDetailController extends Activity implements
 		dialog = ProgressDialog.show(this,
 				getResources().getString(R.string.loading), getResources()
 						.getString(R.string.wait_while_get_course_detail));
+		dialog.setCancelable(true);
 
 		if (Session.getCurrentSelectedCourse() == null)
 			startActivity(new Intent(this, CourseSelectController.class));

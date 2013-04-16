@@ -4,8 +4,8 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" android:background="#cfcfcf"  >
     
-	 <LinearLayout android:id="@+id/hdr_upload_view" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="1" android:background="@drawable/headerbar_shape">
-        <TextView android:id="@+id/upload_hdr_view" android:text="@string/upload_view" style="@style/HeadingText" />
+	 <LinearLayout android:id="@+id/hdr_upload_view" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="1">
+        <TextView android:id="@+id/upload_hdr_view" android:text="@string/upload_view"/>
     </LinearLayout>
     
     <RelativeLayout android:layout_below="@+id/hdr_upload_view" android:layout_above="@+id/footer_view" 
@@ -29,8 +29,7 @@
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
 	        android:divider="#b5b5b5"
-	        android:dividerHeight="1dp"
-	        android:listSelector="@drawable/list_selector">
+	        android:dividerHeight="1dp">
             <requestFocus />
         </ListView>
         

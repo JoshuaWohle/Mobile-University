@@ -6,6 +6,7 @@ import com.evernote.client.android.EvernoteSession;
 import com.mobileuni.other.Constants;
 
 public class Session {
+	
 	private static User user = null;
 	private static iCourseManager courseManager = null;
 	private static Course currentSelectedCourse = null;
