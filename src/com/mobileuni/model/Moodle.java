@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.mobileuni.config.Config;
 import com.mobileuni.helpers.asynctasks.DownloadFileTask;
@@ -69,7 +70,7 @@ public class Moodle implements iCourseManager {
 						WebServiceFunction.moodle_enrol_get_users_courses,
 						urlParameters, R.raw.coursesxsl);
 			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
+				Toast.makeText(Session.getContext(), Session.getContext().getResources().getString(R.string.error_url_encoding), Toast.LENGTH_SHORT).show();
 				e.printStackTrace();
 			}
 			return;
@@ -93,7 +94,7 @@ public class Moodle implements iCourseManager {
 				courseArray.add(course);
 			}
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
+			Toast.makeText(Session.getContext(), Session.getContext().getResources().getString(R.string.error_jason_encoding), Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		}
 
@@ -115,7 +116,7 @@ public class Moodle implements iCourseManager {
 						WebServiceFunction.core_course_get_contents,
 						urlParameters, R.raw.contentxsl, courseId);
 			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
+				Toast.makeText(Session.getContext(), Session.getContext().getResources().getString(R.string.error_url_encoding), Toast.LENGTH_SHORT).show();
 				e.printStackTrace();
 			}
 			return;
@@ -151,7 +152,7 @@ public class Moodle implements iCourseManager {
 			Session.getUser().save();
 
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
+			Toast.makeText(Session.getContext(), Session.getContext().getResources().getString(R.string.error_jason_encoding), Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		}
 	}
@@ -276,7 +277,6 @@ public class Moodle implements iCourseManager {
 
 	public void syncAllDocuments() {
 		// Moodle integrates this through getting course details
-		// TODO implement background sync
 	}
 
 	public String getTokenURL() {

@@ -14,7 +14,9 @@ public class Session {
 	private static EvernoteSession es = null;
 	
 	public static User getUser() {
-		if(user == null) {/*TODO handle case when user is empty and called for*/ return null;}
+		if(user == null) 
+			return null;
+		
 		return user;
 	}
 
@@ -23,7 +25,9 @@ public class Session {
 	}
 
 	public static iCourseManager getCourseManager() {
-		if(courseManager == null) {/*TODO handle case when course manager is empty and called for*/ return null;}
+		if(courseManager == null)
+			return null;
+		
 		return courseManager;
 	}
 

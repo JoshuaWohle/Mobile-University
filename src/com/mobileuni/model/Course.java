@@ -45,7 +45,8 @@ public class Course implements Serializable {
     private ArrayList<CourseContents> coursecontents = new ArrayList<CourseContents>();	
     private ArrayList<String> absoluteFilePaths = new ArrayList<String>();
     private ArrayList<MetaNote> notes = new ArrayList<MetaNote>();
-
+    private ArrayList<CourseSchedule> dates = new ArrayList<CourseSchedule>();
+    
 	public Course() {
 		
 	}
@@ -215,6 +216,14 @@ public class Course implements Serializable {
 		for(CourseChangeListener listener : cls) {
 			listener.notesChanged();
 		}
+	}
+
+	public ArrayList<CourseSchedule> getDates() {
+		return dates;
+	}
+
+	public void setDates(ArrayList<CourseSchedule> dates) {
+		this.dates = dates;
 	}
     
 }

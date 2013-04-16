@@ -31,7 +31,7 @@
         android:text="Documents"
         android:textColor="#040404"
         android:typeface="sans" 
-        android:textSize="15dip"
+        android:textSize="15sp"
         android:textStyle="bold"/>
 
 	<!-- Description Name -->
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/header"
         android:textColor="#343434"
-        android:textSize="10dip"
+        android:textSize="15sp"
         android:layout_marginTop="1dip"
         android:layout_marginRight="17dip"
         android:layout_toRightOf="@+id/thumbnail"
@@ -57,9 +57,10 @@
         android:gravity="right"
         android:text="(10)"
         android:layout_marginRight="5dip"
-        android:textSize="10dip"
+        android:textSize="15sp"
         android:textColor="#10bcc9"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textIsSelectable="true"/>
       
      <!-- Rightend Arrow -->    
      <ImageView android:layout_width="wrap_content"

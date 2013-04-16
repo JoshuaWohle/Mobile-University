@@ -31,11 +31,13 @@ import java.io.StreamCorruptedException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mobileuni.R;
 import com.mobileuni.listeners.UserChangeListener;
 import com.mobileuni.other.Constants;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 public class User implements Serializable {
 	
@@ -69,10 +71,10 @@ public class User implements Serializable {
 			os.close();
 		 	Log.d(Constants.LOG_USER, "Successfully saved user to disk");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			Toast.makeText(Session.getContext(), Session.getContext().getResources().getString(R.string.error_saving_user), Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			Toast.makeText(Session.getContext(), Session.getContext().getResources().getString(R.string.error_saving_user), Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		}
 	}
@@ -88,16 +90,16 @@ public class User implements Serializable {
 			Log.d(Constants.LOG_USER, "User restored successfully");
 			return user;
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			Toast.makeText(Session.getContext(), Session.getContext().getResources().getString(R.string.error_reading_user_file), Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		} catch (StreamCorruptedException e) {
-			// TODO Auto-generated catch block
+			Toast.makeText(Session.getContext(), Session.getContext().getResources().getString(R.string.error_reading_user_file), Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			Toast.makeText(Session.getContext(), Session.getContext().getResources().getString(R.string.error_reading_user_file), Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			Toast.makeText(Session.getContext(), Session.getContext().getResources().getString(R.string.error_reading_user_class), Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		}
 		

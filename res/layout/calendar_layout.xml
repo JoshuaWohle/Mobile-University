@@ -16,10 +16,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
-        android:text="@string/calendar_upcoming_title"/>
+        android:text="@string/calendar_upcoming_deadlines_title"/>
     
     <LinearLayout 
-        android:id="@+id/calendar_upcoming_items_list"
+        android:id="@+id/calendar_upcoming_deadlines_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+    <TextView 
+        style="@style/middle_theme"
+        android:id="@+id/upcoming_classes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/calendar_upcoming_classes_title"/>
+    
+    <LinearLayout 
+        android:id="@+id/calendar_upcoming_classes__list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"/>

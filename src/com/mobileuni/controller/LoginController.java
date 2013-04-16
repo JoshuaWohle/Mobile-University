@@ -70,10 +70,6 @@ public class LoginController extends Activity implements OnClickListener, iCours
 		// Apply the adapter to the spinner
 		universitySelect.setAdapter(adapter);
 		
-		// TODO make really independent of Moodle
-		Session.setCourseManager(new Moodle());
-		Session.getCourseManager().addListener(this);
-		
 		username = (EditText) findViewById(R.id.username);
 		password = (EditText) findViewById(R.id.password);
 		
@@ -120,6 +116,9 @@ public class LoginController extends Activity implements OnClickListener, iCours
 				Config.serverUrl = University.getCourseManagerURL(universitySelect.getSelectedItem().toString());
 			else
 				Config.serverUrl = courseManagerURL.getText().toString();
+			
+			Session.setCourseManager(University.getCourseManager(universitySelect.getSelectedItem().toString()));
+			Session.getCourseManager().addListener(this);
 			
 			Session.getUser().setUsername(username.getText().toString());
 			Session.getUser().setPassword(password.getText().toString());

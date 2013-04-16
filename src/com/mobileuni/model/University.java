@@ -12,24 +12,34 @@ public class University {
 	private String name;
 	private String courseManagerURL;
 	private String courseScheduleURL;
+	private iCourseManager cm;
 	
 	private static ArrayList<University> universities = new ArrayList<University>();
 
-	public University(String name, String courseManagerURL, String courseScheduleURL) {
+	public University(iCourseManager cm, String name, String courseManagerURL, String courseScheduleURL) {
+		this.cm = cm;
 		this.name = name;
 		this.courseManagerURL = courseManagerURL;
 		this.courseScheduleURL = courseScheduleURL;
 	}
 	
 	public static void init() {
-		universities.add(new University("Joshua's Test University", "http://moodle.joshuawohle.com", ""));
-		universities.add(new University("King's College University", "", ""));
+		universities.add(new University(new Moodle(), "Joshua's Test University", "http://moodle.joshuawohle.com", ""));
+		universities.add(new University(new Moodle(), "King's College University", "", ""));
 	}
 	
 	public static String getCourseManagerURL(String name) {
 		for(University university : universities) {
 			if(university.name.equals(name))
 				return university.courseManagerURL;
+		}
+		return null;
+	}
+	
+	public static iCourseManager getCourseManager(String name) {
+		for(University university : universities) {
+			if(university.name.equals(name))
+				return university.cm;
 		}
 		return null;
 	}

@@ -188,7 +188,7 @@ public class CourseNoteController extends Activity implements OnClickListener,
 				Toast.makeText(
 						this,
 						getResources().getString(R.string.note_content_not_set),
-						Toast.LENGTH_SHORT);
+						Toast.LENGTH_SHORT).show();
 			}
 		}
 

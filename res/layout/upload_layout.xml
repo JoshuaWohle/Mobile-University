@@ -8,7 +8,7 @@
         <TextView android:id="@+id/upload_hdr_view" android:text="@string/upload_view"/>
     </LinearLayout>
     
-    <RelativeLayout android:layout_below="@+id/hdr_upload_view" android:layout_above="@+id/footer_view" 
+    <RelativeLayout android:layout_below="@+id/hdr_upload_view"
         android:id="@android:id/tabcontent" android:text="@string/upload_view" android:paddingLeft="0dp" 
         android:paddingRight="0dp" android:layout_width="fill_parent" android:layout_height="fill_parent" 
         android:orientation="vertical"

@@ -3,10 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:weightSum="2" >
+    android:weightSum="2" 
+    android:baselineAligned="false">
 
     <LinearLayout
-        android:id="@+id/calendar_content_view"
+        android:id="@+id/calendar_calendar_view"
         android:layout_width="0dip"
         android:layout_height="match_parent"
         android:layout_weight="1" 
@@ -34,13 +35,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="@string/calendar_upcoming_title" />
+            android:text="@string/calendar_upcoming_deadlines_title" />
 
         <LinearLayout
-            android:id="@+id/calendar_upcoming_items_list"
+            android:id="@+id/calendar_upcoming_deadlines_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
+        
+         <TextView 
+        style="@style/middle_theme"
+        android:id="@+id/upcoming_classes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/calendar_upcoming_classes_title"/>
+    
+    <LinearLayout 
+        android:id="@+id/calendar_upcoming_classes__list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+    
     </LinearLayout>
 
 </LinearLayout>

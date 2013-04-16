@@ -40,9 +40,9 @@ public class MenuListener implements OnClickListener {
 		case R.id.menu_calendar:
 			i = new Intent(a, CalendarController.class);
 			break;
-		case R.id.menu_upload_document:
+		/*case R.id.menu_upload_document:
 			i = new Intent(a, FileUploadController.class);
-			break;
+			break;*/
 		case R.id.menu_settings:
 			i = new Intent(a, SettingsController.class);
 			break;

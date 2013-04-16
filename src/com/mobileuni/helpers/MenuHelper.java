@@ -55,8 +55,8 @@ public class MenuHelper {
 				R.layout.menu, null);
 		((LinearLayout) menuView.findViewById(R.id.menu_select_course))
 				.setOnClickListener(ml);
-		((LinearLayout) menuView.findViewById(R.id.menu_upload_document))
-				.setOnClickListener(ml);
+		/*((LinearLayout) menuView.findViewById(R.id.menu_upload_document))
+				.setOnClickListener(ml);*/
 		((LinearLayout) menuView.findViewById(R.id.menu_calendar))
 			.setOnClickListener(ml);
 		((LinearLayout) menuView.findViewById(R.id.menu_settings))

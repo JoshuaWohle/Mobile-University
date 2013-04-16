@@ -53,7 +53,7 @@ public class FileUploadsListHelper {
 				String fullextension = "." + fileextension;
 				String filename = file.getName().replace(fullextension, "");
 				
-				int thumbresourse = FileTypeThumbHelper.getInstance(context).getThumbResourse(fileextension);
+				int thumbresourse = 1; // TODO fix the resource images
 				
 				long time = file.lastModified();
 				Date modifyDate = new Date(time);

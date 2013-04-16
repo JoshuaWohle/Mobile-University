@@ -147,10 +147,7 @@ public class CourseDocumentController extends Activity implements CourseChangeLi
 	public void onClick(View v) {
 		ContentItem document = (ContentItem) v.getTag();
 		File file = Session.getCourseManager().downloadDocument(Session.getCurrentSelectedCourse(), document.getFileName());
-		if(AppStatus.isOnline()) {
-			if(null != file)
-				downloadedFile(file.getAbsolutePath());
-		} else
+		if(null != file)
 			downloadedFile(file.getAbsolutePath());
 		
 	}

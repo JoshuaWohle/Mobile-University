@@ -1,11 +1,15 @@
 package com.mobileuni.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 
 import com.mobileuni.R;
 import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.helpers.MenuHelper;
+import com.mobileuni.model.Course;
+import com.mobileuni.model.CourseSchedule;
 import com.mobileuni.model.Module;
 import com.mobileuni.model.Session;
 import com.mobileuni.other.Constants;
@@ -36,13 +40,32 @@ public class CalendarController extends Activity implements OnClickListener {
 	}
 	
 	private void fillUpcoming() {
-		LinearLayout main = (LinearLayout) findViewById(R.id.calendar_upcoming_items_list);
+		LinearLayout main = (LinearLayout) findViewById(R.id.calendar_upcoming_deadlines_list);
 		for(Module upcoming : Session.getCourseManager().getModules(null, ModuleType.ASSIGNMENT)) {
 			LinearLayout child = (LinearLayout) this.getLayoutInflater().inflate(R.layout.list_item_single_line, null);
 			TextView content = (TextView) child.findViewById(R.id.item_content);
 			content.setText(upcoming.getName());
 			main.addView(child);
 		}
+		
+		ArrayList<CourseSchedule> schedules = new ArrayList<CourseSchedule>();
+		
+		for(Course course : Session.getUser().getCourses()) {
+			for(CourseSchedule schedule : course.getDates()) {
+				if(schedule.getStart().get(Calendar.MONTH) == selectedMonth.get(Calendar.MONTH))
+					schedules.add(schedule);
+			}
+		}
+		
+		Collections.sort(schedules);
+		
+		for(CourseSchedule schedule : schedules) {
+			LinearLayout child = (LinearLayout) this.getLayoutInflater().inflate(R.layout.list_item_single_line, null);
+			TextView content = (TextView) child.findViewById(R.id.item_content);
+			content.setText(schedule.getCourse().getShortName() + " - " + schedule.getLocation());
+			main.addView(child);
+		}
+		
 	}
 	
 	private void drawCalendarView() {

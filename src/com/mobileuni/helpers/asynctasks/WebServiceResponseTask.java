@@ -20,6 +20,7 @@ import javax.xml.transform.stream.StreamSource;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.mobileuni.R;
 import com.mobileuni.config.Config;
 import com.mobileuni.controller.LoginController;
 import com.mobileuni.model.Session;
@@ -29,6 +30,7 @@ import com.mobileuni.other.WebServiceFunction;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject> {
 	
@@ -87,19 +89,19 @@ public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject
 			return new JSONObject(jsonstr);
 			
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+			Toast.makeText(Session.getContext(), Session.getContext().getResources().getString(R.string.error_web_service_request), Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			Toast.makeText(Session.getContext(), Session.getContext().getResources().getString(R.string.error_web_service_request), Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		} catch (TransformerConfigurationException e) {
-			// TODO Auto-generated catch block
+			Toast.makeText(Session.getContext(), Session.getContext().getResources().getString(R.string.error_web_service_request), Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		} catch (TransformerException e) {
-			// TODO Auto-generated catch block
+			Toast.makeText(Session.getContext(), Session.getContext().getResources().getString(R.string.error_web_service_request), Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
+			Toast.makeText(Session.getContext(), Session.getContext().getResources().getString(R.string.error_web_service_request), Toast.LENGTH_SHORT).show();
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -125,5 +127,4 @@ public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject
 		else
 			Log.d(Constants.LOG_WSR, "Some unknown request was executed, please specify where to send the result to");
 	}
-
 }

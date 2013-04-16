@@ -81,7 +81,7 @@
         android:layout_height="1dip"
         android:background="@color/White" />
 
-    <LinearLayout
+    <!-- <LinearLayout
         android:id="@+id/menu_upload_document"
         style="@style/menu_item" >
 
@@ -96,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/menu_upload" />
-    </LinearLayout>
+    </LinearLayout>-->
     
     <View
         android:layout_width="fill_parent"
