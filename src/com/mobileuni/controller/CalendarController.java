@@ -12,18 +12,11 @@ import com.mobileuni.other.Constants;
 import com.mobileuni.other.ModuleType;
 
 import android.app.Activity;
-import android.content.res.Configuration;
-import android.gesture.GestureOverlayView;
-import android.gesture.GestureOverlayView.OnGestureListener;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.widget.GridLayout;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -112,8 +105,6 @@ public class CalendarController extends Activity implements OnClickListener {
 	}
 
 	public void onClick(View v) {
-
-		int month = selectedMonth.get(Calendar.MONTH);
 		
 		switch(v.getId()) {
 		case R.id.calendar_month_backward:
