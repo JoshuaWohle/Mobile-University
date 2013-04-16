@@ -2,5 +2,5 @@
 <resources>
 
     <dimen name="menu_offset_right">60dp</dimen>
-
+	<dimen name="menu_size_tablet">200dp</dimen>
 </resources>

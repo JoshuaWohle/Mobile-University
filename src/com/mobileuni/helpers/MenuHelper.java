@@ -38,7 +38,10 @@ public class MenuHelper {
 		SlidingMenu menu = new SlidingMenu(a);
 		menu.setMode(SlidingMenu.LEFT);
 		menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-		menu.setBehindOffsetRes(R.dimen.menu_offset_right);
+		if(AppStatus.isTablet(a))
+			menu.setBehindWidthRes(R.dimen.menu_size_tablet);
+		else
+			menu.setBehindOffsetRes(R.dimen.menu_offset_right);
 		menu.attachToActivity(a, SlidingMenu.SLIDING_CONTENT);
 		addSlidingMenu(menu);
 		
