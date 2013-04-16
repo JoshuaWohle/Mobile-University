@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="2" >
+
+    <LinearLayout
+        android:id="@+id/calendar_content_view"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1" 
+        android:padding="10dip">
+
+        <TableLayout
+            android:id="@+id/calendar_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="*" />
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/calendar_content_view"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" 
+        android:padding="10dip">
+
+        <TextView
+            android:id="@+id/upcoming_title"
+            style="@style/middle_theme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/calendar_upcoming_title" />
+
+        <LinearLayout
+            android:id="@+id/calendar_upcoming_items_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </LinearLayout>
+
+</LinearLayout>

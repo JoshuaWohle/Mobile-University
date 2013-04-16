@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.2" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
+  realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
+  <interface id="1" language="java" name="com.mobileuni.listeners.UserChangeListener" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/listeners/UserChangeListener.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="172" x="1870" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </interface>  
+  <class id="2" language="java" name="com.mobileuni.model.ContentItem" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/model/ContentItem.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="130" x="1857" y="846"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.mobileuni.model.MetaNote" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/model/MetaNote.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="130" x="2208" y="646"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.mobileuni.model.CourseSectionItem" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/model/CourseSectionItem.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="160" x="251" y="336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.mobileuni.controller.CourseSelectController" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/controller/CourseSelectController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="193" x="1665" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.mobileuni.controller.CourseDocumentController" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/controller/CourseDocumentController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="220" x="1822" y="336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.mobileuni.controller.CourseDetailController" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/controller/CourseDetailController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="189" x="1398" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.mobileuni.model.CourseContents" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/model/CourseContents.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="141" x="2027" y="646"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <interface id="9" language="java" name="com.mobileuni.model.iCourseManager" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/model/iCourseManager.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="142" x="1898" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </interface>  
+  <class id="10" language="java" name="com.mobileuni.model.Session" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/model/Session.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="130" x="2082" y="336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="com.mobileuni.listeners.MenuListener" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/listeners/MenuListener.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="143" x="2717" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="com.mobileuni.controller.SettingsController" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/controller/SettingsController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="155" x="637" y="336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="com.mobileuni.model.Forum" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/model/Forum.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="130" x="2027" y="846"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.mobileuni.listeners.EvernoteListener" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/listeners/EvernoteListener.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="149" x="1838" y="646"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <interface id="15" language="java" name="com.mobileuni.listeners.CourseChangeListener" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/listeners/CourseChangeListener.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="190" x="1608" y="646"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </interface>  
+  <class id="16" language="java" name="com.mobileuni.controller.CalendarController" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/controller/CalendarController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="160" x="832" y="336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <interface id="17" language="java" name="com.mobileuni.listeners.iCourseManagerListener" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/listeners/iCourseManagerListener.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="201" x="451" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </interface>  
+  <class id="18" language="java" name="com.mobileuni.model.University" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/model/University.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="130" x="1032" y="336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="com.mobileuni.controller.CourseAssignmentController" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/controller/CourseAssignmentController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="230" x="1212" y="336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="com.mobileuni.model.Assignment" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/model/Assignment.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="130" x="2197" y="846"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="com.mobileuni.model.Module" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/model/Module.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="130" x="2027" y="746"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="com.mobileuni.controller.LoginController" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/controller/LoginController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="146" x="451" y="336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="com.mobileuni.model.Moodle" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/model/Moodle.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="130" x="1652" y="336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="com.mobileuni.controller.CourseNoteController" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/controller/CourseNoteController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="182" x="1648" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="com.mobileuni.controller.CourseGradeController" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/controller/CourseGradeController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="192" x="2252" y="336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="com.mobileuni.model.Course" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/model/Course.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="130" x="2082" y="546"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="com.mobileuni.model.Settings" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/model/Settings.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="130" x="1482" y="336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="com.mobileuni.controller.CourseForumController" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/controller/CourseForumController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="193" x="2484" y="336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="com.mobileuni.controller.FileUploadController" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/controller/FileUploadController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="60" width="172" x="2717" y="336"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="com.mobileuni.model.User" project="Mobile University" 
+    file="/Mobile University/src/com/mobileuni/model/User.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="60" width="130" x="2122" y="446"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
+      visibility="true">      
+      <attributes public="false" package="false" protected="false" private="false"/>      
+      <operations public="false" package="false" protected="false" private="false"/>    
+    </display>  
+  </class>  
+  <association id="31">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="32" name="ml"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="34">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="35" name="user"/>      
+      <multiplicity id="36" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="37">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <realization id="38">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <association id="40">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="41" name="universities"/>      
+      <multiplicity id="42" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="18" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="43">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="44" name="coursecontents"/>      
+      <multiplicity id="45" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="47" name="notes"/>      
+      <multiplicity id="48" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="49">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="50" name="user"/>      
+      <multiplicity id="51" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="52">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="53" name="user"/>      
+      <multiplicity id="54" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="55">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="56" name="courseManager"/>      
+      <multiplicity id="57" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="58">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <association id="59">    
+    <bendpoint x="2070" y="446"/>    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="60" name="selectedCourse"/>      
+      <multiplicity id="61" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="62">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="63" name="ucl"/>      
+      <multiplicity id="64" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="65">    
+    <end type="SOURCE" refId="24"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <association id="66">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="67" name="el"/>      
+      <multiplicity id="68" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="69">    
+    <end type="SOURCE" refId="26" navigable="false">      
+      <attribute id="70" name="cls"/>      
+      <multiplicity id="71" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="15" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="72">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="73" name="user"/>      
+      <multiplicity id="74" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="75">    
+    <end type="SOURCE" refId="21" navigable="false">      
+      <attribute id="76" name="contents"/>      
+      <multiplicity id="77" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="78">    
+    <end type="SOURCE" refId="22"/>    
+    <end type="TARGET" refId="17"/>  
+  </realization>  
+  <association id="79">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="80" name="user"/>      
+      <multiplicity id="81" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="82">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="83" name="courses"/>      
+      <multiplicity id="84" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="85">    
+    <bendpoint x="1617" y="446"/>    
+    <bendpoint x="1617" y="546"/>    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="15"/>  
+  </realization>  
+  <association id="86">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="87" name="modules"/>      
+      <multiplicity id="88" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="21" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="89">    
+    <bendpoint x="2091" y="446"/>    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="90" name="currentSelectedCourse"/>      
+      <multiplicity id="91" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="92">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="21"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    accessors="true" visibility="true">    
+    <attributes public="false" package="false" protected="false" private="false"/>    
+    <operations public="false" package="false" protected="false" private="false"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>
