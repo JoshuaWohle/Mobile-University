@@ -66,6 +66,7 @@ public class CourseGradeController extends Activity implements OnClickListener {
 		ArrayList<Module> grades = Session.getCourseManager().getModules(Session.getCurrentSelectedCourse(), ModuleType.GRADE);
 		
 		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
+		main.removeAllViews();
 		// Set title of the view
 		for(Module grade : grades){
 			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.list_item, null);

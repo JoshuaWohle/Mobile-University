@@ -65,6 +65,7 @@ public class CourseAssignmentController extends Activity implements OnClickListe
 		ArrayList<Module> assignments = Session.getCourseManager().getModules(Session.getCurrentSelectedCourse(), ModuleType.ASSIGNMENT);
 		
 		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
+		main.removeAllViews();
 		// Set title of the view
 		for(Module assignment : assignments){
 			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.list_item, null);

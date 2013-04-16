@@ -49,6 +49,7 @@ public class CourseSelectController extends Activity implements UserChangeListen
 		Log.d(Constants.LOG_COURSE, "Setting courses on list");
 
 		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
+		main.removeAllViews();
 		// Set title of the view
 		for(Course course : Session.getUser().getCourses()){
 			Log.d(Constants.LOG_COURSE, "Adding course: " + course.getId());

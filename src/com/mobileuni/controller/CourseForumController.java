@@ -66,6 +66,7 @@ public class CourseForumController extends Activity implements OnClickListener {
 		ArrayList<Module> forums = Session.getCourseManager().getModules(Session.getCurrentSelectedCourse(), ModuleType.FORUM);
 		
 		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
+		main.removeAllViews();
 		// Set title of the view
 		for(Module forum : forums){
 			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(R.layout.list_item, null);

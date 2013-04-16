@@ -427,12 +427,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int calendar_month_title=0x7f05000a;
         public static final int calendar_upcoming_items_list=0x7f050007;
         public static final int calendar_view=0x7f050005;
+        public static final int course_schedule_software_url=0x7f050029;
         public static final int description=0x7f050015;
-        public static final int esdk__switch_service=0x7f050034;
+        public static final int esdk__switch_service=0x7f050035;
         public static final int esdk__webview=0x7f05000c;
-        public static final int footer_view=0x7f05002f;
+        public static final int footer_view=0x7f050030;
         public static final int fullscreen=0x7f050003;
-        public static final int hdr_upload_view=0x7f05002d;
+        public static final int hdr_upload_view=0x7f05002e;
         public static final int header=0x7f050014;
         public static final int item_content=0x7f050011;
         public static final int item_list=0x7f05000e;
@@ -460,18 +461,18 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int right=0x7f050001;
         public static final int rightarrow=0x7f050017;
         public static final int selected_view=0x7f050004;
-        public static final int settings_auto_download_content=0x7f050029;
-        public static final int settings_auto_download_files=0x7f05002a;
-        public static final int settings_sync_deadlines=0x7f05002b;
-        public static final int slidingmenumain=0x7f05002c;
+        public static final int settings_auto_download_content=0x7f05002a;
+        public static final int settings_auto_download_files=0x7f05002b;
+        public static final int settings_sync_deadlines=0x7f05002c;
+        public static final int slidingmenumain=0x7f05002d;
         public static final int thumbnail=0x7f050012;
         public static final int traffic_image=0x7f050018;
         public static final int upcoming_title=0x7f050006;
-        public static final int uploadInputSearch=0x7f050030;
-        public static final int upload_empty_text=0x7f050033;
-        public static final int upload_file_list=0x7f050031;
-        public static final int upload_hdr_view=0x7f05002e;
-        public static final int upload_item_empty=0x7f050032;
+        public static final int uploadInputSearch=0x7f050031;
+        public static final int upload_empty_text=0x7f050034;
+        public static final int upload_file_list=0x7f050032;
+        public static final int upload_hdr_view=0x7f05002f;
+        public static final int upload_item_empty=0x7f050033;
         public static final int username=0x7f05001a;
     }
     public static final class layout {
@@ -593,6 +594,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int select_course=0x7f06001b;
         public static final int settings_auto_download_content=0x7f06005e;
         public static final int settings_auto_download_files=0x7f060059;
+        public static final int settings_course_schedule_label=0x7f06006d;
+        public static final int settings_course_schedule_url_hint=0x7f06006c;
         public static final int settings_credits=0x7f060069;
         public static final int settings_explanation=0x7f060068;
         public static final int settings_sync_deadlines=0x7f06005a;

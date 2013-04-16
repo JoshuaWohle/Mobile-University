@@ -75,6 +75,7 @@ public class CourseDocumentController extends Activity implements CourseChangeLi
 				Session.getCurrentSelectedCourse(), ContentType.DOCUMENT);
 		
 		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
+		main.removeAllViews();
 		// Set title of the view
 		for(ContentItem document : documents){
 			Log.d(Constants.LOG_DOCUMENTS, "Adding course: " + document.getFileName());

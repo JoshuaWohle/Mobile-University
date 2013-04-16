@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.mobileuni.R;
@@ -31,8 +32,11 @@ public class MenuHelper {
 		TextView titleView = (TextView) a.findViewById(R.id.main_title);
 		titleView.setText(a.getResources().getString(titleResource));
 		
+		// Put it all in a scrollview, to make sure we don't run out of space :)
+		ScrollView sv = new ScrollView(a);
 		View child = (View) a.getLayoutInflater().inflate(resource, null);
-		main.addView(child);
+		sv.addView(child);
+		main.addView(sv);
 		MenuListener ml = new MenuListener(a);
 		
 		SlidingMenu menu = new SlidingMenu(a);
@@ -61,7 +65,11 @@ public class MenuHelper {
 				.setOnClickListener(ml);
 		((LinearLayout) menuView.findViewById(R.id.menu_logout))
 				.setOnClickListener(ml);
-		menu.setMenu(menuView);
+		
+		//Set scroll view for menu
+		ScrollView svMenu = new ScrollView(a);
+		svMenu.addView(menuView);
+		menu.setMenu(svMenu);
 
 		if (courseSectionList == null) {
 			courseSectionList = new ArrayList<CourseSectionItem>();

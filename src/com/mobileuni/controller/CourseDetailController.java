@@ -79,6 +79,7 @@ public class CourseDetailController extends Activity implements
 
 	private void showCourseSections() {
 		LinearLayout main = (LinearLayout) findViewById(R.id.item_list);
+		main.removeAllViews();
 		// Set title of the view
 		for (CourseSectionItem courseSection : MenuHelper.courseSectionList) {
 			LinearLayout child = (LinearLayout) getLayoutInflater().inflate(

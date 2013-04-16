@@ -106,5 +106,7 @@
 	<string name="settings_credits">Thank you for using this application. This project is open source and you can get all of the code @ www.github.com/JoshuaWohle/Moodle-for-Android. If you have any questions, you can send a quick e-mail to jwohle@gmail.com or the.omega.online@gmail.com. If you would like to help us out maintaining / upgrading this app, please do get in touch as well !</string>
 	<string name="month_back">&lt;&lt;&lt;</string>
 	<string name="month_forward">&gt;&gt;&gt;</string>
+	<string name="settings_course_schedule_url_hint">http://</string>
+	<string name="settings_course_schedule_label">The URL of your course schedule application. This is not currently supported.</string>
 		
 </resources>

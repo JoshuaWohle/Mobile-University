@@ -33,6 +33,7 @@ import com.mobileuni.R;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -106,7 +107,15 @@ public class LoginController extends Activity implements OnClickListener, iCours
 	
 	public void login() {
 		// Weirdly enough you need the getResources() here...
-		dialog = ProgressDialog.show(this, getResources().getString(R.string.loading), getResources().getString(R.string.wait_while_login));
+		dialog = ProgressDialog.show(this, getResources().getString(R.string.loading), 
+				getResources().getString(R.string.wait_while_login), true, true,
+				new DialogInterface.OnCancelListener() {
+					
+					public void onCancel(DialogInterface dialog) {
+						// TODO Auto-generated method stub
+						finish();
+					}
+				});
 		
 		if (AppStatus.isOnline()) {
 			Session.setUser(User.load());
