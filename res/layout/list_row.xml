@@ -17,7 +17,8 @@
 			android:id="@+id/list_image"   
 	        android:layout_width="50dip"
 	        android:layout_height="50dip"
-	        android:src="@drawable/documents_icon"/>
+	        android:src="@drawable/documents_icon"
+	        android:contentDescription="@string/menu_documents"/>
         
 	</LinearLayout>
     
@@ -28,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/thumbnail"
         android:layout_toRightOf="@+id/thumbnail"
-        android:text="Documents"
+        android:text="@string/menu_documents"
         android:textColor="#040404"
         android:typeface="sans" 
         android:textSize="15sp"
@@ -45,7 +46,7 @@
         android:layout_marginTop="1dip"
         android:layout_marginRight="17dip"
         android:layout_toRightOf="@+id/thumbnail"
-        android:text="Information available online about the course content" />
+        android:text="@string/list_row_information_online"/>
 
 	<!-- Rightend Available -->
     <TextView
@@ -55,7 +56,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/header"
         android:gravity="right"
-        android:text="(10)"
         android:layout_marginRight="5dip"
         android:textSize="15sp"
         android:textColor="#10bcc9"
@@ -68,7 +68,8 @@
      	android:layout_height="wrap_content"
      	android:src="@drawable/arrow"
      	android:layout_alignParentRight="true"
-     	android:layout_centerVertical="true"/>
+     	android:layout_centerVertical="true"
+     	android:contentDescription="@string/month_forward"/>
      
      <!-- Rightend Traffic Light --> 
      <ImageView
@@ -76,6 +77,7 @@
          android:layout_width="20dip"
          android:layout_height="20dip"
          android:layout_alignBottom="@+id/thumbnail"
-         android:layout_alignRight="@+id/rightarrow"/>
+         android:layout_alignRight="@+id/rightarrow"
+     	android:contentDescription="@string/month_back"/>
 
 </RelativeLayout>

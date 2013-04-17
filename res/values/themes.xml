@@ -7,5 +7,7 @@
 		<item name="sectionListView.sectionItemPadding" >2dip</item>
 		<item name="android:windowNoTitle">true</item> 
 	</style>
+    <style name="MobileUniversity">
+    </style>
 
 </resources>

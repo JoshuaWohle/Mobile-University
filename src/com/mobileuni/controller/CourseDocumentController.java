@@ -24,6 +24,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.helpers.MenuHelper;
@@ -86,7 +87,7 @@ public class CourseDocumentController extends Activity implements CourseChangeLi
 			
 			Calendar cal = Calendar.getInstance();
 			cal.setTimeInMillis(document.getTimeCreated());
-			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
 			
 			((TextView) child.findViewById(R.id.item_content)).setText(
 					"Size: " + document.getFileSize() + "B \n" +
@@ -139,7 +140,7 @@ public class CourseDocumentController extends Activity implements CourseChangeLi
 			if (ext.indexOf("/") > -1) {
 				ext = ext.substring(0, ext.indexOf("/"));
 			}
-			return ext.toLowerCase();
+			return ext.toLowerCase(Locale.US);
 
 		}
 	}

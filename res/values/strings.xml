@@ -61,5 +61,7 @@
 	<string name="error_saving_user">There was an error saving the user to disk. Please advice the developer (details in settings).</string>
 	<string name="error_reading_user_class">The user class was not found whilst reading from disk. Please contact the developer (details in settings).</string>
 	<string name="error_web_service_request">Something went wrong with the web service request. Please contact your system administrator.</string>
+	<string name="list_row_information_online">Information available online about the course content</string>
+	<string name="notes_evernote_problem">There was a problem instantiating evernote. Please contact the developer (details in Settings).</string>
 		
 </resources>

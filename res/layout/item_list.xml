@@ -3,7 +3,6 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" 
     android:id="@+id/main"
-    android:background="@color/light_brown"
     android:padding="5dip">
     
     <LinearLayout

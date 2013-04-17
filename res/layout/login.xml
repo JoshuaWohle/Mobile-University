@@ -3,9 +3,9 @@
     android:id="@+id/login_main_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/light_brown"
     android:orientation="vertical" 
-    android:padding="20dip">
+    android:padding="20dip"
+    android:background="@color/light_brown">
 
     <TextView 
         android:text="@string/login_mobile" 

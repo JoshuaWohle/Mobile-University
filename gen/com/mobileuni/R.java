@@ -330,6 +330,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int esdk__loading=0x7f060006;
         public static final int file_not_found=0x7f06002c;
         public static final int install_evernote=0x7f060017;
+        public static final int list_row_information_online=0x7f060045;
         public static final int loading=0x7f06000f;
         public static final int login_advanced_config=0x7f060036;
         public static final int login_button=0x7f06000a;
@@ -356,6 +357,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int month_forward=0x7f06003b;
         public static final int note_add=0x7f060016;
         public static final int note_content_not_set=0x7f06001a;
+        public static final int notes_evernote_problem=0x7f060046;
         public static final int settings_auto_download_content=0x7f06002d;
         public static final int settings_auto_download_files=0x7f060029;
         public static final int settings_course_schedule_label=0x7f06003d;
@@ -371,6 +373,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int wait_while_login=0x7f060010;
     }
     public static final class style {
+        public static final int MobileUniversity=0x7f090005;
         public static final int SectionListViewTheme=0x7f090004;
         public static final int dark_theme=0x7f090001;
         public static final int light_theme=0x7f090000;

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" android:background="#cfcfcf"  >
+    android:orientation="vertical">
     
 	 <LinearLayout android:id="@+id/hdr_upload_view" android:layout_width="fill_parent" android:layout_height="wrap_content" android:weightSum="1">
         <TextView android:id="@+id/upload_hdr_view" android:text="@string/upload_view"/>

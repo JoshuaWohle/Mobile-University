@@ -53,17 +53,17 @@ public class MenuHelper {
 		
 		LinearLayout menuView = (LinearLayout) a.getLayoutInflater().inflate(
 				R.layout.menu, null);
-		((LinearLayout) menuView.findViewById(R.id.menu_select_course))
+		((TextView) menuView.findViewById(R.id.menu_select_course))
 				.setOnClickListener(ml);
-		/*((LinearLayout) menuView.findViewById(R.id.menu_upload_document))
+		/*((TextView) menuView.findViewById(R.id.menu_upload_document))
 				.setOnClickListener(ml);*/
-		((LinearLayout) menuView.findViewById(R.id.menu_calendar))
+		((TextView) menuView.findViewById(R.id.menu_calendar))
 			.setOnClickListener(ml);
-		((LinearLayout) menuView.findViewById(R.id.menu_settings))
+		((TextView) menuView.findViewById(R.id.menu_settings))
 				.setOnClickListener(ml);
-		((LinearLayout) menuView.findViewById(R.id.menu_selected_course))
+		((TextView) menuView.findViewById(R.id.menu_selected_course))
 				.setOnClickListener(ml);
-		((LinearLayout) menuView.findViewById(R.id.menu_logout))
+		((TextView) menuView.findViewById(R.id.menu_logout))
 				.setOnClickListener(ml);
 		
 		//Set scroll view for menu

@@ -26,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import android.content.Context;
 import android.os.Environment;
@@ -58,7 +59,7 @@ public class FileUploadsListHelper {
 				long time = file.lastModified();
 				Date modifyDate = new Date(time);
 				
-				SimpleDateFormat dateformat = new SimpleDateFormat("dd\\MM\\yyyy");	
+				SimpleDateFormat dateformat = new SimpleDateFormat("dd\\MM\\yyyy", Locale.US);	
 				
 				String directory = file.getParent().replace(Environment.getExternalStorageDirectory().getPath(), "");
 				

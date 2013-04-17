@@ -22,6 +22,7 @@ package com.mobileuni.helpers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 import com.mobileuni.R;
 
@@ -111,7 +112,7 @@ public class LazyAdapter extends BaseAdapter implements Filterable {
             } 
 
             protected FilterResults performFiltering(CharSequence constraint) { 
-                constraint = constraint.toString().toLowerCase();
+                constraint = constraint.toString().toLowerCase(Locale.US);
  
                 FilterResults results = new FilterResults(); 
                 if(constraint != null && constraint.toString().length() > 0) {
@@ -125,7 +126,7 @@ public class LazyAdapter extends BaseAdapter implements Filterable {
                 	
                     for(int i = 0, l = lData.size(); i < l; i++) { 
                     	HashMap<String, String> m = lData.get(i); 
-                        if(m.get(KEY_HEADER).toLowerCase().contains(constraint)) 
+                        if(m.get(KEY_HEADER).toLowerCase(Locale.US).contains(constraint)) 
                             filt.add(m); 
                     } 
                     

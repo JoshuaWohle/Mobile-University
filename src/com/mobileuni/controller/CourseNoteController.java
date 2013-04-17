@@ -3,10 +3,10 @@ package com.mobileuni.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import com.evernote.client.android.AsyncNoteStoreClient;
 import com.evernote.client.android.EvernoteSession;
-import com.evernote.client.android.OnClientCallback;
 import com.evernote.edam.notestore.NoteFilter;
 import com.evernote.edam.notestore.NotesMetadataResultSpec;
 import com.evernote.thrift.transport.TTransportException;
@@ -18,6 +18,7 @@ import com.mobileuni.listeners.CourseChangeListener;
 import com.mobileuni.listeners.EvernoteListener;
 import com.mobileuni.model.MetaNote;
 import com.mobileuni.model.Session;
+import com.mobileuni.other.Constants;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -94,8 +95,13 @@ public class CourseNoteController extends Activity implements OnClickListener,
 			try {
 				ns = Session.getEs().getClientFactory().createNoteStoreClient();
 			} catch (TTransportException e1) {
-				// TODO Auto-generated catch block
+				Toast.makeText(this, this.getResources().getString(R.string.notes_evernote_problem), Toast.LENGTH_SHORT).show();
 				e1.printStackTrace();
+				return;
+			} catch(Exception e) {
+				Toast.makeText(this, this.getResources().getString(R.string.notes_evernote_problem), Toast.LENGTH_SHORT).show();
+				e.printStackTrace();
+				return;
 			}
 		}
 		if (AppStatus.isOnline())
@@ -110,7 +116,7 @@ public class CourseNoteController extends Activity implements OnClickListener,
 		temp.setTag(note);
 		temp.setOnClickListener(this);
 		TextView title = (TextView) temp.findViewById(R.id.item_title);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 		title.setText(note.getName() + " - Created: "
 				+ sdf.format(note.getDateCreated().getTime()));
 

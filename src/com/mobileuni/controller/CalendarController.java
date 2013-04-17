@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Locale;
 
 import com.mobileuni.R;
 import com.mobileuni.helpers.AppStatus;
@@ -77,8 +78,8 @@ public class CalendarController extends Activity implements OnClickListener {
 		
 		cal.setFirstDayOfWeek(Calendar.MONDAY);
 		
-		SimpleDateFormat day = new SimpleDateFormat("EEE");
-		SimpleDateFormat month = new SimpleDateFormat("MMMMM yyyy");
+		SimpleDateFormat day = new SimpleDateFormat("EEE", Locale.US);
+		SimpleDateFormat month = new SimpleDateFormat("MMMMM yyyy", Locale.US);
 		
 		TableRow monthRow = new TableRow(this);
 		monthRow.setLayoutParams(new TableRow.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
