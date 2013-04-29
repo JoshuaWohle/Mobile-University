@@ -4,7 +4,6 @@ import com.mobileuni.R;
 import com.mobileuni.controller.CalendarController;
 import com.mobileuni.controller.CourseDetailController;
 import com.mobileuni.controller.CourseSelectController;
-import com.mobileuni.controller.FileUploadController;
 import com.mobileuni.controller.LoginController;
 import com.mobileuni.controller.SettingsController;
 import com.mobileuni.helpers.MenuHelper;
@@ -16,6 +15,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
+/**
+ * A simple listener class to handle all menu clicks centrally
+ * @author Joshua Wöhle
+ */
 public class MenuListener implements OnClickListener {
 	
 	Activity a;

@@ -29,6 +29,11 @@ import com.mobileuni.other.ContentType;
 import com.mobileuni.other.ModuleType;
 import com.mobileuni.other.WebServiceFunction;
 
+/**
+ * Represents the course manager called "Moodle", the primary implementation for Learning Management Solutions for the project.
+ * @author Joshua
+ *
+ */
 public class Moodle implements iCourseManager {
 	
 	private static final HashMap<ContentType, String> docTypes = new HashMap<ContentType, String>(); 

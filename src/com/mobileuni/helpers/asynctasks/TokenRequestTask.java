@@ -20,6 +20,10 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+/**
+ * Asks (downloads) a token from the requested iCourseManager for the user
+ * @author Joshua Wöhle
+ */
 public class TokenRequestTask extends AsyncTask<Object, Object, JSONObject> {
 	
 	iCourseManager cm;

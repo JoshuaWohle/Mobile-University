@@ -18,6 +18,10 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
 
+/**
+ * Handles the task of downloading a file in the background
+ * @author Joshua Wöhle
+ */
 public class DownloadFileTask extends AsyncTask<Object, Object, File> {
 	
 	String TAG = Constants.LOG_DOCUMENTS;

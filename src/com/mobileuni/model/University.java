@@ -7,6 +7,10 @@ import com.mobileuni.other.Constants;
 
 import android.util.Log;
 
+/**
+ * Represents a configuration supported to connect to a course manager
+ * @author Joshua Wöhle
+ */
 public class University {
 	
 	private String name;

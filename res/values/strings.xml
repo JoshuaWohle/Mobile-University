@@ -63,5 +63,9 @@
 	<string name="error_web_service_request">Something went wrong with the web service request. Please contact your system administrator.</string>
 	<string name="list_row_information_online">Information available online about the course content</string>
 	<string name="notes_evernote_problem">There was a problem instantiating evernote. Please contact the developer (details in Settings).</string>
+	<string name="pick_calendar">Please select a calendar to sync with</string>
+	<string name="android_sdk_too_low">Your android version does not support this feature. 4.0+ only</string>
+	<string name="settings_sync_courses">Sync your course schedules ?</string>
+	<string name="login_latest_news">Latest news</string>
 		
 </resources>

@@ -39,6 +39,10 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+/**
+ * Represents the main user object, with all of the necessary actions
+ * @author Joshua Wöhle
+ */
 public class User implements Serializable {
 	
 	/**
@@ -62,6 +66,9 @@ public class User implements Serializable {
 		
 	}
 	
+	/**
+	 * Saves the user to storage through serialization
+	 */
 	public void save() {
 		FileOutputStream fos;
 		try {
@@ -79,6 +86,10 @@ public class User implements Serializable {
 		}
 	}
 	
+	/**
+	 * Loads the user from storage
+	 * @return a new user if successful, null if not
+	 */
 	public static User load() {
 		FileInputStream fis;
 		try {
@@ -164,6 +175,10 @@ public class User implements Serializable {
 		this.profilePictureURL = profilePictureURL;
 	}
 
+	/**
+	 * Sets the courses of the user and notifies the necessary parties
+	 * @param courses
+	 */
 	public void setCourses(ArrayList<Course> courses) {
 		this.courses = courses;
 		boolean notify = false;

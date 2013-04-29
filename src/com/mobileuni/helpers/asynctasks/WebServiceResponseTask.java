@@ -22,7 +22,6 @@ import org.json.JSONObject;
 
 import com.mobileuni.R;
 import com.mobileuni.config.Config;
-import com.mobileuni.controller.LoginController;
 import com.mobileuni.model.Session;
 import com.mobileuni.model.Settings;
 import com.mobileuni.other.Constants;
@@ -32,6 +31,10 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+/**
+ * Controls all web service traffic in the background.
+ * @author Joshua Wöhle
+ */
 public class WebServiceResponseTask extends AsyncTask<Object, Object, JSONObject> {
 	
 	private String fn;

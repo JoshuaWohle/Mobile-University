@@ -5,6 +5,10 @@ import android.content.Context;
 import com.evernote.client.android.EvernoteSession;
 import com.mobileuni.other.Constants;
 
+/**
+ * Represents the session of the application and handles objects that we want to avoid to have to throw around.
+ * @author Joshua Wöhle
+ */
 public class Session {
 	
 	private static User user = null;

@@ -28,11 +28,12 @@ import org.json.JSONObject;
 
 import com.mobileuni.listeners.CourseChangeListener;
 
+/**
+ * A simple class to represent a course
+ * @author Joshua Wöhle
+ */
 public class Course implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private int id;	

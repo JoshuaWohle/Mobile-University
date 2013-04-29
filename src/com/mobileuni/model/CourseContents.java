@@ -27,10 +27,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
-
-import com.mobileuni.other.Constants;
-
+/**
+ * A class representing all contents related to a course
+ * @author Joshua Wöhle
+ */
 public class CourseContents implements Serializable {
 
 	
@@ -88,8 +88,12 @@ public class CourseContents implements Serializable {
        return modules;
     }
 
+    /**
+     * populate the object based on a jsonobject. Extracts the necessary information. 
+     * @param jsonObject
+     */
     public void populateCourseContent(JSONObject jsonObject) {
-    
+    //TODO this should be moved to the iCM
     	try {  
     		if (jsonObject != null) {
     			

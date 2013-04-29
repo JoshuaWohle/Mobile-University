@@ -1,9 +1,13 @@
 package com.mobileuni.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
 
+/**
+ * A simple class to represent a note in the system. It's called "Meta" because the actual note resides in evernote. This is
+ * merly a quick access representation.
+ * @author Joshua Wöhle
+ */
 public class MetaNote implements Serializable {
 	
 	/**

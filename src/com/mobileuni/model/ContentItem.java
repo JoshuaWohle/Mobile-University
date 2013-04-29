@@ -24,11 +24,12 @@ import java.io.Serializable;
 
 import org.json.JSONObject;
 
+/**
+ * A class to represent a content item. A content item can be any actual item such as a document, a grade, etc.
+ * @author Joshua Wöhle
+ */
 public class ContentItem implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private String type = "";

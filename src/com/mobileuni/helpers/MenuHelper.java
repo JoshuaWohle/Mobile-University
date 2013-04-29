@@ -19,11 +19,24 @@ import com.mobileuni.listeners.MenuListener;
 import com.mobileuni.model.CourseSectionItem;
 import com.slidingmenu.lib.SlidingMenu;
 
+/**
+ * A simple helper class that centralises the use of the 2 menus : course menu & general menu
+ * @author Joshua Wöhle
+ */
 public class MenuHelper {
 
+	/**
+	 * A list of all available sections in a course and their related activities
+	 */
 	public static ArrayList<CourseSectionItem> courseSectionList;
 	private static ArrayList<SlidingMenu> history = new ArrayList<SlidingMenu>();
 
+	/**
+	 * Takes the current activity context and re-arranges it to attach the sliding menu
+	 * @param a - the activity responsible for treating the menu
+	 * @param resource - the resource of the "main" screen to put alongside the menu
+	 * @param titleResource - the title of the resource to be loaded (a resource identifier of it's string)
+	 */
 	public static void setContentViewAndSlideMenu(Activity a, int resource, int titleResource) {
 		
 		// Include menu bar and then set the appropriate view
@@ -126,6 +139,12 @@ public class MenuHelper {
 		history.add(menu);
 	}
 	
+	/**
+	 * @param checkedClass - the class to be checked
+	 * @return true if the class if part of the course sections, false otherwise
+	 * Checks if the class is really one of the course sections
+	 */
+	@SuppressWarnings("rawtypes")
 	public static boolean isCourseSection(Class checkedClass) {
 		for(CourseSectionItem section : courseSectionList) 
 			if(section.targetActivity == checkedClass)

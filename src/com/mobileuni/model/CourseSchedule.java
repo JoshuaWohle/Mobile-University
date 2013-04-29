@@ -2,6 +2,10 @@ package com.mobileuni.model;
 
 import java.util.Calendar;
 
+/**
+ * A class to represent the schedules of a certain course
+ * @author Joshua Wöhle
+ */
 public class CourseSchedule implements Comparable {
 
 	private Course course;

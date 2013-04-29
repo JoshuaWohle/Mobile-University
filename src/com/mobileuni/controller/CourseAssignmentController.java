@@ -40,6 +40,10 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * Shows the assignments for a certain course
+ * @author Joshua
+ */
 public class CourseAssignmentController extends Activity implements OnClickListener {
 
 	FrameLayout courseworkLayout;

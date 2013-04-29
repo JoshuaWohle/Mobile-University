@@ -17,6 +17,11 @@ import com.mobileuni.model.MetaNote;
 import com.mobileuni.model.Session;
 import com.mobileuni.other.Constants;
 
+/**
+ * A simple listener class to handle interactions with evernote (both the client and the cloud API)
+ * @author Joshua Wöhle
+ */
+@SuppressWarnings("rawtypes")
 public class EvernoteListener extends OnClientCallback {
 	
 	Activity a;

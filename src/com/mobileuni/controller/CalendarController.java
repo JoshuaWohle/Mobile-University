@@ -13,12 +13,10 @@ import com.mobileuni.model.Course;
 import com.mobileuni.model.CourseSchedule;
 import com.mobileuni.model.Module;
 import com.mobileuni.model.Session;
-import com.mobileuni.other.Constants;
 import com.mobileuni.other.ModuleType;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -27,6 +25,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+/**
+ * A class to control anything related to the calendar view, showing deadlines and course schedules
+ * @author Joshua Wöhle
+ */
 public class CalendarController extends Activity implements OnClickListener {
 	
 	public static Calendar selectedMonth = Calendar.getInstance();
@@ -40,6 +42,9 @@ public class CalendarController extends Activity implements OnClickListener {
 		fillUpcoming();
 	}
 	
+	/**
+	 * Fills the upcoming deadlines and assignment dates view
+	 */
 	private void fillUpcoming() {
 		LinearLayout main = (LinearLayout) findViewById(R.id.calendar_upcoming_deadlines_list);
 		for(Module upcoming : Session.getCourseManager().getModules(null, ModuleType.ASSIGNMENT)) {
@@ -116,7 +121,6 @@ public class CalendarController extends Activity implements OnClickListener {
 				
 				// If the day is after the start and before the finish, paint date
 				// -1 is because the week starts on Sunday for Java :)
-				Log.d(Constants.LOG_CALENDAR, Integer.toString(cal.get(Calendar.DAY_OF_WEEK)-1));
 				if(!(j < cal.get(Calendar.DAY_OF_WEEK)-1 && i < 1) &&
 						date <= cal.getActualMaximum(Calendar.DAY_OF_MONTH)) {
 					tv.setText(Integer.toString(date));

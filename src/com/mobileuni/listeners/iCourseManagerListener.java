@@ -1,10 +1,11 @@
 package com.mobileuni.listeners;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public interface iCourseManagerListener {
 
+	/**
+	 * Notifies the listening parties that the system now has a user logged-in (and can thus proceed)
+	 * @param loggedIn
+	 */
 	public void loginChange(boolean loggedIn);
 	
 }

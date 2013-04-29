@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.helpers.MenuHelper;
 import com.mobileuni.listeners.CourseChangeListener;
 import com.mobileuni.model.ContentItem;
@@ -51,6 +50,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Simple controller showing the documents related to a certain course
+ * @author Joshua Wöhle
+ */
 public class CourseDocumentController extends Activity implements CourseChangeListener, OnClickListener {
 
 	User user;
@@ -97,6 +100,10 @@ public class CourseDocumentController extends Activity implements CourseChangeLi
 		}
 	}
 
+	/**
+	 * shows the document that was downloaded (gets triggered onFileChanged())
+	 * @param absoluteFilePath
+	 */
 	public void downloadedFile(String absoluteFilePath) {
 		File file = new File(absoluteFilePath);
 		Log.d(Constants.LOG_DOCUMENTS, "Opening file: " + file.getAbsolutePath());
@@ -126,22 +133,24 @@ public class CourseDocumentController extends Activity implements CourseChangeLi
 		}
 	}
 
+	/**
+	 * A simple method to figure our the extension of a file, could probably be moved to a helper
+	 * @param url
+	 * @return the extension of the file
+	 */
 	public String fileExt(String url) {
-		if (url.indexOf("?") > -1) {
+		if (url.indexOf("?") > -1)
 			url = url.substring(0, url.indexOf("?"));
-		}
-		if (url.lastIndexOf(".") == -1) {
+		
+		if (url.lastIndexOf(".") == -1)
 			return null;
-		} else {
+		else {
 			String ext = url.substring(url.lastIndexOf("."));
-			if (ext.indexOf("%") > -1) {
+			if (ext.indexOf("%") > -1)
 				ext = ext.substring(0, ext.indexOf("%"));
-			}
-			if (ext.indexOf("/") > -1) {
+			if (ext.indexOf("/") > -1)
 				ext = ext.substring(0, ext.indexOf("/"));
-			}
 			return ext.toLowerCase(Locale.US);
-
 		}
 	}
 
@@ -150,7 +159,6 @@ public class CourseDocumentController extends Activity implements CourseChangeLi
 		File file = Session.getCourseManager().downloadDocument(Session.getCurrentSelectedCourse(), document.getFileName());
 		if(null != file)
 			downloadedFile(file.getAbsolutePath());
-		
 	}
 
 	public void courseContentsChanged() {
@@ -164,7 +172,6 @@ public class CourseDocumentController extends Activity implements CourseChangeLi
 
 	public void notesChanged() {
 		// Nothing to do on this view
-		
 	}
 
 }

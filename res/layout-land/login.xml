@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:orientation="horizontal"
+        android:weightSum="2">
+
+    <LinearLayout
+        android:id="@+id/login_main_layout"
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:background="@color/light_brown"
+        android:orientation="vertical"
+        android:padding="20dip" 
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dip"
+            android:gravity="center"
+            android:text="@string/login_mobile"
+            android:textAllCaps="true"
+            android:textColor="@color/dark_brown"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dip"
+            android:gravity="center"
+            android:text="@string/login_university"
+            android:textAllCaps="true"
+            android:textColor="@color/login_blue"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/login_username"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dip"
+            android:hint="@string/login_password"
+            android:inputType="textPassword"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_select_university"
+            android:textColor="@color/dark_brown" />
+
+        <Spinner
+            android:id="@+id/login_university_select"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dip" />
+
+        <Button
+            android:id="@+id/login_button"
+            style="@style/dark_theme"
+            android:layout_width="fill_parent"
+            android:layout_height="40dip"
+            android:layout_marginBottom="20dip"
+            android:text="@string/login_button"
+            android:textAllCaps="true"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/login_advanced_config"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_advanced_config"
+            android:textColor="@color/dark_brown"
+            android:textStyle="italic" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/login_news_layout"
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:background="@color/light_brown"
+        android:orientation="vertical"
+        android:padding="20dip" 
+        android:layout_weight="1">
+        
+         <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dip"
+            android:gravity="center"
+            android:text="@string/login_latest_news"
+            android:textAllCaps="true"
+            android:textColor="@color/dark_brown"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -37,6 +37,10 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * Shows the simple menu 
+ * @author Joshua
+ */
 public class CourseDetailController extends Activity implements
 		CourseChangeListener, OnClickListener {
 
@@ -71,10 +75,12 @@ public class CourseDetailController extends Activity implements
 		}
 	}
 
+	/**
+	 * Display the different course sections
+	 */
 	public void displayCourseChoice() {
 		if (Session.getUser() != null
 				&& Session.getCurrentSelectedCourse() != null)
-
 			showCourseSections();
 	}
 
@@ -110,7 +116,6 @@ public class CourseDetailController extends Activity implements
 	}
 
 	public void onClick(View v) {
-
 		// If the clicked menu is a course section item, just go to its
 		// corresponding section
 		if (MenuHelper.isCourseSection((Class) v.getTag())) {

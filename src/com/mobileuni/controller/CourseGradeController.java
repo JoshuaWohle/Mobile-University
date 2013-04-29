@@ -40,6 +40,10 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;;
 
+/**
+ * A simple controller that shows the grades related to the assignments of a certain course
+ * @author Joshua Wöhle
+ */
 public class CourseGradeController extends Activity implements OnClickListener {
 
 	User user;

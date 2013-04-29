@@ -23,7 +23,6 @@ package com.mobileuni.controller;
 import com.mobileuni.config.Config;
 import com.mobileuni.helpers.AppStatus;
 import com.mobileuni.listeners.iCourseManagerListener;
-import com.mobileuni.model.Moodle;
 import com.mobileuni.model.Session;
 import com.mobileuni.model.University;
 import com.mobileuni.model.User;
@@ -46,6 +45,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * A simple controller that handles the user login process
+ * @author Joshua Wöhle
+ */
 public class LoginController extends Activity implements OnClickListener, iCourseManagerListener {
 	
 	EditText username, password;
@@ -100,6 +103,10 @@ public class LoginController extends Activity implements OnClickListener, iCours
 		}
 	}
 	
+	/**
+	 * Treats the login process. Checks if the user has an internet connection and takes the appropriate actions
+	 * (use offline data if no internet connection, get new data if there is)
+	 */
 	public void login() {
 		// Weirdly enough you need the getResources() here...
 		dialog = ProgressDialog.show(this, getResources().getString(R.string.loading), 
@@ -128,6 +135,8 @@ public class LoginController extends Activity implements OnClickListener, iCours
 			// Offline usage
 			Log.d(Constants.LOG_SESSION, "Proceding with offline session");
 			Session.setUser(User.load());
+			Session.setCourseManager(University.getCourseManager(universitySelect.getSelectedItem().toString()));
+			Session.getCourseManager().addListener(this);
 			if(Session.getUser() == null) {
 				Toast.makeText(this, "No connection and no previous data (so cannot browse offline)."
 						+ " Please make sure you have a data connection and try again.", Toast.LENGTH_SHORT).show();

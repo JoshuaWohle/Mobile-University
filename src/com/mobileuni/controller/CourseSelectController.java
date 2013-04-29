@@ -19,6 +19,10 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * A simple controller that enables the user to choose a course
+ * @author Joshua Wöhle
+ */
 public class CourseSelectController extends Activity implements UserChangeListener, OnClickListener {
 
 	ProgressDialog dialog;

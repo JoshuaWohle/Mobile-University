@@ -40,6 +40,10 @@ import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * A simple controller to show the forums related to a certain course
+ * @author Joshua Wöhle
+ */
 public class CourseForumController extends Activity implements OnClickListener {
 
 	User user;

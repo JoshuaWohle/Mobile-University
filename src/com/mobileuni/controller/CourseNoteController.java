@@ -18,15 +18,12 @@ import com.mobileuni.listeners.CourseChangeListener;
 import com.mobileuni.listeners.EvernoteListener;
 import com.mobileuni.model.MetaNote;
 import com.mobileuni.model.Session;
-import com.mobileuni.other.Constants;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -36,6 +33,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * A simple controller to control the notes related to a certain course. It handles creation, reading and modification
+ * @author Joshua Wöhle
+ */
 public class CourseNoteController extends Activity implements OnClickListener,
 		CourseChangeListener {
 
@@ -71,6 +72,9 @@ public class CourseNoteController extends Activity implements OnClickListener,
 		findRelatedNotes();
 	}
 
+	/**
+	 * Simply adds the button responsible for creating new notes
+	 */
 	public void createAddNoteButton() {
 		LinearLayout list = (LinearLayout) findViewById(R.id.item_list);
 		Button addNoteButton = new Button(this);
@@ -82,6 +86,7 @@ public class CourseNoteController extends Activity implements OnClickListener,
 		list.addView(addNoteButton);
 	}
 
+	@SuppressWarnings("unchecked")
 	private void findRelatedNotes() {
 		int pageSize = 10;
 		NoteFilter filter = new NoteFilter();
@@ -134,6 +139,9 @@ public class CourseNoteController extends Activity implements OnClickListener,
 		((LinearLayout) findViewById(R.id.item_list)).addView(temp);
 	}
 
+	/**
+	 * Authenticate to evernote, needed to use it's integration
+	 */
 	public void evernoteAuthenticate() {
 		Session.getEs().authenticate(this);
 	}
@@ -145,8 +153,7 @@ public class CourseNoteController extends Activity implements OnClickListener,
 	 */
 	private boolean evernoteInstalled() {
 		try {
-			ApplicationInfo info = getPackageManager().getApplicationInfo(
-					"com.evernote", 0);
+			getPackageManager().getApplicationInfo("com.evernote", 0);
 			return true;
 		} catch (PackageManager.NameNotFoundException e) {
 			return false;

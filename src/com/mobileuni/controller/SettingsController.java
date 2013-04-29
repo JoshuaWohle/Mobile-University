@@ -21,6 +21,7 @@
 package com.mobileuni.controller;
 
 import com.mobileuni.R;
+import com.mobileuni.helpers.CalendarSyncHelper;
 import com.mobileuni.helpers.MenuHelper;
 import com.mobileuni.model.Settings;
 
@@ -29,6 +30,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ToggleButton;
 
+/**
+ * Controls the user settings in a basic way
+ * @author Joshua Wöhle
+ */
 public class SettingsController extends Activity {
 
 	/** Called when the activity is first created. */
@@ -53,6 +58,13 @@ public class SettingsController extends Activity {
 	    		break;
 	    	case R.id.settings_sync_deadlines:
 	    		Settings.setSyncDeadlines(((ToggleButton) v).isChecked());
+	    		if(Settings.isSyncDeadlines())
+	    			CalendarSyncHelper.synchronizeDeadlines(this, true);
+	    		break;
+	    	case R.id.settings_sync_courses:
+	    		Settings.setSyncCourseSchedules(((ToggleButton) v).isChecked());
+	    		if(Settings.isSyncCourseSchedules())
+	    			CalendarSyncHelper.synchronizeCourseSchedules(this, true);
 	    	case R.id.settings_auto_download_content:
 	    		Settings.setAutoDownloadContent(((ToggleButton) v).isChecked());
 	    		break;
