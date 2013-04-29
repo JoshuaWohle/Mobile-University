@@ -20,7 +20,7 @@ public class Constants {
 	// Third-party integration
 	public static final String EVERNOTE_CONSUMER_KEY = "jwohle-1026";
 	public static final String EVERNOTE_CONSUMER_SECRET = "b73d16cb79bb43a9";
-	public static final EvernoteService EVERNOTE_HOST = EvernoteSession.EvernoteService.SANDBOX;
+	public static final EvernoteService EVERNOTE_HOST = EvernoteSession.EvernoteService.PRODUCTION;
 	
 	// Log tags
 	public static final String LOG_NOTES = "Notes";

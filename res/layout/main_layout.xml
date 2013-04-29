@@ -24,9 +24,7 @@
             android:id="@+id/main_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAllCaps="true"
-            android:textColor="@color/White"
-        	android:textIsSelectable="true"/>
+            android:textColor="@color/White"/>
         
     </LinearLayout>
 

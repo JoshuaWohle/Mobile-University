@@ -20,7 +20,6 @@
             android:layout_marginTop="30dip"
             android:gravity="center"
             android:text="@string/login_mobile"
-            android:textAllCaps="true"
             android:textColor="@color/dark_brown"
             android:textSize="40sp"
             android:textStyle="bold" />
@@ -31,7 +30,6 @@
             android:layout_marginBottom="30dip"
             android:gravity="center"
             android:text="@string/login_university"
-            android:textAllCaps="true"
             android:textColor="@color/login_blue"
             android:textSize="40sp"
             android:textStyle="bold" />
@@ -71,7 +69,6 @@
             android:layout_height="40dip"
             android:layout_marginBottom="20dip"
             android:text="@string/login_button"
-            android:textAllCaps="true"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -99,7 +96,6 @@
             android:layout_marginTop="30dip"
             android:gravity="center"
             android:text="@string/login_latest_news"
-            android:textAllCaps="true"
             android:textColor="@color/dark_brown"
             android:textSize="40sp"
             android:textStyle="bold" />

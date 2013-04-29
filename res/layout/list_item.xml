@@ -20,8 +20,7 @@
         android:id="@+id/item_title"
         android:textStyle="bold"
         android:padding="5dip"
-        android:gravity="left"
-        android:textIsSelectable="false"/>
+        android:gravity="left"/>
     
     </RelativeLayout>
     
@@ -30,7 +29,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/item_content"
-        android:padding="5dip"
-        android:textIsSelectable="false"/>
+        android:padding="5dip"/>
 
 </LinearLayout>
